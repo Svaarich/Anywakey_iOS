@@ -33,12 +33,10 @@ public class DataModel {
     // Delete device from array and return updated
     func delete(device: Device, data: [Device]) -> [Device] {
         var savedDevices = data
-        for index in 0..<savedDevices.count {
-            if device == savedDevices[index] {
-                savedDevices.remove(at: index)
-                saveUserDefaults(data: savedDevices)
-                return savedDevices
-            }
+        if let index = savedDevices.firstIndex(where: { $0 == device }) {
+            savedDevices.remove(at: index)
+            saveUserDefaults(data: savedDevices)
+            return savedDevices
         }
         return savedDevices
     }
