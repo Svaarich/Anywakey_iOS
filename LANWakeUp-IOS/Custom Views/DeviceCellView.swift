@@ -140,10 +140,10 @@ struct DeviceCellView: View {
                     Text(device.BroadcastAddr.isEmpty ? "Adress: [Empty]" : "\(device.BroadcastAddr)")
                 }
                 Spacer()
+                
+                // Ping block
                 if statusColor == DrawingConstants.onlineColor {
-                    Text(String(format: "%.3f ms", ping))
-                        .font(.caption)
-                        .foregroundStyle(.tertiary)
+                    pingInfo
                 }
             }
             .font(.subheadline)
@@ -151,6 +151,17 @@ struct DeviceCellView: View {
         }
         .lineLimit(1)
     }
+    
+    // MARK: Ping block
+    private var pingInfo: some View {
+        HStack(spacing: 4) {
+            Image(systemName: "hare.fill")
+            Text(String(format: "%.3f ms", ping))
+        }
+            .font(.caption)
+            .foregroundStyle(.tertiary)
+    }
+        
     
     //MARK: Boot button
     private var bootButton: some View {
