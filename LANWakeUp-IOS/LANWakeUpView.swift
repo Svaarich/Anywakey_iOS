@@ -63,18 +63,18 @@ struct LANWakeUpView: View {
                     }
                 }
                 // Refresh status color
-                ToolbarItem(placement: .topBarLeading) {
-                    Button {
-                        refreshStatus.toggle()
-                    } label: {
-                        if refreshStatus {
-                            ProgressView()
-                        } else {
-                            Image(systemName: "arrow.circlepath")
-                        }
-                    }
-                    .disabled(refreshStatus)
-                }
+//                ToolbarItem(placement: .topBarLeading) {
+//                    Button {
+//                        refreshStatus.toggle()
+//                    } label: {
+//                        if refreshStatus {
+//                            ProgressView()
+//                        } else {
+//                            Image(systemName: "arrow.circlepath")
+//                        }
+//                    }
+//                    .disabled(refreshStatus)
+//                }
                 // Add button
                 ToolbarItem(placement: .topBarTrailing) {
                     Button {
@@ -200,5 +200,4 @@ struct LANWakeUpView: View {
 #Preview {
     let computer = Computer()
     return LANWakeUpView(computer: computer)
-    //        .preferredColorScheme(.light)
 }
