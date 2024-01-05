@@ -4,6 +4,7 @@ struct DeviceInfoView: View {
     
     @EnvironmentObject var computer: Computer
     @Environment(\.dismiss) var dismiss
+    @Environment(\.colorScheme) var colorScheme
     
     @FocusState private var isFocused: FocusedStates?
     
@@ -15,7 +16,7 @@ struct DeviceInfoView: View {
     @State private var MAC: String
     @State private var Port: String
     
-    private let device: Device
+    @State private var device: Device
     private let isPinned: Bool
     
     init(device: Device) {
@@ -23,8 +24,8 @@ struct DeviceInfoView: View {
         _BroadcastAddr = State(initialValue: device.BroadcastAddr)
         _MAC = State(initialValue: device.MAC)
         _Port = State(initialValue: device.Port)
+        _device = State(initialValue: device)
         self.isPinned = device.isPinned
-        self.device = device
     }
     
     var body: some View {
@@ -35,7 +36,13 @@ struct DeviceInfoView: View {
                     Spacer()
                 }
                 deviceCard
-                bootButton
+                if !isEditing {
+                    bootButton
+                        .padding(.top, 8)
+                        .transition(.opacity)
+                        .opacity(isEditing ? 0 : 1)
+                }
+                
                 Spacer()
             }
             .padding()
@@ -81,6 +88,11 @@ struct DeviceInfoView: View {
                                 MAC: MAC,
                                 BroadcastAddr: BroadcastAddr,
                                 Port: Port))
+                        device = Device(
+                            name: name,
+                            MAC: MAC,
+                            BroadcastAddr: BroadcastAddr,
+                            Port: Port)
                     }
                 } label: {
                     if isEditing {
@@ -252,9 +264,21 @@ struct DeviceInfoView: View {
     
     private var bootButton: some View {
         Button {
-             // _ = computer.boot(device: device)
+              _ = computer.boot(device: device)
         } label: {
-            Text("Boot button")
+            Text("Boot device".uppercased())
+                .font(.headline)
+                .fontWeight(.semibold)
+                .foregroundStyle(.white)
+                .padding(.vertical)
+                .frame(maxWidth: .infinity)
+                .background(.blue.opacity(colorScheme == .dark ? 0.2 : 0.8))
+                .clipShape(RoundedRectangle(cornerRadius: 45 / 2.3))
+                .overlay {
+                    RoundedRectangle(cornerRadius: 45 / 2.3)
+                        .strokeBorder(lineWidth: 2)
+                }
+                
         }
     }
     
