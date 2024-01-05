@@ -30,6 +30,18 @@ class Computer: ObservableObject {
     func add(newDevice: Device) {
         listOfDevices = dataModel.add(newDevice: newDevice, data: listOfDevices)
     }
+    
+    func pinToggle(device: Device) {
+        if let index = listOfDevices.firstIndex(where: { $0 == device } ) {
+            listOfDevices[index] = device.pinToggle()
+        }
+    }
+    func updateDevice(oldDevice: Device, newDevice: Device) {
+        if let index = listOfDevices.firstIndex(where: { $0 == oldDevice } ) {
+            listOfDevices[index] = newDevice
+            saveUserDefaults()
+        }
+    }
 }
 
 

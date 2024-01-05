@@ -44,10 +44,8 @@ struct DeviceCellView: View {
             
             // Pin button
             Button {
-                if let index = computer.listOfDevices.firstIndex(of: device) {
-                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
-                        computer.listOfDevices[index].isPinned.toggle()
-                    }
+                DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+                    computer.pinToggle(device: device)
                 }
             } label: {
                 Text(device.isPinned ? "Unpin" : "Pin")
@@ -211,10 +209,7 @@ struct DeviceCellView: View {
             
             // Pin button
             Button {
-                if let index = computer.listOfDevices.firstIndex(of: device) {
-                    computer.listOfDevices[index].isPinned.toggle()
-                    
-                }
+                computer.pinToggle(device: device)
             } label: {
                 Text(device.isPinned ? "Unpin" : "Pin")
                 Image(systemName: device.isPinned ? "pin.slash" : "pin")
@@ -248,8 +243,7 @@ struct DeviceCellView: View {
 #Preview {
     @EnvironmentObject var computer: Computer
     @State var refresh: Bool = false
-    var device = Device(name: "Test name", MAC: "11:22:33:44:55:66", BroadcastAddr: "1.1.1.1", Port: "45655")
-    device.isPinned = true
+    let device = Device(name: "Test name", MAC: "11:22:33:44:55:66", BroadcastAddr: "1.1.1.1", Port: "45655", isPinned: true)
     return DeviceCellView(computer: _computer, refreshStatus: $refresh, device: device)
         .preferredColorScheme(.dark)
 }

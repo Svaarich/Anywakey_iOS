@@ -6,8 +6,12 @@ struct AddDeviceView: View {
     
     @Environment(\.colorScheme) var colorScheme
     
-    @State private var newDevice: Device = .init(name: "", MAC: "", BroadcastAddr: "", Port: "")
-    @State var isCorrectPort: Bool = true
+    @State private var name: String = ""
+    @State private var BroadcastAddr: String = ""
+    @State private var MAC: String = ""
+    @State private var Port: String = ""
+    
+    @State private var isCorrectPort: Bool = true
     
     @Binding var isPresented: Bool
     
@@ -37,6 +41,14 @@ struct AddDeviceView: View {
         .padding()
         .background(.ultraThinMaterial)
         
+        // swipe down gesture, closes the view
+        .gesture(DragGesture(minimumDistance: 0, coordinateSpace: .local)
+            .onEnded { value in
+                if value.translation.height > 0 {
+                    dismiss()
+                }
+            })
+        
         .onAppear {
             // Highlight first Textfield with device name
             DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
@@ -44,7 +56,7 @@ struct AddDeviceView: View {
             }
         }
         
-        .onChange(of: newDevice.Port) { _ in
+        .onChange(of: Port) { _ in
             isCorrectPortInput()
         }
     }
@@ -53,10 +65,10 @@ struct AddDeviceView: View {
     //MARK: isCorrect input func
     // Port check
     private func isCorrectPortInput() {
-        if newDevice.Port.isEmpty {
+        if Port.isEmpty {
             isCorrectPort = true
         } else {
-            if let _ = UInt16(newDevice.Port) {
+            if let _ = UInt16(Port) {
                 isCorrectPort = true
             } else {
                 isCorrectPort = false
@@ -106,7 +118,7 @@ struct AddDeviceView: View {
         VStack(alignment: .leading, spacing: 8) {
             CustomTextField(
                 label: "Device Name",
-                text: $newDevice.name,
+                text: $name,
                 isCorrectInput: true)
                 .focused($isFocused)
             Text("Device name")
@@ -114,21 +126,21 @@ struct AddDeviceView: View {
             
             CustomTextField(
                 label: "IP / Broadcast Address",
-                text: $newDevice.BroadcastAddr,
+                text: $BroadcastAddr,
                 isCorrectInput: true)
             Text("IPv4(e.g. 192.168.0.123) or DNS name for the host.")
                 .padding(.horizontal, 8)
             
             CustomTextField(
                 label: "MAC Address",
-                text: $newDevice.MAC,
+                text: $MAC,
                 isCorrectInput: true)
             Text("(e.g. 00:11:22:AA:BB:CC)")
                 .padding(.horizontal, 8)
             
             CustomTextField(
                 label: "Port",
-                text: $newDevice.Port,
+                text: $Port,
                 isCorrectInput: isCorrectPort)
             Text("Typically sent to port 7 or 9")
                 .padding(.horizontal, 8)
@@ -140,7 +152,12 @@ struct AddDeviceView: View {
     //MARK: Save button
     private var saveButton: some View {
         Button {
-            computer.add(newDevice: newDevice)
+            computer.add(newDevice: Device(
+                name: name,
+                MAC: MAC,
+                BroadcastAddr: BroadcastAddr,
+                Port: Port))
+            
             dismiss()
         } label: {
             Text("Save")
@@ -158,8 +175,6 @@ struct AddDeviceView: View {
 }
 
 #Preview {
-    @EnvironmentObject var computer: Computer
     @State var isPresented: Bool = true
     return AddDeviceView(isPresented: $isPresented)
-        .preferredColorScheme(.dark)
 }
