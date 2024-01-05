@@ -22,8 +22,6 @@ struct LANWakeUpView: View {
                 .refreshable{
                     refreshStatus.toggle()
                 }
-                .scrollContentBackground(.hidden)
-                
                 
                 if isPresentedAddView {
                     // also working with <overlay>
@@ -51,16 +49,7 @@ struct LANWakeUpView: View {
             
             
             //MARK: Animation
-            .animation(.easeInOut, value: computer.listOfDevices)
-            
-            
-            //MARK: InfoView
-            .sheet(isPresented: $isPresentedInfoView) {
-                ZStack {
-                    AppInfoView()
-                }
-                .presentationDetents([.medium])
-            }
+            .animation(.default, value: computer.listOfDevices)
             
             
             //MARK: Toolbar items
