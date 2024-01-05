@@ -7,10 +7,25 @@ struct DeviceInfoView: View {
     
     @FocusState private var isFocused: FocusedStates?
     
-    @State var device: Device
-    @State private var index: Int = 1
     @State private var isEditing: Bool = false
     @State private var showDeleteAlert: Bool = false
+    
+    @State private var name: String
+    @State private var BroadcastAddr: String
+    @State private var MAC: String
+    @State private var Port: String
+    
+    private let device: Device
+    private let isPinned: Bool
+    
+    init(device: Device) {
+        _name = State(initialValue: device.name)
+        _BroadcastAddr = State(initialValue: device.BroadcastAddr)
+        _MAC = State(initialValue: device.MAC)
+        _Port = State(initialValue: device.Port)
+        self.isPinned = device.isPinned
+        self.device = device
+    }
     
     var body: some View {
         ScrollView {
@@ -34,20 +49,19 @@ struct DeviceInfoView: View {
         .navigationBarTitleDisplayMode(.inline)
         
         .animation(.spring, value: isFocused)
-        .animation(.bouncy, value: device)
-        .onAppear {
-            index = getIndexOfDevice()
-        }
-        .onChange(of: device) { _ in
-            computer.listOfDevices[index] = device
-        }
+        .animation(.bouncy, value: [name, MAC, BroadcastAddr, Port])
         
         // Delete confirmation
-        .alert("Are you sure you want to delete '\(device.name)'?", isPresented: $showDeleteAlert) {
+        .alert("Are you sure you want to delete '\(name)'?", isPresented: $showDeleteAlert) {
             Button("Cancel", role: .cancel) {}
             Button("Delete", role: .destructive) {
                 withAnimation {
-                    computer.delete(oldDevice: device)
+                    computer.delete(oldDevice: Device(
+                        name: name,
+                        MAC: MAC,
+                        BroadcastAddr: BroadcastAddr,
+                        Port: Port,
+                        id: device.id))
                 }
                 dismiss()
             }
@@ -58,6 +72,15 @@ struct DeviceInfoView: View {
                 Button {
                     withAnimation(.bouncy) {
                         isEditing.toggle()
+                    }
+                    if !isEditing {
+                        computer.updateDevice(
+                            oldDevice: device,
+                            newDevice: Device(
+                                name: name,
+                                MAC: MAC,
+                                BroadcastAddr: BroadcastAddr,
+                                Port: Port))
                     }
                 } label: {
                     if isEditing {
@@ -79,10 +102,10 @@ struct DeviceInfoView: View {
         }
     }
     
-    private func getIndexOfDevice() -> Int {
-        guard let index = computer.listOfDevices.firstIndex(of: device) else { return 0 }
-        return index
-    }
+//    private func getIndexOfDevice() -> Int {
+//        guard let index = computer.listOfDevices.firstIndex(of: device) else { return 0 }
+//        return index
+//    }
     
     private var deviceCard: some View {
         VStack {
@@ -93,7 +116,7 @@ struct DeviceInfoView: View {
                         isFocused = .name
                     }
                     .overlay {
-                        TextField("Device name", text: $device.name)
+                        TextField("Device name", text: $name)
                             .focused($isFocused, equals: .name)
                             .padding()
                         RoundedRectangle(cornerRadius: 45 / 2.3)
@@ -125,7 +148,7 @@ struct DeviceInfoView: View {
                         isFocused = .adress
                     }
                     .overlay {
-                        TextField("IP / Broadcast Address", text: $device.BroadcastAddr)
+                        TextField("IP / Broadcast Address", text: $BroadcastAddr)
                             .focused($isFocused, equals: .adress)
                             .padding()
                         RoundedRectangle(cornerRadius: 45 / 2.3)
@@ -151,7 +174,7 @@ struct DeviceInfoView: View {
                         isFocused = .mac
                     }
                     .overlay {
-                        TextField("MAC Address", text: $device.MAC)
+                        TextField("MAC Address", text: $MAC)
                             .focused($isFocused, equals: .mac)
                             .padding()
                         RoundedRectangle(cornerRadius: 45 / 2.3)
@@ -178,7 +201,7 @@ struct DeviceInfoView: View {
                         isFocused = .port
                     }
                     .overlay {
-                        TextField("Port", text: $device.Port)
+                        TextField("Port", text: $Port)
                             .focused($isFocused, equals: .port)
                             .padding()
                         RoundedRectangle(cornerRadius: 45 / 2.3)
@@ -213,9 +236,9 @@ struct DeviceInfoView: View {
     
     private var title: some View {
         HStack {
-            Text(device.name.isEmpty ? "[No name]" : device.name)
+            Text(name.isEmpty ? "[No name]" : name)
                 .lineLimit(1)
-            if device.isPinned {
+            if isPinned {
                 Image(systemName: "star.fill")
                     .font(.headline)
                     .foregroundStyle(DrawingConstants.starColor)
@@ -273,8 +296,9 @@ extension DeviceInfoView {
 
 #Preview {
     @EnvironmentObject var computer: Computer
-    return DeviceInfoView(
-        computer: _computer, device: Device(name: "Name", MAC: "11:11:11:11:11", BroadcastAddr: "1.1.1.1", Port: "1"))
+    return NavigationStack {
+        DeviceInfoView(device: Device(name: "test name", MAC: "11:11", BroadcastAddr: "1.1.1.1", Port: "009"))
+    }
 }
 
 
