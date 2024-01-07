@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		7D596B4A2B48D00C00A5B7FA /* NoDevicesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D596B492B48D00C00A5B7FA /* NoDevicesView.swift */; };
 		7D7AB9512AEC40FA00594CDB /* SwiftyPing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D7AB9502AEC40FA00594CDB /* SwiftyPing.swift */; };
 		7DA71F1E2B250A96004F9AF3 /* AppInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DA71F1D2B250A96004F9AF3 /* AppInfoView.swift */; };
 		7DB7120A2AE8857E0087CA76 /* DeviceInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DB712092AE8857E0087CA76 /* DeviceInfoView.swift */; };
@@ -39,6 +40,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		7D596B492B48D00C00A5B7FA /* NoDevicesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoDevicesView.swift; sourceTree = "<group>"; };
 		7D7AB9502AEC40FA00594CDB /* SwiftyPing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftyPing.swift; sourceTree = "<group>"; };
 		7DA71F1D2B250A96004F9AF3 /* AppInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppInfoView.swift; sourceTree = "<group>"; };
 		7DB712092AE8857E0087CA76 /* DeviceInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceInfoView.swift; sourceTree = "<group>"; };
@@ -135,6 +137,7 @@
 				7DB712092AE8857E0087CA76 /* DeviceInfoView.swift */,
 				7DE700162AEA845D0033E53A /* CustomTextField.swift */,
 				7DA71F1D2B250A96004F9AF3 /* AppInfoView.swift */,
+				7D596B492B48D00C00A5B7FA /* NoDevicesView.swift */,
 			);
 			path = "Custom Views";
 			sourceTree = "<group>";
@@ -227,6 +230,7 @@
 				7DFC05362B292C5E0082E502 /* Device.swift in Sources */,
 				7DB7120A2AE8857E0087CA76 /* DeviceInfoView.swift in Sources */,
 				7DFC05342B292BFB0082E502 /* DataModel.swift in Sources */,
+				7D596B4A2B48D00C00A5B7FA /* NoDevicesView.swift in Sources */,
 				7D7AB9512AEC40FA00594CDB /* SwiftyPing.swift in Sources */,
 				7DC26DAB2AE7EE5900B52D02 /* Computer.swift in Sources */,
 				7DE7001B2AEABC930033E53A /* AddDeviceView.swift in Sources */,
