@@ -41,10 +41,7 @@ struct LANWakeUpView: View {
                 }
                 
             }
-            .onChange(of: computer.listOfDevices) { _ in
-                computer.saveUserDefaults()
-            }
-            
+
             .ignoresSafeArea(.keyboard)
             
             //MARK: Navigation title
@@ -100,7 +97,6 @@ struct LANWakeUpView: View {
         .onAppear {
             // isConnected to network?
             showWarning = !Network.isConnectedToNetwork()
-            computer.fetchUserDefaults()
             
         }
         // No internet connection alert
