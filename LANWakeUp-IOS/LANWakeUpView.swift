@@ -12,15 +12,19 @@ struct LANWakeUpView: View {
     var body: some View {
         NavigationStack {
             ZStack {
-                List {
-                    //MARK: Sections
-                    getSections()
-                }
-                
-                // List settings
-                // refreshable list
-                .refreshable{
-                    refreshStatus.toggle()
+                if computer.listOfDevices.isEmpty {
+                    NoDevicesView(isPresented: $isPresentedAddView)
+                        .transition(AnyTransition.opacity.animation(.spring))
+                } else {
+                    List {
+                        //MARK: Sections
+                        getSections()
+                    }
+//                    / List settings
+                    // refreshable list
+                    .refreshable {
+                        refreshStatus.toggle()
+                    }
                 }
                 
                 if isPresentedAddView {
@@ -96,6 +100,8 @@ struct LANWakeUpView: View {
         .onAppear {
             // isConnected to network?
             showWarning = !Network.isConnectedToNetwork()
+            computer.fetchUserDefaults()
+            
         }
         // No internet connection alert
         //        .alert("No internet connection", isPresented: $showWarning) {
