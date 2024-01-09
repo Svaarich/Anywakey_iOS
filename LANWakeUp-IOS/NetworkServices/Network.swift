@@ -12,7 +12,10 @@ public class Network {
     //
     static func ping(address: String, onDone: @escaping (_ ping: Double, _ isAccessible: Bool) -> Void) {
         // if adress is empty returns false
-        if !address.isEmpty {
+        guard
+            !address.isEmpty,
+            address.contains(where: { $0 == "." } )
+        else { return onDone(0, false) }
             let ones = try? SwiftyPing(host: address,
                                        configuration: PingConfiguration(interval: 0.5, with: 2),
                                        queue: DispatchQueue.global())
@@ -24,9 +27,6 @@ public class Network {
             }
             ones?.targetCount = 1
             try? ones?.startPinging()
-        } else {
-            onDone(0, false)
-        }
     }
     
     //

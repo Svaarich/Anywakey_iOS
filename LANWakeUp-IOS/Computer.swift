@@ -6,7 +6,11 @@ class Computer: ObservableObject {
         fetchUserDefaults()
     }
     
-    @Published var listOfDevices: Array<Device> = []
+    @Published var listOfDevices: Array<Device> = [] {
+        didSet {
+            saveUserDefaults()
+        }
+    }
     
     private var wakeUp = WakeUp()
     private var dataModel = DataModel()
@@ -39,8 +43,8 @@ class Computer: ObservableObject {
     func updateDevice(oldDevice: Device, newDevice: Device) {
         if let index = listOfDevices.firstIndex(where: { $0 == oldDevice } ) {
             listOfDevices[index] = newDevice
-            saveUserDefaults()
         }
+        
     }
 }
 

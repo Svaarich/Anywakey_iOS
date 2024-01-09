@@ -155,7 +155,9 @@ struct DeviceCellView: View {
     // MARK: Ping block
     private var pingInfo: some View {
         HStack(spacing: 4) {
-            Image(systemName: "hare.fill")
+//            Image(systemName: "hare.fill")
+            Image(systemName: "stopwatch")
+//                .font(.caption2)
             Text(String(format: "%.3f ms", ping))
         }
             .font(.caption)

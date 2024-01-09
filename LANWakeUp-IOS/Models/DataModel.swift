@@ -35,7 +35,7 @@ public class DataModel {
         var savedDevices = data
         if let index = savedDevices.firstIndex(where: { $0 == device }) {
             savedDevices.remove(at: index)
-            saveUserDefaults(data: savedDevices)
+//            saveUserDefaults(data: savedDevices)
             return savedDevices
         }
         return savedDevices
@@ -48,7 +48,7 @@ public class DataModel {
             return [newDevice]
         } else {
             savedDevices.append(newDevice)
-            saveUserDefaults(data: savedDevices)
+//            saveUserDefaults(data: savedDevices)
         }
         return savedDevices
     }

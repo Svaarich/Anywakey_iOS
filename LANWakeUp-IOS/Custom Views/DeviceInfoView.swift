@@ -114,11 +114,6 @@ struct DeviceInfoView: View {
         }
     }
     
-//    private func getIndexOfDevice() -> Int {
-//        guard let index = computer.listOfDevices.firstIndex(of: device) else { return 0 }
-//        return index
-//    }
-    
     private var deviceCard: some View {
         VStack {
             // name
