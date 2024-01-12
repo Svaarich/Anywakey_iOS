@@ -97,6 +97,7 @@ struct LANWakeUpView: View {
         .onAppear {
             // isConnected to network?
             showWarning = !Network.isConnectedToNetwork()
+            computer.fetchUserDefaults()
             
         }
         // No internet connection alert
