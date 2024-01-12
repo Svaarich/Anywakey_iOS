@@ -40,7 +40,6 @@ struct DeviceInfoView: View {
                     bootButton
                         .padding(.top, 8)
                         .transition(.opacity)
-                        .opacity(isEditing ? 0 : 1)
                 }
                 
                 Spacer()
@@ -77,7 +76,7 @@ struct DeviceInfoView: View {
         .toolbar {
             ToolbarItem(placement: .topBarTrailing) {
                 Button {
-                    withAnimation(.bouncy) {
+                    withAnimation(.spring) {
                         isEditing.toggle()
                     }
                     if !isEditing {
@@ -236,7 +235,7 @@ struct DeviceInfoView: View {
         }
         .overlay {
             RoundedRectangle(cornerRadius: 25)
-                .strokeBorder(lineWidth: isEditing ? 1 : 3)
+                .strokeBorder(lineWidth: 1)
                 .foregroundStyle(.blue.opacity(isEditing ? 1 : 0))
         }
     }
@@ -271,9 +270,8 @@ struct DeviceInfoView: View {
                 .clipShape(RoundedRectangle(cornerRadius: 45 / 2.3))
                 .overlay {
                     RoundedRectangle(cornerRadius: 45 / 2.3)
-                        .strokeBorder(lineWidth: 2)
+                        .strokeBorder(lineWidth: 1)
                 }
-                
         }
     }
     
