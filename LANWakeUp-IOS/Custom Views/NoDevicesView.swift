@@ -1,5 +1,3 @@
-
-
 import SwiftUI
 
 struct NoDevicesView: View {
@@ -28,8 +26,10 @@ struct NoDevicesView: View {
     }
     
     private func addAnimation() {
-        guard !animate else { return }
+        guard !animate else { return } // return if already animating
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+            
+            // movement, scale effect of button
             withAnimation(
                 Animation
                     .easeInOut(duration: 2.0)
@@ -37,9 +37,11 @@ struct NoDevicesView: View {
             ) {
                 animate.toggle()
             }
+            
+            // rotating gradient
             withAnimation(
                 Animation
-                    .linear(duration: 2)
+                    .linear(duration: 2.0)
                     .repeatForever(autoreverses: false)
             ) {
                 gradientAngle = 360
@@ -47,6 +49,7 @@ struct NoDevicesView: View {
         }
     }
     
+    // description
     private var description: some View {
         Group {
             Text("There are no devices")
@@ -58,6 +61,7 @@ struct NoDevicesView: View {
         .multilineTextAlignment(.center)
     }
     
+    // button
     private var button: some View {
         Button {
             withAnimation(.spring) {

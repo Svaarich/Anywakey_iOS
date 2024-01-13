@@ -1,10 +1,3 @@
-//
-//  InfoView.swift
-//  LANWakeUp-IOS
-//
-//  Created by Svarychevskyi Danylo on 09.12.2023.
-//
-
 import SwiftUI
 
 struct AppInfoView: View {

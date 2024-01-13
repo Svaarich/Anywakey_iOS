@@ -143,6 +143,8 @@ struct LANWakeUpView: View {
     }
     
     // MARK: PROPERTIES
+    
+    // Pinned section
     private var pinnedSection: some View {
         Section {
             ForEach(computer.listOfDevices) { device in
@@ -166,7 +168,7 @@ struct LANWakeUpView: View {
             }
         }
     }
-    
+    // Device section
     private var devicesSection: some View {
         Section {
             ForEach(computer.listOfDevices) { device in
