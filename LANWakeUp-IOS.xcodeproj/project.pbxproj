@@ -22,6 +22,7 @@
 		7DE700132AEA82DC0033E53A /* Extension + String.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DE700122AEA82DC0033E53A /* Extension + String.swift */; };
 		7DE700172AEA845D0033E53A /* CustomTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DE700162AEA845D0033E53A /* CustomTextField.swift */; };
 		7DE7001B2AEABC930033E53A /* AddDeviceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DE7001A2AEABC930033E53A /* AddDeviceView.swift */; };
+		7DF00C412B51D541008105C9 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7DF00C402B51D541008105C9 /* LaunchScreen.storyboard */; };
 		7DFC05342B292BFB0082E502 /* DataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DFC05332B292BFB0082E502 /* DataModel.swift */; };
 		7DFC05362B292C5E0082E502 /* Device.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DFC05352B292C5E0082E502 /* Device.swift */; };
 /* End PBXBuildFile section */
@@ -56,6 +57,7 @@
 		7DE700122AEA82DC0033E53A /* Extension + String.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension + String.swift"; sourceTree = "<group>"; };
 		7DE700162AEA845D0033E53A /* CustomTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTextField.swift; sourceTree = "<group>"; };
 		7DE7001A2AEABC930033E53A /* AddDeviceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddDeviceView.swift; sourceTree = "<group>"; };
+		7DF00C402B51D541008105C9 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 		7DFC05332B292BFB0082E502 /* DataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataModel.swift; sourceTree = "<group>"; };
 		7DFC05352B292C5E0082E502 /* Device.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Device.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -138,6 +140,7 @@
 				7DE700162AEA845D0033E53A /* CustomTextField.swift */,
 				7DA71F1D2B250A96004F9AF3 /* AppInfoView.swift */,
 				7D596B492B48D00C00A5B7FA /* NoDevicesView.swift */,
+				7DF00C402B51D541008105C9 /* LaunchScreen.storyboard */,
 			);
 			path = "Custom Views";
 			sourceTree = "<group>";
@@ -210,6 +213,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7DF00C412B51D541008105C9 /* LaunchScreen.storyboard in Resources */,
 				7DC26D882AE7EBE300B52D02 /* Preview Assets.xcassets in Resources */,
 				7DC26D852AE7EBE300B52D02 /* Assets.xcassets in Resources */,
 			);
@@ -377,7 +381,7 @@
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.utilities";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
-				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen.storyboard;
 				INFOPLIST_KEY_UIRequiresFullScreen = YES;
 				INFOPLIST_KEY_UIStatusBarStyle = "";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
@@ -415,7 +419,7 @@
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.utilities";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
-				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen.storyboard;
 				INFOPLIST_KEY_UIRequiresFullScreen = YES;
 				INFOPLIST_KEY_UIStatusBarStyle = "";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
