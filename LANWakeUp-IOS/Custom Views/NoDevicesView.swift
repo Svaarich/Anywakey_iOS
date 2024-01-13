@@ -75,12 +75,7 @@ struct NoDevicesView: View {
 
             // background
             .background {
-                Rectangle()
-                    .fill(
-                        AngularGradient(colors: [secondaryAccenColor, .blue], center: .center, angle: .degrees(gradientAngle))
-                    )
-                    .blur(radius: 35)
-                    .saturation(colorScheme == .dark ? 2.0 : 1.5)
+                shadowGradient
             }
             .clipShape(RoundedRectangle(cornerRadius: 15))
             .padding(.horizontal, animate ? 30 : 50)
@@ -95,6 +90,16 @@ struct NoDevicesView: View {
                 y: animate ? 40 : 30)
         }
         .buttonStyle(.plain)
+    }
+    
+    // gradient shadow
+    private var shadowGradient: some View {
+        Rectangle()
+            .fill(
+                AngularGradient(colors: [secondaryAccenColor, .blue], center: .center, angle: .degrees(gradientAngle))
+            )
+            .blur(radius: 35)
+            .saturation(colorScheme == .dark ? 2.0 : 1.5)
     }
 }
 
