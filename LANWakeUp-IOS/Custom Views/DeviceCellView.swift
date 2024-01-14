@@ -12,6 +12,8 @@ struct DeviceCellView: View {
     @State private var showInputAlert: Bool = false
     @State private var showDeleteAlert: Bool = false
     @State private var showProgressView: Bool = false
+    @State private var animate: Bool = false
+    @State private var starOpacity: CGFloat = 0.0
     
     @Binding var refreshStatus: Bool
     
@@ -54,6 +56,8 @@ struct DeviceCellView: View {
             .tint(DrawingConstants.starColor)
         }
         
+        .onAppear(perform: addAnimation)
+        
         
         //MARK: Alerts
         
@@ -83,11 +87,24 @@ struct DeviceCellView: View {
         }
     }
     
+    private func addAnimation() {
+        guard !animate else { return }
+        DispatchQueue.main.asyncAfter(deadline: .now() + Double.random(in: 0.5...1.0)) {
+            withAnimation(
+                Animation
+//                    .linear(duration: Double.random(in: 1...3))
+                    .linear(duration: Double.random(in: 2...3))
+                    .repeatForever(autoreverses: true)
+            ) {
+                starOpacity = 0.4
+            }
+        }
+    }
+    
     
     //MARK: Status color functions
     // Get status color of device
     private func getStatusColor() {
-//        guard !device.BroadcastAddr.isEmpty else { return statusColor = DrawingConstants.starColor }
         Network.ping(address: device.BroadcastAddr) { duration, status in
             withAnimation(.easeInOut) {
                 ping = duration
@@ -118,7 +135,7 @@ struct DeviceCellView: View {
                     Image(systemName: "star.fill")
                         .foregroundStyle(DrawingConstants.starColor)
                         .padding(.bottom, 3)
-                        .shadow(color: DrawingConstants.starColor.opacity(0.4), radius: 7)
+                        .shadow(color: DrawingConstants.starColor.opacity(starOpacity), radius: 7)
                 }
             }
             HStack(spacing: 4) {
@@ -158,7 +175,8 @@ struct DeviceCellView: View {
 //            Image(systemName: "hare.fill")
             Image(systemName: "stopwatch")
 //                .font(.caption2)
-            Text(String(format: "%.3f ms", ping))
+            Text(String(format: "%.1f ms", ping * 1000))
+//            Text("\(ping * 1000)")
         }
             .font(.caption)
             .foregroundStyle(.tertiary)

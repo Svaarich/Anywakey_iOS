@@ -17,7 +17,6 @@ struct DeviceInfoView: View {
     @State private var Port: String
     
     @State private var device: Device
-    private let isPinned: Bool
     
     init(device: Device) {
         _name = State(initialValue: device.name)
@@ -25,7 +24,6 @@ struct DeviceInfoView: View {
         _MAC = State(initialValue: device.MAC)
         _Port = State(initialValue: device.Port)
         _device = State(initialValue: device)
-        self.isPinned = device.isPinned
     }
     
     var body: some View {
@@ -40,7 +38,6 @@ struct DeviceInfoView: View {
                     bootButton
                         .padding(.top, 8)
                         .transition(.opacity)
-                        .opacity(isEditing ? 0 : 1)
                 }
                 
                 Spacer()
@@ -77,7 +74,7 @@ struct DeviceInfoView: View {
         .toolbar {
             ToolbarItem(placement: .topBarTrailing) {
                 Button {
-                    withAnimation(.bouncy) {
+                    withAnimation(.spring) {
                         isEditing.toggle()
                     }
                     if !isEditing {
@@ -87,12 +84,15 @@ struct DeviceInfoView: View {
                                 name: name,
                                 MAC: MAC,
                                 BroadcastAddr: BroadcastAddr,
-                                Port: Port))
+                                Port: Port,
+                                isPinned: device.isPinned,
+                                id: device.id))
                         device = Device(
                             name: name,
                             MAC: MAC,
                             BroadcastAddr: BroadcastAddr,
-                            Port: Port)
+                            Port: Port,
+                            id: device.id)
                     }
                 } label: {
                     if isEditing {
@@ -230,13 +230,13 @@ struct DeviceInfoView: View {
             }
             .padding()
             .padding(.top, 8)
-            .background(.gray.opacity(0.1))
+            .background(Color.gray.opacity(colorScheme == .dark ? 0.2 : 0.1))
             .clipShape(RoundedRectangle(cornerRadius: 25))
             .disabled(!isEditing)
         }
         .overlay {
             RoundedRectangle(cornerRadius: 25)
-                .strokeBorder(lineWidth: isEditing ? 1 : 3)
+                .strokeBorder(lineWidth: 1)
                 .foregroundStyle(.blue.opacity(isEditing ? 1 : 0))
         }
     }
@@ -245,7 +245,7 @@ struct DeviceInfoView: View {
         HStack {
             Text(name.isEmpty ? "[No name]" : name)
                 .lineLimit(1)
-            if isPinned {
+            if device.isPinned {
                 Image(systemName: "star.fill")
                     .font(.headline)
                     .foregroundStyle(DrawingConstants.starColor)
@@ -271,9 +271,8 @@ struct DeviceInfoView: View {
                 .clipShape(RoundedRectangle(cornerRadius: 45 / 2.3))
                 .overlay {
                     RoundedRectangle(cornerRadius: 45 / 2.3)
-                        .strokeBorder(lineWidth: 2)
+                        .strokeBorder(lineWidth: 1)
                 }
-                
         }
     }
     
