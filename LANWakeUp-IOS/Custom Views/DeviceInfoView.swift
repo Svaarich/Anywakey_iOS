@@ -230,7 +230,7 @@ struct DeviceInfoView: View {
             }
             .padding()
             .padding(.top, 8)
-            .background(.gray.opacity(0.1))
+            .background(Color.gray.opacity(colorScheme == .dark ? 0.2 : 0.1))
             .clipShape(RoundedRectangle(cornerRadius: 25))
             .disabled(!isEditing)
         }
