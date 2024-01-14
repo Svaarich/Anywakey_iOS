@@ -17,7 +17,6 @@ struct DeviceInfoView: View {
     @State private var Port: String
     
     @State private var device: Device
-    private let isPinned: Bool
     
     init(device: Device) {
         _name = State(initialValue: device.name)
@@ -25,7 +24,6 @@ struct DeviceInfoView: View {
         _MAC = State(initialValue: device.MAC)
         _Port = State(initialValue: device.Port)
         _device = State(initialValue: device)
-        self.isPinned = device.isPinned
     }
     
     var body: some View {
@@ -86,12 +84,15 @@ struct DeviceInfoView: View {
                                 name: name,
                                 MAC: MAC,
                                 BroadcastAddr: BroadcastAddr,
-                                Port: Port))
+                                Port: Port,
+                                isPinned: device.isPinned,
+                                id: device.id))
                         device = Device(
                             name: name,
                             MAC: MAC,
                             BroadcastAddr: BroadcastAddr,
-                            Port: Port)
+                            Port: Port,
+                            id: device.id)
                     }
                 } label: {
                     if isEditing {
@@ -244,7 +245,7 @@ struct DeviceInfoView: View {
         HStack {
             Text(name.isEmpty ? "[No name]" : name)
                 .lineLimit(1)
-            if isPinned {
+            if device.isPinned {
                 Image(systemName: "star.fill")
                     .font(.headline)
                     .foregroundStyle(DrawingConstants.starColor)

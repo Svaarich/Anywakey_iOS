@@ -18,12 +18,14 @@ public struct Device: Hashable, Identifiable, Codable {
     let isPinned: Bool
     public var id = UUID().uuidString
     
+    // return current device marked as favourite
     func pinToggle() -> Device {
         let updatedDevice = Device(name: name,
                                     MAC: MAC,
                                     BroadcastAddr: BroadcastAddr,
                                     Port: Port,
-                                    isPinned: !isPinned)
+                                    isPinned: !isPinned,
+                                    id: id)
         return updatedDevice
     }
 }
