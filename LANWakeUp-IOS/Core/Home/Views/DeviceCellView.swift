@@ -140,6 +140,7 @@ struct DeviceCellView: View {
                     pingInfo
                 }
             }
+            .frame(maxWidth: .infinity)
             .font(.subheadline)
             .foregroundStyle(.secondary)
         }
@@ -149,21 +150,18 @@ struct DeviceCellView: View {
     // MARK: Ping block
     private var pingInfo: some View {
         HStack(spacing: 4) {
-//            Image(systemName: "hare.fill")
             Image(systemName: "stopwatch")
-//                .font(.caption2)
             Text(ping.asPingString())
-            Spacer(minLength: 0)
+                .contentTransition(.numericText())
         }
-        .frame(width: 100)
-            .font(.caption)
-            .foregroundStyle(.tertiary)
+        .frame(width: 100, alignment: .trailing)
+        .font(.caption)
+        .foregroundStyle(.tertiary)
     }
     
     //MARK: Context menu
     private var contextMenu: some View {
         VStack {
-            
             //Edit Button
             Button {
                 // Edit view and action
