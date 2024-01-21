@@ -2,13 +2,17 @@ import SwiftUI
 
 @main
 struct LANWakeUp_App: App {
-    private let computer = Computer()
+    
+    @StateObject private var dataService = DeviceDataService()
+//    @StateObject private var dataService = DeviceDataService()
+    
     var body: some Scene {
         WindowGroup {
             NavigationStack {
-                LANWakeUpView(computer: computer)
+                HomeView(dataService: dataService)
             }
-            .environmentObject(Computer())
+            .environmentObject(dataService)
+//            .environmentObject(dataService)
         }
     }
 }
