@@ -8,22 +8,25 @@
 
 /* Begin PBXBuildFile section */
 		7D596B4A2B48D00C00A5B7FA /* NoDevicesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D596B492B48D00C00A5B7FA /* NoDevicesView.swift */; };
+		7D5FE1C82B5CB60900142502 /* Double.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D5FE1C72B5CB60900142502 /* Double.swift */; };
 		7D7AB9512AEC40FA00594CDB /* SwiftyPing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D7AB9502AEC40FA00594CDB /* SwiftyPing.swift */; };
 		7DA71F1E2B250A96004F9AF3 /* AppInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DA71F1D2B250A96004F9AF3 /* AppInfoView.swift */; };
 		7DB7120A2AE8857E0087CA76 /* DeviceInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DB712092AE8857E0087CA76 /* DeviceInfoView.swift */; };
 		7DC26D812AE7EBE100B52D02 /* LANWakeUp_App.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DC26D802AE7EBE100B52D02 /* LANWakeUp_App.swift */; };
-		7DC26D832AE7EBE100B52D02 /* LANWakeUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DC26D822AE7EBE100B52D02 /* LANWakeUpView.swift */; };
+		7DC26D832AE7EBE100B52D02 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DC26D822AE7EBE100B52D02 /* HomeView.swift */; };
 		7DC26D852AE7EBE300B52D02 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7DC26D842AE7EBE300B52D02 /* Assets.xcassets */; };
 		7DC26D882AE7EBE300B52D02 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7DC26D872AE7EBE300B52D02 /* Preview Assets.xcassets */; };
 		7DC26DA82AE7EC8B00B52D02 /* Network.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DC26DA72AE7EC8B00B52D02 /* Network.swift */; };
-		7DC26DA92AE7EDA500B52D02 /* WakeUP.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DC26DA42AE7EC5300B52D02 /* WakeUP.swift */; };
-		7DC26DAB2AE7EE5900B52D02 /* Computer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DC26DAA2AE7EE5900B52D02 /* Computer.swift */; };
+		7DC26DA92AE7EDA500B52D02 /* WakeOnLAN.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DC26DA42AE7EC5300B52D02 /* WakeOnLAN.swift */; };
 		7DC26DB12AE821CC00B52D02 /* DeviceCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DC26DB02AE821CC00B52D02 /* DeviceCellView.swift */; };
-		7DE700132AEA82DC0033E53A /* Extension + String.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DE700122AEA82DC0033E53A /* Extension + String.swift */; };
+		7DD3318A2B54EC2E002BFA64 /* View.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DD331892B54EC2E002BFA64 /* View.swift */; };
+		7DD331DC2B5C5D8D002BFA64 /* BootButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DD331DB2B5C5D8D002BFA64 /* BootButton.swift */; };
+		7DD331DE2B5C5DD7002BFA64 /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DD331DD2B5C5DD7002BFA64 /* Color.swift */; };
+		7DE700132AEA82DC0033E53A /* String.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DE700122AEA82DC0033E53A /* String.swift */; };
 		7DE700172AEA845D0033E53A /* CustomTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DE700162AEA845D0033E53A /* CustomTextField.swift */; };
 		7DE7001B2AEABC930033E53A /* AddDeviceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DE7001A2AEABC930033E53A /* AddDeviceView.swift */; };
 		7DF00C412B51D541008105C9 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7DF00C402B51D541008105C9 /* LaunchScreen.storyboard */; };
-		7DFC05342B292BFB0082E502 /* DataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DFC05332B292BFB0082E502 /* DataModel.swift */; };
+		7DFC05342B292BFB0082E502 /* DeviceDataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DFC05332B292BFB0082E502 /* DeviceDataService.swift */; };
 		7DFC05362B292C5E0082E502 /* Device.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DFC05352B292C5E0082E502 /* Device.swift */; };
 /* End PBXBuildFile section */
 
@@ -42,23 +45,26 @@
 
 /* Begin PBXFileReference section */
 		7D596B492B48D00C00A5B7FA /* NoDevicesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoDevicesView.swift; sourceTree = "<group>"; };
+		7D5FE1C72B5CB60900142502 /* Double.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Double.swift; sourceTree = "<group>"; };
 		7D7AB9502AEC40FA00594CDB /* SwiftyPing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftyPing.swift; sourceTree = "<group>"; };
 		7DA71F1D2B250A96004F9AF3 /* AppInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppInfoView.swift; sourceTree = "<group>"; };
 		7DB712092AE8857E0087CA76 /* DeviceInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceInfoView.swift; sourceTree = "<group>"; };
 		7DC26D7D2AE7EBE100B52D02 /* LANWakeUp-IOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "LANWakeUp-IOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		7DC26D802AE7EBE100B52D02 /* LANWakeUp_App.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LANWakeUp_App.swift; sourceTree = "<group>"; };
-		7DC26D822AE7EBE100B52D02 /* LANWakeUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LANWakeUpView.swift; sourceTree = "<group>"; };
+		7DC26D822AE7EBE100B52D02 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		7DC26D842AE7EBE300B52D02 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		7DC26D872AE7EBE300B52D02 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
-		7DC26DA42AE7EC5300B52D02 /* WakeUP.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WakeUP.swift; sourceTree = "<group>"; };
+		7DC26DA42AE7EC5300B52D02 /* WakeOnLAN.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WakeOnLAN.swift; sourceTree = "<group>"; };
 		7DC26DA72AE7EC8B00B52D02 /* Network.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Network.swift; sourceTree = "<group>"; };
-		7DC26DAA2AE7EE5900B52D02 /* Computer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Computer.swift; sourceTree = "<group>"; };
 		7DC26DB02AE821CC00B52D02 /* DeviceCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceCellView.swift; sourceTree = "<group>"; };
-		7DE700122AEA82DC0033E53A /* Extension + String.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension + String.swift"; sourceTree = "<group>"; };
+		7DD331892B54EC2E002BFA64 /* View.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = View.swift; sourceTree = "<group>"; };
+		7DD331DB2B5C5D8D002BFA64 /* BootButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BootButton.swift; sourceTree = "<group>"; };
+		7DD331DD2B5C5DD7002BFA64 /* Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
+		7DE700122AEA82DC0033E53A /* String.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = String.swift; sourceTree = "<group>"; };
 		7DE700162AEA845D0033E53A /* CustomTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTextField.swift; sourceTree = "<group>"; };
 		7DE7001A2AEABC930033E53A /* AddDeviceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddDeviceView.swift; sourceTree = "<group>"; };
 		7DF00C402B51D541008105C9 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
-		7DFC05332B292BFB0082E502 /* DataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataModel.swift; sourceTree = "<group>"; };
+		7DFC05332B292BFB0082E502 /* DeviceDataService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceDataService.swift; sourceTree = "<group>"; };
 		7DFC05352B292C5E0082E502 /* Device.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Device.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -78,7 +84,7 @@
 			children = (
 				7DC26DA72AE7EC8B00B52D02 /* Network.swift */,
 				7D7AB9502AEC40FA00594CDB /* SwiftyPing.swift */,
-				7DC26DA42AE7EC5300B52D02 /* WakeUP.swift */,
+				7DC26DA42AE7EC5300B52D02 /* WakeOnLAN.swift */,
 			);
 			path = NetworkServices;
 			sourceTree = "<group>";
@@ -103,11 +109,9 @@
 			isa = PBXGroup;
 			children = (
 				7DC26D802AE7EBE100B52D02 /* LANWakeUp_App.swift */,
-				7DC26D822AE7EBE100B52D02 /* LANWakeUpView.swift */,
-				7DC26DAA2AE7EE5900B52D02 /* Computer.swift */,
+				7DD331CF2B5AEAE7002BFA64 /* Core */,
 				7DFC05382B292CE60082E502 /* Models */,
-				7DE700152AEA830D0033E53A /* Custom Views */,
-				7D180F462AEDBB27005063E3 /* NetworkServices */,
+				7DD331D42B5AED29002BFA64 /* Services */,
 				7DE700142AEA82E50033E53A /* Extensions */,
 				7DC26D862AE7EBE300B52D02 /* Preview Content */,
 				7DC26D842AE7EBE300B52D02 /* Assets.xcassets */,
@@ -123,32 +127,77 @@
 			path = "Preview Content";
 			sourceTree = "<group>";
 		};
+		7DD331CF2B5AEAE7002BFA64 /* Core */ = {
+			isa = PBXGroup;
+			children = (
+				7DA71F1D2B250A96004F9AF3 /* AppInfoView.swift */,
+				7DE7001A2AEABC930033E53A /* AddDeviceView.swift */,
+				7DB712092AE8857E0087CA76 /* DeviceInfoView.swift */,
+				7DD331DA2B5AF334002BFA64 /* Components */,
+				7DD331D02B5AEAED002BFA64 /* Home */,
+			);
+			path = Core;
+			sourceTree = "<group>";
+		};
+		7DD331D02B5AEAED002BFA64 /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				7DD331D32B5AEB31002BFA64 /* Views */,
+			);
+			path = Home;
+			sourceTree = "<group>";
+		};
+		7DD331D32B5AEB31002BFA64 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				7DC26D822AE7EBE100B52D02 /* HomeView.swift */,
+				7DC26DB02AE821CC00B52D02 /* DeviceCellView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		7DD331D42B5AED29002BFA64 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				7DFC05332B292BFB0082E502 /* DeviceDataService.swift */,
+				7D180F462AEDBB27005063E3 /* NetworkServices */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+		7DD331DA2B5AF334002BFA64 /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				7DD331DF2B5C6333002BFA64 /* BootButton */,
+				7D596B492B48D00C00A5B7FA /* NoDevicesView.swift */,
+				7DE700162AEA845D0033E53A /* CustomTextField.swift */,
+				7DF00C402B51D541008105C9 /* LaunchScreen.storyboard */,
+			);
+			path = Components;
+			sourceTree = "<group>";
+		};
+		7DD331DF2B5C6333002BFA64 /* BootButton */ = {
+			isa = PBXGroup;
+			children = (
+				7DD331DB2B5C5D8D002BFA64 /* BootButton.swift */,
+			);
+			path = BootButton;
+			sourceTree = "<group>";
+		};
 		7DE700142AEA82E50033E53A /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
-				7DE700122AEA82DC0033E53A /* Extension + String.swift */,
+				7DE700122AEA82DC0033E53A /* String.swift */,
+				7DD331892B54EC2E002BFA64 /* View.swift */,
+				7DD331DD2B5C5DD7002BFA64 /* Color.swift */,
+				7D5FE1C72B5CB60900142502 /* Double.swift */,
 			);
 			path = Extensions;
-			sourceTree = "<group>";
-		};
-		7DE700152AEA830D0033E53A /* Custom Views */ = {
-			isa = PBXGroup;
-			children = (
-				7DE7001A2AEABC930033E53A /* AddDeviceView.swift */,
-				7DC26DB02AE821CC00B52D02 /* DeviceCellView.swift */,
-				7DB712092AE8857E0087CA76 /* DeviceInfoView.swift */,
-				7DE700162AEA845D0033E53A /* CustomTextField.swift */,
-				7DA71F1D2B250A96004F9AF3 /* AppInfoView.swift */,
-				7D596B492B48D00C00A5B7FA /* NoDevicesView.swift */,
-				7DF00C402B51D541008105C9 /* LaunchScreen.storyboard */,
-			);
-			path = "Custom Views";
 			sourceTree = "<group>";
 		};
 		7DFC05382B292CE60082E502 /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				7DFC05332B292BFB0082E502 /* DataModel.swift */,
 				7DFC05352B292C5E0082E502 /* Device.swift */,
 			);
 			path = Models;
@@ -226,19 +275,22 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				7DC26DA92AE7EDA500B52D02 /* WakeUP.swift in Sources */,
+				7DC26DA92AE7EDA500B52D02 /* WakeOnLAN.swift in Sources */,
 				7DC26DA82AE7EC8B00B52D02 /* Network.swift in Sources */,
-				7DE700132AEA82DC0033E53A /* Extension + String.swift in Sources */,
+				7DE700132AEA82DC0033E53A /* String.swift in Sources */,
 				7DC26DB12AE821CC00B52D02 /* DeviceCellView.swift in Sources */,
+				7DD331DE2B5C5DD7002BFA64 /* Color.swift in Sources */,
+				7DD3318A2B54EC2E002BFA64 /* View.swift in Sources */,
 				7DA71F1E2B250A96004F9AF3 /* AppInfoView.swift in Sources */,
 				7DFC05362B292C5E0082E502 /* Device.swift in Sources */,
 				7DB7120A2AE8857E0087CA76 /* DeviceInfoView.swift in Sources */,
-				7DFC05342B292BFB0082E502 /* DataModel.swift in Sources */,
+				7D5FE1C82B5CB60900142502 /* Double.swift in Sources */,
+				7DFC05342B292BFB0082E502 /* DeviceDataService.swift in Sources */,
 				7D596B4A2B48D00C00A5B7FA /* NoDevicesView.swift in Sources */,
 				7D7AB9512AEC40FA00594CDB /* SwiftyPing.swift in Sources */,
-				7DC26DAB2AE7EE5900B52D02 /* Computer.swift in Sources */,
+				7DD331DC2B5C5D8D002BFA64 /* BootButton.swift in Sources */,
 				7DE7001B2AEABC930033E53A /* AddDeviceView.swift in Sources */,
-				7DC26D832AE7EBE100B52D02 /* LANWakeUpView.swift in Sources */,
+				7DC26D832AE7EBE100B52D02 /* HomeView.swift in Sources */,
 				7DC26D812AE7EBE100B52D02 /* LANWakeUp_App.swift in Sources */,
 				7DE700172AEA845D0033E53A /* CustomTextField.swift in Sources */,
 			);
