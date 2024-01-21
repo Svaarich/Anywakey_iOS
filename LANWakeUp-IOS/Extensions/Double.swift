@@ -1,5 +1,4 @@
-
-import SwiftUI
+import Foundation
 
 extension Double {
     func asPingString() -> String {

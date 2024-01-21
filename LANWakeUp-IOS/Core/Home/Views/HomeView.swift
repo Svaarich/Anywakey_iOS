@@ -20,10 +20,12 @@ struct HomeView: View {
                         //MARK: Sections
                         getSections()
                     }
-//                    / List settings
+                    // List settings
                     // refreshable list
                     .refreshable {
-                        refreshStatus.toggle()
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
+                            refreshStatus.toggle()
+                        }
                     }
                 }
                 
@@ -63,19 +65,7 @@ struct HomeView: View {
                         Image(systemName: "info.circle")
                     }
                 }
-                // Refresh status color
-//                ToolbarItem(placement: .topBarLeading) {
-//                    Button {
-//                        refreshStatus.toggle()
-//                    } label: {
-//                        if refreshStatus {
-//                            ProgressView()
-//                        } else {
-//                            Image(systemName: "arrow.circlepath")
-//                        }
-//                    }
-//                    .disabled(refreshStatus)
-//                }
+
                 // Add button
                 ToolbarItem(placement: .topBarTrailing) {
                     Button {
@@ -89,14 +79,11 @@ struct HomeView: View {
                 }
             }
         }
-//        .ignoresSafeArea(.keyboard)
-//        .environmentObject(computer)
         
         //MARK: Network connection check
         .onAppear {
             // isConnected to network?
             showWarning = !Network.isConnectedToNetwork()
-//            computer.fetchUserDefaults()
             
         }
         // No internet connection alert
@@ -128,9 +115,8 @@ struct HomeView: View {
     
     // Gives number of sections
     private func numberOfSections() -> Int {
-        var pinned: Int = 0
-        var notPinned: Int = 0
-        
+        var pinned: Int = 0 // pined sections
+        var notPinned: Int = 0 // not pinned sections
         for device in dataService.allDevices {
             if device.isPinned {
                 pinned = 1
@@ -138,7 +124,7 @@ struct HomeView: View {
                 notPinned = 2
             }
         }
-        return pinned + notPinned
+        return pinned + notPinned // 1 / 2 / 3
     }
     
     // MARK: PROPERTIES

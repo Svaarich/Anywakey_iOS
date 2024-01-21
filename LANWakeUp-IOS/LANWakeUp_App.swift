@@ -4,7 +4,6 @@ import SwiftUI
 struct LANWakeUp_App: App {
     
     @StateObject private var dataService = DeviceDataService()
-//    @StateObject private var dataService = DeviceDataService()
     
     var body: some Scene {
         WindowGroup {
@@ -12,7 +11,6 @@ struct LANWakeUp_App: App {
                 HomeView(dataService: dataService)
             }
             .environmentObject(dataService)
-//            .environmentObject(dataService)
         }
     }
 }
