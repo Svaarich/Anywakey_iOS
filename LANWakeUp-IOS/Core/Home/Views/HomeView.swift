@@ -1,8 +1,8 @@
 import SwiftUI
 
-struct LANWakeUpView: View {
+struct HomeView: View {
     
-    @ObservedObject var computer: Computer
+    @ObservedObject var dataService: DeviceDataService
     
     @State var isPresentedAddView: Bool = false
     @State var isPresentedInfoView: Bool = false
@@ -12,7 +12,7 @@ struct LANWakeUpView: View {
     var body: some View {
         NavigationStack {
             ZStack {
-                if computer.listOfDevices.isEmpty {
+                if dataService.allDevices.isEmpty {
                     NoDevicesView(isPresented: $isPresentedAddView)
                         .transition(AnyTransition.opacity.animation(.spring))
                 } else {
@@ -20,10 +20,12 @@ struct LANWakeUpView: View {
                         //MARK: Sections
                         getSections()
                     }
-//                    / List settings
+                    // List settings
                     // refreshable list
                     .refreshable {
-                        refreshStatus.toggle()
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
+                            refreshStatus.toggle()
+                        }
                     }
                 }
                 
@@ -50,7 +52,7 @@ struct LANWakeUpView: View {
             
             
             //MARK: Animation
-            .animation(.default, value: computer.listOfDevices)
+            .animation(.default, value: dataService.allDevices)
             
             
             //MARK: Toolbar items
@@ -63,19 +65,7 @@ struct LANWakeUpView: View {
                         Image(systemName: "info.circle")
                     }
                 }
-                // Refresh status color
-//                ToolbarItem(placement: .topBarLeading) {
-//                    Button {
-//                        refreshStatus.toggle()
-//                    } label: {
-//                        if refreshStatus {
-//                            ProgressView()
-//                        } else {
-//                            Image(systemName: "arrow.circlepath")
-//                        }
-//                    }
-//                    .disabled(refreshStatus)
-//                }
+
                 // Add button
                 ToolbarItem(placement: .topBarTrailing) {
                     Button {
@@ -89,15 +79,11 @@ struct LANWakeUpView: View {
                 }
             }
         }
-//        .ignoresSafeArea(.keyboard)
-        .environmentObject(computer)
-        
         
         //MARK: Network connection check
         .onAppear {
             // isConnected to network?
             showWarning = !Network.isConnectedToNetwork()
-//            computer.fetchUserDefaults()
             
         }
         // No internet connection alert
@@ -129,17 +115,16 @@ struct LANWakeUpView: View {
     
     // Gives number of sections
     private func numberOfSections() -> Int {
-        var pinned: Int = 0
-        var notPinned: Int = 0
-        
-        for device in computer.listOfDevices {
+        var pinned: Int = 0 // pined sections
+        var notPinned: Int = 0 // not pinned sections
+        for device in dataService.allDevices {
             if device.isPinned {
                 pinned = 1
             } else {
                 notPinned = 2
             }
         }
-        return pinned + notPinned
+        return pinned + notPinned // 1 / 2 / 3
     }
     
     // MARK: PROPERTIES
@@ -147,7 +132,7 @@ struct LANWakeUpView: View {
     // Pinned section
     private var pinnedSection: some View {
         Section {
-            ForEach(computer.listOfDevices) { device in
+            ForEach(dataService.allDevices) { device in
                 if device.isPinned {
                     NavigationLink {
                         DeviceInfoView(device: device)
@@ -157,7 +142,7 @@ struct LANWakeUpView: View {
                 }
             }
             .onMove { indices, newOffset in
-                computer.listOfDevices.move(fromOffsets: indices, toOffset: newOffset)
+                dataService.allDevices.move(fromOffsets: indices, toOffset: newOffset)
             }
         } header: {
             HStack(spacing: 4) {
@@ -171,7 +156,7 @@ struct LANWakeUpView: View {
     // Device section
     private var devicesSection: some View {
         Section {
-            ForEach(computer.listOfDevices) { device in
+            ForEach(dataService.allDevices) { device in
                 if !device.isPinned {
                     NavigationLink {
                         DeviceInfoView(device: device)
@@ -184,7 +169,7 @@ struct LANWakeUpView: View {
 //                computer.listOfDevices.remove(atOffsets: indexSet)
 //            }
             .onMove { indices, newOffset in
-                computer.listOfDevices.move(fromOffsets: indices, toOffset: newOffset)
+                dataService.allDevices.move(fromOffsets: indices, toOffset: newOffset)
             }
         } header: {
             HStack(spacing: 4) {
@@ -203,6 +188,6 @@ struct LANWakeUpView: View {
 }
 
 #Preview {
-    let computer = Computer()
-    return LANWakeUpView(computer: computer)
+    let dataService = DeviceDataService()
+    return HomeView(dataService: dataService)
 }

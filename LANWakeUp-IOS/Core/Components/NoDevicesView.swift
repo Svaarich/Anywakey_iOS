@@ -7,8 +7,6 @@ struct NoDevicesView: View {
     @State private var gradientAngle: Double = 0
     @Binding var isPresented: Bool
     
-    let secondaryAccenColor = Color("SecondaryAccentColor")
-    
     var body: some View {
         ScrollView {
             VStack(spacing: 10) {
@@ -16,7 +14,6 @@ struct NoDevicesView: View {
                 button
             }
             .padding(40)
-            
             .onAppear {
                 addAnimation()
                 
@@ -24,6 +21,11 @@ struct NoDevicesView: View {
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity)
     }
+}
+
+extension NoDevicesView {
+    
+    // MARK: FUNCTIONS
     
     private func addAnimation() {
         guard !animate else { return } // return if already animating
@@ -48,6 +50,9 @@ struct NoDevicesView: View {
             }
         }
     }
+    
+    
+    // MARK: PROPERTIES
     
     // description
     private var description: some View {
@@ -100,7 +105,7 @@ struct NoDevicesView: View {
     private var shadowGradient: some View {
         Rectangle()
             .fill(
-                AngularGradient(colors: [secondaryAccenColor, .blue], center: .center, angle: .degrees(gradientAngle))
+                AngularGradient(colors: [Color.custom.secondaryAccenColor, .blue], center: .center, angle: .degrees(gradientAngle))
             )
             .blur(radius: 35)
             .saturation(colorScheme == .dark ? 2.0 : 1.5)

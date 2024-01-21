@@ -2,7 +2,8 @@ import SwiftUI
 
 struct DeviceInfoView: View {
     
-    @EnvironmentObject var computer: Computer
+    @EnvironmentObject var dataService: DeviceDataService
+    
     @Environment(\.dismiss) var dismiss
     @Environment(\.colorScheme) var colorScheme
     
@@ -60,7 +61,7 @@ struct DeviceInfoView: View {
             Button("Cancel", role: .cancel) {}
             Button("Delete", role: .destructive) {
                 withAnimation {
-                    computer.delete(oldDevice: Device(
+                    dataService.delete(device: Device(
                         name: name,
                         MAC: MAC,
                         BroadcastAddr: BroadcastAddr,
@@ -78,7 +79,7 @@ struct DeviceInfoView: View {
                         isEditing.toggle()
                     }
                     if !isEditing {
-                        computer.updateDevice(
+                        dataService.updateDevice(
                             oldDevice: device,
                             newDevice: Device(
                                 name: name,
@@ -92,6 +93,7 @@ struct DeviceInfoView: View {
                             MAC: MAC,
                             BroadcastAddr: BroadcastAddr,
                             Port: Port,
+                            isPinned: device.isPinned,
                             id: device.id)
                     }
                 } label: {
@@ -259,7 +261,7 @@ struct DeviceInfoView: View {
     
     private var bootButton: some View {
         Button {
-              _ = computer.boot(device: device)
+            _ = Network.boot(device: device)
         } label: {
             Text("Boot device".uppercased())
                 .font(.headline)
@@ -313,7 +315,7 @@ extension DeviceInfoView {
 }
 
 #Preview {
-    @EnvironmentObject var computer: Computer
+    @EnvironmentObject var dataService: DeviceDataService
     return NavigationStack {
         DeviceInfoView(device: Device(name: "test name", MAC: "11:11", BroadcastAddr: "1.1.1.1", Port: "009"))
     }

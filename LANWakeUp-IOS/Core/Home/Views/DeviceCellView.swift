@@ -2,26 +2,24 @@ import SwiftUI
 
 struct DeviceCellView: View {
     
-    @EnvironmentObject var computer: Computer
+    @EnvironmentObject var dataService: DeviceDataService
     
     @Environment(\.colorScheme) var colorScheme
     
-    @State private var statusColor: Color = .gray
-    @State private var isPressed: Bool = false
-    @State private var ping: Double = 0
-    @State private var showInputAlert: Bool = false
+    @State private var isAccesible: Bool = false
     @State private var showDeleteAlert: Bool = false
-    @State private var showProgressView: Bool = false
     @State private var animate: Bool = false
+    
     @State private var starOpacity: CGFloat = 0.0
+    @State private var ping: Double = 0.0
     
     @Binding var refreshStatus: Bool
     
-    var device: Device
+    let device: Device
     
     var body: some View {
         HStack {
-            bootButton
+            BootButton(refreshStatus: $refreshStatus, device: device)
             deviceInfo
         }
         .padding(.vertical, 8)
@@ -47,42 +45,32 @@ struct DeviceCellView: View {
             // Pin button
             Button {
                 DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
-                    computer.pinToggle(device: device)
+                    dataService.pinToggle(device: device)
                 }
             } label: {
                 Text(device.isPinned ? "Unpin" : "Pin")
                 Image(systemName: device.isPinned ? "pin.slash" : "pin")
             }
-            .tint(DrawingConstants.starColor)
+            .tint(Color.custom.starColor)
         }
         
-        .onAppear(perform: addAnimation)
+        .onAppear {
+            addAnimation()
+            getStatus()
+        }
+        .onChange(of: refreshStatus) { status in
+            if status {
+                getStatus()
+            }
+        }
         
         
         //MARK: Alerts
-        
         // Delete device alert
         .alert("Are you sure you want to delete '\(device.name)'?", isPresented: $showDeleteAlert) {
             Button("Cancel", role: .cancel) {}
             Button("Delete", role: .destructive) {
-                computer.delete(oldDevice: device)
-            }
-        }
-        
-        // Input alert
-        .alert("Oops!", isPresented: $showInputAlert)  {
-            Button("OK", role: .cancel) { }
-        } message: {
-            Text("Incorrect input information!")
-        }
-        
-        .onAppear {
-            statusColor = colorScheme == .dark ? DrawingConstants.defaultDarkColor :  DrawingConstants.defaultLightColor
-            getStatusColor()
-        }
-        .onChange(of: refreshStatus) { status in
-            if status {
-                refreshStatusColor()
+                dataService.delete(device: device)
             }
         }
     }
@@ -101,25 +89,14 @@ struct DeviceCellView: View {
         }
     }
     
-    
     //MARK: Status color functions
     // Get status color of device
-    private func getStatusColor() {
+    private func getStatus() {
         Network.ping(address: device.BroadcastAddr) { duration, status in
             withAnimation(.easeInOut) {
                 ping = duration
-                statusColor = status ? DrawingConstants.onlineColor : DrawingConstants.offlineColor
+                isAccesible = status
                 refreshStatus = false
-            }
-        }
-    }
-    
-    // Refresh status color for device
-    private func refreshStatusColor() {
-        withAnimation {
-            statusColor = colorScheme == .dark ? DrawingConstants.defaultDarkColor : DrawingConstants.defaultLightColor
-            DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
-                getStatusColor()
             }
         }
     }
@@ -133,9 +110,9 @@ struct DeviceCellView: View {
                     .font(.headline)
                 if device.isPinned {
                     Image(systemName: "star.fill")
-                        .foregroundStyle(DrawingConstants.starColor)
+                        .foregroundStyle(Color.custom.starColor)
                         .padding(.bottom, 3)
-                        .shadow(color: DrawingConstants.starColor.opacity(starOpacity), radius: 7)
+                        .shadow(color: Color.custom.starColor.opacity(starOpacity), radius: 7)
                 }
             }
             HStack(spacing: 4) {
@@ -150,7 +127,7 @@ struct DeviceCellView: View {
                     HStack(spacing: 0) {
                         Text("Empty adress")
                         Image(systemName: "exclamationmark.triangle.fill")
-                            .foregroundStyle(DrawingConstants.starColor)
+                            .foregroundStyle(Color.custom.starColor)
                             .padding(.leading, 4)
                     }
                 } else {
@@ -159,10 +136,11 @@ struct DeviceCellView: View {
                 Spacer()
                 
                 // Ping block
-                if statusColor == DrawingConstants.onlineColor {
+                if isAccesible {
                     pingInfo
                 }
             }
+            .frame(maxWidth: .infinity)
             .font(.subheadline)
             .foregroundStyle(.secondary)
         }
@@ -172,64 +150,18 @@ struct DeviceCellView: View {
     // MARK: Ping block
     private var pingInfo: some View {
         HStack(spacing: 4) {
-//            Image(systemName: "hare.fill")
             Image(systemName: "stopwatch")
-//                .font(.caption2)
-            Text(String(format: "%.1f ms", ping * 1000))
-//            Text("\(ping * 1000)")
+            Text(ping.asPingString())
+                .contentTransition(.numericText())
         }
-            .font(.caption)
-            .foregroundStyle(.tertiary)
-    }
-        
-    
-    //MARK: Boot button
-    private var bootButton: some View {
-        Circle()
-            .opacity(colorScheme == .dark ? 0.2 : 0.8)
-            .overlay {
-                ZStack {
-                    if statusColor == DrawingConstants.defaultDarkColor || statusColor == DrawingConstants.defaultLightColor {
-                        ProgressView()
-                    } else {
-                        Image(systemName: "power")
-                            .font(Font.system(size: DrawingConstants.imageSize))
-                            .foregroundStyle(.white)
-                            .transition(.scale)
-                    }
-                    Circle()
-                        .strokeBorder(lineWidth: 2)
-                }
-                
-            }
-            .frame(width: 55, height: 55)
-            .foregroundStyle(isPressed ? DrawingConstants.pressedButtonColor : statusColor)
-            .padding(.trailing)
-        
-            .onTapGesture {
-                //TODO: improve!!!
-                if device.MAC.count == 17 {
-                    withAnimation(.easeInOut) {
-                        isPressed = true
-                        _ = computer.boot(device: device)
-                        DispatchQueue.main.asyncAfter(deadline: .now() + 0.75) {
-                            withAnimation {
-                                isPressed = false
-                            }
-                        }
-                    }
-                } else {
-                    let impactMed = UINotificationFeedbackGenerator()
-                    impactMed.notificationOccurred(.error)
-                    showInputAlert.toggle()
-                }
-            }
+        .frame(width: 100, alignment: .trailing)
+        .font(.caption)
+        .foregroundStyle(.tertiary)
     }
     
     //MARK: Context menu
     private var contextMenu: some View {
         VStack {
-            
             //Edit Button
             Button {
                 // Edit view and action
@@ -240,7 +172,7 @@ struct DeviceCellView: View {
             
             // Pin button
             Button {
-                computer.pinToggle(device: device)
+                dataService.pinToggle(device: device)
             } label: {
                 Text(device.isPinned ? "Unpin" : "Pin")
                 Image(systemName: device.isPinned ? "pin.slash" : "pin")
@@ -257,7 +189,7 @@ struct DeviceCellView: View {
     }
     
     private struct DrawingConstants {
-        static let starColor = Color(#colorLiteral(red: 0.9529411793, green: 0.6862745285, blue: 0.1333333403, alpha: 1))
+        
         static let defaultDarkColor: Color = .gray
         static let defaultLightColor: Color = .gray.opacity(0.5)
         static let pressedButtonColor: Color = .blue
@@ -272,9 +204,9 @@ struct DeviceCellView: View {
 
 
 #Preview {
-    @EnvironmentObject var computer: Computer
+    @EnvironmentObject var dataService: DeviceDataService
     @State var refresh: Bool = false
     let device = Device(name: "Test name", MAC: "11:22:33:44:55:66", BroadcastAddr: "1.1.1.1", Port: "45655", isPinned: true)
-    return DeviceCellView(computer: _computer, refreshStatus: $refresh, device: device)
+    return DeviceCellView(refreshStatus: $refresh, device: device)
         .preferredColorScheme(.dark)
 }

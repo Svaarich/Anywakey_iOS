@@ -4,9 +4,11 @@ import SystemConfiguration
 
 public class Network {
     
+    static private let wakeUp = WakeOnLAN()
+    
     //
     static func boot(device: Device) -> Error? {
-        WakeUp().target(device: device)
+        wakeUp.target(device: device)
     }
     
     //
