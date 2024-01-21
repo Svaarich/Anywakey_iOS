@@ -2,9 +2,10 @@ import SwiftUI
 
 struct AddDeviceView: View {
     
-    @EnvironmentObject var computer: Computer
+    @EnvironmentObject var dataService: DeviceDataService
     
     @Environment(\.colorScheme) var colorScheme
+    
     
     @State private var name: String = ""
     @State private var BroadcastAddr: String = ""
@@ -77,12 +78,11 @@ struct AddDeviceView: View {
     }
     
     private func dismiss() {
-        withAnimation {
-            isFocused = false
-        }
-            DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+        hideKeyboard()
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.0) {
                 withAnimation {
-                isPresented = false
+                    isFocused = false
+                    isPresented = false
             }
         }
     }
@@ -118,23 +118,20 @@ struct AddDeviceView: View {
         VStack(alignment: .leading, spacing: 8) {
             CustomTextField(
                 label: "Device Name",
-                text: $name,
-                isCorrectInput: true)
+                text: $name)
                 .focused($isFocused)
             Text("Device name")
                 .padding(.horizontal, 8)
             
             CustomTextField(
                 label: "IP / Broadcast Address",
-                text: $BroadcastAddr,
-                isCorrectInput: true)
+                text: $BroadcastAddr)
             Text("IPv4(e.g. 192.168.0.123) or DNS name for the host.")
                 .padding(.horizontal, 8)
             
             CustomTextField(
                 label: "MAC Address",
-                text: $MAC,
-                isCorrectInput: true)
+                text: $MAC)
             Text("(e.g. 00:11:22:AA:BB:CC)")
                 .padding(.horizontal, 8)
             
@@ -152,12 +149,7 @@ struct AddDeviceView: View {
     //MARK: Save button
     private var saveButton: some View {
         Button {
-            computer.add(newDevice: Device(
-                name: name,
-                MAC: MAC,
-                BroadcastAddr: BroadcastAddr,
-                Port: Port))
-            
+            dataService.add(newDevice: Device(name: name, MAC: MAC, BroadcastAddr: BroadcastAddr, Port: Port))
             dismiss()
         } label: {
             Text("Save")
