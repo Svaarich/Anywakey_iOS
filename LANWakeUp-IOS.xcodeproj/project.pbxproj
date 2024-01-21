@@ -168,20 +168,12 @@
 		7DD331DA2B5AF334002BFA64 /* Components */ = {
 			isa = PBXGroup;
 			children = (
-				7DD331DF2B5C6333002BFA64 /* BootButton */,
+				7DD331DB2B5C5D8D002BFA64 /* BootButton.swift */,
 				7D596B492B48D00C00A5B7FA /* NoDevicesView.swift */,
 				7DE700162AEA845D0033E53A /* CustomTextField.swift */,
 				7DF00C402B51D541008105C9 /* LaunchScreen.storyboard */,
 			);
 			path = Components;
-			sourceTree = "<group>";
-		};
-		7DD331DF2B5C6333002BFA64 /* BootButton */ = {
-			isa = PBXGroup;
-			children = (
-				7DD331DB2B5C5D8D002BFA64 /* BootButton.swift */,
-			);
-			path = BootButton;
 			sourceTree = "<group>";
 		};
 		7DE700142AEA82E50033E53A /* Extensions */ = {
