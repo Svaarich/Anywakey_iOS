@@ -1,6 +1,6 @@
 import Foundation
 
-public class WakeUp {
+public class WakeOnLAN {
     
     public enum WakeError: Error {
         case SocketSetupFailed(reason: String)
@@ -31,7 +31,7 @@ public class WakeUp {
         target.sin_addr.s_addr = bcaddr
         
         let isLittleEndian = Int(OSHostByteOrder()) == OSLittleEndian
-        target.sin_port = isLittleEndian ? _OSSwapInt16(WakeUp.stringToUInt16(string: device.Port)) : WakeUp.stringToUInt16(string: device.Port)
+        target.sin_port = isLittleEndian ? _OSSwapInt16(WakeOnLAN.stringToUInt16(string: device.Port)) : WakeOnLAN.stringToUInt16(string: device.Port)
         
         // Setup the packet socket
         sock = socket(AF_INET, SOCK_DGRAM, IPPROTO_UDP)
@@ -40,7 +40,7 @@ public class WakeUp {
             return WakeError.SocketSetupFailed(reason: err)
         }
         
-        let packet = WakeUp.createMagicPacket(mac: device.MAC)
+        let packet = WakeOnLAN.createMagicPacket(mac: device.MAC)
         let sockaddrLen = socklen_t(MemoryLayout<sockaddr>.stride)
         let intLen = socklen_t(MemoryLayout<Int>.stride)
         
