@@ -6,15 +6,13 @@ struct AddDeviceView: View {
     
     @Environment(\.colorScheme) var colorScheme
     
-    
     @State private var name: String = ""
     @State private var BroadcastAddr: String = ""
     @State private var MAC: String = ""
     @State private var Port: String = ""
-    
     @State private var isCorrectPort: Bool = true
     
-    @Binding var isPresented: Bool
+    @Binding var offset: CGFloat
     
     @FocusState private var isFocused
     
@@ -42,24 +40,20 @@ struct AddDeviceView: View {
         .padding()
         .background(.ultraThinMaterial)
         
-        // swipe down gesture, closes the view
-        .gesture(DragGesture(minimumDistance: 0, coordinateSpace: .local)
-            .onEnded { value in
-                if value.translation.height > 0 {
-                    dismiss()
-                }
-            })
-        
-        .onAppear {
-            // Highlight first Textfield with device name
-            DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
-                isFocused = true
-            }
-        }
-        
         .onChange(of: Port) { _ in
             isCorrectPortInput()
         }
+        
+        .onChange(of: offset) { _ in
+            if offset != 0 {
+                DispatchQueue.main.asyncAfter(deadline: .now() + 0.6) {
+                    isFocused = true
+                }
+            } else {
+                dismiss()
+            }
+        }
+            
     }
     
     
@@ -77,14 +71,23 @@ struct AddDeviceView: View {
         }
     }
     
+    // dismiss view
     private func dismiss() {
         hideKeyboard()
-            DispatchQueue.main.asyncAfter(deadline: .now() + 0.0) {
-                withAnimation {
-                    isFocused = false
-                    isPresented = false
-            }
+            withAnimation {
+                isFocused = false
+                offset = 0
+                clearTextFields()
+                    
         }
+    }
+    
+    // Clears textfields inputs
+    private func clearTextFields() {
+        name = ""
+        BroadcastAddr = ""
+        MAC = ""
+        Port = ""
     }
     
     
@@ -149,7 +152,13 @@ struct AddDeviceView: View {
     //MARK: Save button
     private var saveButton: some View {
         Button {
-            dataService.add(newDevice: Device(name: name, MAC: MAC, BroadcastAddr: BroadcastAddr, Port: Port))
+            dataService.add(
+                newDevice:
+                    Device(name:
+                            name, MAC:
+                            MAC, BroadcastAddr:
+                            BroadcastAddr,
+                           Port: Port))
             dismiss()
         } label: {
             Text("Save")
@@ -158,7 +167,6 @@ struct AddDeviceView: View {
                 .foregroundStyle(.white)
                 .padding(8)
                 .padding(.horizontal)
-//                .background(.gray.opacity(0.2))
                 .background(.blue)
                 .clipShape(RoundedRectangle(cornerRadius: 15))
                 .shadow(color: .blue.opacity(0.2), radius: 15)
@@ -167,6 +175,6 @@ struct AddDeviceView: View {
 }
 
 #Preview {
-    @State var isPresented: Bool = true
-    return AddDeviceView(isPresented: $isPresented)
+    @State var offset: CGFloat = .zero
+    return AddDeviceView(offset: $offset)
 }
