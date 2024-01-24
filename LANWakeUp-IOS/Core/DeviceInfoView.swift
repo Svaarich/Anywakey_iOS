@@ -45,34 +45,25 @@ struct DeviceInfoView: View {
             }
             .padding()
         }
+        .sheet(isPresented: $showDeleteAlert) {
+            DeleteDeviceSheet(device: device)
+        }
         
         .scrollIndicators(.hidden)
         .ignoresSafeArea(.keyboard)
         
+        // navigation bar setting
         .navigationBarBackButtonHidden(isEditing)
         .navigationTitle("Information")
         .navigationBarTitleDisplayMode(.inline)
         
+        // animation
         .animation(.spring, value: isFocused)
         .animation(.bouncy, value: [name, MAC, BroadcastAddr, Port])
         
-        // Delete confirmation
-        .alert("Are you sure you want to delete '\(name)'?", isPresented: $showDeleteAlert) {
-            Button("Cancel", role: .cancel) {}
-            Button("Delete", role: .destructive) {
-                withAnimation {
-                    dataService.delete(device: Device(
-                        name: name,
-                        MAC: MAC,
-                        BroadcastAddr: BroadcastAddr,
-                        Port: Port,
-                        id: device.id))
-                }
-                dismiss()
-            }
-        }
-        
+        // toolbar items
         .toolbar {
+            // edit button
             ToolbarItem(placement: .topBarTrailing) {
                 Button {
                     withAnimation(.spring) {
@@ -105,6 +96,7 @@ struct DeviceInfoView: View {
                     
                 }
             }
+            // delete button
             ToolbarItem(placement: .topBarTrailing) {
                 Button {
                     showDeleteAlert.toggle()

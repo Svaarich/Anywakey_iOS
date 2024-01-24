@@ -9,6 +9,10 @@ struct HomeView: View {
     @State var showWarning: Bool = false
     @State var refreshStatus: Bool = false
     
+    @State var startingOffsetY: CGFloat = UIScreen.main.bounds.height
+    @State var currentDragOffsetY: CGFloat = .zero
+    @State var endingOffsetY: CGFloat = .zero
+    
     var body: some View {
         NavigationStack {
             ZStack {
@@ -29,18 +33,31 @@ struct HomeView: View {
                     }
                 }
                 
-                if isPresentedAddView {
-                    // also working with <overlay>
-                    ZStack {
-                        AddDeviceView(isPresented: $isPresentedAddView)
+                // Add device view
+                AddDeviceView(offset: $endingOffsetY)
                             .clipShape(RoundedRectangle(cornerRadius: 20))
-                            .padding(.top, 8)
                             .ignoresSafeArea(edges: .bottom)
-                        
-                    }
-                    .zIndex(2)
-                    .transition(.move(edge: .bottom))
-                }
+                
+                            .offset(y: startingOffsetY)
+                            .offset(y: currentDragOffsetY)
+                            .offset(y: endingOffsetY)
+                
+                            .gesture(
+                                DragGesture()
+                                    .onChanged { value in
+                                        withAnimation(.spring) {
+                                            currentDragOffsetY = value.translation.height
+                                        }
+                                    }
+                                    .onEnded { value in
+                                        withAnimation(.spring) {
+                                            if currentDragOffsetY > 100 {
+                                                endingOffsetY = 0
+                                            }
+                                            currentDragOffsetY = 0
+                                        }
+                                    }
+                            )
                 
             }
 
@@ -70,11 +87,11 @@ struct HomeView: View {
                 ToolbarItem(placement: .topBarTrailing) {
                     Button {
                         withAnimation(.spring) {
-                            isPresentedAddView = true
+                            endingOffsetY = -startingOffsetY
+//                            isPresentedAddView = true
                         }
                     } label: {
                         Image(systemName: "plus")
-                            .font(Font.system(size: DrawingConstants.toolbarItemSize))
                     }
                 }
             }
@@ -148,7 +165,7 @@ struct HomeView: View {
             HStack(spacing: 4) {
                 Text("Pinned")
                 Image(systemName: "star.fill")
-                    .foregroundStyle(DrawingConstants.starColor)
+                    .foregroundStyle(Color.custom.starColor)
                     .padding(.bottom, 4)
             }
         }
@@ -165,9 +182,6 @@ struct HomeView: View {
                     }
                 }
             }
-//            .onDelete { indexSet in
-//                computer.listOfDevices.remove(atOffsets: indexSet)
-//            }
             .onMove { indices, newOffset in
                 dataService.allDevices.move(fromOffsets: indices, toOffset: newOffset)
             }
@@ -178,12 +192,6 @@ struct HomeView: View {
                     .foregroundStyle(.secondary)
             }
         }
-    }
-    
-    private struct DrawingConstants {
-        static let starColor = Color(#colorLiteral(red: 0.9529411793, green: 0.6862745285, blue: 0.1333333403, alpha: 1))
-        static let toolbarItemSize: CGFloat = 20
-        static let sheetSize: CGFloat = 0.5
     }
 }
 
