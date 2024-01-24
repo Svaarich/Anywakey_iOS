@@ -92,7 +92,6 @@ struct HomeView: View {
                         }
                     } label: {
                         Image(systemName: "plus")
-                            .font(Font.system(size: DrawingConstants.toolbarItemSize))
                     }
                 }
             }
@@ -166,7 +165,7 @@ struct HomeView: View {
             HStack(spacing: 4) {
                 Text("Pinned")
                 Image(systemName: "star.fill")
-                    .foregroundStyle(DrawingConstants.starColor)
+                    .foregroundStyle(Color.custom.starColor)
                     .padding(.bottom, 4)
             }
         }
@@ -183,9 +182,6 @@ struct HomeView: View {
                     }
                 }
             }
-//            .onDelete { indexSet in
-//                computer.listOfDevices.remove(atOffsets: indexSet)
-//            }
             .onMove { indices, newOffset in
                 dataService.allDevices.move(fromOffsets: indices, toOffset: newOffset)
             }
@@ -196,12 +192,6 @@ struct HomeView: View {
                     .foregroundStyle(.secondary)
             }
         }
-    }
-    
-    private struct DrawingConstants {
-        static let starColor = Color(#colorLiteral(red: 0.9529411793, green: 0.6862745285, blue: 0.1333333403, alpha: 1))
-        static let toolbarItemSize: CGFloat = 20
-        static let sheetSize: CGFloat = 0.5
     }
 }
 
