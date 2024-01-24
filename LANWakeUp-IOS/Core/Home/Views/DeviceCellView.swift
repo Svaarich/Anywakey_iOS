@@ -29,6 +29,11 @@ struct DeviceCellView: View {
             contextMenu
         }
         
+        .sheet(isPresented: $showDeleteAlert) {
+            DeleteDeviceSheet(device: device)
+                .presentationDetents([.medium])
+        }
+        
         // swipe actions
         .swipeActions(edge: .trailing, allowsFullSwipe: false) {
             // Delete button
@@ -67,12 +72,12 @@ struct DeviceCellView: View {
         
         //MARK: Alerts
         // Delete device alert
-        .alert("Are you sure you want to delete '\(device.name)'?", isPresented: $showDeleteAlert) {
-            Button("Cancel", role: .cancel) {}
-            Button("Delete", role: .destructive) {
-                dataService.delete(device: device)
-            }
-        }
+//        .alert("Are you sure you want to delete '\(device.name)'?", isPresented: $showDeleteAlert) {
+//            Button("Cancel", role: .cancel) {}
+//            Button("Delete", role: .destructive) {
+//                dataService.delete(device: device)
+//            }
+//        }
     }
     
     private func addAnimation() {
