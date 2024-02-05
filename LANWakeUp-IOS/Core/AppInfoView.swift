@@ -3,47 +3,77 @@ import SwiftUI
 struct AppInfoView: View {
     
     var body: some View {
-        VStack {
-            Text("Some Info")
-                .frame(height: 200)
-                .frame(maxWidth: .infinity)
-                .background(.gray.opacity(0.2))
-                .clipShape(RoundedRectangle(cornerRadius: 20))
-                .padding(.bottom)
-            gitHubButton
-            Text("Text text text text text\ntext text text text text")
-                .padding(.top)
-            Spacer()
-            Text("Version number: 1.0")
+        VStack(spacing: 16) {
+            Image(systemName: "togglepower")
+                .resizable()
+                .scaledToFit()
+                .foregroundStyle(.white)
+                .frame(width: 150, height: 150)
+                .padding(20)
+                .background(.black.opacity(0.8))
+                .clipShape(RoundedRectangle(cornerRadius: 50))
+            
+            Text("LANWakeUp")
+                .font(.largeTitle)
+                .fontWeight(.semibold)
+            
+            Text("Version 1.0")
+                .font(.subheadline)
+                .fontWeight(.semibold)
                 .foregroundStyle(.secondary)
-                .font(.caption)
+            
+            gitHubButton
+            linkTreeButton
+            
+            Spacer()
         }
+        .padding()
+        .background(Color.secondary.opacity(0.1).ignoresSafeArea())
+        
+        
         .navigationTitle("App Information")
-        .navigationBarTitleDisplayMode(.large)
-        .padding(.horizontal)
-        .padding(.top)
+        .navigationBarTitleDisplayMode(.inline)
+    }
+    
+    private var linkTreeButton: some View {
+        // TODO: put link below
+        HStack {
+            Image(systemName: "tree")
+            Text("Linktree")
+            Spacer()
+        }
+        .foregroundStyle(.white)
+        .fontWeight(.semibold)
+        .padding()
+        .padding(.horizontal, 8)
+        .frame(height: 50)
+        .frame(maxWidth: .infinity)
+        .background(DrawingConstants.linkTreeColor)
+        .clipShape(RoundedRectangle(cornerRadius: 20))
     }
     
     private var gitHubButton: some View {
         Link(destination: DrawingConstants.gitHubURL!) {
             HStack {
-                Image(systemName: "text.word.spacing")
-                Text("GitHub".uppercased())
+                Image(systemName: "tag")
+                Text("GitHub")
+                Spacer()
                 
             }
-            .foregroundStyle(.black)
+            .foregroundStyle(.white)
             .fontWeight(.semibold)
             .padding()
             .padding(.horizontal, 8)
+            .frame(height: 50)
             .frame(maxWidth: .infinity)
-            .background(.white)
+            .background(.black)
             .clipShape(RoundedRectangle(cornerRadius: 20))
-            .shadow(color: .black.opacity(0.15), radius: 10, y: 10)
         }
     }
     
     private struct DrawingConstants {
         static let gitHubURL = URL(string: "https://github.com/Svaarich")
+        static let linkTreeColor = Color(#colorLiteral(red: 0, green: 0.466091156, blue: 0.2602820396, alpha: 1))
     }
 }
 

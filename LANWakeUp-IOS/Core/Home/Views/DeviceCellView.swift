@@ -29,6 +29,7 @@ struct DeviceCellView: View {
             contextMenu
         }
         
+        // delete device confirmation
         .sheet(isPresented: $showDeleteAlert) {
             DeleteDeviceSheet(device: device)
                 .presentationDetents([.medium])
@@ -62,22 +63,16 @@ struct DeviceCellView: View {
         .onAppear {
             addAnimation()
             getStatus()
+            Timer.scheduledTimer(withTimeInterval: 5, repeats: true) { _ in
+                getStatus()
+            }
+            
         }
         .onChange(of: refreshStatus) { status in
             if status {
                 getStatus()
             }
         }
-        
-        
-        //MARK: Alerts
-        // Delete device alert
-//        .alert("Are you sure you want to delete '\(device.name)'?", isPresented: $showDeleteAlert) {
-//            Button("Cancel", role: .cancel) {}
-//            Button("Delete", role: .destructive) {
-//                dataService.delete(device: device)
-//            }
-//        }
     }
     
     private func addAnimation() {
@@ -85,7 +80,6 @@ struct DeviceCellView: View {
         DispatchQueue.main.asyncAfter(deadline: .now() + Double.random(in: 0.5...1.0)) {
             withAnimation(
                 Animation
-//                    .linear(duration: Double.random(in: 1...3))
                     .linear(duration: Double.random(in: 2...3))
                     .repeatForever(autoreverses: true)
             ) {
@@ -101,7 +95,6 @@ struct DeviceCellView: View {
             withAnimation(.easeInOut) {
                 ping = duration
                 isAccesible = status
-                refreshStatus = false
             }
         }
     }
