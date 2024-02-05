@@ -8,6 +8,7 @@ struct BootButton: View {
     @State var statusColor: Color = .gray
     @State var isPressed: Bool = false
     @State var showInputAlert: Bool = false
+    
     @Binding var refreshStatus: Bool
     
     let device: Device
@@ -21,7 +22,6 @@ struct BootButton: View {
                         ProgressView()
                     } else {
                         Image(systemName: "power")
-//                            .font(Font.system(size: DrawingConstants.imageSize))
                             .font(.largeTitle)
                             .scaleEffect(0.9)
                             .foregroundStyle(.white)
@@ -41,6 +41,7 @@ struct BootButton: View {
                 if device.MAC.count == 17 {
                     withAnimation(.easeInOut) {
                         isPressed = true
+                        HapticManager.instance.impact(style: .soft)
                         _ = Network.boot(device: device)
                         DispatchQueue.main.asyncAfter(deadline: .now() + 0.75) {
                             withAnimation {
@@ -49,8 +50,7 @@ struct BootButton: View {
                         }
                     }
                 } else {
-                    let impactMed = UINotificationFeedbackGenerator()
-                    impactMed.notificationOccurred(.error)
+                    HapticManager.instance.notification(type: .warning)
                     showInputAlert.toggle()
                 }
             }
