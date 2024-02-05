@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		7D0518B72B71863F006850B8 /* HapticManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D0518B62B71863F006850B8 /* HapticManager.swift */; };
 		7D596B4A2B48D00C00A5B7FA /* NoDevicesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D596B492B48D00C00A5B7FA /* NoDevicesView.swift */; };
 		7D5FE1C82B5CB60900142502 /* Double.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D5FE1C72B5CB60900142502 /* Double.swift */; };
 		7D5FE1F42B5F5D3F00142502 /* DeleteDeviceSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D5FE1F32B5F5D3F00142502 /* DeleteDeviceSheet.swift */; };
@@ -45,6 +46,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		7D0518B62B71863F006850B8 /* HapticManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HapticManager.swift; sourceTree = "<group>"; };
 		7D596B492B48D00C00A5B7FA /* NoDevicesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoDevicesView.swift; sourceTree = "<group>"; };
 		7D5FE1C72B5CB60900142502 /* Double.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Double.swift; sourceTree = "<group>"; };
 		7D5FE1F32B5F5D3F00142502 /* DeleteDeviceSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeleteDeviceSheet.swift; sourceTree = "<group>"; };
@@ -162,6 +164,7 @@
 			isa = PBXGroup;
 			children = (
 				7DFC05332B292BFB0082E502 /* DeviceDataService.swift */,
+				7D0518B62B71863F006850B8 /* HapticManager.swift */,
 				7D180F462AEDBB27005063E3 /* NetworkServices */,
 			);
 			path = Services;
@@ -276,6 +279,7 @@
 				7DC26DB12AE821CC00B52D02 /* DeviceCellView.swift in Sources */,
 				7DD331DE2B5C5DD7002BFA64 /* Color.swift in Sources */,
 				7DD3318A2B54EC2E002BFA64 /* View.swift in Sources */,
+				7D0518B72B71863F006850B8 /* HapticManager.swift in Sources */,
 				7DA71F1E2B250A96004F9AF3 /* AppInfoView.swift in Sources */,
 				7DFC05362B292C5E0082E502 /* Device.swift in Sources */,
 				7DB7120A2AE8857E0087CA76 /* DeviceInfoView.swift in Sources */,
