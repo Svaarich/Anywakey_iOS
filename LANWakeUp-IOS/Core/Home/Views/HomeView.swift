@@ -4,20 +4,15 @@ struct HomeView: View {
     
     @ObservedObject var dataService: DeviceDataService
     
-    @State var isPresentedAddView: Bool = false
-    @State var isPresentedInfoView: Bool = false
+    @State var showAddView: Bool = false
     @State var showWarning: Bool = false
     @State var refreshStatus: Bool = false
-    
-    @State var startingOffsetY: CGFloat = UIScreen.main.bounds.height
-    @State var currentDragOffsetY: CGFloat = .zero
-    @State var endingOffsetY: CGFloat = .zero
     
     var body: some View {
         NavigationStack {
             ZStack {
                 if dataService.allDevices.isEmpty {
-                    NoDevicesView(isPresented: $isPresentedAddView)
+                    NoDevicesView(isPresented: $showAddView)
                         .transition(AnyTransition.opacity.animation(.spring))
                 } else {
                     List {
@@ -34,31 +29,17 @@ struct HomeView: View {
                 }
                 
                 // Add device view
-                AddDeviceView(offset: $endingOffsetY)
+                if showAddView {
+                    ZStack {
+                        AddDeviceView(isPresented: $showAddView)
                             .clipShape(RoundedRectangle(cornerRadius: 20))
                             .ignoresSafeArea(edges: .bottom)
-                
-                            .offset(y: startingOffsetY)
-                            .offset(y: currentDragOffsetY)
-                            .offset(y: endingOffsetY)
-                
-                            .gesture(
-                                DragGesture()
-                                    .onChanged { value in
-                                        withAnimation(.spring) {
-                                            currentDragOffsetY = value.translation.height
-                                        }
-                                    }
-                                    .onEnded { value in
-                                        withAnimation(.spring) {
-                                            if currentDragOffsetY > 100 {
-                                                endingOffsetY = 0
-                                            }
-                                            currentDragOffsetY = 0
-                                        }
-                                    }
-                            )
-                
+                            
+                    }
+                    .zIndex(2.0)
+                    .transition(.move(edge: .bottom))
+                        
+                }
             }
 
             .ignoresSafeArea(.keyboard)
@@ -87,8 +68,7 @@ struct HomeView: View {
                 ToolbarItem(placement: .topBarTrailing) {
                     Button {
                         withAnimation(.spring) {
-                            endingOffsetY = -startingOffsetY
-//                            isPresentedAddView = true
+                            showAddView = true
                         }
                     } label: {
                         Image(systemName: "plus")
