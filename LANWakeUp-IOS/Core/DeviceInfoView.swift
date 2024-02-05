@@ -29,24 +29,27 @@ struct DeviceInfoView: View {
     
     var body: some View {
         ScrollView {
-            VStack(spacing: 8) {
-                HStack {
-                    title
+                VStack(spacing: 8) {
+                    HStack {
+                        title
+                        Spacer()
+                    }
+                    deviceCard
+                    if !isEditing {
+                        bootButton
+                            .padding(.top, 8)
+                            .transition(.opacity)
+                    }
+                    
                     Spacer()
                 }
-                deviceCard
-                if !isEditing {
-                    bootButton
-                        .padding(.top, 8)
-                        .transition(.opacity)
-                }
+                .padding()
                 
-                Spacer()
-            }
-            .padding()
         }
+        // delete confirmation sheet
         .sheet(isPresented: $showDeleteAlert) {
             DeleteDeviceSheet(device: device)
+                .presentationDetents([.medium])
         }
         
         .scrollIndicators(.hidden)
@@ -99,7 +102,9 @@ struct DeviceInfoView: View {
             // delete button
             ToolbarItem(placement: .topBarTrailing) {
                 Button {
-                    showDeleteAlert.toggle()
+                    withAnimation {
+                        showDeleteAlert.toggle()
+                    }
                 } label: {
                     Image(systemName: "trash")
                         .foregroundStyle(.pink)
