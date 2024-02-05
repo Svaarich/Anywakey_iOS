@@ -12,7 +12,7 @@ struct AddDeviceView: View {
     @State private var Port: String = ""
     @State private var isCorrectPort: Bool = true
     
-    @Binding var offset: CGFloat
+    @Binding var isPresented: Bool
     
     @FocusState private var isFocused
     
@@ -29,6 +29,11 @@ struct AddDeviceView: View {
                 .ignoresSafeArea(.all)
             Spacer()
         }
+        
+//        .offset(y: startingOffsetY)
+//        .offset(y: currentDragOffsetY)
+//        .offset(y: endingOffsetY)
+//        
         // keyboard settings
         .autocorrectionDisabled()
         .keyboardType(.alphabet)
@@ -40,19 +45,29 @@ struct AddDeviceView: View {
         .padding()
         .background(.ultraThinMaterial)
         
+        .onAppear {
+            withAnimation {
+                DispatchQueue.main.asyncAfter(deadline: .now() + 1.2) {
+                    isFocused.toggle()
+                }
+            }
+        }
+        
         .onChange(of: Port) { _ in
             isCorrectPortInput()
         }
         
-        .onChange(of: offset) { _ in
-            if offset != 0 {
-                DispatchQueue.main.asyncAfter(deadline: .now() + 0.6) {
-                    isFocused = true
+        .gesture(
+            DragGesture()
+                .onEnded { value in
+                    withAnimation(.easeInOut) {
+                        if value.translation.height > 100 {
+                            dismiss()
+                            
+                        }
+                    }
                 }
-            } else {
-                dismiss()
-            }
-        }
+        )
             
     }
     
@@ -74,20 +89,9 @@ struct AddDeviceView: View {
     // dismiss view
     private func dismiss() {
         hideKeyboard()
-            withAnimation {
-                isFocused = false
-                offset = 0
-                clearTextFields()
-                    
+        withAnimation(.easeInOut) {
+                isPresented = false
         }
-    }
-    
-    // Clears textfields inputs
-    private func clearTextFields() {
-        name = ""
-        BroadcastAddr = ""
-        MAC = ""
-        Port = ""
     }
     
     
@@ -175,6 +179,6 @@ struct AddDeviceView: View {
 }
 
 #Preview {
-    @State var offset: CGFloat = .zero
-    return AddDeviceView(offset: $offset)
+    @State var show: Bool = true
+    return AddDeviceView(isPresented: $show)
 }
