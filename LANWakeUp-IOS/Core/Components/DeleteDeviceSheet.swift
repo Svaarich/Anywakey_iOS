@@ -1,16 +1,23 @@
 
 import SwiftUI
 
+/// Delete device confirmation sheet
+/// ```
+/// Represents sheet with delete device confirmation buttons
+/// ```
 struct DeleteDeviceSheet: View {
     
     @EnvironmentObject var dataService: DeviceDataService
     @Environment(\.dismiss) var dismiss
+    
+    @State private var animate: Bool = false
     
     let device: Device
     
     var body: some View {
         VStack {
             Spacer()
+            // trash icon
             Image(systemName: "trash")
                 .resizable()
                 .scaledToFit()
@@ -19,15 +26,22 @@ struct DeleteDeviceSheet: View {
                 .padding(32)
                 .background(.secondary.opacity(0.1))
                 .clipShape(RoundedRectangle(cornerRadius: 35))
-                .shadow(color: Color.red, radius: 50)
+                .shadow(color: Color.red.opacity(animate ? 1 : 0.3), radius: animate ? 70 : 50)
+
             Spacer()
+            
+            // alert description
+            Text("Are you sure you want to delete device?")
+            Spacer()
+            
+            // device name
             Text(device.name.isEmpty ? "No Name" : device.name)
                 .lineLimit(1)
                 .font(.largeTitle)
                 .fontWeight(.bold)
             Spacer()
-            Text("Are you sure you want to delete device?")
-            Spacer()
+            
+            // Buttons
             HStack {
                 // delete
                 Button {
@@ -59,6 +73,20 @@ struct DeleteDeviceSheet: View {
             }
         }
         .padding()
+        
+        .onAppear(perform: addAnimation)
+    }
+    
+    private func addAnimation() {
+        guard !animate else { return }
+        withAnimation(
+            Animation
+                .easeInOut(duration: 1.0)
+                .repeatForever()
+        ) {
+            animate.toggle()
+        }
+        
     }
 }
 
