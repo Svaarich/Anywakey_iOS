@@ -4,15 +4,19 @@ import SystemConfiguration
 
 public class Network {
     
-    static private let wakeUp = WakeOnLAN()
+    private init() {}
+    
+    static let instance = Network()
+    
+    private let wakeUp = WakeOnLAN()
     
     //
-    static func boot(device: Device) -> Error? {
+    func boot(device: Device) -> Error? {
         wakeUp.target(device: device)
     }
     
     //
-    static func ping(address: String, onDone: @escaping (_ ping: Double, _ isAccessible: Bool) -> Void) {
+    func ping(address: String, onDone: @escaping (_ ping: Double, _ isAccessible: Bool) -> Void) {
         // if adress is empty returns false
         guard
             !address.isEmpty,
@@ -32,7 +36,7 @@ public class Network {
     }
     
     //
-    static func isConnectedToNetwork() -> Bool {
+    func isConnectedToNetwork() -> Bool {
         var zeroAddress = sockaddr_in()
         zeroAddress.sin_len = UInt8(MemoryLayout.size(ofValue: zeroAddress))
         zeroAddress.sin_family = sa_family_t(AF_INET)
