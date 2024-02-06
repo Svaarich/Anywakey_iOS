@@ -80,13 +80,12 @@ struct HomeView: View {
         //MARK: Network connection check
         .onAppear {
             // isConnected to network?
-            showWarning = !Network.isConnectedToNetwork()
+            showWarning = !Network.instance.isConnectedToNetwork()
             
         }
-        // No internet connection alert
-        //        .alert("No internet connection", isPresented: $showWarning) {
-        //                Button("OK", role: .cancel) { }
-        //        }
+        // No Internet connection alert
+//        .alert("No internet connection 😭", isPresented: $showWarning) {
+//        }
     }
     
     // MARK: FUNCTIONS

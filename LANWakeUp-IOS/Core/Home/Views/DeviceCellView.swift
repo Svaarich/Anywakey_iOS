@@ -75,6 +75,25 @@ struct DeviceCellView: View {
         }
     }
     
+    private struct DrawingConstants {
+        
+        static let defaultDarkColor: Color = .gray
+        static let defaultLightColor: Color = .gray.opacity(0.5)
+        static let pressedButtonColor: Color = .blue
+        
+        static let onlineColor: Color = .green
+        static let offlineColor: Color = .pink
+        
+        static let imageSize: CGFloat = 30.0
+        static let fontSize: CGFloat = 15.0
+    }
+}
+
+extension DeviceCellView {
+    
+    // MARK: FUNCTIONS
+    
+    // Just add animations
     private func addAnimation() {
         guard !animate else { return }
         DispatchQueue.main.asyncAfter(deadline: .now() + Double.random(in: 0.5...1.0)) {
@@ -88,10 +107,9 @@ struct DeviceCellView: View {
         }
     }
     
-    //MARK: Status color functions
     // Get status color of device
     private func getStatus() {
-        Network.ping(address: device.BroadcastAddr) { duration, status in
+        Network.instance.ping(address: device.BroadcastAddr) { duration, status in
             withAnimation(.easeInOut) {
                 ping = duration
                 isAccesible = status
@@ -99,7 +117,8 @@ struct DeviceCellView: View {
         }
     }
     
-    //MARK: Device information
+    // MARK: PROPERTIES
+    // Device information
     private var deviceInfo: some View {
         VStack(alignment: .leading, spacing: 12) {
             HStack {
@@ -120,7 +139,7 @@ struct DeviceCellView: View {
                         .foregroundStyle(.secondary)
                 }
                 
-                // empty adress indicator
+                // Empty adress indicator
                 if device.BroadcastAddr.isEmpty {
                     HStack(spacing: 0) {
                         Text("Empty adress")
@@ -145,7 +164,7 @@ struct DeviceCellView: View {
         .lineLimit(1)
     }
     
-    // MARK: Ping block
+    // Ping block
     private var pingInfo: some View {
         HStack(spacing: 4) {
             Image(systemName: "stopwatch")
@@ -157,7 +176,7 @@ struct DeviceCellView: View {
         .foregroundStyle(.tertiary)
     }
     
-    //MARK: Context menu
+    // Context menu
     private var contextMenu: some View {
         VStack {
             //Edit Button
@@ -184,19 +203,6 @@ struct DeviceCellView: View {
                 Image(systemName: "trash")
             }
         }
-    }
-    
-    private struct DrawingConstants {
-        
-        static let defaultDarkColor: Color = .gray
-        static let defaultLightColor: Color = .gray.opacity(0.5)
-        static let pressedButtonColor: Color = .blue
-        
-        static let onlineColor: Color = .green
-        static let offlineColor: Color = .pink
-        
-        static let imageSize: CGFloat = 30.0
-        static let fontSize: CGFloat = 15.0
     }
 }
 
