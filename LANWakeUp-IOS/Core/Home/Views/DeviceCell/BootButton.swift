@@ -42,7 +42,7 @@ struct BootButton: View {
                     withAnimation(.easeInOut) {
                         isPressed = true
                         HapticManager.instance.impact(style: .soft)
-                        _ = Network.boot(device: device)
+                        _ = Network.instance.boot(device: device)
                         DispatchQueue.main.asyncAfter(deadline: .now() + 0.75) {
                             withAnimation {
                                 isPressed = false
@@ -69,11 +69,24 @@ struct BootButton: View {
             }
     }
     
-    //MARK: Status color functions
+    private struct DrawingConstants {
+        
+        static let defaultDarkColor: Color = .gray
+        static let defaultLightColor: Color = .gray.opacity(0.5)
+        static let pressedButtonColor: Color = .blue
+        
+        static let onlineColor: Color = .green
+        static let offlineColor: Color = .pink
+    }
+}
+
+extension BootButton {
+    
+    // MARK: FUNCTIONS
     
     // Get status color of device
     private func getStatusColor() {
-        Network.ping(address: device.BroadcastAddr) { duration, status in
+        Network.instance.ping(address: device.BroadcastAddr) { duration, status in
             withAnimation(.easeInOut) {
                 statusColor = status ? DrawingConstants.onlineColor : DrawingConstants.offlineColor
                 refreshStatus = false
@@ -91,15 +104,8 @@ struct BootButton: View {
         }
     }
     
-    private struct DrawingConstants {
-        
-        static let defaultDarkColor: Color = .gray
-        static let defaultLightColor: Color = .gray.opacity(0.5)
-        static let pressedButtonColor: Color = .blue
-        
-        static let onlineColor: Color = .green
-        static let offlineColor: Color = .pink
-    }
+    // MARK: PROPERTIES
+    
 }
 
 #Preview {

@@ -25,7 +25,7 @@
 		7DD331DC2B5C5D8D002BFA64 /* BootButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DD331DB2B5C5D8D002BFA64 /* BootButton.swift */; };
 		7DD331DE2B5C5DD7002BFA64 /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DD331DD2B5C5DD7002BFA64 /* Color.swift */; };
 		7DE700132AEA82DC0033E53A /* String.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DE700122AEA82DC0033E53A /* String.swift */; };
-		7DE700172AEA845D0033E53A /* CustomTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DE700162AEA845D0033E53A /* CustomTextField.swift */; };
+		7DE700172AEA845D0033E53A /* FlexibleTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DE700162AEA845D0033E53A /* FlexibleTextField.swift */; };
 		7DE7001B2AEABC930033E53A /* AddDeviceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DE7001A2AEABC930033E53A /* AddDeviceView.swift */; };
 		7DF00C412B51D541008105C9 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7DF00C402B51D541008105C9 /* LaunchScreen.storyboard */; };
 		7DFC05342B292BFB0082E502 /* DeviceDataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DFC05332B292BFB0082E502 /* DeviceDataService.swift */; };
@@ -65,7 +65,7 @@
 		7DD331DB2B5C5D8D002BFA64 /* BootButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BootButton.swift; sourceTree = "<group>"; };
 		7DD331DD2B5C5DD7002BFA64 /* Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
 		7DE700122AEA82DC0033E53A /* String.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = String.swift; sourceTree = "<group>"; };
-		7DE700162AEA845D0033E53A /* CustomTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTextField.swift; sourceTree = "<group>"; };
+		7DE700162AEA845D0033E53A /* FlexibleTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlexibleTextField.swift; sourceTree = "<group>"; };
 		7DE7001A2AEABC930033E53A /* AddDeviceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddDeviceView.swift; sourceTree = "<group>"; };
 		7DF00C402B51D541008105C9 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 		7DFC05332B292BFB0082E502 /* DeviceDataService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceDataService.swift; sourceTree = "<group>"; };
@@ -91,6 +91,24 @@
 				7DC26DA42AE7EC5300B52D02 /* WakeOnLAN.swift */,
 			);
 			path = NetworkServices;
+			sourceTree = "<group>";
+		};
+		7D34560A2B71D053003267AE /* AddDevice */ = {
+			isa = PBXGroup;
+			children = (
+				7DE7001A2AEABC930033E53A /* AddDeviceView.swift */,
+				7DE700162AEA845D0033E53A /* FlexibleTextField.swift */,
+			);
+			path = AddDevice;
+			sourceTree = "<group>";
+		};
+		7D34560B2B71D0B3003267AE /* DeviceCell */ = {
+			isa = PBXGroup;
+			children = (
+				7DC26DB02AE821CC00B52D02 /* DeviceCellView.swift */,
+				7DD331DB2B5C5D8D002BFA64 /* BootButton.swift */,
+			);
+			path = DeviceCell;
 			sourceTree = "<group>";
 		};
 		7DC26D742AE7EBE100B52D02 = {
@@ -135,9 +153,9 @@
 			isa = PBXGroup;
 			children = (
 				7DA71F1D2B250A96004F9AF3 /* AppInfoView.swift */,
-				7DE7001A2AEABC930033E53A /* AddDeviceView.swift */,
 				7DB712092AE8857E0087CA76 /* DeviceInfoView.swift */,
 				7DD331DA2B5AF334002BFA64 /* Components */,
+				7D34560A2B71D053003267AE /* AddDevice */,
 				7DD331D02B5AEAED002BFA64 /* Home */,
 			);
 			path = Core;
@@ -155,7 +173,8 @@
 			isa = PBXGroup;
 			children = (
 				7DC26D822AE7EBE100B52D02 /* HomeView.swift */,
-				7DC26DB02AE821CC00B52D02 /* DeviceCellView.swift */,
+				7D596B492B48D00C00A5B7FA /* NoDevicesView.swift */,
+				7D34560B2B71D0B3003267AE /* DeviceCell */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -173,9 +192,6 @@
 		7DD331DA2B5AF334002BFA64 /* Components */ = {
 			isa = PBXGroup;
 			children = (
-				7DD331DB2B5C5D8D002BFA64 /* BootButton.swift */,
-				7D596B492B48D00C00A5B7FA /* NoDevicesView.swift */,
-				7DE700162AEA845D0033E53A /* CustomTextField.swift */,
 				7D5FE1F32B5F5D3F00142502 /* DeleteDeviceSheet.swift */,
 				7DF00C402B51D541008105C9 /* LaunchScreen.storyboard */,
 			);
@@ -292,7 +308,7 @@
 				7D5FE1F42B5F5D3F00142502 /* DeleteDeviceSheet.swift in Sources */,
 				7DC26D832AE7EBE100B52D02 /* HomeView.swift in Sources */,
 				7DC26D812AE7EBE100B52D02 /* LANWakeUp_App.swift in Sources */,
-				7DE700172AEA845D0033E53A /* CustomTextField.swift in Sources */,
+				7DE700172AEA845D0033E53A /* FlexibleTextField.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

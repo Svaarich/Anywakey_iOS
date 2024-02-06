@@ -72,8 +72,14 @@ struct AddDeviceView: View {
     }
     
     
-    //MARK: isCorrect input func
-    // Port check
+    
+}
+
+extension AddDeviceView {
+    
+    // MARK: FUNCTIONS
+    
+    // Port input  check
     private func isCorrectPortInput() {
         if Port.isEmpty {
             isCorrectPort = true
@@ -94,8 +100,9 @@ struct AddDeviceView: View {
         }
     }
     
+    // MARK: PROPERTIES
     
-    //MARK: Title (device name)
+    // Title (device name)
     private var title: some View {
         Text("Add new Device")
             .font(.title)
@@ -105,7 +112,7 @@ struct AddDeviceView: View {
     }
     
     
-    //MARK: Dismiss button
+    // Dismiss button
     private var dismissButton: some View {
         Button {
             dismiss()
@@ -120,29 +127,29 @@ struct AddDeviceView: View {
     }
     
     
-    //MARK: TextFields
+    // TextFields
     private var textFieldsStack: some View {
         VStack(alignment: .leading, spacing: 8) {
-            CustomTextField(
+            FlexibleTextField(
                 label: "Device Name",
                 text: $name)
                 .focused($isFocused)
             Text("Device name")
                 .padding(.horizontal, 8)
             
-            CustomTextField(
+            FlexibleTextField(
                 label: "IP / Broadcast Address",
                 text: $BroadcastAddr)
             Text("IPv4(e.g. 192.168.0.123) or DNS name for the host.")
                 .padding(.horizontal, 8)
             
-            CustomTextField(
+            FlexibleTextField(
                 label: "MAC Address",
                 text: $MAC)
             Text("(e.g. 00:11:22:AA:BB:CC)")
                 .padding(.horizontal, 8)
             
-            CustomTextField(
+            FlexibleTextField(
                 label: "Port",
                 text: $Port,
                 isCorrectInput: isCorrectPort)
@@ -153,7 +160,7 @@ struct AddDeviceView: View {
     }
     
     
-    //MARK: Save button
+    // Save button
     private var saveButton: some View {
         Button {
             dataService.add(
