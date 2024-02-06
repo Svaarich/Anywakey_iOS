@@ -35,6 +35,16 @@ struct AppInfoView: View {
         .navigationBarTitleDisplayMode(.inline)
     }
     
+    private struct DrawingConstants {
+        static let gitHubURL = URL(string: "https://github.com/Svaarich")
+        static let linkTreeColor = Color(#colorLiteral(red: 0, green: 0.466091156, blue: 0.2602820396, alpha: 1))
+    }
+}
+
+extension AppInfoView {
+    
+    // MARK: Links
+    
     private var linkTreeButton: some View {
         // TODO: put link below
         HStack {
@@ -69,11 +79,6 @@ struct AppInfoView: View {
             .background(.black)
             .clipShape(RoundedRectangle(cornerRadius: 20))
         }
-    }
-    
-    private struct DrawingConstants {
-        static let gitHubURL = URL(string: "https://github.com/Svaarich")
-        static let linkTreeColor = Color(#colorLiteral(red: 0, green: 0.466091156, blue: 0.2602820396, alpha: 1))
     }
 }
 

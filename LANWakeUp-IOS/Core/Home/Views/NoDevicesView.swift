@@ -3,8 +3,10 @@ import SwiftUI
 struct NoDevicesView: View {
     
     @Environment(\.colorScheme) var colorScheme
+    
     @State private var animate: Bool = false
     @State private var gradientAngle: Double = 0
+    
     @Binding var isPresented: Bool
     
     var body: some View {
@@ -50,7 +52,10 @@ extension NoDevicesView {
             }
         }
     }
-    
+}
+
+
+extension NoDevicesView {
     
     // MARK: PROPERTIES
     

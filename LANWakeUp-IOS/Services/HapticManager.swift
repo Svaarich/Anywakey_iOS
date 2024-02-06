@@ -2,6 +2,7 @@
 import SwiftUI
 
 class HapticManager {
+    
     private init() {}
     
     static let instance = HapticManager()

@@ -168,10 +168,10 @@ extension DeviceCellView {
     private var pingInfo: some View {
         HStack(spacing: 4) {
             Image(systemName: "stopwatch")
-            Text(ping.asPingString())
+            Text(ping.pingAsString())
                 .contentTransition(.numericText())
         }
-        .frame(width: 100, alignment: .trailing)
+        .frame(width: 80, alignment: .leading)
         .font(.caption)
         .foregroundStyle(.tertiary)
     }

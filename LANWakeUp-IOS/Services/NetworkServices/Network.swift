@@ -10,14 +10,14 @@ public class Network {
     
     private let wakeUp = WakeOnLAN()
     
-    //
+    // Boot selected device
     func boot(device: Device) -> Error? {
         wakeUp.target(device: device)
     }
     
-    //
+    // Ping selected host / IP address and returns
     func ping(address: String, onDone: @escaping (_ ping: Double, _ isAccessible: Bool) -> Void) {
-        // if adress is empty returns false
+        // if address is empty returns false
         guard
             !address.isEmpty,
             address.contains(where: { $0 == "." } )

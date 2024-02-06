@@ -34,14 +34,14 @@ struct HomeView: View {
                         AddDeviceView(isPresented: $showAddView)
                             .clipShape(RoundedRectangle(cornerRadius: 20))
                             .ignoresSafeArea(edges: .bottom)
-                            
+                        
                     }
                     .zIndex(2.0)
                     .transition(.move(edge: .bottom))
-                        
+                    
                 }
             }
-
+            
             .ignoresSafeArea(.keyboard)
             
             //MARK: Navigation title
@@ -63,7 +63,7 @@ struct HomeView: View {
                         Image(systemName: "info.circle")
                     }
                 }
-
+                
                 // Add button
                 ToolbarItem(placement: .topBarTrailing) {
                     Button {
@@ -84,9 +84,12 @@ struct HomeView: View {
             
         }
         // No Internet connection alert
-//        .alert("No internet connection 😭", isPresented: $showWarning) {
-//        }
+        //        .alert("No internet connection 😭", isPresented: $showWarning) {
+        //        }
     }
+}
+
+extension HomeView {
     
     // MARK: FUNCTIONS
     
@@ -149,6 +152,7 @@ struct HomeView: View {
             }
         }
     }
+    
     // Device section
     private var devicesSection: some View {
         Section {

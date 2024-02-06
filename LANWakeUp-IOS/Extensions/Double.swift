@@ -1,8 +1,8 @@
 import Foundation
 
 extension Double {
-    // Formates Double to string and return ping in mseconds
-    func asPingString() -> String {
+    // Formates Double to String and return ping in ms
+    func pingAsString() -> String {
         let ping = String(format: "%.1f", self * 1000)
         return ping + " ms"
     }

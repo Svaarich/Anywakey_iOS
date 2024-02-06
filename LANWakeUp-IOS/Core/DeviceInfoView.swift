@@ -9,9 +9,11 @@ struct DeviceInfoView: View {
     
     @FocusState private var isFocused: FocusedStates?
     
+    // Edit / Delete
     @State private var isEditing: Bool = false
     @State private var showDeleteAlert: Bool = false
     
+    // Device components
     @State private var name: String
     @State private var BroadcastAddr: String
     @State private var MAC: String
@@ -112,6 +114,23 @@ struct DeviceInfoView: View {
             }
         }
     }
+}
+
+extension DeviceInfoView {
+    
+    // MARK: Emum for focused states
+    
+    private enum FocusedStates: Hashable {
+        case name
+        case adress
+        case mac
+        case port
+    }
+}
+
+extension DeviceInfoView {
+    
+    // MARK: PROPERTIES
     
     private var deviceCard: some View {
         VStack {
@@ -258,7 +277,7 @@ struct DeviceInfoView: View {
     
     private var bootButton: some View {
         Button {
-            _ = Network.boot(device: device)
+            _ = Network.instance.boot(device: device)
         } label: {
             Text("Boot device".uppercased())
                 .font(.headline)
@@ -298,16 +317,6 @@ struct DeviceInfoView: View {
         
         static let imageSize: CGFloat = 24.0
         static let fontSize: CGFloat = 15.0
-    }
-}
-
-extension DeviceInfoView {
-    // Emum for focused states
-    private enum FocusedStates: Hashable {
-        case name
-        case adress
-        case mac
-        case port
     }
 }
 

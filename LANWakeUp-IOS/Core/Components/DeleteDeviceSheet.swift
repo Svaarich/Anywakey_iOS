@@ -77,6 +77,7 @@ struct DeleteDeviceSheet: View {
         .onAppear(perform: addAnimation)
     }
     
+    // Adds animation
     private func addAnimation() {
         guard !animate else { return }
         withAnimation(

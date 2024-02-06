@@ -1,6 +1,6 @@
 import SwiftUI
 
-struct CustomTextField: View {
+struct FlexibleTextField: View {
     
     @FocusState private var isFocused: Bool
     
