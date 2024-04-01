@@ -17,7 +17,7 @@ struct AppInfoView: View {
                 .font(.largeTitle)
                 .fontWeight(.semibold)
             
-            Text("Version 1.0")
+            Text("Version 0.0.1")
                 .font(.subheadline)
                 .fontWeight(.semibold)
                 .foregroundStyle(.secondary)
