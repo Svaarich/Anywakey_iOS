@@ -37,6 +37,7 @@ struct BootButton: View {
             .padding(.trailing)
         
             .onTapGesture {
+                
                 //TODO: improve!!!
                 if device.MAC.count == 17 {
                     withAnimation(.easeInOut) {
@@ -57,6 +58,9 @@ struct BootButton: View {
             .onAppear {
                 statusColor = colorScheme == .dark ? DrawingConstants.defaultDarkColor :  DrawingConstants.defaultLightColor
                 getStatusColor()
+                Timer.scheduledTimer(withTimeInterval: 1.0, repeats: true) { _ in
+                    getStatusColor()
+                }
             }
             .onChange(of: refreshStatus) { _ in
                 refreshStatusColor()
