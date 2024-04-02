@@ -30,10 +30,6 @@ struct AddDeviceView: View {
             Spacer()
         }
         
-//        .offset(y: startingOffsetY)
-//        .offset(y: currentDragOffsetY)
-//        .offset(y: endingOffsetY)
-//        
         // keyboard settings
         .autocorrectionDisabled()
         .keyboardType(.alphabet)
@@ -146,9 +142,10 @@ extension AddDeviceView {
             FlexibleTextField(
                 label: "MAC Address",
                 text: $MAC)
+            .textInputAutocapitalization(.characters)
             Text("(e.g. 00:11:22:AA:BB:CC)")
                 .padding(.horizontal, 8)
-            
+    
             FlexibleTextField(
                 label: "Port",
                 text: $Port,
