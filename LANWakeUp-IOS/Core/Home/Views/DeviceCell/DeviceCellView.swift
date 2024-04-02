@@ -195,6 +195,14 @@ extension DeviceCellView {
                 Image(systemName: device.isPinned ? "pin.slash" : "pin")
             }
             
+            // Copy button
+            Button {
+                device.copyToShare()
+            } label: {
+                Text("Copy")
+                Image(systemName: "doc.on.doc")
+            }
+            
             // Delete button
             Button(role: .destructive) {
                 showDeleteAlert.toggle()

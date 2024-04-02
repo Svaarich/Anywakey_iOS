@@ -1,10 +1,11 @@
 import Foundation
+import SwiftUI
 
 public struct Device: Hashable, Identifiable, Codable {
     
     init(name: String, MAC: String, BroadcastAddr: String, Port: String, isPinned: Bool = false, id: String = UUID().uuidString) {
         self.name = name
-        self.MAC = MAC
+        self.MAC = MAC.uppercased()
         self.BroadcastAddr = BroadcastAddr
         self.Port = Port
         self.isPinned = isPinned

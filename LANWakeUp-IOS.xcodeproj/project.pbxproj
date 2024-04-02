@@ -21,6 +21,7 @@
 		7DC26DA82AE7EC8B00B52D02 /* Network.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DC26DA72AE7EC8B00B52D02 /* Network.swift */; };
 		7DC26DA92AE7EDA500B52D02 /* WakeOnLAN.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DC26DA42AE7EC5300B52D02 /* WakeOnLAN.swift */; };
 		7DC26DB12AE821CC00B52D02 /* DeviceCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DC26DB02AE821CC00B52D02 /* DeviceCellView.swift */; };
+		7DD1F7DD2BBBF70F0000E238 /* Device + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DD1F7DC2BBBF70F0000E238 /* Device + Extension.swift */; };
 		7DD3318A2B54EC2E002BFA64 /* View.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DD331892B54EC2E002BFA64 /* View.swift */; };
 		7DD331DC2B5C5D8D002BFA64 /* BootButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DD331DB2B5C5D8D002BFA64 /* BootButton.swift */; };
 		7DD331DE2B5C5DD7002BFA64 /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DD331DD2B5C5DD7002BFA64 /* Color.swift */; };
@@ -61,6 +62,7 @@
 		7DC26DA42AE7EC5300B52D02 /* WakeOnLAN.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WakeOnLAN.swift; sourceTree = "<group>"; };
 		7DC26DA72AE7EC8B00B52D02 /* Network.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Network.swift; sourceTree = "<group>"; };
 		7DC26DB02AE821CC00B52D02 /* DeviceCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceCellView.swift; sourceTree = "<group>"; };
+		7DD1F7DC2BBBF70F0000E238 /* Device + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Device + Extension.swift"; sourceTree = "<group>"; };
 		7DD331892B54EC2E002BFA64 /* View.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = View.swift; sourceTree = "<group>"; };
 		7DD331DB2B5C5D8D002BFA64 /* BootButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BootButton.swift; sourceTree = "<group>"; };
 		7DD331DD2B5C5DD7002BFA64 /* Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
@@ -205,6 +207,7 @@
 				7DD331892B54EC2E002BFA64 /* View.swift */,
 				7DD331DD2B5C5DD7002BFA64 /* Color.swift */,
 				7D5FE1C72B5CB60900142502 /* Double.swift */,
+				7DD1F7DC2BBBF70F0000E238 /* Device + Extension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -246,7 +249,7 @@
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
 				LastSwiftUpdateCheck = 1500;
-				LastUpgradeCheck = 1500;
+				LastUpgradeCheck = 1530;
 				TargetAttributes = {
 					7DC26D7C2AE7EBE100B52D02 = {
 						CreatedOnToolsVersion = 15.0;
@@ -303,6 +306,7 @@
 				7DFC05342B292BFB0082E502 /* DeviceDataService.swift in Sources */,
 				7D596B4A2B48D00C00A5B7FA /* NoDevicesView.swift in Sources */,
 				7D7AB9512AEC40FA00594CDB /* SwiftyPing.swift in Sources */,
+				7DD1F7DD2BBBF70F0000E238 /* Device + Extension.swift in Sources */,
 				7DD331DC2B5C5D8D002BFA64 /* BootButton.swift in Sources */,
 				7DE7001B2AEABC930033E53A /* AddDeviceView.swift in Sources */,
 				7D5FE1F42B5F5D3F00142502 /* DeleteDeviceSheet.swift in Sources */,
@@ -349,6 +353,7 @@
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
+				DEAD_CODE_STRIPPING = YES;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
@@ -412,6 +417,7 @@
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
+				DEAD_CODE_STRIPPING = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
