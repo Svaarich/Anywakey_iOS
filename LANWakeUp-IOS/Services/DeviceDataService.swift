@@ -64,4 +64,16 @@ public class DeviceDataService: ObservableObject {
             allDevices[index] = newDevice
         }
     }
+    
+    func importDeviceFrom(JSON: String, onCompletion: @escaping (_ data: Device) -> () ) {
+        if let jsonData = JSON.data(using: .utf8) {
+            let decoder = JSONDecoder()
+            do {
+                let device = try decoder.decode(Device.self, from: jsonData)
+                onCompletion(device)
+            } catch let error {
+                print("Unable to decode. Error: \(error.localizedDescription)")
+            }
+        }
+    }
 }
