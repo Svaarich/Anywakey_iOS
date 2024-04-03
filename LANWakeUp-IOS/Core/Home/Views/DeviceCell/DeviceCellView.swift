@@ -197,7 +197,7 @@ extension DeviceCellView {
             
             // Copy button
             Button {
-                device.copyToShare()
+                device.exportJSON()
             } label: {
                 Text("Copy")
                 Image(systemName: "doc.on.doc")
