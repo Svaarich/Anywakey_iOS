@@ -12,6 +12,16 @@ public struct Device: Hashable, Identifiable, Codable {
         self.id = id
     }
     
+    public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        name = try container.decode(String.self, forKey: .name)
+        MAC = try container.decode(String.self, forKey: .MAC)
+        BroadcastAddr = try container.decode(String.self, forKey: .BroadcastAddr)
+        Port = try container.decode(String.self, forKey: .Port)
+        isPinned = try container.decodeIfPresent(Bool.self, forKey: .isPinned) ?? false
+        id = try container.decodeIfPresent(String.self, forKey: .id) ?? "default"
+    }
+    
     let name: String
     let MAC: String
     let BroadcastAddr: String
