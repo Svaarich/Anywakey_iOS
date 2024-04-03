@@ -21,7 +21,10 @@ struct AddDeviceView: View {
             HStack(alignment: .top) {
                 title
                 Spacer()
-                dismissButton
+                HStack {
+                    pasteButton
+                    dismissButton
+                }
             }
             textFieldsStack
             saveButton
@@ -43,7 +46,7 @@ struct AddDeviceView: View {
         
         .onAppear {
             withAnimation {
-                DispatchQueue.main.asyncAfter(deadline: .now() + 1.2) {
+                DispatchQueue.main.asyncAfter(deadline: .now() + 0) {
                     isFocused.toggle()
                 }
             }
@@ -64,11 +67,7 @@ struct AddDeviceView: View {
                     }
                 }
         )
-            
     }
-    
-    
-    
 }
 
 extension AddDeviceView {
@@ -91,8 +90,19 @@ extension AddDeviceView {
     // dismiss view
     private func dismiss() {
         hideKeyboard()
-        withAnimation(.easeInOut) {
+        withAnimation {
                 isPresented = false
+        }
+    }
+    
+    // Paste device from UIPasteboard
+    private func pasteDevice() {
+        guard let data = UIPasteboard.general.string else { return }
+        dataService.importDevice(json: data) { device in
+            name = device.name
+            BroadcastAddr = device.BroadcastAddr
+            MAC = device.MAC
+            Port = device.Port
         }
     }
     
@@ -105,6 +115,22 @@ extension AddDeviceView {
             .fontWeight(.bold)
             .foregroundStyle(.primary)
             .padding(.trailing, 8)
+    }
+    
+    // Paste button
+    private var pasteButton: some View {
+        Button {
+            withAnimation {
+                pasteDevice()
+            }
+        } label: {
+            Text("Paste")
+                .fontWeight(.semibold)
+                .padding(.vertical, 5)
+                .padding(.horizontal, 10)
+                .background(.gray.opacity(0.2))
+                .clipShape(Capsule())
+        }
     }
     
     
