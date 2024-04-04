@@ -46,9 +46,7 @@ struct AddDeviceView: View {
         
         .onAppear {
             withAnimation {
-                DispatchQueue.main.asyncAfter(deadline: .now() + 0) {
-                    isFocused.toggle()
-                }
+                isFocused.toggle()
             }
         }
         
@@ -62,7 +60,6 @@ struct AddDeviceView: View {
                     withAnimation(.easeInOut) {
                         if value.translation.height > 100 {
                             dismiss()
-                            
                         }
                     }
                 }
@@ -91,7 +88,7 @@ extension AddDeviceView {
     private func dismiss() {
         hideKeyboard()
         withAnimation {
-                isPresented = false
+            isPresented = false
         }
     }
     
@@ -120,9 +117,7 @@ extension AddDeviceView {
     // Paste button
     private var pasteButton: some View {
         Button {
-            withAnimation {
-                pasteDevice()
-            }
+            pasteDevice()
         } label: {
             Text("Paste")
                 .fontWeight(.semibold)
