@@ -98,7 +98,7 @@ extension AddDeviceView {
     // Paste device from UIPasteboard
     private func pasteDevice() {
         guard let data = UIPasteboard.general.string else { return }
-        dataService.importDevice(json: data) { device in
+        dataService.importDeviceFrom(JSON: data) { device in
             name = device.name
             BroadcastAddr = device.BroadcastAddr
             MAC = device.MAC
