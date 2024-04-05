@@ -20,25 +20,20 @@ struct FlexibleTextField: View {
     var body: some View {
         ZStack {
             HStack {
-                RoundedRectangle(cornerRadius: DrawingConstants.fieldHeight / 2.3)
-                    .foregroundStyle(.gray.opacity(0.15))
-                    .frame(width: fieldWidth, height: DrawingConstants.fieldHeight)
+                background
                     .overlay {
                         if isFocused {
-                            RoundedRectangle(cornerRadius: DrawingConstants.fieldHeight / 2.3)
-                                .strokeBorder(lineWidth: 2)
-                                .foregroundStyle(isCorrectInput ? .blue : .red)
-                                .frame(width: fieldWidth, height: DrawingConstants.fieldHeight)
+                            focusedFrame
+                        }
+                    }
+                    .overlay(alignment: .trailing) {
+                        if !text.wrappedValue.isEmpty {
+                            clearButton
                         }
                     }
                 Spacer()
             }
-            TextField(label, text: text)
-                .font(Font(DrawingConstants.font))
-                .foregroundStyle(isCorrectInput ? .primary : Color.red.opacity(0.7))
-                .padding(.horizontal)
-                .textFieldStyle(.plain)
-                .focused($isFocused)
+            textField
         }
         
         // animations
