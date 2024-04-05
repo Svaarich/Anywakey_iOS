@@ -105,14 +105,13 @@ struct FlexibleTextField: View {
     
     // Get TextField width
     private func initTextField(text: String) {
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
-            fieldWidth = text.sizeOfString(font: DrawingConstants.font).width
-            if fieldWidth == 0  {
-                fieldWidth = label.sizeOfString(font: DrawingConstants.font).width + DrawingConstants.safeDistance
-            } else {
-                fieldWidth += DrawingConstants.safeDistance
-            }
-            
+        fieldWidth = text.sizeOfString(font: DrawingConstants.font).width
+        if fieldWidth == 0  {
+            fieldWidth = label.sizeOfString(font: DrawingConstants.font).width + DrawingConstants.safeDistance
+        } else if text.isEmpty {
+            fieldWidth += DrawingConstants.safeDistance
+        } else {
+            fieldWidth += DrawingConstants.safeDistance + 25
         }
     }
     
