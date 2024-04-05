@@ -27,8 +27,9 @@ struct FlexibleTextField: View {
                         }
                     }
                     .overlay(alignment: .trailing) {
-                        if !text.wrappedValue.isEmpty {
+                        if !text.wrappedValue.isEmpty && isFocused {
                             clearButton
+                                .animation(.default, value: isFocused)
                         }
                     }
                 Spacer()
