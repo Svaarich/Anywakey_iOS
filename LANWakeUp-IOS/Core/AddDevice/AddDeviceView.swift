@@ -45,8 +45,10 @@ struct AddDeviceView: View {
         .background(.ultraThinMaterial)
         
         .onAppear {
-            withAnimation {
-                isFocused.toggle()
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+                withAnimation {
+                    isFocused.toggle()
+                }
             }
         }
         
