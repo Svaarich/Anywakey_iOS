@@ -45,8 +45,8 @@ struct AddDeviceView: View {
         .background(.ultraThinMaterial)
         
         .onAppear {
-            withAnimation {
-                DispatchQueue.main.asyncAfter(deadline: .now() + 0) {
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+                withAnimation {
                     isFocused.toggle()
                 }
             }
@@ -62,7 +62,6 @@ struct AddDeviceView: View {
                     withAnimation(.easeInOut) {
                         if value.translation.height > 100 {
                             dismiss()
-                            
                         }
                     }
                 }
@@ -91,14 +90,14 @@ extension AddDeviceView {
     private func dismiss() {
         hideKeyboard()
         withAnimation {
-                isPresented = false
+            isPresented = false
         }
     }
     
     // Paste device from UIPasteboard
     private func pasteDevice() {
         guard let data = UIPasteboard.general.string else { return }
-        dataService.importDevice(json: data) { device in
+        dataService.importDeviceFrom(JSON: data) { device in
             name = device.name
             BroadcastAddr = device.BroadcastAddr
             MAC = device.MAC
@@ -120,9 +119,7 @@ extension AddDeviceView {
     // Paste button
     private var pasteButton: some View {
         Button {
-            withAnimation {
-                pasteDevice()
-            }
+            pasteDevice()
         } label: {
             Text("Paste")
                 .fontWeight(.semibold)

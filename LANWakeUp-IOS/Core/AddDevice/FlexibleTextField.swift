@@ -20,25 +20,18 @@ struct FlexibleTextField: View {
     var body: some View {
         ZStack {
             HStack {
-                RoundedRectangle(cornerRadius: DrawingConstants.fieldHeight / 2.3)
-                    .foregroundStyle(.gray.opacity(0.15))
-                    .frame(width: fieldWidth, height: DrawingConstants.fieldHeight)
+                background
                     .overlay {
-                        if isFocused {
-                            RoundedRectangle(cornerRadius: DrawingConstants.fieldHeight / 2.3)
-                                .strokeBorder(lineWidth: 2)
-                                .foregroundStyle(isCorrectInput ? .blue : .red)
-                                .frame(width: fieldWidth, height: DrawingConstants.fieldHeight)
+                        focusedFrame
+                    }
+                    .overlay(alignment: .trailing) {
+                        if !text.wrappedValue.isEmpty && isFocused {
+                            clearButton
                         }
                     }
                 Spacer()
             }
-            TextField(label, text: text)
-                .font(Font(DrawingConstants.font))
-                .foregroundStyle(isCorrectInput ? .primary : Color.red.opacity(0.7))
-                .padding(.horizontal)
-                .textFieldStyle(.plain)
-                .focused($isFocused)
+            textField
         }
         
         // animations
@@ -53,6 +46,9 @@ struct FlexibleTextField: View {
         .onChange(of: text.wrappedValue) { newText in
             initTextField(text: newText)
         }
+        .onChange(of: isFocused) { _ in
+            initTextField(text: text.wrappedValue)
+        }
         .onChange(of: isCorrectInput) { _ in
             if isCorrectInput {
                 let impactMed = UINotificationFeedbackGenerator()
@@ -63,16 +59,61 @@ struct FlexibleTextField: View {
         }
     }
     
-    //MARK: Get TextField width
+    
+    // MARK: PROPERTIES
+    
+    // Clear button
+    private var clearButton: some View {
+        Button {
+            text.wrappedValue = ""
+        } label: {
+            Image(systemName: "xmark.circle.fill")
+                .resizable()
+                .scaledToFit()
+                .frame(width: 16, height: 16)
+                .opacity(0.3)
+                .padding(.trailing)
+        }
+    }
+    
+    // TextField background
+    private var background: some View {
+        RoundedRectangle(cornerRadius: DrawingConstants.fieldHeight / 2.3)
+            .foregroundStyle(.gray.opacity(0.15))
+            .frame(width: fieldWidth, height: DrawingConstants.fieldHeight)
+    }
+    
+    // Background frame
+    private var focusedFrame: some View {
+        RoundedRectangle(cornerRadius: DrawingConstants.fieldHeight / 2.3)
+            .strokeBorder(lineWidth: 2)
+            .foregroundStyle(isCorrectInput ? .blue : .red)
+            .opacity(isFocused ? 1 : 0)
+            .frame(width: fieldWidth, height: DrawingConstants.fieldHeight)
+    }
+    
+    // Textfield
+    private var textField: some View {
+        TextField(label, text: text)
+            .font(Font(DrawingConstants.font))
+            .foregroundStyle(isCorrectInput ? .primary : Color.red.opacity(0.7))
+            .padding(.horizontal)
+            .textFieldStyle(.plain)
+            .focused($isFocused)
+            .allowsHitTesting(false)
+    }
+    
+    // MARK: FUNCTIONS
+    
+    // Get TextField width
     private func initTextField(text: String) {
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
-            fieldWidth = text.sizeOfString(font: DrawingConstants.font).width
-            if fieldWidth == 0  {
-                fieldWidth = label.sizeOfString(font: DrawingConstants.font).width + DrawingConstants.safeDistance
-            } else {
-                fieldWidth += DrawingConstants.safeDistance
-            }
-            
+        fieldWidth = text.sizeOfString(font: DrawingConstants.font).width
+        if fieldWidth == 0  {
+            fieldWidth = label.sizeOfString(font: DrawingConstants.font).width + DrawingConstants.safeDistance
+        } else if !text.isEmpty && isFocused {
+            fieldWidth += DrawingConstants.safeDistance + 25
+        } else {
+            fieldWidth += DrawingConstants.safeDistance
         }
     }
     

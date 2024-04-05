@@ -68,6 +68,11 @@ struct DeviceInfoView: View {
         
         // toolbar items
         .toolbar {
+            // Copy button
+            ToolbarItem(placement: .topBarTrailing) {
+                copyButton
+            }
+            
             // edit button
             ToolbarItem(placement: .topBarTrailing) {
                 Button {
@@ -270,9 +275,18 @@ extension DeviceInfoView {
                     .shadow(color: DrawingConstants.starColor.opacity(0.4), radius: 7)
             }
         }
-        .padding(.leading)
         .font(.title)
         .fontWeight(.bold)
+        .padding(.leading)
+    }
+    
+    // Copy button
+    private var copyButton: some View {
+        Button {
+            device.exportJSON()
+        } label: {
+            Image(systemName: "doc.on.doc")
+        }
     }
     
     private var bootButton: some View {
@@ -326,5 +340,3 @@ extension DeviceInfoView {
         DeviceInfoView(device: Device(name: "test name", MAC: "11:11", BroadcastAddr: "1.1.1.1", Port: "009"))
     }
 }
-
-
