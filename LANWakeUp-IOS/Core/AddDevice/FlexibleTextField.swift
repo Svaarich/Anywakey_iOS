@@ -22,14 +22,11 @@ struct FlexibleTextField: View {
             HStack {
                 background
                     .overlay {
-                        if isFocused {
-                            focusedFrame
-                        }
+                        focusedFrame
                     }
                     .overlay(alignment: .trailing) {
                         if !text.wrappedValue.isEmpty && isFocused {
                             clearButton
-                                .animation(.default, value: isFocused)
                         }
                     }
                 Spacer()
@@ -48,6 +45,9 @@ struct FlexibleTextField: View {
         }
         .onChange(of: text.wrappedValue) { newText in
             initTextField(text: newText)
+        }
+        .onChange(of: isFocused) { _ in
+            initTextField(text: text.wrappedValue)
         }
         .onChange(of: isCorrectInput) { _ in
             if isCorrectInput {
@@ -88,6 +88,7 @@ struct FlexibleTextField: View {
         RoundedRectangle(cornerRadius: DrawingConstants.fieldHeight / 2.3)
             .strokeBorder(lineWidth: 2)
             .foregroundStyle(isCorrectInput ? .blue : .red)
+            .opacity(isFocused ? 1 : 0)
             .frame(width: fieldWidth, height: DrawingConstants.fieldHeight)
     }
     
@@ -109,10 +110,10 @@ struct FlexibleTextField: View {
         fieldWidth = text.sizeOfString(font: DrawingConstants.font).width
         if fieldWidth == 0  {
             fieldWidth = label.sizeOfString(font: DrawingConstants.font).width + DrawingConstants.safeDistance
-        } else if text.isEmpty {
-            fieldWidth += DrawingConstants.safeDistance
-        } else {
+        } else if !text.isEmpty && isFocused {
             fieldWidth += DrawingConstants.safeDistance + 25
+        } else {
+            fieldWidth += DrawingConstants.safeDistance
         }
     }
     
