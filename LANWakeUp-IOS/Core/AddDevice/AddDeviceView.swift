@@ -89,7 +89,7 @@ extension AddDeviceView {
     // dismiss view
     private func dismiss() {
         hideKeyboard()
-        withAnimation {
+        withAnimation(.default) {
             isPresented = false
         }
     }
