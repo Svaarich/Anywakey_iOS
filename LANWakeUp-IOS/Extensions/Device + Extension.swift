@@ -3,7 +3,7 @@ import SwiftUI
 extension Device {
     // Copy device info to clipboard
     func exportJSON() {
-        let shareDevice: String = """
+        let sharedDevice: String = """
                                 {
                                 "name": "\(name)",
                                 "MAC": "\(MAC)",
@@ -11,6 +11,6 @@ extension Device {
                                 "Port": "\(Port)"
                                 }
                                 """
-        UIPasteboard.general.string = shareDevice
+        UIPasteboard.general.string = sharedDevice
     }
 }
