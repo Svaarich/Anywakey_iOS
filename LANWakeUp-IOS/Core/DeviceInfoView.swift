@@ -12,6 +12,7 @@ struct DeviceInfoView: View {
     // Edit / Delete
     @State private var isEditing: Bool = false
     @State private var showDeleteAlert: Bool = false
+    @State private var dismissView: Bool = false
     
     // Device components
     @State private var name: String
@@ -50,7 +51,7 @@ struct DeviceInfoView: View {
         }
         // delete confirmation sheet
         .sheet(isPresented: $showDeleteAlert) {
-            DeleteDeviceSheet(device: device)
+            DeleteDeviceSheet(device: device, dismissParentView: $dismissView)
                 .presentationDetents([.medium])
         }
         
@@ -66,8 +67,8 @@ struct DeviceInfoView: View {
         .animation(.spring, value: isFocused)
         .animation(.bouncy, value: [name, MAC, BroadcastAddr, Port])
         
-        // toolbar items
-        .toolbar {
+        .onChange(of: dismissView) { value in
+            if value {
             // Copy button
             ToolbarItem(placement: .topBarTrailing) {
                 copyButton
