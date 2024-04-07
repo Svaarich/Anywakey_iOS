@@ -12,6 +12,7 @@ struct DeviceInfoView: View {
     // Edit / Delete
     @State private var isEditing: Bool = false
     @State private var showDeleteAlert: Bool = false
+    @State private var dismissView: Bool = false
     
     // Device components
     @State private var name: String
@@ -36,7 +37,21 @@ struct DeviceInfoView: View {
                         title
                         Spacer()
                     }
+                    
                     deviceCard
+                    
+                    HStack {
+                        // Delete button
+                        deleteButton
+                        
+                        // Copy button
+                        copyButton
+                        
+                        // Edit button
+                        editButton
+                    }
+                    .padding(.top, 8)
+                    
                     if !isEditing {
                         bootButton
                             .padding(.top, 8)
@@ -50,7 +65,7 @@ struct DeviceInfoView: View {
         }
         // delete confirmation sheet
         .sheet(isPresented: $showDeleteAlert) {
-            DeleteDeviceSheet(device: device)
+            DeleteDeviceSheet(device: device, dismissParentView: $dismissView)
                 .presentationDetents([.medium])
         }
         
@@ -66,58 +81,12 @@ struct DeviceInfoView: View {
         .animation(.spring, value: isFocused)
         .animation(.bouncy, value: [name, MAC, BroadcastAddr, Port])
         
-        // toolbar items
-        .toolbar {
-            // Copy button
-            ToolbarItem(placement: .topBarTrailing) {
-                copyButton
-            }
-            
-            // edit button
-            ToolbarItem(placement: .topBarTrailing) {
-                Button {
-                    withAnimation(.spring) {
-                        isEditing.toggle()
-                    }
-                    if !isEditing {
-                        dataService.updateDevice(
-                            oldDevice: device,
-                            newDevice: Device(
-                                name: name,
-                                MAC: MAC,
-                                BroadcastAddr: BroadcastAddr,
-                                Port: Port,
-                                isPinned: device.isPinned,
-                                id: device.id))
-                        device = Device(
-                            name: name,
-                            MAC: MAC,
-                            BroadcastAddr: BroadcastAddr,
-                            Port: Port,
-                            isPinned: device.isPinned,
-                            id: device.id)
-                    }
-                } label: {
-                    if isEditing {
-                        Image(systemName: "checkmark")
-                    } else {
-                        Image(systemName: "pencil")
-                    }
-                    
-                }
-            }
-            // delete button
-            ToolbarItem(placement: .topBarTrailing) {
-                Button {
-                    withAnimation {
-                        showDeleteAlert.toggle()
-                    }
-                } label: {
-                    Image(systemName: "trash")
-                        .foregroundStyle(.pink)
-                }
+        .onChange(of: dismissView) { value in
+            if value {
+                dismiss()
             }
         }
+        
     }
 }
 
@@ -280,12 +249,77 @@ extension DeviceInfoView {
         .padding(.leading)
     }
     
+    // Delete button
+    private var deleteButton: some View {
+        Button {
+            withAnimation {
+                showDeleteAlert.toggle()
+            }
+        } label: {
+            VStack(spacing: 4) {
+                Image(systemName: "trash.fill")
+                    .foregroundStyle(.red)
+                Text("Delete")
+                    .foregroundStyle(Color.red.opacity(0.7))
+            }
+            .frame(height: 60)
+            .frame(maxWidth: .infinity)
+            .background(Color.gray.opacity(colorScheme == .dark ? 0.2 : 0.1))
+            .clipShape(RoundedRectangle(cornerRadius: 15))
+        }
+    }
+    
     // Copy button
     private var copyButton: some View {
         Button {
             device.exportJSON()
         } label: {
-            Image(systemName: "doc.on.doc")
+            VStack(spacing: 4) {
+                Image(systemName: "doc.on.doc")
+                Text("Copy")
+                    .foregroundStyle(.gray)
+            }
+            .frame(height: 60)
+            .frame(maxWidth: .infinity)
+            .background(Color.gray.opacity(colorScheme == .dark ? 0.2 : 0.1))
+            .clipShape(RoundedRectangle(cornerRadius: 15))
+        }
+    }
+    
+    // Edit button
+    private var editButton: some View {
+        Button {
+            withAnimation {
+                isEditing.toggle()
+                if !isEditing {
+                    dataService.updateDevice(
+                        oldDevice: device,
+                        newDevice: Device(
+                            name: name,
+                            MAC: MAC,
+                            BroadcastAddr: BroadcastAddr,
+                            Port: Port,
+                            isPinned: device.isPinned,
+                            id: device.id))
+                    device = Device(
+                        name: name,
+                        MAC: MAC,
+                        BroadcastAddr: BroadcastAddr,
+                        Port: Port,
+                        isPinned: device.isPinned,
+                        id: device.id)
+                }
+            }
+        } label: {
+            VStack(spacing: 4) {
+                Image(systemName: isEditing ? "checkmark" : "square.and.pencil")
+                Text(isEditing ? "Save" : "Edit")
+                    .foregroundStyle(.gray)
+            }
+            .frame(height: 60)
+            .frame(maxWidth: .infinity)
+            .background(Color.gray.opacity(colorScheme == .dark ? 0.2 : 0.1))
+            .clipShape(RoundedRectangle(cornerRadius: 15))
         }
     }
     

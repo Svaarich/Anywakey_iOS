@@ -31,7 +31,7 @@ struct DeviceCellView: View {
         
         // delete device confirmation
         .sheet(isPresented: $showDeleteAlert) {
-            DeleteDeviceSheet(device: device)
+            DeleteDeviceSheet(device: device, dismissParentView: .constant(false))
                 .presentationDetents([.medium])
         }
         

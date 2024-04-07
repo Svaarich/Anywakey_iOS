@@ -14,6 +14,8 @@ struct DeleteDeviceSheet: View {
     
     let device: Device
     
+    @Binding var dismissParentView: Bool
+    
     var body: some View {
         VStack {
             Spacer()
@@ -47,6 +49,7 @@ struct DeleteDeviceSheet: View {
                 Button {
                     dataService.delete(device: device)
                     dismiss()
+                    dismissParentView = true
                 } label: {
                     Text("Delete")
                         .frame(height: 55)
@@ -92,5 +95,5 @@ struct DeleteDeviceSheet: View {
 }
 
 #Preview {
-    DeleteDeviceSheet(device: Device(name: "test", MAC: "1", BroadcastAddr: "1", Port: "1"))
+    DeleteDeviceSheet(device: Device(name: "test", MAC: "1", BroadcastAddr: "1", Port: "1"), dismissParentView: .constant(false))
 }
