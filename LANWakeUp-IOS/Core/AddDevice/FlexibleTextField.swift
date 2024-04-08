@@ -25,9 +25,7 @@ struct FlexibleTextField: View {
                         focusedFrame
                     }
                     .overlay(alignment: .trailing) {
-                        if !text.wrappedValue.isEmpty && isFocused {
-                            clearButton
-                        }
+                        clearButton.opacity(textFieldCondition() ? 1.0 : 0)
                     }
                 Spacer()
             }
@@ -104,6 +102,15 @@ struct FlexibleTextField: View {
     }
     
     // MARK: FUNCTIONS
+    
+    // Get TextField condition
+    private func textFieldCondition() -> Bool {
+        if !text.wrappedValue.isEmpty && isFocused {
+            return true
+        } else {
+            return false
+        }
+    }
     
     // Get TextField width
     private func initTextField(text: String) {
