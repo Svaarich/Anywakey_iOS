@@ -36,7 +36,7 @@ struct AppInfoView: View {
     }
     
     private struct DrawingConstants {
-        static let gitHubURL = URL(string: "https://github.com/Svaarich")
+        static let gitHubURL = URL(string: "https://github.com/Svaarich/LANWakeUp-IOS")
         static let linkTreeColor = Color(#colorLiteral(red: 0, green: 0.466091156, blue: 0.2602820396, alpha: 1))
     }
 }
