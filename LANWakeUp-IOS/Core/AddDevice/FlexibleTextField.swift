@@ -43,6 +43,7 @@ struct FlexibleTextField: View {
         }
         .onChange(of: text.wrappedValue) { newText in
             initTextField(text: newText)
+            fieldWidth = fieldWidth > UIScreen.main.bounds.width - 36 ? UIScreen.main.bounds.width - 36 : fieldWidth
         }
         .onChange(of: isFocused) { _ in
             initTextField(text: text.wrappedValue)
@@ -99,6 +100,7 @@ struct FlexibleTextField: View {
             .textFieldStyle(.plain)
             .focused($isFocused)
             .allowsHitTesting(false)
+            .frame(width: UIScreen.main.bounds.width - 36)
     }
     
     // MARK: FUNCTIONS

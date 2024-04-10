@@ -40,9 +40,9 @@ struct AddDeviceView: View {
         // style
         .font(.footnote)
         .foregroundStyle(.secondary)
-        .frame(maxWidth: .infinity, maxHeight: .infinity)
         .padding()
         .background(.ultraThinMaterial)
+        .frame(maxWidth: UIScreen.main.bounds.width)
         
         .onAppear {
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
@@ -175,7 +175,6 @@ extension AddDeviceView {
                 isCorrectInput: isCorrectPort)
             Text("Typically sent to port 7 or 9")
                 .padding(.horizontal, 8)
-                .keyboardType(.numberPad)
         }
     }
     
