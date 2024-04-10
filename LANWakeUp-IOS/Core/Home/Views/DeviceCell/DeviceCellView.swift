@@ -142,13 +142,13 @@ extension DeviceCellView {
                 // Empty adress indicator
                 if device.BroadcastAddr.isEmpty {
                     HStack(spacing: 0) {
-                        Text("Empty adress")
+                        Text("Empty address")
                         Image(systemName: "exclamationmark.triangle.fill")
                             .foregroundStyle(Color.custom.starColor)
                             .padding(.leading, 4)
                     }
                 } else {
-                    Text(device.BroadcastAddr.isEmpty ? "Adress: [Empty]" : "\(device.BroadcastAddr)")
+                    Text(device.BroadcastAddr.isEmpty ? "Address: [Empty]" : "\(device.BroadcastAddr)")
                 }
                 Spacer()
                 

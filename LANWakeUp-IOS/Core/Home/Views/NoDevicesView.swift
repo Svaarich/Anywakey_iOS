@@ -65,7 +65,7 @@ extension NoDevicesView {
             Text("There are no devices")
                 .font(.title)
                 .fontWeight(.semibold)
-            Text("Are you a productive person and can't wait to start your coputer remotely?\nClick the button to add a device to the list!")
+            Text("Are you a productive person and can't wait to start your computer remotely?\nClick the button to add a device to the list!")
                 .padding(.bottom, 20)
         }
         .multilineTextAlignment(.center)
