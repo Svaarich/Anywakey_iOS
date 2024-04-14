@@ -39,7 +39,7 @@ struct BootButton: View {
             .onTapGesture {
                 
                 //TODO: improve!!!
-                if device.MAC.count == 17 {
+                if device.BroadcastAddr.isValidAdress() {
                     withAnimation(.easeInOut) {
                         isPressed = true
                         HapticManager.instance.impact(style: .soft)

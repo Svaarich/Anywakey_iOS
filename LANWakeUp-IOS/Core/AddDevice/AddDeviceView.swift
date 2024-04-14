@@ -10,7 +10,6 @@ struct AddDeviceView: View {
     @State private var BroadcastAddr: String = ""
     @State private var MAC: String = ""
     @State private var Port: String = ""
-    @State private var isCorrectPort: Bool = true
     
     @Binding var isPresented: Bool
     
@@ -40,9 +39,9 @@ struct AddDeviceView: View {
         // style
         .font(.footnote)
         .foregroundStyle(.secondary)
-        .frame(maxWidth: .infinity, maxHeight: .infinity)
         .padding()
         .background(.ultraThinMaterial)
+        .frame(maxWidth: UIScreen.main.bounds.width)
         
         .onAppear {
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
@@ -50,10 +49,6 @@ struct AddDeviceView: View {
                     isFocused.toggle()
                 }
             }
-        }
-        
-        .onChange(of: Port) { _ in
-            isCorrectPortInput()
         }
         
         .gesture(
@@ -72,19 +67,6 @@ struct AddDeviceView: View {
 extension AddDeviceView {
     
     // MARK: FUNCTIONS
-    
-    // Port input  check
-    private func isCorrectPortInput() {
-        if Port.isEmpty {
-            isCorrectPort = true
-        } else {
-            if let _ = UInt16(Port) {
-                isCorrectPort = true
-            } else {
-                isCorrectPort = false
-            }
-        }
-    }
     
     // dismiss view
     private func dismiss() {
@@ -158,7 +140,9 @@ extension AddDeviceView {
             
             FlexibleTextField(
                 label: "IP / Broadcast Address",
-                text: $BroadcastAddr)
+                text: $BroadcastAddr,
+                isCorrectInput: BroadcastAddr.isEmpty ? .empty : BroadcastAddr.isValidAdress() ? .valid : .invalid)
+            
             Text("IPv4(e.g. 192.168.0.123) or DNS name for the host.")
                 .padding(.horizontal, 8)
             
@@ -172,10 +156,9 @@ extension AddDeviceView {
             FlexibleTextField(
                 label: "Port",
                 text: $Port,
-                isCorrectInput: isCorrectPort)
+                isCorrectInput: Port.isEmpty ? .empty : Port.isValidPort() ? .valid : .invalid)
             Text("Typically sent to port 7 or 9")
                 .padding(.horizontal, 8)
-                .keyboardType(.numberPad)
         }
     }
     

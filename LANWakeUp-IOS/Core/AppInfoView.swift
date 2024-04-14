@@ -36,7 +36,7 @@ struct AppInfoView: View {
     }
     
     private struct DrawingConstants {
-        static let gitHubURL = URL(string: "https://github.com/Svaarich")
+        static let gitHubURL = URL(string: "https://github.com/Svaarich/LANWakeUp-IOS")
         static let linkTreeColor = Color(#colorLiteral(red: 0, green: 0.466091156, blue: 0.2602820396, alpha: 1))
     }
 }
@@ -65,7 +65,12 @@ extension AppInfoView {
     private var gitHubButton: some View {
         Link(destination: DrawingConstants.gitHubURL!) {
             HStack {
-                Image(systemName: "tag")
+                Image("gitLogo")
+                    .resizable()
+                    .scaledToFit()
+                    .frame(width: 25, height: 25)
+                    .foregroundStyle(.white)
+                    
                 Text("GitHub")
                 Spacer()
                 
