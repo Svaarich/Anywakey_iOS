@@ -65,7 +65,12 @@ extension AppInfoView {
     private var gitHubButton: some View {
         Link(destination: DrawingConstants.gitHubURL!) {
             HStack {
-                Image(systemName: "tag")
+                Image("gitLogo")
+                    .resizable()
+                    .scaledToFit()
+                    .frame(width: 25, height: 25)
+                    .foregroundStyle(.white)
+                    
                 Text("GitHub")
                 Spacer()
                 
