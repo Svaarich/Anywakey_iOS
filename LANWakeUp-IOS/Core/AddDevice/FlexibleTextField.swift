@@ -7,14 +7,24 @@ struct FlexibleTextField: View {
     @State private var fieldWidth: CGFloat = 0
     @State private var strokeBorderLineWidth: CGFloat = 2
     
-    private var isCorrectInput: Bool
+    private var isCorrectInput: TextValidation
     private var label: String
     private var text: Binding<String>
     
-    init(label: String, text: Binding<String>, isCorrectInput: Bool = true) {
+    init(label: String, text: Binding<String>, isCorrectInput: TextValidation = .empty) {
         self.text = text
         self.label = label
         self.isCorrectInput = isCorrectInput
+        if isCorrectInput == .invalid {
+            let impactMed = UINotificationFeedbackGenerator()
+            impactMed.notificationOccurred(.error)
+        }
+    }
+    
+    enum TextValidation {
+        case valid
+        case invalid
+        case empty
     }
     
     var body: some View {
@@ -41,17 +51,14 @@ struct FlexibleTextField: View {
                 initTextField(text: text.wrappedValue)
             }
         }
+        
         .onChange(of: text.wrappedValue) { newText in
             initTextField(text: newText)
             fieldWidth = fieldWidth > UIScreen.main.bounds.width - 36 ? UIScreen.main.bounds.width - 36 : fieldWidth
         }
+        
         .onChange(of: isFocused) { _ in
             initTextField(text: text.wrappedValue)
-        }
-        .onChange(of: isCorrectInput) { _ in
-            if isCorrectInput {
-                let impactMed = UINotificationFeedbackGenerator()
-                impactMed.notificationOccurred(.error)}
         }
         .onTapGesture {
             isFocused = true
@@ -86,7 +93,7 @@ struct FlexibleTextField: View {
     private var focusedFrame: some View {
         RoundedRectangle(cornerRadius: DrawingConstants.fieldHeight / 2.3)
             .strokeBorder(lineWidth: 2)
-            .foregroundStyle(isCorrectInput ? .blue : .red)
+            .foregroundStyle(text.wrappedValue.isEmpty ? .blue : isCorrectInput == .valid || isCorrectInput == .empty ? .blue : .red)
             .opacity(isFocused ? 1 : 0)
             .frame(width: fieldWidth, height: DrawingConstants.fieldHeight)
     }
@@ -95,8 +102,7 @@ struct FlexibleTextField: View {
     private var textField: some View {
         TextField(label, text: text)
             .font(Font(DrawingConstants.font))
-            .foregroundStyle(isCorrectInput ? .primary : Color.red.opacity(0.7))
-            .padding(.horizontal)
+            .padding(.horizontal, 12)
             .textFieldStyle(.plain)
             .focused($isFocused)
             .allowsHitTesting(false)
