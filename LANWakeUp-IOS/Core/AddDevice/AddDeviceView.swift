@@ -157,6 +157,7 @@ extension AddDeviceView {
                 label: "Port",
                 text: $Port,
                 isCorrectInput: Port.isEmpty ? .empty : Port.isValidPort() ? .valid : .invalid)
+            .keyboardType(.numberPad)
             Text("Typically sent to port 7 or 9")
                 .padding(.horizontal, 8)
         }

@@ -203,6 +203,7 @@ extension DeviceInfoView {
                         TextField("Port", text: $Port)
                             .focused($isFocused, equals: .port)
                             .padding()
+                            .keyboardType(.numberPad)
                         RoundedRectangle(cornerRadius: 45 / 2.3)
                             .strokeBorder(lineWidth: 1)
                             .foregroundStyle(.blue)
