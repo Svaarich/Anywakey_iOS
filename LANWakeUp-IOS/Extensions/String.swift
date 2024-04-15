@@ -11,15 +11,23 @@ extension String {
     
     // Broadcast address validator
     func isValidAdress() -> Bool {
-        var sin = sockaddr_in()
-        var sin6 = sockaddr_in6()
-        
-        if self.withCString({ cstring in inet_pton(AF_INET6, cstring, &sin6.sin6_addr) }) == 1 {
-            // IPv6 peer
-            return true
-        } else if self.withCString({ cstring in inet_pton(AF_INET, cstring, &sin.sin_addr) }) == 1 {
-            // IPv4 peer
-            return true
+        // host validation
+        if let url = URL(string: "https://\(self)"), UIApplication.shared.canOpenURL(url) {
+                let regEx = "((https|http)://)((\\w|-)+)(([.]|[/])((\\w|-)+))+"
+                let predicate = NSPredicate(format:"SELF MATCHES %@", argumentArray:[regEx])
+                return predicate.evaluate(with: "https://\(self)")
+        } else {
+            // IPv4 IPv6 validation
+            var sin = sockaddr_in()
+            var sin6 = sockaddr_in6()
+            
+            if self.withCString({ cstring in inet_pton(AF_INET6, cstring, &sin6.sin6_addr) }) == 1 {
+                // IPv6 peer
+                return true
+            } else if self.withCString({ cstring in inet_pton(AF_INET, cstring, &sin.sin_addr) }) == 1 {
+                // IPv4 peer
+                return true
+            }
         }
         return false
     }
