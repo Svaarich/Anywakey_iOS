@@ -148,7 +148,7 @@ extension AddDeviceView {
             
             FlexibleTextField(
                 label: "MAC Address",
-                text: $MAC)
+                text: $MAC, isCorrectInput: MAC.isEmpty ? .empty : MAC.isValidMAC() ? .valid : .invalid)
             .textInputAutocapitalization(.characters)
             Text("(e.g. 00:11:22:AA:BB:CC)")
                 .padding(.horizontal, 8)
@@ -157,6 +157,7 @@ extension AddDeviceView {
                 label: "Port",
                 text: $Port,
                 isCorrectInput: Port.isEmpty ? .empty : Port.isValidPort() ? .valid : .invalid)
+            .keyboardType(.numberPad)
             Text("Typically sent to port 7 or 9")
                 .padding(.horizontal, 8)
         }
