@@ -22,6 +22,8 @@ struct DeviceInfoView: View {
     
     @State private var device: Device
     
+    @State var animate: Bool = false
+    
     init(device: Device) {
         _name = State(initialValue: device.name)
         _BroadcastAddr = State(initialValue: device.BroadcastAddr)
@@ -32,36 +34,36 @@ struct DeviceInfoView: View {
     
     var body: some View {
         ScrollView {
-                VStack(spacing: 8) {
-                    HStack {
-                        title
-                        Spacer()
-                    }
-                    
-                    deviceCard
-                    
-                    HStack {
-                        // Delete button
-                        deleteButton
-                        
-                        // Copy button
-                        copyButton
-                        
-                        // Edit button
-                        editButton
-                    }
-                    .padding(.top, 8)
-                    
-                    if !isEditing {
-                        bootButton
-                            .padding(.top, 8)
-                            .transition(.opacity)
-                    }
-                    
+            VStack(spacing: 8) {
+                HStack {
+                    title
                     Spacer()
                 }
-                .padding()
                 
+                deviceCard
+                
+                HStack {
+                    // Delete button
+                    deleteButton
+                    
+                    // Copy button
+                    copyButton
+                    
+                    // Edit button
+                    editButton
+                }
+                .padding(.top, 8)
+                
+                if !isEditing {
+                    bootButton
+                        .padding(.top, 8)
+                        .transition(.opacity)
+                }
+                
+                Spacer()
+            }
+            .padding()
+            
         }
         // delete confirmation sheet
         .sheet(isPresented: $showDeleteAlert) {
@@ -86,7 +88,6 @@ struct DeviceInfoView: View {
                 dismiss()
             }
         }
-        
     }
 }
 
@@ -108,130 +109,38 @@ extension DeviceInfoView {
     
     private var deviceCard: some View {
         VStack {
-            // name
-            VStack(alignment: .leading) {
-                textFieldBackground
-                    .onTapGesture {
-                        isFocused = .name
-                    }
-                    .overlay {
-                        TextField("Device name", text: $name)
-                            .focused($isFocused, equals: .name)
-                            .padding()
-                        RoundedRectangle(cornerRadius: 45 / 2.3)
-                            .strokeBorder(lineWidth: 1)
-                            .foregroundStyle(.blue)
-                            .opacity(isFocused == .name ? 1 : 0)
-                            .frame(height: 45)
-                            .frame(maxWidth: .infinity)
-                    }
-                    .overlay(alignment: .trailing) {
-                        fingerIcon
-                            .opacity(isFocused == .name ? 0 : 1)
-                    }
-                HStack {
-                    Text("Device Name")
-                        .font(.footnote)
-                        .foregroundStyle(.secondary)
-                        .padding(.leading, 8)
-                    Image(systemName: "exclamationmark.triangle.fill")
-                        .foregroundStyle(DrawingConstants.starColor)
-                        .font(.footnote)
-                        .transition(.move(edge: .leading))
-                        .opacity(isEditing ? 1 : 0)
-                }
+
                 
-                // adress
-                textFieldBackground
-                    .onTapGesture {
-                        isFocused = .adress
-                    }
-                    .overlay {
-                        TextField("IP / Broadcast Address", text: $BroadcastAddr)
-                            .focused($isFocused, equals: .adress)
-                            .padding()
-                        RoundedRectangle(cornerRadius: 45 / 2.3)
-                            .strokeBorder(lineWidth: 1)
-                            .foregroundStyle(.blue)
-                            .opacity(isFocused == .adress ? 1 : 0)
-                            .frame(height: 45)
-                            .frame(maxWidth: .infinity)
-                    }
-                    .overlay(alignment: .trailing) {
-                        fingerIcon
-                            .opacity(isFocused == .adress ? 0 : 1)
-                    }
-                Text("IP / Broadcast Address")
-                    .font(.footnote)
-                    .foregroundStyle(.secondary)
-                    .padding(.horizontal, 8)
+                // name
+                nameField
                 
+                // address
+                addressField
                 
                 // MAC
-                textFieldBackground
-                    .onTapGesture {
-                        isFocused = .mac
-                    }
-                    .overlay {
-                        TextField("MAC Address", text: $MAC)
-                            .focused($isFocused, equals: .mac)
-                            .padding()
-                        RoundedRectangle(cornerRadius: 45 / 2.3)
-                            .strokeBorder(lineWidth: 1)
-                            .foregroundStyle(.blue)
-                            .opacity(isFocused == .mac ? 1 : 0)
-                            .frame(height: 45)
-                            .frame(maxWidth: .infinity)
-                    }
-                    .overlay(alignment: .trailing) {
-                        fingerIcon
-                            .opacity(isFocused == .mac ? 0 : 1)
-                    }
-                
-                Text("MAC Address")
-                    .font(.footnote)
-                    .foregroundStyle(.secondary)
-                    .padding(.horizontal, 8)
-                
+                macField
                 
                 // port
-                textFieldBackground
-                    .onTapGesture {
-                        isFocused = .port
-                    }
-                    .overlay {
-                        TextField("Port", text: $Port)
-                            .focused($isFocused, equals: .port)
-                            .padding()
-                            .keyboardType(.numberPad)
-                        RoundedRectangle(cornerRadius: 45 / 2.3)
-                            .strokeBorder(lineWidth: 1)
-                            .foregroundStyle(.blue)
-                            .opacity(isFocused == .port ? 1 : 0)
-                            .frame(height: 45)
-                            .frame(maxWidth: .infinity)
-                    }
-                    .overlay(alignment: .trailing) {
-                        fingerIcon
-                            .opacity(isFocused == .port ? 0 : 1)
-                    }
-                Text("Port")
-                    .font(.footnote)
-                    .foregroundStyle(.secondary)
-                    .padding(.horizontal, 8)
+                portField
                 
             }
+            .disabled(!isEditing)
+        
+            // keyboard settings
+            .autocorrectionDisabled()
+            .keyboardType(.alphabet)
+        
             .padding()
             .padding(.top, 8)
+        
             .background(Color.gray.opacity(colorScheme == .dark ? 0.2 : 0.1))
             .clipShape(RoundedRectangle(cornerRadius: 25))
-            .disabled(!isEditing)
-        }
-        .overlay {
-            RoundedRectangle(cornerRadius: 25)
-                .strokeBorder(lineWidth: 1)
-                .foregroundStyle(.blue.opacity(isEditing ? 1 : 0))
-        }
+        
+            .overlay {
+                RoundedRectangle(cornerRadius: 25)
+                    .strokeBorder(lineWidth: 1)
+                    .foregroundStyle(.blue.opacity(isEditing ? 1 : 0))
+            }
     }
     
     private var title: some View {
@@ -248,6 +157,143 @@ extension DeviceInfoView {
         .font(.title)
         .fontWeight(.bold)
         .padding(.leading)
+    }
+    
+    
+    // nameField
+    private var nameField: some View {
+        VStack(alignment: .leading) {
+            textFieldBackground
+                .onTapGesture {
+                    isFocused = .name
+                }
+                .overlay {
+                    TextField("Device name", text: $name)
+                        .focused($isFocused, equals: .name)
+                        .padding()
+                    RoundedRectangle(cornerRadius: 45 / 2.3)
+                        .strokeBorder(lineWidth: 1)
+                        .foregroundStyle(.blue)
+                        .opacity(isFocused == .name ? 1 : 0)
+                        .frame(height: 45)
+                        .frame(maxWidth: .infinity)
+                }
+                .overlay(alignment: .trailing) {
+                    fingerIcon
+                        .opacity(isFocused == .name ? 0 : 1)
+                }
+            Text("Device Name")
+                .font(.footnote)
+                .foregroundStyle(.secondary)
+                .padding(.leading, 8)
+        }
+    }
+    
+    // addressField
+    private var addressField: some View {
+        VStack(alignment: .leading) {
+            textFieldBackground
+                .onTapGesture {
+                    isFocused = .adress
+                }
+                .overlay {
+                    TextField("IP / Broadcast Address", text: $BroadcastAddr)
+                        .focused($isFocused, equals: .adress)
+                        .padding()
+                    RoundedRectangle(cornerRadius: 45 / 2.3)
+                        .strokeBorder(lineWidth: 1)
+                        .foregroundStyle(.blue)
+                        .opacity(isFocused == .adress ? 1 : 0)
+                        .frame(height: 45)
+                        .frame(maxWidth: .infinity)
+                }
+                .overlay(alignment: .trailing) {
+                    fingerIcon
+                        .opacity(isFocused == .adress ? 0 : 1)
+                }
+            HStack {
+                Text("IP / Broadcast Address")
+                    .font(.footnote)
+                    .foregroundStyle(.secondary)
+                Spacer()
+                if !BroadcastAddr.isValidAdress() {
+                    wrongInput
+                }
+            }
+            .padding(.horizontal, 8)
+        }
+    }
+    
+    // MACField
+    private var macField: some View {
+        VStack(alignment: .leading) {
+            textFieldBackground
+                .onTapGesture {
+                    isFocused = .mac
+                }
+                .overlay {
+                    TextField("MAC Address", text: $MAC)
+                        .focused($isFocused, equals: .mac)
+                        .padding()
+                    RoundedRectangle(cornerRadius: 45 / 2.3)
+                        .strokeBorder(lineWidth: 1)
+                        .foregroundStyle(.blue)
+                        .opacity(isFocused == .mac ? 1 : 0)
+                        .frame(height: 45)
+                        .frame(maxWidth: .infinity)
+                }
+                .overlay(alignment: .trailing) {
+                    fingerIcon
+                        .opacity(isFocused == .mac ? 0 : 1)
+                }
+            HStack {
+                Text("MAC Address")
+                    .font(.footnote)
+                    .foregroundStyle(.secondary)
+                Spacer()
+                if !MAC.isValidMAC() {
+                    wrongInput
+                }
+            }
+            .padding(.horizontal, 8)
+        }
+    }
+    
+    // portField
+    private var portField: some View {
+        VStack(alignment: .leading) {
+            textFieldBackground
+                .onTapGesture {
+                    isFocused = .port
+                }
+                .overlay {
+                    TextField("Port", text: $Port)
+                        .focused($isFocused, equals: .port)
+                        .padding()
+                        .keyboardType(.numberPad)
+                    RoundedRectangle(cornerRadius: 45 / 2.3)
+                        .strokeBorder(lineWidth: 1)
+                        .foregroundStyle(.blue)
+                        .opacity(isFocused == .port ? 1 : 0)
+                        .frame(height: 45)
+                        .frame(maxWidth: .infinity)
+                }
+                .overlay(alignment: .trailing) {
+                    fingerIcon
+                        .opacity(isFocused == .port ? 0 : 1)
+                }
+            HStack {
+                Text("Port")
+                    .font(.footnote)
+                    .foregroundStyle(.secondary)
+                    
+                Spacer()
+                if !Port.isValidPort() {
+                    wrongInput
+                }
+            }
+            .padding(.horizontal, 8)
+        }
     }
     
     // Delete button
@@ -359,6 +405,18 @@ extension DeviceInfoView {
             .foregroundStyle(.quinary)
     }
     
+    private var wrongInput: some View {
+        HStack(spacing : 4) {
+            Text("wrong value")
+                .font(.footnote)
+                .foregroundStyle(.tertiary)
+            Image(systemName: "exclamationmark.triangle.fill")
+                .foregroundStyle(animate ? .red : Color.custom.starColor)
+                .font(.footnote)
+        }
+        .onAppear(perform: startAnimate)
+    }
+    
     private struct DrawingConstants {
         static let starColor = Color(#colorLiteral(red: 0.9529411793, green: 0.6862745285, blue: 0.1333333403, alpha: 1))
         static let onlineColor: Color = .green
@@ -366,6 +424,12 @@ extension DeviceInfoView {
         
         static let imageSize: CGFloat = 24.0
         static let fontSize: CGFloat = 15.0
+    }
+    
+    private func startAnimate() {
+        withAnimation(.easeInOut(duration: 1.0).repeatForever()) {
+            animate.toggle()
+        }
     }
 }
 
