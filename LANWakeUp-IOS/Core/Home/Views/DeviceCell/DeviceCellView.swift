@@ -14,6 +14,7 @@ struct DeviceCellView: View {
     @State private var ping: Double = 0.0
     
     @Binding var refreshStatus: Bool
+    @Binding var isCopied: Bool
     
     let device: Device
     
@@ -198,6 +199,10 @@ extension DeviceCellView {
             // Copy button
             Button {
                 device.exportJSON()
+                isCopied = true
+                DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
+                    isCopied = false
+                }
             } label: {
                 Text("Copy")
                 Image(systemName: "doc.on.doc")
@@ -219,6 +224,6 @@ extension DeviceCellView {
     @EnvironmentObject var dataService: DeviceDataService
     @State var refresh: Bool = false
     let device = Device(name: "Test name", MAC: "11:22:33:44:55:66", BroadcastAddr: "1.1.1.1", Port: "45655", isPinned: true)
-    return DeviceCellView(refreshStatus: $refresh, device: device)
+    return DeviceCellView(refreshStatus: $refresh, isCopied: .constant(false), device: device)
         .preferredColorScheme(.dark)
 }

@@ -7,6 +7,7 @@ struct HomeView: View {
     @State var showAddView: Bool = false
     @State var showWarning: Bool = false
     @State var refreshStatus: Bool = false
+    @State var isCopied: Bool = false
     
     var body: some View {
         NavigationStack {
@@ -40,6 +41,9 @@ struct HomeView: View {
                     .transition(.move(edge: .bottom))
                     
                 }
+                CopiedNotificationView()
+                    .opacity(isCopied ? 1.0 : 0)
+                    .animation(.spring, value: isCopied)
             }
             
             .ignoresSafeArea(.keyboard)
@@ -136,7 +140,7 @@ extension HomeView {
                     NavigationLink {
                         DeviceInfoView(device: device)
                     } label: {
-                        DeviceCellView(refreshStatus: $refreshStatus, device: device)
+                        DeviceCellView(refreshStatus: $refreshStatus, isCopied: $isCopied, device: device)
                     }
                 }
             }
@@ -161,7 +165,7 @@ extension HomeView {
                     NavigationLink {
                         DeviceInfoView(device: device)
                     } label: {
-                        DeviceCellView(refreshStatus: $refreshStatus, device: device)
+                        DeviceCellView(refreshStatus: $refreshStatus, isCopied: $isCopied, device: device)
                     }
                 }
             }

@@ -13,6 +13,7 @@ struct DeviceInfoView: View {
     @State private var isEditing: Bool = false
     @State private var showDeleteAlert: Bool = false
     @State private var dismissView: Bool = false
+    @State private var showCopiedView: Bool = false
     
     // Device components
     @State private var name: String
@@ -34,36 +35,40 @@ struct DeviceInfoView: View {
     
     var body: some View {
         ScrollView {
-            VStack(spacing: 8) {
-                HStack {
-                    title
+            ZStack {
+                VStack(spacing: 8) {
+                    HStack {
+                        title
+                        Spacer()
+                    }
+                    
+                    deviceCard
+                    
+                    HStack {
+                        // Delete button
+                        deleteButton
+                        
+                        // Copy button
+                        copyButton
+                        
+                        // Edit button
+                        editButton
+                    }
+                    .padding(.top, 8)
+                    
+                    if !isEditing {
+                        bootButton
+                            .padding(.top, 8)
+                            .transition(.opacity)
+                    }
+                    
                     Spacer()
                 }
-                
-                deviceCard
-                
-                HStack {
-                    // Delete button
-                    deleteButton
-                    
-                    // Copy button
-                    copyButton
-                    
-                    // Edit button
-                    editButton
-                }
-                .padding(.top, 8)
-                
-                if !isEditing {
-                    bootButton
-                        .padding(.top, 8)
-                        .transition(.opacity)
-                }
-                
-                Spacer()
+                .padding()
+                CopiedNotificationView()
+                    .opacity(showCopiedView ? 1.0 : 0)
+                    .animation(.spring, value: showCopiedView)
             }
-            .padding()
-            
         }
         // delete confirmation sheet
         .sheet(isPresented: $showDeleteAlert) {
@@ -320,6 +325,10 @@ extension DeviceInfoView {
     private var copyButton: some View {
         Button {
             device.exportJSON()
+                showCopiedView = true
+            DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
+                showCopiedView = false
+            }
         } label: {
             VStack(spacing: 4) {
                 Image(systemName: "doc.on.doc")
