@@ -12,6 +12,8 @@ struct DeleteDeviceSheet: View {
     
     @State private var animate: Bool = false
     
+    @Binding var showDeleteCancelation: Bool
+    
     let device: Device
     
     @Binding var dismissParentView: Bool
@@ -47,9 +49,11 @@ struct DeleteDeviceSheet: View {
             HStack {
                 // delete
                 Button {
-                    dataService.delete(device: device)
+                    dataService.lastDeletedDevice = device
+                    dataService.delete(device: dataService.lastDeletedDevice)
                     dismiss()
                     dismissParentView = true
+                    showDeleteCancelation = true
                 } label: {
                     Text("Delete")
                         .frame(height: 55)
@@ -90,10 +94,9 @@ struct DeleteDeviceSheet: View {
         ) {
             animate.toggle()
         }
-        
     }
 }
 
-#Preview {
-    DeleteDeviceSheet(device: Device(name: "test", MAC: "1", BroadcastAddr: "1", Port: "1"), dismissParentView: .constant(false))
-}
+//#Preview {
+//    DeleteDeviceSheet(showDeleteCancelation: .constant(false), device: Device(name: "test", MAC: "1", BroadcastAddr: "1", Port: "1"), dismissParentView: .constant(false))
+//}
