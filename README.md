@@ -1,8 +1,9 @@
 <h3 align="center">
 <a href="https://github.com/Svaarich/LANWakeUp-IOS">
-  <img src="https://github.com/Svaarich/LANWakeUp-IOS/assets/90390573/26f005df-958a-44d5-9a7d-05a5507873dd" align="center" alt="LANWakeUp Logo" border="0">
+  <img src="https://github.com/Svaarich/LANWakeUp-IOS/assets/90390573/6e0625b0-6189-4a4d-9ce7-eee6e4e3e706" width="256" align="center" alt="LANWakeUp Logo" border="0">
 </a>
 </h3>
+
 
 <h1 align="center">Welcome to LANWakeUp IOS repo!</h1>
 
