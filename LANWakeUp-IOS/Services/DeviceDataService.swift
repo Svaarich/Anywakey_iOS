@@ -7,6 +7,7 @@ public class DeviceDataService: ObservableObject {
             saveUserDefaults()
         }
     }
+    @Published var lastDeletedDevice: Device = Device(name: "", MAC: "", BroadcastAddr: "", Port: "")
     
     init() {
         fetchUserDefaults()
