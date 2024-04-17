@@ -4,27 +4,36 @@ struct HomeView: View {
     
     @ObservedObject var dataService: DeviceDataService
     
-    @State var showAddView: Bool = false
-    @State var showWarning: Bool = false
-    @State var refreshStatus: Bool = false
-    @State var isCopied: Bool = false
+    @State private var showAddView: Bool = false
+    @State private var showWarning: Bool = false
+    @State private var refreshStatus: Bool = false
+    @State private var isCopied: Bool = false
+    @State private var showDeleteCancelation: Bool = false
+    @State private var device: Device = Device(name: "", MAC: "", BroadcastAddr: "", Port: "")
     
     var body: some View {
-        NavigationStack {
             ZStack {
                 if dataService.allDevices.isEmpty {
                     NoDevicesView(isPresented: $showAddView)
                         .transition(AnyTransition.opacity.animation(.spring))
                 } else {
-                    List {
-                        //MARK: Sections
-                        getSections()
-                    }
-                    // List settings
-                    // refreshable list
-                    .refreshable {
-                        DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
-                            refreshStatus.toggle()
+                    VStack {
+                        List {
+                            //MARK: Sections
+                            getSections()
+                        }
+                        // List settings
+                        // refreshable list
+                        .refreshable {
+                            DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
+                                refreshStatus.toggle()
+                            }
+                        }
+                        if showDeleteCancelation {
+                            CancelDeleteView(showView: $showDeleteCancelation)
+                                .padding(.horizontal)
+                                .animation(.spring, value: showDeleteCancelation)
+                                .transition(.slide)
                         }
                     }
                 }
@@ -79,7 +88,6 @@ struct HomeView: View {
                     }
                 }
             }
-        }
         
         //MARK: Network connection check
         .onAppear {
@@ -138,9 +146,12 @@ extension HomeView {
             ForEach(dataService.allDevices) { device in
                 if device.isPinned {
                     NavigationLink {
-                        DeviceInfoView(device: device)
+                        DeviceInfoView(device: device, showDeleteCancelation: $showDeleteCancelation)
                     } label: {
-                        DeviceCellView(refreshStatus: $refreshStatus, isCopied: $isCopied, device: device)
+                        DeviceCellView(refreshStatus: $refreshStatus,
+                                       isCopied: $isCopied,
+                                       showDeleteCancelation: $showDeleteCancelation,
+                                       device: device)
                     }
                 }
             }
@@ -163,9 +174,12 @@ extension HomeView {
             ForEach(dataService.allDevices) { device in
                 if !device.isPinned {
                     NavigationLink {
-                        DeviceInfoView(device: device)
+                        DeviceInfoView(device: device, showDeleteCancelation: $showDeleteCancelation)
                     } label: {
-                        DeviceCellView(refreshStatus: $refreshStatus, isCopied: $isCopied, device: device)
+                        DeviceCellView(refreshStatus: $refreshStatus, 
+                                       isCopied: $isCopied,
+                                       showDeleteCancelation: $showDeleteCancelation,
+                                       device: device)
                     }
                 }
             }
@@ -181,8 +195,8 @@ extension HomeView {
         }
     }
 }
-
-#Preview {
-    let dataService = DeviceDataService()
-    return HomeView(dataService: dataService)
-}
+//
+//#Preview {
+//    let dataService = DeviceDataService()
+//    return HomeView(dataService: dataService)
+//}

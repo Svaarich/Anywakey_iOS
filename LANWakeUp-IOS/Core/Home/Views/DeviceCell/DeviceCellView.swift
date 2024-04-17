@@ -15,6 +15,7 @@ struct DeviceCellView: View {
     
     @Binding var refreshStatus: Bool
     @Binding var isCopied: Bool
+    @Binding var showDeleteCancelation: Bool
     
     let device: Device
     
@@ -32,7 +33,7 @@ struct DeviceCellView: View {
         
         // delete device confirmation
         .sheet(isPresented: $showDeleteAlert) {
-            DeleteDeviceSheet(device: device, dismissParentView: .constant(false))
+            DeleteDeviceSheet(showDeleteCancelation: $showDeleteCancelation, device: device, dismissParentView: .constant(false))
                 .presentationDetents([.medium])
         }
         
@@ -224,6 +225,6 @@ extension DeviceCellView {
     @EnvironmentObject var dataService: DeviceDataService
     @State var refresh: Bool = false
     let device = Device(name: "Test name", MAC: "11:22:33:44:55:66", BroadcastAddr: "1.1.1.1", Port: "45655", isPinned: true)
-    return DeviceCellView(refreshStatus: $refresh, isCopied: .constant(false), device: device)
+    return DeviceCellView(refreshStatus: $refresh, isCopied: .constant(false), showDeleteCancelation: .constant(false), device: device)
         .preferredColorScheme(.dark)
 }

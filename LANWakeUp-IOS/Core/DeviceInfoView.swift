@@ -24,13 +24,15 @@ struct DeviceInfoView: View {
     @State private var device: Device
     
     @State var animate: Bool = false
+    @Binding var showDeleteCancelation: Bool
     
-    init(device: Device) {
+    init(device: Device, showDeleteCancelation: Binding<Bool>) {
         _name = State(initialValue: device.name)
         _BroadcastAddr = State(initialValue: device.BroadcastAddr)
         _MAC = State(initialValue: device.MAC)
         _Port = State(initialValue: device.Port)
         _device = State(initialValue: device)
+        self._showDeleteCancelation = showDeleteCancelation
     }
     
     var body: some View {
@@ -72,7 +74,7 @@ struct DeviceInfoView: View {
         }
         // delete confirmation sheet
         .sheet(isPresented: $showDeleteAlert) {
-            DeleteDeviceSheet(device: device, dismissParentView: $dismissView)
+            DeleteDeviceSheet(showDeleteCancelation: $showDeleteCancelation, device: device, dismissParentView: $dismissView)
                 .presentationDetents([.medium])
         }
         
@@ -445,6 +447,6 @@ extension DeviceInfoView {
 #Preview {
     @EnvironmentObject var dataService: DeviceDataService
     return NavigationStack {
-        DeviceInfoView(device: Device(name: "test name", MAC: "11:11", BroadcastAddr: "1.1.1.1", Port: "009"))
+        DeviceInfoView(device: Device(name: "test name", MAC: "11:11", BroadcastAddr: "1.1.1.1", Port: "009"), showDeleteCancelation: .constant(false))
     }
 }
