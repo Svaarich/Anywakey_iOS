@@ -7,6 +7,7 @@ struct CancelDeleteView: View {
     
     @State private var counter: Int = 5
     @Binding var showView: Bool
+    @State var animate: CGFloat = 1.0
     
     var body: some View {
         HStack {
@@ -19,6 +20,8 @@ struct CancelDeleteView: View {
                 .frame(width: 40, height: 25)
                 .overlay {
                     Circle()
+                        .trim(from: 0.0, to: animate)
+                        .rotation(.degrees(-90))
                         .stroke(lineWidth: 2)
                         .foregroundStyle(.primary)
                 }
@@ -42,8 +45,12 @@ struct CancelDeleteView: View {
                 .foregroundStyle(.ultraThinMaterial)
         }
         .onAppear {
+//            withAnimation(.spring(duration: 5.5)) {
+//                
+//            }
             Timer.scheduledTimer(withTimeInterval: 1, repeats: true) { _ in
                 withAnimation {
+                    animate -= 0.20
                     counter -= 1
                 }
             }
@@ -57,7 +64,7 @@ struct CancelDeleteView: View {
         }
     }
 }
-//
-//#Preview {
-//    CancelDeleteView(showView: .constant(true))
-//}
+
+#Preview {
+    CancelDeleteView(showView: .constant(true))
+}
