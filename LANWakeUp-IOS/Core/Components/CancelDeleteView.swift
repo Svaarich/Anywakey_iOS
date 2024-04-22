@@ -11,7 +11,7 @@ struct CancelDeleteView: View {
     
     var body: some View {
         HStack {
-            Text("\(counter)")
+            Text("\(counter < 0 ? 0 : counter)")
                 .font(.caption)
                 .fontWeight(.semibold)
                 .foregroundStyle(.primary)
@@ -56,7 +56,7 @@ struct CancelDeleteView: View {
             }
         }
         .onChange(of: counter) { _ in
-            if counter == -1 {
+            if counter < 0 {
                 withAnimation {
                     showView = false
                 }
