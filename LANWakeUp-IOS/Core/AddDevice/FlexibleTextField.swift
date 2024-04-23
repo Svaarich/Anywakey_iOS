@@ -15,10 +15,6 @@ struct FlexibleTextField: View {
         self.text = text
         self.label = label
         self.isCorrectInput = isCorrectInput
-        if isCorrectInput == .invalid {
-            let impactMed = UINotificationFeedbackGenerator()
-            impactMed.notificationOccurred(.error)
-        }
     }
     
     enum TextValidation {
