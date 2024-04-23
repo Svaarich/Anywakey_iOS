@@ -50,6 +50,7 @@
 
 /* Begin PBXFileReference section */
 		7D0518B62B71863F006850B8 /* HapticManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HapticManager.swift; sourceTree = "<group>"; };
+		7D2D9F462BD7B16B001AB81A /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
 		7D596B492B48D00C00A5B7FA /* NoDevicesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoDevicesView.swift; sourceTree = "<group>"; };
 		7D5FE1C72B5CB60900142502 /* Double.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Double.swift; sourceTree = "<group>"; };
 		7D5FE1F32B5F5D3F00142502 /* DeleteDeviceSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeleteDeviceSheet.swift; sourceTree = "<group>"; };
@@ -99,6 +100,14 @@
 			path = NetworkServices;
 			sourceTree = "<group>";
 		};
+		7D2D9F452BD7B150001AB81A /* Privacy */ = {
+			isa = PBXGroup;
+			children = (
+				7D2D9F462BD7B16B001AB81A /* PrivacyInfo.xcprivacy */,
+			);
+			path = Privacy;
+			sourceTree = "<group>";
+		};
 		7D34560A2B71D053003267AE /* AddDevice */ = {
 			isa = PBXGroup;
 			children = (
@@ -141,6 +150,7 @@
 				7DFC05382B292CE60082E502 /* Models */,
 				7DD331D42B5AED29002BFA64 /* Services */,
 				7DE700142AEA82E50033E53A /* Extensions */,
+				7D2D9F452BD7B150001AB81A /* Privacy */,
 				7DC26D862AE7EBE300B52D02 /* Preview Content */,
 				7DC26D842AE7EBE300B52D02 /* Assets.xcassets */,
 			);
