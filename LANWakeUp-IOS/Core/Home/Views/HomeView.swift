@@ -29,12 +29,15 @@ struct HomeView: View {
                                 refreshStatus.toggle()
                             }
                         }
-                        if showDeleteCancelation {
-                            CancelDeleteView(showView: $showDeleteCancelation)
-                                .padding(.horizontal)
-                                .animation(.spring, value: showDeleteCancelation)
-                                .transition(.slide)
-                        }
+                    }
+                }
+                if showDeleteCancelation {
+                    VStack {
+                        Spacer()
+                        CancelDeleteView(showView: $showDeleteCancelation)
+                            .padding(.horizontal)
+                            .animation(.spring, value: showDeleteCancelation)
+                            .transition(.slide)
                     }
                 }
                 
