@@ -50,7 +50,9 @@ struct HomeView: View {
                         
                     }
                     .zIndex(2.0)
-                    .transition(.move(edge: .bottom))
+                    .transition(.asymmetric(
+                        insertion: .move(edge: .bottom),
+                        removal: .move(edge: .bottom).combined(with: .opacity)))
                     
                 }
                 CopiedNotificationView()
