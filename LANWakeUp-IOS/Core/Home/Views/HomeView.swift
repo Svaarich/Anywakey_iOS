@@ -9,7 +9,6 @@ struct HomeView: View {
     @State private var refreshStatus: Bool = false
     @State private var isCopied: Bool = false
     @State private var showDeleteCancelation: Bool = false
-    @State private var device: Device = Device(name: "", MAC: "", BroadcastAddr: "", Port: "")
     
     var body: some View {
             ZStack {
