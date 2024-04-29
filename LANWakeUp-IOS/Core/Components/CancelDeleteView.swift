@@ -7,7 +7,7 @@ struct CancelDeleteView: View {
     
     @State private var counter: Int = 5
     @Binding var showView: Bool
-    @State var animate: CGFloat = 1.0
+    @State private var animate: CGFloat = 1.0
     
     var body: some View {
         HStack {
@@ -45,9 +45,6 @@ struct CancelDeleteView: View {
                 .foregroundStyle(.ultraThinMaterial)
         }
         .onAppear {
-//            withAnimation(.spring(duration: 5.5)) {
-//                
-//            }
             Timer.scheduledTimer(withTimeInterval: 1, repeats: true) { _ in
                 withAnimation {
                     animate -= 0.20
@@ -62,9 +59,9 @@ struct CancelDeleteView: View {
                 }
             }
         }
+        .onChange(of: dataService.lastDeletedDevice) { _ in
+            counter = 5
+            animate = 1.0
+        }
     }
-}
-
-#Preview {
-    CancelDeleteView(showView: .constant(true))
 }
