@@ -84,7 +84,7 @@ struct HomeView: View {
                 // Add button
                 ToolbarItem(placement: .topBarTrailing) {
                     Button {
-                        withAnimation(.spring) {
+                        withAnimation(.snappy) {
                             showAddView = true
                         }
                     } label: {
