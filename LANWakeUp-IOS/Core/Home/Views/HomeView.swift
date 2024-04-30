@@ -9,7 +9,6 @@ struct HomeView: View {
     @State private var refreshStatus: Bool = false
     @State private var isCopied: Bool = false
     @State private var showDeleteCancelation: Bool = false
-    @State private var device: Device = Device(name: "", MAC: "", BroadcastAddr: "", Port: "")
     
     var body: some View {
             ZStack {
@@ -29,12 +28,15 @@ struct HomeView: View {
                                 refreshStatus.toggle()
                             }
                         }
-                        if showDeleteCancelation {
-                            CancelDeleteView(showView: $showDeleteCancelation)
-                                .padding(.horizontal)
-                                .animation(.spring, value: showDeleteCancelation)
-                                .transition(.slide)
-                        }
+                    }
+                }
+                if showDeleteCancelation {
+                    VStack {
+                        Spacer()
+                        CancelDeleteView(showView: $showDeleteCancelation)
+                            .padding(.horizontal)
+                            .animation(.spring, value: showDeleteCancelation)
+                            .transition(.slide)
                     }
                 }
                 
@@ -47,7 +49,9 @@ struct HomeView: View {
                         
                     }
                     .zIndex(2.0)
-                    .transition(.move(edge: .bottom))
+                    .transition(.asymmetric(
+                        insertion: .move(edge: .bottom),
+                        removal: .move(edge: .bottom).combined(with: .opacity)))
                     
                 }
                 CopiedNotificationView()

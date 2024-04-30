@@ -21,15 +21,12 @@ extension String {
         } else if self.withCString({ cstring in inet_pton(AF_INET, cstring, &sin.sin_addr) }) == 1 {
             // IPv4 peer
             return true
-        } else if let url = URL(string: "https://\(self)"), UIApplication.shared.canOpenURL(url) {
-            let periods = self.filter { $0 == "." }
-            guard periods.count < 3 else { return false }
-            let regEx = "((https|http)://)((\\w|-)+)(([.]|[/])((\\w|-)+))+"
-            let predicate = NSPredicate(format:"SELF MATCHES %@", argumentArray:[regEx])
+        } else {
+            let range = NSRange(location: 0, length: self.utf16.count)
+            let regex = try! NSRegularExpression(pattern: "[a-z0-9]+([\\-\\.]{1}[a-z0-9]+)*\\.[a-z]{2,63}")
             // Host validation
-            return predicate.evaluate(with: "https://\(self)")
+            return regex.firstMatch(in: self, range: range) != nil
         }
-        return false
     }
     
     // Port validator

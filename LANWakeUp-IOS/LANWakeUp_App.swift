@@ -11,6 +11,7 @@ struct LANWakeUp_App: App {
                 HomeView(dataService: dataService)
             }
             .environmentObject(dataService)
+            .ignoresSafeArea(.keyboard)
         }
     }
 }

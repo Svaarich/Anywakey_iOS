@@ -5,7 +5,6 @@ struct FlexibleTextField: View {
     @FocusState private var isFocused: Bool
     
     @State private var fieldWidth: CGFloat = 0
-    @State private var strokeBorderLineWidth: CGFloat = 2
     
     private var isCorrectInput: TextValidation
     private var label: String
@@ -15,10 +14,6 @@ struct FlexibleTextField: View {
         self.text = text
         self.label = label
         self.isCorrectInput = isCorrectInput
-        if isCorrectInput == .invalid {
-            let impactMed = UINotificationFeedbackGenerator()
-            impactMed.notificationOccurred(.error)
-        }
     }
     
     enum TextValidation {

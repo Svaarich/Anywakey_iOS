@@ -181,13 +181,6 @@ extension DeviceCellView {
     // Context menu
     private var contextMenu: some View {
         VStack {
-            //Edit Button
-            Button {
-                // Edit view and action
-            } label: {
-                Text("Edit")
-                Image(systemName: "square.and.pencil")
-            }
             
             // Pin button
             Button {

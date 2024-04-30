@@ -36,6 +36,7 @@ struct AppInfoView: View {
     }
     
     private struct DrawingConstants {
+        static let linkTreeURL = URL(string: "https://linktr.ee/svarychevskyi")
         static let gitHubURL = URL(string: "https://github.com/Svaarich/LANWakeUp-IOS")
         static let linkTreeColor = Color(#colorLiteral(red: 0, green: 0.466091156, blue: 0.2602820396, alpha: 1))
     }
@@ -46,20 +47,21 @@ extension AppInfoView {
     // MARK: Links
     
     private var linkTreeButton: some View {
-        // TODO: put link below
-        HStack {
-            Image(systemName: "tree")
-            Text("Linktree")
-            Spacer()
+        Link(destination: DrawingConstants.linkTreeURL!) {
+            HStack {
+                Image(systemName: "tree")
+                Text("Linktree")
+                Spacer()
+            }
+            .foregroundStyle(.white)
+            .fontWeight(.semibold)
+            .padding()
+            .padding(.horizontal, 8)
+            .frame(height: 50)
+            .frame(maxWidth: .infinity)
+            .background(DrawingConstants.linkTreeColor)
+            .clipShape(RoundedRectangle(cornerRadius: 20))
         }
-        .foregroundStyle(.white)
-        .fontWeight(.semibold)
-        .padding()
-        .padding(.horizontal, 8)
-        .frame(height: 50)
-        .frame(maxWidth: .infinity)
-        .background(DrawingConstants.linkTreeColor)
-        .clipShape(RoundedRectangle(cornerRadius: 20))
     }
     
     private var gitHubButton: some View {
