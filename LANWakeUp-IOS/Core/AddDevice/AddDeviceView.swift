@@ -16,32 +16,33 @@ struct AddDeviceView: View {
     @FocusState private var isFocused
     
     var body: some View {
-        VStack {
-            HStack(alignment: .top) {
-                title
-                Spacer()
-                HStack {
-                    pasteButton
-                    dismissButton
+        ScrollView {
+            VStack {
+                HStack(alignment: .top) {
+                    title
+                    Spacer()
+                    HStack {
+                        pasteButton
+                        dismissButton
+                    }
                 }
+                textFieldsStack
+                saveButton
+                    .padding(.top, 8)
+                    .ignoresSafeArea(.all)
+                Spacer()
             }
-            textFieldsStack
-            saveButton
-                .padding(.top, 8)
-                .ignoresSafeArea(.all)
-            Spacer()
         }
         
         // keyboard settings
         .autocorrectionDisabled()
-        .keyboardType(.alphabet)
         
         // style
         .font(.footnote)
         .foregroundStyle(.secondary)
         .padding()
         .background(.ultraThinMaterial)
-        .frame(maxWidth: UIScreen.main.bounds.width)
+        .frame(maxWidth: UIScreen.main.bounds.width, maxHeight: .infinity)
         
         .onAppear {
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
@@ -134,7 +135,7 @@ extension AddDeviceView {
             FlexibleTextField(
                 label: "Device Name",
                 text: $name)
-                .focused($isFocused)
+            .focused($isFocused)
             Text("Device name")
                 .padding(.horizontal, 8)
             
@@ -152,7 +153,7 @@ extension AddDeviceView {
             .textInputAutocapitalization(.characters)
             Text("(e.g. 00:11:22:AA:BB:CC)")
                 .padding(.horizontal, 8)
-    
+            
             FlexibleTextField(
                 label: "Port",
                 text: $Port,
