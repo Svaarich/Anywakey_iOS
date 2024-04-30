@@ -77,7 +77,8 @@ struct HomeView: View {
                     NavigationLink {
                         AppInfoView()
                     } label: {
-                        Image(systemName: "info.circle")
+                        Image(systemName: "list.dash")
+                            .symbolRenderingMode(.hierarchical)
                     }
                 }
                 
