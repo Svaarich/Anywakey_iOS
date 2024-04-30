@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		7D0518B72B71863F006850B8 /* HapticManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D0518B62B71863F006850B8 /* HapticManager.swift */; };
+		7D12F34E2BE169BE00FE854E /* LinkButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D12F34D2BE169BE00FE854E /* LinkButton.swift */; };
 		7D596B4A2B48D00C00A5B7FA /* NoDevicesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D596B492B48D00C00A5B7FA /* NoDevicesView.swift */; };
 		7D5FE1C82B5CB60900142502 /* Double.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D5FE1C72B5CB60900142502 /* Double.swift */; };
 		7D5FE1F42B5F5D3F00142502 /* DeleteDeviceSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D5FE1F32B5F5D3F00142502 /* DeleteDeviceSheet.swift */; };
@@ -50,6 +51,7 @@
 
 /* Begin PBXFileReference section */
 		7D0518B62B71863F006850B8 /* HapticManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HapticManager.swift; sourceTree = "<group>"; };
+		7D12F34D2BE169BE00FE854E /* LinkButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LinkButton.swift; sourceTree = "<group>"; };
 		7D2D9F462BD7B16B001AB81A /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
 		7D596B492B48D00C00A5B7FA /* NoDevicesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoDevicesView.swift; sourceTree = "<group>"; };
 		7D5FE1C72B5CB60900142502 /* Double.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Double.swift; sourceTree = "<group>"; };
@@ -90,6 +92,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		7D12F34C2BE1699200FE854E /* AppInfo */ = {
+			isa = PBXGroup;
+			children = (
+				7DA71F1D2B250A96004F9AF3 /* AppInfoView.swift */,
+				7D12F34D2BE169BE00FE854E /* LinkButton.swift */,
+			);
+			path = AppInfo;
+			sourceTree = "<group>";
+		};
 		7D180F462AEDBB27005063E3 /* NetworkServices */ = {
 			isa = PBXGroup;
 			children = (
@@ -168,8 +179,8 @@
 		7DD331CF2B5AEAE7002BFA64 /* Core */ = {
 			isa = PBXGroup;
 			children = (
-				7DA71F1D2B250A96004F9AF3 /* AppInfoView.swift */,
 				7DB712092AE8857E0087CA76 /* DeviceInfoView.swift */,
+				7D12F34C2BE1699200FE854E /* AppInfo */,
 				7DD331DA2B5AF334002BFA64 /* Components */,
 				7D34560A2B71D053003267AE /* AddDevice */,
 				7DD331D02B5AEAED002BFA64 /* Home */,
@@ -329,6 +340,7 @@
 				7DE7001B2AEABC930033E53A /* AddDeviceView.swift in Sources */,
 				7D5FE1F42B5F5D3F00142502 /* DeleteDeviceSheet.swift in Sources */,
 				7DC26D832AE7EBE100B52D02 /* HomeView.swift in Sources */,
+				7D12F34E2BE169BE00FE854E /* LinkButton.swift in Sources */,
 				7DC26D812AE7EBE100B52D02 /* LANWakeUp_App.swift in Sources */,
 				7DE700172AEA845D0033E53A /* FlexibleTextField.swift in Sources */,
 			);
