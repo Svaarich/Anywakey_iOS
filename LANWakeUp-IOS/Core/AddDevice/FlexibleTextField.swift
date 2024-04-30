@@ -5,7 +5,6 @@ struct FlexibleTextField: View {
     @FocusState private var isFocused: Bool
     
     @State private var fieldWidth: CGFloat = 0
-    @State private var strokeBorderLineWidth: CGFloat = 2
     
     private var isCorrectInput: TextValidation
     private var label: String
