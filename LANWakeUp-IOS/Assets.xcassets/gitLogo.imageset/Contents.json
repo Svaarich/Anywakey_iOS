@@ -1,17 +1,17 @@
 {
   "images" : [
     {
-      "filename" : "Git_icon.svg.png",
+      "filename" : "github-mark.svg",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
-      "filename" : "Git_icon.svg 1.png",
+      "filename" : "github-mark 1.svg",
       "idiom" : "universal",
       "scale" : "2x"
     },
     {
-      "filename" : "Git_icon.svg 2.png",
+      "filename" : "github-mark 2.svg",
       "idiom" : "universal",
       "scale" : "3x"
     }
