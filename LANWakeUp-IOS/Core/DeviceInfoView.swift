@@ -77,6 +77,7 @@ struct DeviceInfoView: View {
                     .animation(.spring, value: showCopiedView)
             }
         }
+        
         // delete confirmation sheet
         .sheet(isPresented: $showDeleteAlert) {
             DeleteDeviceSheet(showDeleteCancelation: $showDeleteCancelation, device: device, dismissParentView: $dismissView)
@@ -117,38 +118,37 @@ extension DeviceInfoView {
     
     private var deviceCard: some View {
         VStack {
-
-                
-                // name
-                nameField
-                
-                // address
-                addressField
-                
-                // MAC
-                macField
-                
-                // port
-                portField
-                
-            }
-            .disabled(!isEditing)
+            
+            // name
+            nameField
+            
+            // address
+            addressField
+            
+            // MAC
+            macField
+            
+            // port
+            portField
+            
+        }
+        .disabled(!isEditing)
         
-            // keyboard settings
-            .autocorrectionDisabled()
-            .keyboardType(.alphabet)
+        // keyboard settings
+        .autocorrectionDisabled()
+        .keyboardType(.alphabet)
         
-            .padding()
-            .padding(.top, 8)
+        .padding()
+        .padding(.top, 8)
         
-            .background(Color.gray.opacity(colorScheme == .dark ? 0.2 : 0.1))
-            .clipShape(RoundedRectangle(cornerRadius: 25))
+        .background(Color.gray.opacity(colorScheme == .dark ? 0.2 : 0.1))
+        .clipShape(RoundedRectangle(cornerRadius: 25))
         
-            .overlay {
-                RoundedRectangle(cornerRadius: 25)
-                    .strokeBorder(lineWidth: 1)
-                    .foregroundStyle(.blue.opacity(isEditing ? 1 : 0))
-            }
+        .overlay {
+            RoundedRectangle(cornerRadius: 25)
+                .strokeBorder(lineWidth: 1)
+                .foregroundStyle(.blue.opacity(isEditing ? 1 : 0))
+        }
     }
     
     private var title: some View {
@@ -294,7 +294,7 @@ extension DeviceInfoView {
                 Text("Port")
                     .font(.footnote)
                     .foregroundStyle(.secondary)
-                    
+                
                 Spacer()
                 if !Port.isValidPort() {
                     wrongInput
@@ -328,7 +328,7 @@ extension DeviceInfoView {
     private var copyButton: some View {
         Button {
             device.exportJSON()
-                showCopiedView = true
+            showCopiedView = true
             DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
                 showCopiedView = false
             }
@@ -387,16 +387,26 @@ extension DeviceInfoView {
             _ = Network.instance.boot(device: device)
         } label: {
             Text("Boot device".uppercased())
-                .font(.headline)
+                .foregroundStyle(.primary)
                 .fontWeight(.semibold)
-                .foregroundStyle(.white)
-                .padding(.vertical)
+                .frame(height: 60)
                 .frame(maxWidth: .infinity)
-                .background(.blue.opacity(colorScheme == .dark ? 0.2 : 0.8))
-                .clipShape(RoundedRectangle(cornerRadius: 45 / 2.3))
+                .background(.gray.opacity((colorScheme == .dark ? 0.2 : 0.1)))
+                .clipShape(RoundedRectangle(cornerRadius: 15))
                 .overlay {
-                    RoundedRectangle(cornerRadius: 45 / 2.3)
-                        .strokeBorder(lineWidth: 1)
+                    HStack {
+                        ForEach(0..<12) {_ in
+                            Image(systemName: "power")
+                                .foregroundStyle(.gray.opacity(colorScheme == .dark ? 0.2 : 0.1))
+                                .offset(y: .random(in: -5...5) * 10)
+                                .offset(y: animateButton ? .random(in: -4...4) : 0.0)
+                                .scaleEffect(animateButton ? .random(in: 1...10) / 10 : 1.0)
+                                .opacity(animateButton ? 0.3 : .random(in: 0.3...1.0))
+                        }
+                    }
+                    .frame(height: 60)
+                    .frame(maxWidth: .infinity)
+                    .clipShape(RoundedRectangle(cornerRadius: 15))
                 }
         }
     }
@@ -423,7 +433,7 @@ extension DeviceInfoView {
                 .font(.footnote)
                 .foregroundStyle(.tertiary)
             Image(systemName: "exclamationmark.triangle.fill")
-                .foregroundStyle(animate ? .red : Color.custom.starColor)
+                .foregroundStyle(animateWrongInput ? .red : Color.custom.starColor)
                 .font(.footnote)
         }
         .onAppear {
