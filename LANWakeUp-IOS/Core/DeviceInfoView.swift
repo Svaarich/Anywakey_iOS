@@ -23,7 +23,8 @@ struct DeviceInfoView: View {
     
     @State private var device: Device
     
-    @State var animate: Bool = false
+    @State private var animateButton: Bool = false
+    @State private var animateWrongInput: Bool = false
     @Binding var showDeleteCancelation: Bool
     
     init(device: Device, showDeleteCancelation: Binding<Bool>) {
