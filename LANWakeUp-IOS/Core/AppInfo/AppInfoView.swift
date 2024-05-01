@@ -1,6 +1,7 @@
 import SwiftUI
 
 struct AppInfoView: View {
+    @Environment(\.colorScheme) var colorScheme
     
     private let linkTreeURL = "https://linktr.ee/svarychevskyi"
     private let gitHubURL = "https://github.com/Svaarich"
@@ -8,17 +9,16 @@ struct AppInfoView: View {
     private let bugReportURL = "https://github.com/Svaarich/LANWakeUp-IOS/issues/new"
     
     var body: some View {
-        VStack(spacing: 16) {
+        VStack {
             icon
             Text("LANWakeUp")
                 .font(.largeTitle)
                 .fontWeight(.semibold)
             
-            Text("Version 0.0.1")
+            Text("Version 0.1.0")
                 .font(.subheadline)
                 .fontWeight(.semibold)
                 .foregroundStyle(.secondary)
-            
             List {
                 Section {
                     gitHubRepoButton
@@ -28,15 +28,17 @@ struct AppInfoView: View {
                     linkTreeButton
                 }
                 bugReportButton
-                
-                
-                
             }
             .scrollDisabled(true)
             
             Spacer()
         }
         .padding(.vertical)
+        .background {
+            if colorScheme == .light {
+                Color.gray.opacity(0.1).ignoresSafeArea()
+            }
+        }
         
         .navigationTitle("App Information")
         .navigationBarTitleDisplayMode(.inline)
@@ -54,7 +56,7 @@ extension AppInfoView {
             .foregroundStyle(.white)
             .frame(width: 150, height: 150)
             .padding(20)
-            .background(.gray.opacity(0.15))
+            .background(Color(red: 25/255, green: 25/255, blue: 25/255))
             .clipShape(RoundedRectangle(cornerRadius: 35))
             .overlay {
                 Circle()
@@ -92,7 +94,7 @@ extension AppInfoView {
         LinkButton(
             stringURL: bugReportURL, 
             text: "Issue / Bug report",
-            image: Image(systemName: "ladybug"),
+            image: Image(systemName: "ant.fill"),
             color: .red)
     }
 }
