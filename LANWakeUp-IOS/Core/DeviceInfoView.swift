@@ -89,10 +89,6 @@ struct DeviceInfoView: View {
         .navigationTitle("Information")
         .navigationBarTitleDisplayMode(.inline)
         
-        // animation
-        .animation(.spring, value: isFocused)
-        .animation(.bouncy, value: [name, MAC, BroadcastAddr, Port])
-        
         .onChange(of: dismissView) { value in
             if value {
                 dismiss()
