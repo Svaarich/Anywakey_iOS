@@ -63,6 +63,8 @@ struct DeviceInfoView: View {
                     if !isEditing {
                         bootButton
                             .onAppear {
+                                animateButton = true
+                            }
                             .transition(.opacity)
                             .animation(.snappy(duration: 20).repeatForever(), value: animateButton)
                     }
@@ -424,7 +426,9 @@ extension DeviceInfoView {
                 .foregroundStyle(animate ? .red : Color.custom.starColor)
                 .font(.footnote)
         }
-        .onAppear(perform: startAnimate)
+        .onAppear {
+            animateWrongInput = true
+        }
     }
     
     private struct DrawingConstants {
@@ -437,9 +441,8 @@ extension DeviceInfoView {
     }
     
     private func startAnimate() {
-        withAnimation(.easeInOut(duration: 1.0).repeatForever()) {
-            animate.toggle()
-        }
+        animateButton = true
+        animateWrongInput = true
     }
 }
 
