@@ -38,7 +38,7 @@ struct DeviceInfoView: View {
     var body: some View {
         ScrollView {
             ZStack {
-                VStack(spacing: 8) {
+                VStack(spacing: 16) {
                     HStack {
                         title
                         Spacer()
