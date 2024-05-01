@@ -46,7 +46,9 @@ struct DeviceInfoView: View {
                     }
                     
                     deviceCard
-                    
+                        .animation(.easeInOut(duration: 1).repeatForever(), value: animateWrongInput)
+                        .animation(.spring, value: isFocused)
+                        .animation(.bouncy, value: [name, MAC, BroadcastAddr, Port])
                     HStack {
                         // Delete button
                         deleteButton
@@ -63,6 +65,7 @@ struct DeviceInfoView: View {
                         bootButton
                             .padding(.top, 8)
                             .transition(.opacity)
+                            .animation(.snappy(duration: 20).repeatForever(), value: animateButton)
                     }
                     
                     Spacer()
