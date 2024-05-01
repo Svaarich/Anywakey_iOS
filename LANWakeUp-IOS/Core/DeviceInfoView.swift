@@ -59,11 +59,10 @@ struct DeviceInfoView: View {
                         // Edit button
                         editButton
                     }
-                    .padding(.top, 8)
                     
                     if !isEditing {
                         bootButton
-                            .padding(.top, 8)
+                            .onAppear {
                             .transition(.opacity)
                             .animation(.snappy(duration: 20).repeatForever(), value: animateButton)
                     }
