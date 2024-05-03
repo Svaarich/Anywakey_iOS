@@ -16,12 +16,13 @@ struct DeviceCellView: View {
     @Binding var refreshStatus: Bool
     @Binding var isCopied: Bool
     @Binding var showDeleteCancelation: Bool
+    @Binding var showWrongInput: Bool
     
     let device: Device
     
     var body: some View {
         HStack {
-            BootButton(refreshStatus: $refreshStatus, device: device)
+            BootButton(refreshStatus: $refreshStatus, showWrongInput: $showWrongInput, device: device)
             deviceInfo
         }
         .padding(.vertical, 8)
@@ -194,6 +195,7 @@ extension DeviceCellView {
             Button {
                 device.exportJSON()
                 isCopied = true
+                HapticManager.instance.notification(type: .success)
                 DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
                     isCopied = false
                 }
@@ -211,13 +213,4 @@ extension DeviceCellView {
             }
         }
     }
-}
-
-
-#Preview {
-    @EnvironmentObject var dataService: DeviceDataService
-    @State var refresh: Bool = false
-    let device = Device(name: "Test name", MAC: "11:22:33:44:55:66", BroadcastAddr: "1.1.1.1", Port: "45655", isPinned: true)
-    return DeviceCellView(refreshStatus: $refresh, isCopied: .constant(false), showDeleteCancelation: .constant(false), device: device)
-        .preferredColorScheme(.dark)
 }

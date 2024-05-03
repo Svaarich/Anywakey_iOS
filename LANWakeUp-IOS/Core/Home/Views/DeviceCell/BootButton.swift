@@ -7,9 +7,9 @@ struct BootButton: View {
     
     @State var statusColor: Color = .gray
     @State var isPressed: Bool = false
-    @State var showInputAlert: Bool = false
     
     @Binding var refreshStatus: Bool
+    @Binding var showWrongInput: Bool
     
     let device: Device
     
@@ -38,8 +38,7 @@ struct BootButton: View {
         
             .onTapGesture {
                 
-                //TODO: improve!!!
-                if device.BroadcastAddr.isValidAdress() {
+                if device.BroadcastAddr.isValidAdress() && device.MAC.isValidMAC() {
                     withAnimation(.easeInOut) {
                         isPressed = true
                         HapticManager.instance.impact(style: .soft)
@@ -52,7 +51,10 @@ struct BootButton: View {
                     }
                 } else {
                     HapticManager.instance.notification(type: .warning)
-                    showInputAlert.toggle()
+                    showWrongInput = true
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
+                        showWrongInput = false
+                    }
                 }
             }
             .onAppear {
@@ -64,12 +66,6 @@ struct BootButton: View {
             }
             .onChange(of: refreshStatus) { _ in
                 refreshStatusColor()
-            }
-            // Input alert
-            .alert("Oops!", isPresented: $showInputAlert)  {
-                Button("OK", role: .cancel) { }
-            } message: {
-                Text("Incorrect input information!")
             }
     }
     
@@ -110,9 +106,4 @@ extension BootButton {
     
     // MARK: PROPERTIES
     
-}
-
-#Preview {
-    @State var refresh = false
-    return BootButton(refreshStatus: $refresh, device: Device(name: "test", MAC: "11:11:11:11", BroadcastAddr: "1.1.1.1", Port: "1"))
 }
