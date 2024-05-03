@@ -14,6 +14,7 @@ struct DeviceInfoView: View {
     @State private var showDeleteAlert: Bool = false
     @State private var dismissView: Bool = false
     @State private var showCopiedView: Bool = false
+    @State private var showWrongInput: Bool = false
     
     // Device components
     @State private var name: String
@@ -61,20 +62,17 @@ struct DeviceInfoView: View {
                     }
                     
                     if !isEditing {
-                        bootButton
-                            .onAppear {
-                                animateButton = true
-                            }
-                            .transition(.opacity)
-                            .animation(.snappy(duration: 20).repeatForever(), value: animateButton)
+                        BigBootButton(device: device)
                     }
-                    
                     Spacer()
                 }
                 .padding()
                 CopiedNotificationView()
                     .opacity(showCopiedView ? 1.0 : 0)
                     .animation(.spring, value: showCopiedView)
+                WrongInput()
+                    .opacity(showWrongInput ? 1.0 : 0)
+                    .animation(.spring, value: showWrongInput)
             }
         }
         
@@ -127,16 +125,14 @@ extension DeviceInfoView {
             
             // MAC
             macField
+                .keyboardType(.alphabet)
+                .autocorrectionDisabled()
             
             // port
             portField
             
         }
         .disabled(!isEditing)
-        
-        // keyboard settings
-        .autocorrectionDisabled()
-        .keyboardType(.alphabet)
         
         .padding()
         .padding(.top, 8)
@@ -379,35 +375,6 @@ extension DeviceInfoView {
             .frame(maxWidth: .infinity)
             .background(Color.gray.opacity(colorScheme == .dark ? 0.2 : 0.1))
             .clipShape(RoundedRectangle(cornerRadius: 15))
-        }
-    }
-    
-    private var bootButton: some View {
-        Button {
-            _ = Network.instance.boot(device: device)
-        } label: {
-            Text("Boot device".uppercased())
-                .foregroundStyle(.primary)
-                .fontWeight(.semibold)
-                .frame(height: 60)
-                .frame(maxWidth: .infinity)
-                .background(.gray.opacity((colorScheme == .dark ? 0.2 : 0.1)))
-                .clipShape(RoundedRectangle(cornerRadius: 15))
-                .overlay {
-                    HStack {
-                        ForEach(0..<12) {_ in
-                            Image(systemName: "power")
-                                .foregroundStyle(.gray.opacity(colorScheme == .dark ? 0.2 : 0.1))
-                                .offset(y: .random(in: -5...5) * 10)
-                                .offset(y: animateButton ? .random(in: -4...4) : 0.0)
-                                .scaleEffect(animateButton ? .random(in: 1...10) / 10 : 1.0)
-                                .opacity(animateButton ? 0.3 : .random(in: 0.3...1.0))
-                        }
-                    }
-                    .frame(height: 60)
-                    .frame(maxWidth: .infinity)
-                    .clipShape(RoundedRectangle(cornerRadius: 15))
-                }
         }
     }
     

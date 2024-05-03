@@ -14,11 +14,6 @@ struct AppInfoView: View {
             Text("LANWakeUp")
                 .font(.largeTitle)
                 .fontWeight(.semibold)
-            
-            Text("Version 0.1.0")
-                .font(.subheadline)
-                .fontWeight(.semibold)
-                .foregroundStyle(.secondary)
             List {
                 Section {
                     gitHubRepoButton
@@ -32,6 +27,12 @@ struct AppInfoView: View {
             .scrollDisabled(true)
             
             Spacer()
+            VStack {
+                Text("version: \(Bundle.main.releaseVersionNumber ?? "")")
+                Text("build: \(Bundle.main.buildVersionNumber ?? "")")
+            }
+                .font(.caption)
+                .foregroundStyle(.secondary)
         }
         .padding(.vertical)
         .background {

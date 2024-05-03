@@ -6,6 +6,7 @@ struct HomeView: View {
     
     @State private var showAddView: Bool = false
     @State private var showWarning: Bool = false
+    @State private var showWrongInput: Bool = false
     @State private var refreshStatus: Bool = false
     @State private var isCopied: Bool = false
     @State private var showDeleteCancelation: Bool = false
@@ -57,6 +58,9 @@ struct HomeView: View {
                 CopiedNotificationView()
                     .opacity(isCopied ? 1.0 : 0)
                     .animation(.spring, value: isCopied)
+                WrongInput()
+                    .opacity(showWrongInput ? 1.0 : 0)
+                    .animation(.spring, value: showWrongInput)
             }
             
             .ignoresSafeArea(.keyboard)
@@ -156,7 +160,7 @@ extension HomeView {
                         DeviceCellView(refreshStatus: $refreshStatus,
                                        isCopied: $isCopied,
                                        showDeleteCancelation: $showDeleteCancelation,
-                                       device: device)
+                                       showWrongInput: $showWrongInput, device: device)
                     }
                 }
             }
@@ -184,7 +188,7 @@ extension HomeView {
                         DeviceCellView(refreshStatus: $refreshStatus, 
                                        isCopied: $isCopied,
                                        showDeleteCancelation: $showDeleteCancelation,
-                                       device: device)
+                                       showWrongInput: $showWrongInput, device: device)
                     }
                 }
             }
