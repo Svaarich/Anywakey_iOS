@@ -16,7 +16,7 @@
 		7D7AB9512AEC40FA00594CDB /* SwiftyPing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D7AB9502AEC40FA00594CDB /* SwiftyPing.swift */; };
 		7DA71F1E2B250A96004F9AF3 /* AppInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DA71F1D2B250A96004F9AF3 /* AppInfoView.swift */; };
 		7DB7120A2AE8857E0087CA76 /* DeviceInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DB712092AE8857E0087CA76 /* DeviceInfoView.swift */; };
-		7DC26D812AE7EBE100B52D02 /* LANWakeUp_App.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DC26D802AE7EBE100B52D02 /* LANWakeUp_App.swift */; };
+		7DC26D812AE7EBE100B52D02 /* Anywakey_iOS_App.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DC26D802AE7EBE100B52D02 /* Anywakey_iOS_App.swift */; };
 		7DC26D832AE7EBE100B52D02 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DC26D822AE7EBE100B52D02 /* HomeView.swift */; };
 		7DC26D852AE7EBE300B52D02 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7DC26D842AE7EBE300B52D02 /* Assets.xcassets */; };
 		7DC26D882AE7EBE300B52D02 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7DC26D872AE7EBE300B52D02 /* Preview Assets.xcassets */; };
@@ -63,8 +63,8 @@
 		7D7AB9502AEC40FA00594CDB /* SwiftyPing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftyPing.swift; sourceTree = "<group>"; };
 		7DA71F1D2B250A96004F9AF3 /* AppInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppInfoView.swift; sourceTree = "<group>"; };
 		7DB712092AE8857E0087CA76 /* DeviceInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceInfoView.swift; sourceTree = "<group>"; };
-		7DC26D7D2AE7EBE100B52D02 /* LANWakeUp-IOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "LANWakeUp-IOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
-		7DC26D802AE7EBE100B52D02 /* LANWakeUp_App.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LANWakeUp_App.swift; sourceTree = "<group>"; };
+		7DC26D7D2AE7EBE100B52D02 /* Anywakey-iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Anywakey-iOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		7DC26D802AE7EBE100B52D02 /* Anywakey_iOS_App.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Anywakey_iOS_App.swift; sourceTree = "<group>"; };
 		7DC26D822AE7EBE100B52D02 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		7DC26D842AE7EBE300B52D02 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		7DC26D872AE7EBE300B52D02 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
@@ -146,7 +146,7 @@
 		7DC26D742AE7EBE100B52D02 = {
 			isa = PBXGroup;
 			children = (
-				7DC26D7F2AE7EBE100B52D02 /* LANWakeUp-IOS */,
+				7DC26D7F2AE7EBE100B52D02 /* Anywakey_iOS */,
 				7DC26D7E2AE7EBE100B52D02 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -154,15 +154,15 @@
 		7DC26D7E2AE7EBE100B52D02 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				7DC26D7D2AE7EBE100B52D02 /* LANWakeUp-IOS.app */,
+				7DC26D7D2AE7EBE100B52D02 /* Anywakey-iOS.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		7DC26D7F2AE7EBE100B52D02 /* LANWakeUp-IOS */ = {
+		7DC26D7F2AE7EBE100B52D02 /* Anywakey_iOS */ = {
 			isa = PBXGroup;
 			children = (
-				7DC26D802AE7EBE100B52D02 /* LANWakeUp_App.swift */,
+				7DC26D802AE7EBE100B52D02 /* Anywakey_iOS_App.swift */,
 				7DD331CF2B5AEAE7002BFA64 /* Core */,
 				7DFC05382B292CE60082E502 /* Models */,
 				7DD331D42B5AED29002BFA64 /* Services */,
@@ -171,7 +171,7 @@
 				7DC26D862AE7EBE300B52D02 /* Preview Content */,
 				7DC26D842AE7EBE300B52D02 /* Assets.xcassets */,
 			);
-			path = "LANWakeUp-IOS";
+			path = Anywakey_iOS;
 			sourceTree = "<group>";
 		};
 		7DC26D862AE7EBE300B52D02 /* Preview Content */ = {
@@ -267,9 +267,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		7DC26D7C2AE7EBE100B52D02 /* LANWakeUp-IOS */ = {
+		7DC26D7C2AE7EBE100B52D02 /* Anywakey-iOS */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 7DC26DA12AE7EBE300B52D02 /* Build configuration list for PBXNativeTarget "LANWakeUp-IOS" */;
+			buildConfigurationList = 7DC26DA12AE7EBE300B52D02 /* Build configuration list for PBXNativeTarget "Anywakey-iOS" */;
 			buildPhases = (
 				7DC26D792AE7EBE100B52D02 /* Sources */,
 				7DC26D7A2AE7EBE100B52D02 /* Frameworks */,
@@ -280,9 +280,9 @@
 			);
 			dependencies = (
 			);
-			name = "LANWakeUp-IOS";
+			name = "Anywakey-iOS";
 			productName = "LANWakeUp-IOS";
-			productReference = 7DC26D7D2AE7EBE100B52D02 /* LANWakeUp-IOS.app */;
+			productReference = 7DC26D7D2AE7EBE100B52D02 /* Anywakey-iOS.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -300,7 +300,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 7DC26D782AE7EBE100B52D02 /* Build configuration list for PBXProject "LANWakeUp-IOS" */;
+			buildConfigurationList = 7DC26D782AE7EBE100B52D02 /* Build configuration list for PBXProject "Anywakey_iOS" */;
 			compatibilityVersion = "Xcode 14.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -313,7 +313,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				7DC26D7C2AE7EBE100B52D02 /* LANWakeUp-IOS */,
+				7DC26D7C2AE7EBE100B52D02 /* Anywakey-iOS */,
 			);
 		};
 /* End PBXProject section */
@@ -359,7 +359,7 @@
 				7D5FE1F42B5F5D3F00142502 /* DeleteDeviceSheet.swift in Sources */,
 				7DC26D832AE7EBE100B52D02 /* HomeView.swift in Sources */,
 				7D12F34E2BE169BE00FE854E /* LinkButton.swift in Sources */,
-				7DC26D812AE7EBE100B52D02 /* LANWakeUp_App.swift in Sources */,
+				7DC26D812AE7EBE100B52D02 /* Anywakey_iOS_App.swift in Sources */,
 				7DFB91BD2BE3F252001650B9 /* BigBootButton.swift in Sources */,
 				7D77185C2BE3B0B40046700A /* WrongInput.swift in Sources */,
 				7DE700172AEA845D0033E53A /* FlexibleTextField.swift in Sources */,
@@ -571,7 +571,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		7DC26D782AE7EBE100B52D02 /* Build configuration list for PBXProject "LANWakeUp-IOS" */ = {
+		7DC26D782AE7EBE100B52D02 /* Build configuration list for PBXProject "Anywakey_iOS" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				7DC26D9B2AE7EBE300B52D02 /* Debug */,
@@ -580,7 +580,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		7DC26DA12AE7EBE300B52D02 /* Build configuration list for PBXNativeTarget "LANWakeUp-IOS" */ = {
+		7DC26DA12AE7EBE300B52D02 /* Build configuration list for PBXNativeTarget "Anywakey-iOS" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				7DC26DA22AE7EBE300B52D02 /* Debug */,
