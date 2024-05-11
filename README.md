@@ -5,7 +5,7 @@
 </h3>
 
 
-<h1 align="center">Welcome to LANWakeUp IOS repo!</h1>
+<h1 align="center">Welcome to Anywakey iOS repo!</h1>
 
 ### TestFlight External testing
 https://testflight.apple.com/join/mOIoFg5d
