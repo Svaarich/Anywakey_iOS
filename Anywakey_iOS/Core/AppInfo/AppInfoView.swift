@@ -11,7 +11,7 @@ struct AppInfoView: View {
     var body: some View {
         VStack {
             icon
-            Text("LANWakeUp")
+            Text("Anywakey")
                 .font(.largeTitle)
                 .fontWeight(.semibold)
             List {
