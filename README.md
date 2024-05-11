@@ -8,7 +8,7 @@
 <h1 align="center">Welcome to LANWakeUp IOS repo!</h1>
 
 ### TestFlight External testing
-https://testflight.apple.com/join/jflhyopp
+https://testflight.apple.com/join/mOIoFg5d
 
 ### Application can:
 - create personal device card
