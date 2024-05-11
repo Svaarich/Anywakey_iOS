@@ -1,7 +1,7 @@
 import SwiftUI
 
 @main
-struct LANWakeUp_App: App {
+struct Anywakey_iOS_App: App {
     
     @StateObject private var dataService = DeviceDataService()
     
