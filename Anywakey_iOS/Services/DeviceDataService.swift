@@ -1,10 +1,13 @@
 import Foundation
+import WidgetKit
 
 public class DeviceDataService: ObservableObject {
     
     @Published var allDevices: [Device] = [] {
         didSet {
             saveUserDefaults()
+            // update widget state
+            WidgetCenter.shared.reloadAllTimelines()
         }
     }
     @Published var lastDeletedDevice: Device = Device(name: "", MAC: "", BroadcastAddr: "", Port: "")
@@ -15,13 +18,15 @@ public class DeviceDataService: ObservableObject {
     
     // Get list of saved devices from UserDefaults
     func fetchUserDefaults() {
-        if let data = UserDefaults.standard.data(forKey: "devices") {
-            do {
-                let decoder = JSONDecoder()
-                let savedDevices = try decoder.decode([Device].self, from: data)
-                allDevices = savedDevices
-            } catch {
-                print("Unable to Decode devices (\(error))")
+        if let userDefaults = UserDefaults(suiteName: "group.svarich.anywakey") {
+            if let data = userDefaults.data(forKey: "devices") {
+                do {
+                    let decoder = JSONDecoder()
+                    let savedDevices = try decoder.decode([Device].self, from: data)
+                    allDevices = savedDevices
+                } catch {
+                    print("Unable to Decode devices (\(error))")
+                }
             }
         }
     }
@@ -29,13 +34,14 @@ public class DeviceDataService: ObservableObject {
     // Save list with devices into UserDefaults
     func saveUserDefaults() {
         let data = allDevices
-        do {
-            let encoder = JSONEncoder()
-            let defaults = UserDefaults.standard
-            let savedDevices = try encoder.encode(data)
-            defaults.set(savedDevices, forKey: "devices")
-        } catch {
-            print("Unable to Encode Array of devices (\(error))")
+        if let userDefaults = UserDefaults(suiteName: "group.svarich.anywakey") {
+            do {
+                let encoder = JSONEncoder()
+                let savedDevices = try encoder.encode(data)
+                userDefaults.set(savedDevices, forKey: "devices")
+            } catch {
+                print("Unable to Encode Array of devices (\(error))")
+            }
         }
     }
     
