@@ -1,4 +1,5 @@
 import SwiftUI
+import WidgetKit
 
 struct HomeView: View {
     
@@ -99,11 +100,6 @@ struct HomeView: View {
             }
         
         //MARK: Network connection check
-        .onAppear {
-            // isConnected to network?
-            showWarning = !Network.instance.isConnectedToNetwork()
-            
-        }
         // No Internet connection alert
         //        .alert("No internet connection 😭", isPresented: $showWarning) {
         //        }
@@ -166,6 +162,7 @@ extension HomeView {
             }
             .onMove { indices, newOffset in
                 dataService.allDevices.move(fromOffsets: indices, toOffset: newOffset)
+                WidgetCenter.shared.reloadAllTimelines()
             }
         } header: {
             HStack(spacing: 4) {
