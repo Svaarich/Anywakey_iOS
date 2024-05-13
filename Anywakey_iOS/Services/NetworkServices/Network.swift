@@ -12,7 +12,11 @@ public class Network {
     
     // Boot selected device
     func boot(device: Device) -> Error? {
-        wakeUp.target(device: device)
+        guard device.BroadcastAddr.isValidAdress(),
+              device.MAC.isValidMAC(),
+              device.Port.isValidPort()
+        else { return nil }
+        return wakeUp.target(device: device)
     }
     
     // Ping selected host / IP address and returns
