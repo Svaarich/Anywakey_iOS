@@ -98,11 +98,9 @@ struct HomeView: View {
                     }
                 }
             }
-        
-        //MARK: Network connection check
-        // No Internet connection alert
-        //        .alert("No internet connection 😭", isPresented: $showWarning) {
-        //        }
+            .onAppear {
+                WidgetCenter.shared.reloadAllTimelines()
+            }
     }
 }
 
