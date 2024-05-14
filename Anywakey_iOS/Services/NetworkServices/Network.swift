@@ -23,8 +23,7 @@ public class Network {
     func ping(address: String, onDone: @escaping (_ ping: Double, _ isAccessible: Bool) -> Void) {
         // if address is empty returns false
         guard
-            !address.isEmpty,
-            address.contains(where: { $0 == "." } )
+            address.isValidAdress()
         else { return onDone(0, false) }
             let ones = try? SwiftyPing(host: address,
                                        configuration: PingConfiguration(interval: 0.5, with: 2),
