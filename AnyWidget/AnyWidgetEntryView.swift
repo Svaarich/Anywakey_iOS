@@ -7,7 +7,7 @@ struct AnyWidgetEntryView: View {
     var entry: Provider.Entry
     
     var body: some View {
-        VStack(alignment: .leading, spacing: 6) {
+        VStack(alignment: .leading, spacing: 0) {
             if entry.list.isEmpty {
                 VStack(alignment: .leading, spacing: 4) {
                     Text("Pinned devices not found")
