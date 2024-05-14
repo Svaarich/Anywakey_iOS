@@ -21,37 +21,44 @@ struct AnyWidgetEntryView: View {
                         .font(.caption2)
                 }
             } else {
-                HStack {
+                HStack(spacing: 6) {
                     Text("Devices")
                         .fontWeight(.semibold)
                         .foregroundStyle(.primary)
                     Image(systemName: "star.fill")
                         .foregroundStyle(Color.custom.starColor)
                 }
-                .padding(.bottom, 2)
                 Divider()
-                ForEach(entry.list) { device in
-                    HStack(spacing: 0) {
-                        VStack(alignment: .leading, spacing: 4) {
-                            Text(device.name)
-                                .lineLimit(1)
-                                .frame(width: .infinity)
-                        }
-                        Spacer(minLength: 4)
-                        Button(intent: BootButtonIntent(id: device.id)) {
-                            Image(systemName: "power")
-                                .foregroundStyle(.primary)
-                                .padding(4)
-                                .background {
-                                    Circle()
-                                        .foregroundStyle(.blue.opacity(0.5))
+                    .padding(.vertical, 6)
+                GeometryReader { geo in
+                    VStack {
+                        ForEach(entry.list) { device in
+                            HStack(spacing: 0) {
+                                VStack(alignment: .leading, spacing: 4) {
+                                    Text(device.name)
+                                        .lineLimit(1)
+                                        .frame(width: .infinity)
                                 }
+                                Spacer(minLength: 4)
+                                Button(intent: BootButtonIntent(id: device.id)) {
+                                    Circle()
+                                        .foregroundStyle(.blue)
+                                        .overlay {
+                                            Image(systemName: "power")
+                                                .resizable()
+                                                .scaledToFit()
+                                                .foregroundStyle(.white)
+                                                .padding(4)
+                                        }
+                                }
+                                .buttonStyle(.plain)
+                            }
+                            .frame(height: geo.size.height / 3)
+                            .frame(maxWidth: .infinity)
                         }
-                        .buttonStyle(.plain)
                     }
-                    .frame(maxWidth: .infinity)
                 }
-                Spacer()
+                .padding(.bottom)
             }
         }
         .containerBackground(.tertiary, for: .widget)
