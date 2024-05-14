@@ -70,18 +70,18 @@ struct Provider: TimelineProvider {
     @ObservedObject var widgetData = AnyWidgetData()
     
     func placeholder(in context: Context) -> SimpleEntry {
-        SimpleEntry(list: widgetData.deviceList)
+        widgetData.fetchPinnedDevices()
+        return SimpleEntry(list: widgetData.deviceList)
     }
 
     func getSnapshot(in context: Context, completion: @escaping (SimpleEntry) -> ()) {
-        
+        widgetData.fetchPinnedDevices()
         completion(SimpleEntry(list: widgetData.deviceList))
     }
 
     func getTimeline(in context: Context, completion: @escaping (Timeline<SimpleEntry>) -> ()) {
         var entries: [SimpleEntry] = []
         widgetData.fetchPinnedDevices()
-        print("Updated in getTime")
         entries.append(SimpleEntry(list: widgetData.deviceList))
         let timeline = Timeline(entries: entries, policy: .atEnd)
         completion(timeline)
@@ -94,21 +94,22 @@ struct SimpleEntry: TimelineEntry {
 }
 
 struct AnyWidget: Widget {
-    let kind: String = "MonitWidget"
+    let kind: String = "AnyWidgetList"
 
     var body: some WidgetConfiguration {
         StaticConfiguration(kind: kind, provider: Provider()) { entry in
             if #available(iOS 17.0, *) {
                 AnyWidgetEntryView(entry: entry)
-                    .containerBackground(.fill.tertiary, for: .widget)
+                    .ignoresSafeArea()
+                    .containerBackground(.fill.quaternary, for: .widget)
             } else {
                 AnyWidgetEntryView(entry: entry)
                     .padding()
                     .background()
             }
         }
-        .configurationDisplayName("My Widget")
-        .description("This is an example widget.")
+        .configurationDisplayName("AnyWidget")
+        .description("Start up your computer!")
+        .supportedFamilies([.systemSmall])
     }
 }
-
