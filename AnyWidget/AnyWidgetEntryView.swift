@@ -7,7 +7,7 @@ struct AnyWidgetEntryView: View {
     var entry: Provider.Entry
     
     var body: some View {
-        VStack(alignment: .leading, spacing: 6) {
+        VStack(alignment: .leading, spacing: 0) {
             if entry.list.isEmpty {
                 VStack(alignment: .leading, spacing: 4) {
                     Text("Pinned devices not found")
@@ -21,37 +21,44 @@ struct AnyWidgetEntryView: View {
                         .font(.caption2)
                 }
             } else {
-                HStack {
+                HStack(spacing: 6) {
                     Text("Devices")
                         .fontWeight(.semibold)
                         .foregroundStyle(.primary)
                     Image(systemName: "star.fill")
                         .foregroundStyle(Color.custom.starColor)
                 }
-                .padding(.bottom, 2)
                 Divider()
-                ForEach(entry.list) { device in
-                    HStack(spacing: 0) {
-                        VStack(alignment: .leading, spacing: 4) {
-                            Text(device.name)
-                                .lineLimit(1)
-                                .frame(width: .infinity)
-                        }
-                        Spacer(minLength: 4)
-                        Button(intent: BootButtonIntent(id: device.id)) {
-                            Image(systemName: "power")
-                                .foregroundStyle(.primary)
-                                .padding(4)
-                                .background {
-                                    Circle()
-                                        .foregroundStyle(.blue.opacity(0.5))
+                    .padding(.vertical, 6)
+                GeometryReader { geo in
+                    VStack {
+                        ForEach(entry.list) { device in
+                            HStack(spacing: 0) {
+                                VStack(alignment: .leading, spacing: 4) {
+                                    Text(device.name)
+                                        .lineLimit(1)
+                                        .frame(width: .infinity)
                                 }
+                                Spacer(minLength: 4)
+                                Button(intent: BootButtonIntent(id: device.id)) {
+                                    Circle()
+                                        .foregroundStyle(.blue)
+                                        .overlay {
+                                            Image(systemName: "power")
+                                                .resizable()
+                                                .scaledToFit()
+                                                .foregroundStyle(.white)
+                                                .padding(4)
+                                        }
+                                }
+                                .buttonStyle(.plain)
+                            }
+                            .frame(height: geo.size.height / 3)
+                            .frame(maxWidth: .infinity)
                         }
-                        .buttonStyle(.plain)
                     }
-                    .frame(maxWidth: .infinity)
                 }
-                Spacer()
+                .padding(.bottom)
             }
         }
         .containerBackground(.tertiary, for: .widget)
@@ -63,18 +70,18 @@ struct Provider: TimelineProvider {
     @ObservedObject var widgetData = AnyWidgetData()
     
     func placeholder(in context: Context) -> SimpleEntry {
-        SimpleEntry(list: widgetData.deviceList)
+        widgetData.fetchPinnedDevices()
+        return SimpleEntry(list: widgetData.deviceList)
     }
 
     func getSnapshot(in context: Context, completion: @escaping (SimpleEntry) -> ()) {
-        
+        widgetData.fetchPinnedDevices()
         completion(SimpleEntry(list: widgetData.deviceList))
     }
 
     func getTimeline(in context: Context, completion: @escaping (Timeline<SimpleEntry>) -> ()) {
         var entries: [SimpleEntry] = []
         widgetData.fetchPinnedDevices()
-        print("Updated in getTime")
         entries.append(SimpleEntry(list: widgetData.deviceList))
         let timeline = Timeline(entries: entries, policy: .atEnd)
         completion(timeline)
@@ -87,21 +94,22 @@ struct SimpleEntry: TimelineEntry {
 }
 
 struct AnyWidget: Widget {
-    let kind: String = "MonitWidget"
+    let kind: String = "AnyWidgetList"
 
     var body: some WidgetConfiguration {
         StaticConfiguration(kind: kind, provider: Provider()) { entry in
             if #available(iOS 17.0, *) {
                 AnyWidgetEntryView(entry: entry)
-                    .containerBackground(.fill.tertiary, for: .widget)
+                    .ignoresSafeArea()
+                    .containerBackground(.fill.quaternary, for: .widget)
             } else {
                 AnyWidgetEntryView(entry: entry)
                     .padding()
                     .background()
             }
         }
-        .configurationDisplayName("My Widget")
-        .description("This is an example widget.")
+        .configurationDisplayName("AnyWidget")
+        .description("Start up your computer!")
+        .supportedFamilies([.systemSmall])
     }
 }
-
