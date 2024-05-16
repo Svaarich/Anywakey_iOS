@@ -49,7 +49,7 @@ extension AnyWidgetEntryView {
                             Spacer(minLength: 4)
                             Button(intent: BootButtonIntent(id: device.id)) {
                                 Circle()
-                                    .foregroundStyle(.white)
+                                    .foregroundStyle(.blue)
                                     .overlay {
                                         Image(systemName: "power")
                                             .resizable()
