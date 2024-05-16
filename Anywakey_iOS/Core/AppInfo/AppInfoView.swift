@@ -23,17 +23,24 @@ struct AppInfoView: View {
                     
                     linkTreeButton
                 }
-                bugReportButton
+                Section {
+                    bugReportButton
+                }
+                if isTester {
+                    Section {
+                        testerAddButton
+                        testerDeleteButton
+                    } header: {
+                        HStack {
+                            Image(systemName: "person.badge.shield.checkmark.fill")
+                                .foregroundStyle(.yellow)
+                            Text("Only for testers")
+                                .foregroundStyle(.black)
+                        }
+                    }
+                }
             }
-            .scrollDisabled(true)
-            
-            Spacer()
-            VStack {
-                Text("version: \(Bundle.main.releaseVersionNumber ?? "")")
-                Text("build: \(Bundle.main.buildVersionNumber ?? "")")
-            }
-                .font(.caption)
-                .foregroundStyle(.secondary)
+//            .scrollDisabled(true)
         }
         .padding(.vertical)
         .background {
@@ -66,6 +73,63 @@ extension AppInfoView {
                     .frame(width: 15)
                     .offset(x: 68, y: 68)
             }
+    }
+    
+    private var header: some View {
+        VStack {
+            Text("Anywakey")
+                .font(.largeTitle)
+                .fontWeight(.semibold)
+            HStack {
+                Text("version: \(Bundle.main.releaseVersionNumber ?? "")")
+                Text("build: \(Bundle.main.buildVersionNumber ?? "")")
+            }
+            .font(.caption)
+            .foregroundStyle(.secondary)
+            .onTapGesture(count: 10) {
+                withAnimation(.smooth) {
+                    isTester.toggle()
+                }
+            }
+        }
+    }
+    
+    private var testerDeleteButton: some View {
+        AppInfoButton(
+            text: "Delete all devices",
+            image: Image(systemName: "trash.fill"),
+            color: .red) {
+                dataService.allDevices = []
+            }
+    }
+    
+    private var testerAddButton: some View {
+        AppInfoButton(
+            text: "Add test devices",
+            image: Image(systemName: "text.badge.plus"),
+            color: .blue) {
+            dataService.allDevices.append(contentsOf: [
+                Device(name: "Correct online", 
+                       MAC: "AA:AA:AA:AA:AA:AA",
+                       BroadcastAddr: "1.1.1.1", 
+                       Port: "23"),
+                Device(name: "Incorrect online", 
+                       MAC: "AA:AA:AA:AA:AA:AM",
+                       BroadcastAddr: "1.1.1.1", 
+                       Port: "98765"),
+                Device(name: "Correct online + pinned", 
+                       MAC: "AA:AA:AA:AA:AA:AA",
+                       BroadcastAddr: "1.1.1.1", 
+                       Port: "23",
+                       isPinned: true),
+                Device(name: "Incorrect online + pinned", 
+                       MAC: "AA:AA:AA:AA:AA:AM",
+                       BroadcastAddr: "1.1.1.1", 
+                       Port: "98765",
+                       isPinned: true)
+                ])
+        }
+            
     }
     
     private var linkTreeButton: some View {
