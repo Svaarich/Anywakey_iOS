@@ -9,59 +9,70 @@ struct AnyWidgetEntryView: View {
     var body: some View {
         VStack(alignment: .leading, spacing: 0) {
             if entry.list.isEmpty {
-                VStack(alignment: .leading, spacing: 4) {
-                    Text("Pinned devices not found")
-                        .foregroundStyle(.secondary)
-                    Spacer()
-                    Text("Please pin any device in the app.")
-                        .foregroundStyle(.tertiary)
-                        .font(.caption)
-                    Text("*only first 3 pinned devices available.")
-                        .foregroundStyle(.quaternary)
-                        .font(.caption2)
-                }
+                noDeviceView
             } else {
-                HStack(spacing: 6) {
-                    Text("Devices")
-                        .fontWeight(.semibold)
-                        .foregroundStyle(.primary)
-                    Image(systemName: "star.fill")
-                        .foregroundStyle(Color.custom.starColor)
-                }
-                Divider()
-                    .padding(.vertical, 6)
-                GeometryReader { geo in
-                    VStack {
-                        ForEach(entry.list) { device in
-                            HStack(spacing: 0) {
-                                VStack(alignment: .leading, spacing: 4) {
-                                    Text(device.name)
-                                        .lineLimit(1)
-                                        .frame(width: .infinity)
-                                }
-                                Spacer(minLength: 4)
-                                Button(intent: BootButtonIntent(id: device.id)) {
-                                    Circle()
-                                        .foregroundStyle(.blue)
-                                        .overlay {
-                                            Image(systemName: "power")
-                                                .resizable()
-                                                .scaledToFit()
-                                                .foregroundStyle(.white)
-                                                .padding(4)
-                                        }
-                                }
-                                .buttonStyle(.plain)
-                            }
-                            .frame(height: geo.size.height / 3)
-                            .frame(maxWidth: .infinity)
-                        }
-                    }
-                }
+                deviceListView
                 .padding(.bottom)
             }
         }
         .containerBackground(.tertiary, for: .widget)
+    }
+    
+    private var deviceListView: some View {
+        VStack(spacing: 0) {
+            HStack(spacing: 6) {
+                Text("Devices")
+                    .fontWeight(.semibold)
+                    .foregroundStyle(.primary)
+                Image(systemName: "star.fill")
+                    .foregroundStyle(Color.custom.starColor)
+            }
+            Divider()
+                .padding(.vertical, 6)
+            GeometryReader { geo in
+                VStack {
+                    ForEach(entry.list) { device in
+                        HStack(spacing: 0) {
+                            VStack(alignment: .leading, spacing: 4) {
+                                Text(device.name)
+                                    .lineLimit(1)
+                                    .frame(width: .infinity)
+                            }
+                            Spacer(minLength: 4)
+                            Button(intent: BootButtonIntent(id: device.id)) {
+                                Circle()
+                                    .foregroundStyle(.blue)
+                                    .overlay {
+                                        Image(systemName: "power")
+                                            .resizable()
+                                            .scaledToFit()
+                                            .foregroundStyle(.white)
+                                            .padding(4)
+                                    }
+                            }
+                            .buttonStyle(.plain)
+                        }
+                        .frame(height: geo.size.height / 3)
+                        .frame(maxWidth: .infinity)
+                    }
+                }
+            }
+        }
+    }
+    
+    private var noDeviceView: some View {
+        VStack(alignment: .leading, spacing: 4) {
+            Text("Pinned devices not found")
+                .foregroundStyle(.secondary)
+//            Spacer()
+            Text("Please pin any device in the app.")
+                .foregroundStyle(.tertiary)
+                .font(.caption)
+            Spacer()
+            Text("*only first 3 pinned devices available.")
+                .foregroundStyle(.quaternary)
+                .font(.caption2)
+        }
     }
 }
 
