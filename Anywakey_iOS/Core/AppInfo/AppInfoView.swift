@@ -2,6 +2,7 @@ import SwiftUI
 
 struct AppInfoView: View {
     @Environment(\.colorScheme) var colorScheme
+    @AppStorage("tester") var isTester = false
     
     private let linkTreeURL = "https://linktr.ee/svarychevskyi"
     private let gitHubURL = "https://github.com/Svaarich"
