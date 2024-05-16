@@ -14,6 +14,9 @@
 		7D5FE1F42B5F5D3F00142502 /* DeleteDeviceSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D5FE1F32B5F5D3F00142502 /* DeleteDeviceSheet.swift */; };
 		7D77185C2BE3B0B40046700A /* WrongInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D77185B2BE3B0B40046700A /* WrongInput.swift */; };
 		7D7AB9512AEC40FA00594CDB /* SwiftyPing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D7AB9502AEC40FA00594CDB /* SwiftyPing.swift */; };
+		7D7E0B462BF63BEC0043175D /* Provider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D7E0B452BF63BC70043175D /* Provider.swift */; };
+		7D7E0B492BF63C630043175D /* SimpleEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D7E0B482BF63C450043175D /* SimpleEntry.swift */; };
+		7D7E0B4B2BF63CAE0043175D /* AnyWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D7E0B4A2BF63C9D0043175D /* AnyWidget.swift */; };
 		7DA71F1E2B250A96004F9AF3 /* AppInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DA71F1D2B250A96004F9AF3 /* AppInfoView.swift */; };
 		7DB7120A2AE8857E0087CA76 /* DeviceInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DB712092AE8857E0087CA76 /* DeviceInfoView.swift */; };
 		7DC26D812AE7EBE100B52D02 /* Anywakey_iOS_App.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DC26D802AE7EBE100B52D02 /* Anywakey_iOS_App.swift */; };
@@ -98,6 +101,9 @@
 		7D5FE1F32B5F5D3F00142502 /* DeleteDeviceSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeleteDeviceSheet.swift; sourceTree = "<group>"; };
 		7D77185B2BE3B0B40046700A /* WrongInput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WrongInput.swift; sourceTree = "<group>"; };
 		7D7AB9502AEC40FA00594CDB /* SwiftyPing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftyPing.swift; sourceTree = "<group>"; };
+		7D7E0B452BF63BC70043175D /* Provider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Provider.swift; sourceTree = "<group>"; };
+		7D7E0B482BF63C450043175D /* SimpleEntry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimpleEntry.swift; sourceTree = "<group>"; };
+		7D7E0B4A2BF63C9D0043175D /* AnyWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnyWidget.swift; sourceTree = "<group>"; };
 		7DA71F1D2B250A96004F9AF3 /* AppInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppInfoView.swift; sourceTree = "<group>"; };
 		7DB712092AE8857E0087CA76 /* DeviceInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceInfoView.swift; sourceTree = "<group>"; };
 		7DC26D7D2AE7EBE100B52D02 /* Anywakey-iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Anywakey-iOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -323,6 +329,9 @@
 			children = (
 				7DE834AF2BF2182000B065BB /* AnyWidgetBundle.swift */,
 				7DE834B12BF2182000B065BB /* AnyWidgetEntryView.swift */,
+				7D7E0B4A2BF63C9D0043175D /* AnyWidget.swift */,
+				7D7E0B452BF63BC70043175D /* Provider.swift */,
+				7D7E0B482BF63C450043175D /* SimpleEntry.swift */,
 				7DE834BF2BF21C8200B065BB /* AnyWidgetData.swift */,
 				7DE834C12BF21CBE00B065BB /* BootButtonIntent.swift */,
 				7DE834B32BF2182300B065BB /* Assets.xcassets */,
@@ -487,13 +496,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7D7E0B492BF63C630043175D /* SimpleEntry.swift in Sources */,
 				7DE834C42BF21E2900B065BB /* AnyWidgetData.swift in Sources */,
 				7DE834B22BF2182000B065BB /* AnyWidgetEntryView.swift in Sources */,
 				7DE834CB2BF2524C00B065BB /* String.swift in Sources */,
 				7DE834B02BF2182000B065BB /* AnyWidgetBundle.swift in Sources */,
 				7DE834C32BF21DFF00B065BB /* BootButtonIntent.swift in Sources */,
+				7D7E0B4B2BF63CAE0043175D /* AnyWidget.swift in Sources */,
 				7DE834C52BF21E4F00B065BB /* Device.swift in Sources */,
 				7DE834C82BF21EF900B065BB /* Network.swift in Sources */,
+				7D7E0B462BF63BEC0043175D /* Provider.swift in Sources */,
 				7DE834C62BF21E6300B065BB /* Color.swift in Sources */,
 				7DE834CA2BF21EFD00B065BB /* WakeOnLAN.swift in Sources */,
 				7DE834C92BF21EFB00B065BB /* SwiftyPing.swift in Sources */,

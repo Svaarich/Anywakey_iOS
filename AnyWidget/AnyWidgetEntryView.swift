@@ -17,9 +17,17 @@ struct AnyWidgetEntryView: View {
         }
         .containerBackground(.tertiary, for: .widget)
     }
+}
+
+extension AnyWidgetEntryView {
     
+    // MARK: FUNCTIONSz
+    
+    // MARK: PROPERTIES
+    
+    // main view
     private var deviceListView: some View {
-        VStack(spacing: 0) {
+        VStack(alignment: .leading, spacing: 0) {
             HStack(spacing: 6) {
                 Text("Devices")
                     .fontWeight(.semibold)
@@ -41,7 +49,7 @@ struct AnyWidgetEntryView: View {
                             Spacer(minLength: 4)
                             Button(intent: BootButtonIntent(id: device.id)) {
                                 Circle()
-                                    .foregroundStyle(.blue)
+                                    .foregroundStyle(.white)
                                     .overlay {
                                         Image(systemName: "power")
                                             .resizable()
@@ -60,67 +68,24 @@ struct AnyWidgetEntryView: View {
         }
     }
     
+    
+    // no pinned view
     private var noDeviceView: some View {
         VStack(alignment: .leading, spacing: 4) {
             Text("Pinned devices not found")
                 .foregroundStyle(.secondary)
-//            Spacer()
             Text("Please pin any device in the app.")
                 .foregroundStyle(.tertiary)
                 .font(.caption)
             Spacer()
-            Text("*only first 3 pinned devices available.")
+            Text("""
+                *only first 3 pinned
+                 devices are available.
+                """)
                 .foregroundStyle(.quaternary)
                 .font(.caption2)
         }
     }
-}
-
-struct Provider: TimelineProvider {
     
-    @ObservedObject var widgetData = AnyWidgetData()
     
-    func placeholder(in context: Context) -> SimpleEntry {
-        widgetData.fetchPinnedDevices()
-        return SimpleEntry(list: widgetData.deviceList)
-    }
-
-    func getSnapshot(in context: Context, completion: @escaping (SimpleEntry) -> ()) {
-        widgetData.fetchPinnedDevices()
-        completion(SimpleEntry(list: widgetData.deviceList))
-    }
-
-    func getTimeline(in context: Context, completion: @escaping (Timeline<SimpleEntry>) -> ()) {
-        var entries: [SimpleEntry] = []
-        widgetData.fetchPinnedDevices()
-        entries.append(SimpleEntry(list: widgetData.deviceList))
-        let timeline = Timeline(entries: entries, policy: .atEnd)
-        completion(timeline)
-    }
-}
-
-struct SimpleEntry: TimelineEntry {
-    let date: Date = .now
-    let list: [Device]
-}
-
-struct AnyWidget: Widget {
-    let kind: String = "AnyWidgetList"
-
-    var body: some WidgetConfiguration {
-        StaticConfiguration(kind: kind, provider: Provider()) { entry in
-            if #available(iOS 17.0, *) {
-                AnyWidgetEntryView(entry: entry)
-                    .ignoresSafeArea()
-                    .containerBackground(.fill.quaternary, for: .widget)
-            } else {
-                AnyWidgetEntryView(entry: entry)
-                    .padding()
-                    .background()
-            }
-        }
-        .configurationDisplayName("AnyWidget")
-        .description("Start up your computer!")
-        .supportedFamilies([.systemSmall])
-    }
 }
