@@ -1,6 +1,8 @@
 import SwiftUI
 
 struct AppInfoView: View {
+    
+    @EnvironmentObject var dataService: DeviceDataService
     @Environment(\.colorScheme) var colorScheme
     @AppStorage("tester") var isTester = false
     
@@ -12,9 +14,7 @@ struct AppInfoView: View {
     var body: some View {
         VStack {
             icon
-            Text("Anywakey")
-                .font(.largeTitle)
-                .fontWeight(.semibold)
+            header
             List {
                 Section {
                     gitHubRepoButton

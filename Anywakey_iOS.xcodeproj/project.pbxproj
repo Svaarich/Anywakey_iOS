@@ -17,6 +17,7 @@
 		7D7E0B462BF63BEC0043175D /* Provider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D7E0B452BF63BC70043175D /* Provider.swift */; };
 		7D7E0B492BF63C630043175D /* SimpleEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D7E0B482BF63C450043175D /* SimpleEntry.swift */; };
 		7D7E0B4B2BF63CAE0043175D /* AnyWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D7E0B4A2BF63C9D0043175D /* AnyWidget.swift */; };
+		7D7E0B4D2BF68ACA0043175D /* AppInfoButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D7E0B4C2BF68ACA0043175D /* AppInfoButton.swift */; };
 		7DA71F1E2B250A96004F9AF3 /* AppInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DA71F1D2B250A96004F9AF3 /* AppInfoView.swift */; };
 		7DB7120A2AE8857E0087CA76 /* DeviceInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DB712092AE8857E0087CA76 /* DeviceInfoView.swift */; };
 		7DC26D812AE7EBE100B52D02 /* Anywakey_iOS_App.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DC26D802AE7EBE100B52D02 /* Anywakey_iOS_App.swift */; };
@@ -104,6 +105,7 @@
 		7D7E0B452BF63BC70043175D /* Provider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Provider.swift; sourceTree = "<group>"; };
 		7D7E0B482BF63C450043175D /* SimpleEntry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimpleEntry.swift; sourceTree = "<group>"; };
 		7D7E0B4A2BF63C9D0043175D /* AnyWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnyWidget.swift; sourceTree = "<group>"; };
+		7D7E0B4C2BF68ACA0043175D /* AppInfoButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppInfoButton.swift; sourceTree = "<group>"; };
 		7DA71F1D2B250A96004F9AF3 /* AppInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppInfoView.swift; sourceTree = "<group>"; };
 		7DB712092AE8857E0087CA76 /* DeviceInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceInfoView.swift; sourceTree = "<group>"; };
 		7DC26D7D2AE7EBE100B52D02 /* Anywakey-iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Anywakey-iOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -166,6 +168,7 @@
 			children = (
 				7DA71F1D2B250A96004F9AF3 /* AppInfoView.swift */,
 				7D12F34D2BE169BE00FE854E /* LinkButton.swift */,
+				7D7E0B4C2BF68ACA0043175D /* AppInfoButton.swift */,
 			);
 			path = AppInfo;
 			sourceTree = "<group>";
@@ -485,6 +488,7 @@
 				7D5FE1F42B5F5D3F00142502 /* DeleteDeviceSheet.swift in Sources */,
 				7DC26D832AE7EBE100B52D02 /* HomeView.swift in Sources */,
 				7D12F34E2BE169BE00FE854E /* LinkButton.swift in Sources */,
+				7D7E0B4D2BF68ACA0043175D /* AppInfoButton.swift in Sources */,
 				7DC26D812AE7EBE100B52D02 /* Anywakey_iOS_App.swift in Sources */,
 				7DFB91BD2BE3F252001650B9 /* BigBootButton.swift in Sources */,
 				7D77185C2BE3B0B40046700A /* WrongInput.swift in Sources */,
