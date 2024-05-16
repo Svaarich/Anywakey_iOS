@@ -9,6 +9,7 @@ struct BigBootButton: View {
     var body: some View {
         Button {
             if isValidInput() {
+                HapticManager.instance.notification(type: .success)
                 _ = Network.instance.boot(device: device)
             }
         } label: {
