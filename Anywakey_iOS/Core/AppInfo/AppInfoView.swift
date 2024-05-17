@@ -12,37 +12,58 @@ struct AppInfoView: View {
     private let bugReportURL = "https://github.com/Svaarich/LANWakeUp-IOS/issues/new"
     
     var body: some View {
-        VStack {
-            icon
-            header
-            List {
-                Section {
+        ScrollView {
+            VStack {
+                
+                icon
+                    .padding(.top)
+                
+                header
+                
+                // links
+                VStack(spacing: 0) {
+                    
                     gitHubRepoButton
+                    
+                    Divider()
                     
                     gitHubButton
                     
+                    Divider()
+                    
                     linkTreeButton
+                    
                 }
-                Section {
+                .clipShape(RoundedRectangle(cornerRadius: 10))
+                .padding(.bottom)
+                
+                VStack(spacing: 0) {
+                    
                     bugReportButton
+                    
                 }
+                .clipShape(RoundedRectangle(cornerRadius: 10))
+                .padding(.bottom)
+                
                 if isTester {
-                    Section {
+                    VStack(spacing: 0) {
+                        
                         testerAddButton
+                        
+                        Divider()
+                        
                         testerDeleteButton
-                    } header: {
-                        HStack {
-                            Image(systemName: "person.badge.shield.checkmark.fill")
-                                .foregroundStyle(.yellow)
-                            Text("Only for testers")
-                                .foregroundStyle(.black)
-                        }
+                        
                     }
+                    .clipShape(RoundedRectangle(cornerRadius: 10))
+                    .padding(.bottom)
                 }
+                
+                version
+                    .padding(.top)
             }
-//            .scrollDisabled(true)
+            .padding(.horizontal, 14)
         }
-        .padding(.vertical)
         .background {
             if colorScheme == .light {
                 Color.gray.opacity(0.1).ignoresSafeArea()
@@ -75,22 +96,30 @@ extension AppInfoView {
             }
     }
     
+    private var version: some View {
+        VStack(alignment: .center) {
+            Text("Anywakey Mobile App")
+                .font(.system(size: 12, weight: .medium))
+                .foregroundColor(.primary)
+            Text("Version: \(Bundle.main.releaseVersionNumber ?? "")")
+                .font(.system(size: 12, weight: .medium))
+                .foregroundColor(.secondary)
+        }
+        .padding(.vertical, 20)
+        .frame(maxWidth: .infinity)
+        .onTapGesture(count: 10) {
+            withAnimation(.smooth) {
+                isTester.toggle()
+            }
+        }
+    }
+    
     private var header: some View {
         VStack {
             Text("Anywakey")
                 .font(.largeTitle)
                 .fontWeight(.semibold)
-            HStack {
-                Text("version: \(Bundle.main.releaseVersionNumber ?? "")")
-                Text("build: \(Bundle.main.buildVersionNumber ?? "")")
-            }
-            .font(.caption)
-            .foregroundStyle(.secondary)
-            .onTapGesture(count: 10) {
-                withAnimation(.smooth) {
-                    isTester.toggle()
-                }
-            }
+                .foregroundStyle(colorScheme == .dark ? .white : .black)
         }
     }
     
@@ -108,28 +137,28 @@ extension AppInfoView {
             text: "Add test devices",
             image: Image(systemName: "text.badge.plus"),
             color: .blue) {
-            dataService.allDevices.append(contentsOf: [
-                Device(name: "Correct online", 
-                       MAC: "AA:AA:AA:AA:AA:AA",
-                       BroadcastAddr: "1.1.1.1", 
-                       Port: "23"),
-                Device(name: "Incorrect online", 
-                       MAC: "AA:AA:AA:AA:AA:AM",
-                       BroadcastAddr: "1.1.1.1", 
-                       Port: "98765"),
-                Device(name: "Correct online + pinned", 
-                       MAC: "AA:AA:AA:AA:AA:AA",
-                       BroadcastAddr: "1.1.1.1", 
-                       Port: "23",
-                       isPinned: true),
-                Device(name: "Incorrect online + pinned", 
-                       MAC: "AA:AA:AA:AA:AA:AM",
-                       BroadcastAddr: "1.1.1.1", 
-                       Port: "98765",
-                       isPinned: true)
+                dataService.allDevices.append(contentsOf: [
+                    Device(name: "Correct online",
+                           MAC: "AA:AA:AA:AA:AA:AA",
+                           BroadcastAddr: "1.1.1.1",
+                           Port: "23"),
+                    Device(name: "Incorrect online",
+                           MAC: "AA:AA:AA:AA:AA:AM",
+                           BroadcastAddr: "1.1.1.1",
+                           Port: "98765"),
+                    Device(name: "Correct online + pinned",
+                           MAC: "AA:AA:AA:AA:AA:AA",
+                           BroadcastAddr: "1.1.1.1",
+                           Port: "23",
+                           isPinned: true),
+                    Device(name: "Incorrect online + pinned",
+                           MAC: "AA:AA:AA:AA:AA:AM",
+                           BroadcastAddr: "1.1.1.1",
+                           Port: "98765",
+                           isPinned: true)
                 ])
-        }
-            
+            }
+        
     }
     
     private var linkTreeButton: some View {
@@ -158,7 +187,7 @@ extension AppInfoView {
     
     private var bugReportButton: some View {
         LinkButton(
-            stringURL: bugReportURL, 
+            stringURL: bugReportURL,
             text: "Issue / Bug report",
             image: Image(systemName: "ant.fill"),
             color: .red)
