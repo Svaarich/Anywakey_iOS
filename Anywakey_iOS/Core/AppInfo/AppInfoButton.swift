@@ -3,6 +3,8 @@ import SwiftUI
 
 struct AppInfoButton: View {
     
+    @Environment(\.colorScheme) var colorScheme
+    
     private let text: String
     private let image: Image
     private let color: Color
@@ -32,13 +34,15 @@ struct AppInfoButton: View {
                         RoundedRectangle(cornerRadius: 10)
                             .foregroundStyle(color)
                     }
+                    .padding(.trailing, 6)
                 Text(text)
-                    .padding(.leading, 8)
                 Spacer()
             }
-            .padding(.vertical, 0.1)
             .tint(.primary)
+            .frame(height: 45)
+            .frame(maxWidth: .infinity)
+            .padding(.horizontal, 12)
+            .background(colorScheme == .light ? .white : Color.gray.opacity(0.2))
         }
     }
-
 }
