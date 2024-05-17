@@ -3,6 +3,8 @@ import SwiftUI
 
 struct LinkButton: View {
     
+    @Environment(\.colorScheme) var colorScheme
+    
     private let url: URL
     private let text: String
     private let image: Image
@@ -30,14 +32,17 @@ struct LinkButton: View {
                         RoundedRectangle(cornerRadius: 10)
                             .foregroundStyle(color)
                     }
+                    .padding(.trailing, 6)
                 Text(text)
-                    .padding(.leading, 8)
                 Spacer()
                 Image(systemName: "chevron.right")
-                    .foregroundStyle(.tertiary)
+                    .opacity(0.3)
             }
-            .padding(.vertical, 0.1)
             .tint(.primary)
+            .frame(height: 45)
+            .frame(maxWidth: .infinity)
+            .padding(.horizontal, 12)
+            .background(colorScheme == .light ? .white : Color.gray.opacity(0.2))
         }
     }
 }
