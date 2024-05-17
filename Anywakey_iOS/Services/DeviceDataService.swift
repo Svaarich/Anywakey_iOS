@@ -1,5 +1,4 @@
 import Foundation
-import WidgetKit
 
 public class DeviceDataService: ObservableObject {
     
@@ -7,7 +6,6 @@ public class DeviceDataService: ObservableObject {
         didSet {
             saveUserDefaults()
             // update widget state
-            WidgetCenter.shared.reloadAllTimelines()
         }
     }
     @Published var lastDeletedDevice: Device = Device(name: "", MAC: "", BroadcastAddr: "", Port: "")

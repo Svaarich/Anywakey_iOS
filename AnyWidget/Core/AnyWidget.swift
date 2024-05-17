@@ -14,10 +14,13 @@ struct AnyWidget: Widget {
                 AnyWidgetEntryView(entry: entry)
                     .padding()
                     .background()
+                    
             }
         }
         .configurationDisplayName("AnyWidget")
         .description("Start up your computer!")
         .supportedFamilies([.systemSmall])
+        .contentMarginsDisabled()
     }
 }
+

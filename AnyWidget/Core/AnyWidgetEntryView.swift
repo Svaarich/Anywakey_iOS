@@ -7,15 +7,16 @@ struct AnyWidgetEntryView: View {
     var entry: Provider.Entry
     
     var body: some View {
-        VStack(alignment: .leading, spacing: 0) {
-            if entry.list.isEmpty {
-                noDeviceView
-            } else {
-                deviceListView
-                .padding(.bottom)
-            }
+        if entry.list.count == 1 {
+            OneDeviceView(device: entry.list)
+        } else if entry.list.count == 2 {
+            TwoDeviceView(devices: entry.list)
+        } else if entry.list.count == 3 {
+            // 3 devices
+            deviceListView
+        } else if entry.list.isEmpty {
+            noDeviceView
         }
-        .containerBackground(.tertiary, for: .widget)
     }
 }
 
@@ -49,7 +50,7 @@ extension AnyWidgetEntryView {
                             Spacer(minLength: 4)
                             Button(intent: BootButtonIntent(id: device.id)) {
                                 Circle()
-                                    .foregroundStyle(.white)
+                                    .foregroundStyle(.blue)
                                     .overlay {
                                         Image(systemName: "power")
                                             .resizable()
@@ -68,7 +69,6 @@ extension AnyWidgetEntryView {
         }
     }
     
-    
     // no pinned view
     private var noDeviceView: some View {
         VStack(alignment: .leading, spacing: 4) {
@@ -82,10 +82,8 @@ extension AnyWidgetEntryView {
                 *only first 3 pinned
                  devices are available.
                 """)
-                .foregroundStyle(.quaternary)
-                .font(.caption2)
+            .foregroundStyle(.quaternary)
+            .font(.caption2)
         }
     }
-    
-    
 }

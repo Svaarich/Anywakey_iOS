@@ -18,6 +18,7 @@
 		7D7E0B492BF63C630043175D /* SimpleEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D7E0B482BF63C450043175D /* SimpleEntry.swift */; };
 		7D7E0B4B2BF63CAE0043175D /* AnyWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D7E0B4A2BF63C9D0043175D /* AnyWidget.swift */; };
 		7D7E0B4D2BF68ACA0043175D /* AppInfoButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D7E0B4C2BF68ACA0043175D /* AppInfoButton.swift */; };
+		7D7E0B502BF7C04A0043175D /* OneDeviceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D7E0B4F2BF7C04A0043175D /* OneDeviceView.swift */; };
 		7DA71F1E2B250A96004F9AF3 /* AppInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DA71F1D2B250A96004F9AF3 /* AppInfoView.swift */; };
 		7DB7120A2AE8857E0087CA76 /* DeviceInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DB712092AE8857E0087CA76 /* DeviceInfoView.swift */; };
 		7DC26D812AE7EBE100B52D02 /* Anywakey_iOS_App.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DC26D802AE7EBE100B52D02 /* Anywakey_iOS_App.swift */; };
@@ -50,6 +51,8 @@
 		7DE834C92BF21EFB00B065BB /* SwiftyPing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D7AB9502AEC40FA00594CDB /* SwiftyPing.swift */; };
 		7DE834CA2BF21EFD00B065BB /* WakeOnLAN.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DC26DA42AE7EC5300B52D02 /* WakeOnLAN.swift */; };
 		7DE834CB2BF2524C00B065BB /* String.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DE700122AEA82DC0033E53A /* String.swift */; };
+		7DEFA8242BF7E6610092986C /* TwoDeviceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D13BA662BF7E0AD00A8817B /* TwoDeviceView.swift */; };
+		7DEFA82B2BF8067C0092986C /* WidgetTile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DEFA8262BF805FE0092986C /* WidgetTile.swift */; };
 		7DF00C412B51D541008105C9 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7DF00C402B51D541008105C9 /* LaunchScreen.storyboard */; };
 		7DF096EB2BCFC4C200981F98 /* CopiedNotificationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DF096EA2BCFC4C200981F98 /* CopiedNotificationView.swift */; };
 		7DF096ED2BCFF3FF00981F98 /* CancelDeleteView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DF096EC2BCFF3FF00981F98 /* CancelDeleteView.swift */; };
@@ -96,6 +99,7 @@
 /* Begin PBXFileReference section */
 		7D0518B62B71863F006850B8 /* HapticManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HapticManager.swift; sourceTree = "<group>"; };
 		7D12F34D2BE169BE00FE854E /* LinkButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LinkButton.swift; sourceTree = "<group>"; };
+		7D13BA662BF7E0AD00A8817B /* TwoDeviceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TwoDeviceView.swift; sourceTree = "<group>"; };
 		7D2D9F462BD7B16B001AB81A /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
 		7D596B492B48D00C00A5B7FA /* NoDevicesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoDevicesView.swift; sourceTree = "<group>"; };
 		7D5FE1C72B5CB60900142502 /* Double.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Double.swift; sourceTree = "<group>"; };
@@ -106,6 +110,7 @@
 		7D7E0B482BF63C450043175D /* SimpleEntry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimpleEntry.swift; sourceTree = "<group>"; };
 		7D7E0B4A2BF63C9D0043175D /* AnyWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnyWidget.swift; sourceTree = "<group>"; };
 		7D7E0B4C2BF68ACA0043175D /* AppInfoButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppInfoButton.swift; sourceTree = "<group>"; };
+		7D7E0B4F2BF7C04A0043175D /* OneDeviceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OneDeviceView.swift; sourceTree = "<group>"; };
 		7DA71F1D2B250A96004F9AF3 /* AppInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppInfoView.swift; sourceTree = "<group>"; };
 		7DB712092AE8857E0087CA76 /* DeviceInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceInfoView.swift; sourceTree = "<group>"; };
 		7DC26D7D2AE7EBE100B52D02 /* Anywakey-iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Anywakey-iOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -134,6 +139,7 @@
 		7DE834BE2BF2184A00B065BB /* AnyWidgetExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = AnyWidgetExtension.entitlements; sourceTree = "<group>"; };
 		7DE834BF2BF21C8200B065BB /* AnyWidgetData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnyWidgetData.swift; sourceTree = "<group>"; };
 		7DE834C12BF21CBE00B065BB /* BootButtonIntent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BootButtonIntent.swift; sourceTree = "<group>"; };
+		7DEFA8262BF805FE0092986C /* WidgetTile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WidgetTile.swift; sourceTree = "<group>"; };
 		7DF00C402B51D541008105C9 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 		7DF096EA2BCFC4C200981F98 /* CopiedNotificationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CopiedNotificationView.swift; sourceTree = "<group>"; };
 		7DF096EC2BCFF3FF00981F98 /* CancelDeleteView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CancelDeleteView.swift; sourceTree = "<group>"; };
@@ -331,16 +337,43 @@
 			isa = PBXGroup;
 			children = (
 				7DE834AF2BF2182000B065BB /* AnyWidgetBundle.swift */,
-				7DE834B12BF2182000B065BB /* AnyWidgetEntryView.swift */,
-				7D7E0B4A2BF63C9D0043175D /* AnyWidget.swift */,
-				7D7E0B452BF63BC70043175D /* Provider.swift */,
-				7D7E0B482BF63C450043175D /* SimpleEntry.swift */,
-				7DE834BF2BF21C8200B065BB /* AnyWidgetData.swift */,
-				7DE834C12BF21CBE00B065BB /* BootButtonIntent.swift */,
+				7DEFA8272BF806050092986C /* Core */,
+				7DEFA8282BF806220092986C /* Views */,
+				7DEFA8292BF806730092986C /* Components */,
 				7DE834B32BF2182300B065BB /* Assets.xcassets */,
 				7DE834B52BF2182300B065BB /* Info.plist */,
 			);
 			path = AnyWidget;
+			sourceTree = "<group>";
+		};
+		7DEFA8272BF806050092986C /* Core */ = {
+			isa = PBXGroup;
+			children = (
+				7DE834B12BF2182000B065BB /* AnyWidgetEntryView.swift */,
+				7D7E0B4A2BF63C9D0043175D /* AnyWidget.swift */,
+				7D7E0B452BF63BC70043175D /* Provider.swift */,
+				7D7E0B482BF63C450043175D /* SimpleEntry.swift */,
+			);
+			path = Core;
+			sourceTree = "<group>";
+		};
+		7DEFA8282BF806220092986C /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				7D7E0B4F2BF7C04A0043175D /* OneDeviceView.swift */,
+				7D13BA662BF7E0AD00A8817B /* TwoDeviceView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		7DEFA8292BF806730092986C /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				7DE834BF2BF21C8200B065BB /* AnyWidgetData.swift */,
+				7DE834C12BF21CBE00B065BB /* BootButtonIntent.swift */,
+				7DEFA8262BF805FE0092986C /* WidgetTile.swift */,
+			);
+			path = Components;
 			sourceTree = "<group>";
 		};
 		7DFB91C02BE584C7001650B9 /* DeviceInfoView */ = {
@@ -505,12 +538,15 @@
 				7DE834B22BF2182000B065BB /* AnyWidgetEntryView.swift in Sources */,
 				7DE834CB2BF2524C00B065BB /* String.swift in Sources */,
 				7DE834B02BF2182000B065BB /* AnyWidgetBundle.swift in Sources */,
+				7DEFA8242BF7E6610092986C /* TwoDeviceView.swift in Sources */,
 				7DE834C32BF21DFF00B065BB /* BootButtonIntent.swift in Sources */,
 				7D7E0B4B2BF63CAE0043175D /* AnyWidget.swift in Sources */,
 				7DE834C52BF21E4F00B065BB /* Device.swift in Sources */,
+				7D7E0B502BF7C04A0043175D /* OneDeviceView.swift in Sources */,
 				7DE834C82BF21EF900B065BB /* Network.swift in Sources */,
 				7D7E0B462BF63BEC0043175D /* Provider.swift in Sources */,
 				7DE834C62BF21E6300B065BB /* Color.swift in Sources */,
+				7DEFA82B2BF8067C0092986C /* WidgetTile.swift in Sources */,
 				7DE834CA2BF21EFD00B065BB /* WakeOnLAN.swift in Sources */,
 				7DE834C92BF21EFB00B065BB /* SwiftyPing.swift in Sources */,
 			);
