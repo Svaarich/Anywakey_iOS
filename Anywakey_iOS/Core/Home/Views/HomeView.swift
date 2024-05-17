@@ -4,6 +4,7 @@ import WidgetKit
 struct HomeView: View {
     
     @ObservedObject var dataService: DeviceDataService
+    @Environment(\.scenePhase) private var scenePhase
     
     @State private var showAddView: Bool = false
     @State private var showWarning: Bool = false
@@ -13,94 +14,94 @@ struct HomeView: View {
     @State private var showDeleteCancelation: Bool = false
     
     var body: some View {
-            ZStack {
-                if dataService.allDevices.isEmpty {
-                    NoDevicesView(isPresented: $showAddView)
-                        .transition(AnyTransition.opacity.animation(.spring))
-                } else {
-                    VStack {
-                        List {
-                            //MARK: Sections
-                            getSections()
-                        }
-                        // List settings
-                        // refreshable list
-                        .refreshable {
-                            DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
-                                refreshStatus.toggle()
-                            }
+        ZStack {
+            if dataService.allDevices.isEmpty {
+                NoDevicesView(isPresented: $showAddView)
+                    .transition(AnyTransition.opacity.animation(.spring))
+            } else {
+                VStack {
+                    List {
+                        //MARK: Sections
+                        getSections()
+                    }
+                    // List settings
+                    // refreshable list
+                    .refreshable {
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
+                            refreshStatus.toggle()
                         }
                     }
                 }
-                if showDeleteCancelation {
-                    VStack {
-                        Spacer()
-                        CancelDeleteView(showView: $showDeleteCancelation)
-                            .padding(.horizontal)
-                            .animation(.spring, value: showDeleteCancelation)
-                            .transition(.slide)
-                    }
+            }
+            if showDeleteCancelation {
+                VStack {
+                    Spacer()
+                    CancelDeleteView(showView: $showDeleteCancelation)
+                        .padding(.horizontal)
+                        .animation(.spring, value: showDeleteCancelation)
+                        .transition(.slide)
                 }
-                
-                // Add device view
-                if showAddView {
-                    ZStack {
-                        AddDeviceView(isPresented: $showAddView)
-                            .clipShape(RoundedRectangle(cornerRadius: 20))
-                            .ignoresSafeArea(edges: .bottom)
-                        
-                    }
-                    .zIndex(2.0)
-                    .transition(.asymmetric(
-                        insertion: .move(edge: .bottom),
-                        removal: .move(edge: .bottom).combined(with: .opacity)))
+            }
+            
+            // Add device view
+            if showAddView {
+                ZStack {
+                    AddDeviceView(isPresented: $showAddView)
+                        .clipShape(RoundedRectangle(cornerRadius: 20))
+                        .ignoresSafeArea(edges: .bottom)
                     
                 }
-                CopiedNotificationView()
-                    .opacity(isCopied ? 1.0 : 0)
-                    .animation(.spring, value: isCopied)
-                WrongInput()
-                    .opacity(showWrongInput ? 1.0 : 0)
-                    .animation(.spring, value: showWrongInput)
-            }
-            
-            .ignoresSafeArea(.keyboard)
-            
-            //MARK: Navigation title
-            .navigationTitle("Device List")
-            .navigationBarTitleDisplayMode(.inline)
-            
-            
-            //MARK: Animation
-            .animation(.default, value: dataService.allDevices)
-            
-            
-            //MARK: Toolbar items
-            .toolbar {
-                // Info button
-                ToolbarItem(placement: .topBarLeading) {
-                    NavigationLink {
-                        AppInfoView()
-                    } label: {
-                        Image(systemName: "list.dash")
-                            .symbolRenderingMode(.hierarchical)
-                    }
-                }
+                .zIndex(2.0)
+                .transition(.asymmetric(
+                    insertion: .move(edge: .bottom),
+                    removal: .move(edge: .bottom).combined(with: .opacity)))
                 
-                // Add button
-                ToolbarItem(placement: .topBarTrailing) {
-                    Button {
-                        withAnimation(.snappy) {
-                            showAddView = true
-                        }
-                    } label: {
-                        Image(systemName: "plus")
-                    }
+            }
+            CopiedNotificationView()
+                .opacity(isCopied ? 1.0 : 0)
+                .animation(.spring, value: isCopied)
+            WrongInput()
+                .opacity(showWrongInput ? 1.0 : 0)
+                .animation(.spring, value: showWrongInput)
+        }
+        
+        .ignoresSafeArea(.keyboard)
+        
+        //MARK: Navigation title
+        .navigationTitle("Device List")
+        .navigationBarTitleDisplayMode(.inline)
+        
+        
+        //MARK: Animation
+        .animation(.default, value: dataService.allDevices)
+        
+        
+        //MARK: Toolbar items
+        .toolbar {
+            // Info button
+            ToolbarItem(placement: .topBarLeading) {
+                NavigationLink {
+                    AppInfoView()
+                } label: {
+                    Image(systemName: "list.dash")
+                        .symbolRenderingMode(.hierarchical)
                 }
             }
-            .onAppear {
-                WidgetCenter.shared.reloadAllTimelines()
+            
+            // Add button
+            ToolbarItem(placement: .topBarTrailing) {
+                Button {
+                    withAnimation(.snappy) {
+                        showAddView = true
+                    }
+                } label: {
+                    Image(systemName: "plus")
+                }
             }
+        }
+        .onChange(of: scenePhase) { _ in
+            WidgetCenter.shared.reloadAllTimelines()
+        }
     }
 }
 
