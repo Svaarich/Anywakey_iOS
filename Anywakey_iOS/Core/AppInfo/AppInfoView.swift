@@ -45,6 +45,7 @@ struct AppInfoView: View {
                 .clipShape(RoundedRectangle(cornerRadius: 10))
                 .padding(.bottom)
                 
+                // buttons
                 if isTester {
                     VStack(spacing: 0) {
                         
