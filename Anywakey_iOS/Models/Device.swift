@@ -1,5 +1,5 @@
+
 import Foundation
-import SwiftUI
 
 public struct Device: Hashable, Identifiable, Codable {
     
@@ -22,6 +22,11 @@ public struct Device: Hashable, Identifiable, Codable {
         id = try container.decodeIfPresent(String.self, forKey: .id) ?? "default"
     }
     
+    // for widget
+    var ping: Double = 0.0
+    var status: Bool = false
+    
+    // main
     let name: String
     let MAC: String
     let BroadcastAddr: String
