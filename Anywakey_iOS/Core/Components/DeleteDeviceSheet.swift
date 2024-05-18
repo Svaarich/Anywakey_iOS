@@ -53,7 +53,9 @@ struct DeleteDeviceSheet: View {
                     dataService.delete(device: dataService.lastDeletedDevice)
                     dismiss()
                     dismissParentView = true
-                    showDeleteCancelation = true
+                    withAnimation {
+                        showDeleteCancelation = true
+                    }
                 } label: {
                     Text("Delete")
                         .frame(height: 55)

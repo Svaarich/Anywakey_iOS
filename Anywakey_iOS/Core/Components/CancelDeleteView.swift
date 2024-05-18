@@ -22,16 +22,23 @@ struct CancelDeleteView: View {
                     Circle()
                         .trim(from: 0.0, to: animate)
                         .rotation(.degrees(-90))
-                        .stroke(lineWidth: 2)
+                        .stroke(style: StrokeStyle(lineWidth: 2, lineCap: .round, lineJoin: .round))
                         .foregroundStyle(.primary)
+                        .background {
+                            Circle()
+                                .stroke(lineWidth: 2)
+                                .foregroundStyle(.primary.opacity(0.2))
+                        }
                 }
             Text("Device deleted.")
                 .foregroundStyle(.primary)
             Spacer()
             Button {
                 // cancel delete action
-                dataService.allDevices.insert(dataService.lastDeletedDevice, at: 0)
-                showView = false
+                withAnimation {
+                    dataService.allDevices.insert(dataService.lastDeletedDevice, at: 0)
+                    showView = false
+                }
             } label: {
                 Text("Cancel")
             }
