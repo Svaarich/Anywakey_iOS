@@ -3,9 +3,14 @@ import SwiftUI
 
 struct OneDeviceView: View {
     
-    @State var device: [Device]
+    let device: Device
+    
+    init(devices: [Device]) {
+        self.device = devices[0]
+    }
     
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        WidgetTile(device: device, colors: Color.widget.green, deviceAmount: 1)
+        .padding(4)
     }
 }
