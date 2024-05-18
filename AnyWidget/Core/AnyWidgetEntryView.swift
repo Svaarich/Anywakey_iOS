@@ -7,22 +7,24 @@ struct AnyWidgetEntryView: View {
     var entry: Provider.Entry
     
     var body: some View {
-        if entry.list.count == 1 {
-            OneDeviceView(device: entry.list)
-        } else if entry.list.count == 2 {
-            TwoDeviceView(devices: entry.list)
-        } else if entry.list.count == 3 {
-            // 3 devices
-            deviceListView
+        if !entry.list.isEmpty {
+            VStack(spacing: 0) {
+                if entry.list.count == 1 {
+                    OneDeviceView(devices: entry.list)
+                } else if entry.list.count == 2 {
+                    TwoDeviceView(devices: entry.list)
+                }
+            }
         } else if entry.list.isEmpty {
             noDeviceView
+                .padding(8)
         }
     }
 }
 
 extension AnyWidgetEntryView {
     
-    // MARK: FUNCTIONSz
+    // MARK: FUNCTIONS
     
     // MARK: PROPERTIES
     
