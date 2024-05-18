@@ -9,12 +9,11 @@ struct AnyWidget: Widget {
             if #available(iOS 17.0, *) {
                 AnyWidgetEntryView(entry: entry)
                     .ignoresSafeArea()
-                    .containerBackground(.fill.quaternary, for: .widget)
+                    .containerBackground(.quaternary, for: .widget)
             } else {
                 AnyWidgetEntryView(entry: entry)
-                    .padding()
+                    .ignoresSafeArea()
                     .background()
-                    
             }
         }
         .configurationDisplayName("AnyWidget")
