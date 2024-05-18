@@ -5,36 +5,41 @@ struct WidgetTile: View {
     
     let device: Device
     let colors: [Color]
-    
-    @State var isPressed: Bool = false
+    let deviceAmount: Int
+    var padding: CGFloat {
+        if deviceAmount == 1 {
+            return 16
+        } else {
+            return 8
+        }
+    }
     
     var body: some View {
         Button(intent: BootButtonIntent(id: device.id)) {
-            HStack {
-                VStack(alignment: .leading,spacing: 8) {
-                    Image(systemName: "power")
-                        .fontWeight(.semibold)
-                    Text(device.name)
-                        .lineLimit(1)
-                        .font(Font.system(size: 14))
-                        .fontWeight(.bold)
-                }
+            VStack(alignment: .leading, spacing: 0) {
+                Text(device.name)
+                    .lineLimit(1)
+                    .font(.callout)
+                    .fontWeight(.semibold)
+                    .padding(.leading, 4)
+                    .padding(.top, deviceAmount == 2 ? 4 : 0)
+
                 Spacer(minLength: 0)
+                Image(systemName: "power")
+                .fontWeight(.semibold)
+                .padding(4)
+                .frame(maxWidth: .infinity, alignment: .trailing)
             }
-            .padding(.vertical, 6)
-            .padding(.horizontal, 14)
+            .padding(padding)
+            .foregroundStyle(.white)
+            .frame(maxWidth: .infinity, maxHeight: .infinity)
+            .background {
+                ContainerRelativeShape()
+                    .inset(by: 4)
+                    .fill(LinearGradient(colors: colors, startPoint: .top, endPoint: .bottom))
+            }
         }
         .buttonStyle(.plain)
-        .frame(maxWidth: .infinity, maxHeight: .infinity)
-        .background {
-            ContainerRelativeShape()
-                .inset(by: 4)
-                .fill(LinearGradient(colors: colors, startPoint: .top, endPoint: .bottom))
-                .opacity(isPressed ? 0.5 : 1.0)
-        }
-        .onTapGesture {
-            isPressed.toggle()
-        }
     }
 }
 
