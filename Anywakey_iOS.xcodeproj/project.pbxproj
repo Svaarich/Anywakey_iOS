@@ -22,6 +22,7 @@
 		7DA71F1E2B250A96004F9AF3 /* AppInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DA71F1D2B250A96004F9AF3 /* AppInfoView.swift */; };
 		7DB21B6F2BF8D81000A090E2 /* Color + Widget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DB21B6C2BF8D72B00A090E2 /* Color + Widget.swift */; };
 		7DB21B702BF92C7000A090E2 /* Color + Widget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DB21B6C2BF8D72B00A090E2 /* Color + Widget.swift */; };
+		7DB21B742BF96CAF00A090E2 /* AppIntent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DB21B732BF96CAF00A090E2 /* AppIntent.swift */; };
 		7DB7120A2AE8857E0087CA76 /* DeviceInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DB712092AE8857E0087CA76 /* DeviceInfoView.swift */; };
 		7DC26D812AE7EBE100B52D02 /* Anywakey_iOS_App.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DC26D802AE7EBE100B52D02 /* Anywakey_iOS_App.swift */; };
 		7DC26D832AE7EBE100B52D02 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DC26D822AE7EBE100B52D02 /* HomeView.swift */; };
@@ -44,7 +45,6 @@
 		7DE834B42BF2182300B065BB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7DE834B32BF2182300B065BB /* Assets.xcassets */; };
 		7DE834B82BF2182300B065BB /* AnyWidgetExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 7DE834A82BF2182000B065BB /* AnyWidgetExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		7DE834C02BF21C8200B065BB /* AnyWidgetData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DE834BF2BF21C8200B065BB /* AnyWidgetData.swift */; };
-		7DE834C32BF21DFF00B065BB /* AppIntent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DE834C12BF21CBE00B065BB /* AppIntent.swift */; };
 		7DE834C42BF21E2900B065BB /* AnyWidgetData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DE834BF2BF21C8200B065BB /* AnyWidgetData.swift */; };
 		7DE834C52BF21E4F00B065BB /* Device.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DFC05352B292C5E0082E502 /* Device.swift */; };
 		7DE834C62BF21E6300B065BB /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DD331DD2B5C5DD7002BFA64 /* Color.swift */; };
@@ -114,6 +114,7 @@
 		7D7E0B4F2BF7C04A0043175D /* OneDeviceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OneDeviceView.swift; sourceTree = "<group>"; };
 		7DA71F1D2B250A96004F9AF3 /* AppInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppInfoView.swift; sourceTree = "<group>"; };
 		7DB21B6C2BF8D72B00A090E2 /* Color + Widget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color + Widget.swift"; sourceTree = "<group>"; };
+		7DB21B732BF96CAF00A090E2 /* AppIntent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppIntent.swift; sourceTree = "<group>"; };
 		7DB712092AE8857E0087CA76 /* DeviceInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceInfoView.swift; sourceTree = "<group>"; };
 		7DC26D7D2AE7EBE100B52D02 /* Anywakey-iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Anywakey-iOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		7DC26D802AE7EBE100B52D02 /* Anywakey_iOS_App.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Anywakey_iOS_App.swift; sourceTree = "<group>"; };
@@ -140,7 +141,6 @@
 		7DE834BD2BF2184400B065BB /* Anywakey-iOS.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Anywakey-iOS.entitlements"; sourceTree = "<group>"; };
 		7DE834BE2BF2184A00B065BB /* AnyWidgetExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = AnyWidgetExtension.entitlements; sourceTree = "<group>"; };
 		7DE834BF2BF21C8200B065BB /* AnyWidgetData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnyWidgetData.swift; sourceTree = "<group>"; };
-		7DE834C12BF21CBE00B065BB /* AppIntent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppIntent.swift; sourceTree = "<group>"; };
 		7DEFA8262BF805FE0092986C /* WidgetTile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WidgetTile.swift; sourceTree = "<group>"; };
 		7DF00C402B51D541008105C9 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 		7DF096EA2BCFC4C200981F98 /* CopiedNotificationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CopiedNotificationView.swift; sourceTree = "<group>"; };
@@ -381,7 +381,7 @@
 			isa = PBXGroup;
 			children = (
 				7DE834BF2BF21C8200B065BB /* AnyWidgetData.swift */,
-				7DE834C12BF21CBE00B065BB /* AppIntent.swift */,
+				7DB21B732BF96CAF00A090E2 /* AppIntent.swift */,
 				7DEFA8262BF805FE0092986C /* WidgetTile.swift */,
 			);
 			path = Components;
@@ -550,7 +550,6 @@
 				7DE834CB2BF2524C00B065BB /* String.swift in Sources */,
 				7DE834B02BF2182000B065BB /* AnyWidgetBundle.swift in Sources */,
 				7DEFA8242BF7E6610092986C /* TwoDeviceView.swift in Sources */,
-				7DE834C32BF21DFF00B065BB /* AppIntent.swift in Sources */,
 				7D7E0B4B2BF63CAE0043175D /* AnyWidget.swift in Sources */,
 				7DE834C52BF21E4F00B065BB /* Device.swift in Sources */,
 				7D7E0B502BF7C04A0043175D /* OneDeviceView.swift in Sources */,
@@ -558,6 +557,7 @@
 				7D7E0B462BF63BEC0043175D /* Provider.swift in Sources */,
 				7DE834C62BF21E6300B065BB /* Color.swift in Sources */,
 				7DEFA82B2BF8067C0092986C /* WidgetTile.swift in Sources */,
+				7DB21B742BF96CAF00A090E2 /* AppIntent.swift in Sources */,
 				7DB21B6F2BF8D81000A090E2 /* Color + Widget.swift in Sources */,
 				7DE834CA2BF21EFD00B065BB /* WakeOnLAN.swift in Sources */,
 				7DE834C92BF21EFB00B065BB /* SwiftyPing.swift in Sources */,
