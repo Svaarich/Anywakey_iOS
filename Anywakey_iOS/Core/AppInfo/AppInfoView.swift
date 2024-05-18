@@ -105,6 +105,11 @@ extension AppInfoView {
             Text("Version: \(Bundle.main.releaseVersionNumber ?? "")")
                 .font(.system(size: 12, weight: .medium))
                 .foregroundColor(.secondary)
+            if isTester {
+                Text("Build: \(Bundle.main.buildVersionNumber ?? "")")
+                    .font(.system(size: 12, weight: .medium))
+                    .foregroundColor(.secondary)
+            }
         }
         .padding(.vertical, 20)
         .frame(maxWidth: .infinity)

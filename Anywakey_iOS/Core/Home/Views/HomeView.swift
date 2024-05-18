@@ -39,7 +39,8 @@ struct HomeView: View {
                     CancelDeleteView(showView: $showDeleteCancelation)
                         .padding(.horizontal)
                         .animation(.spring, value: showDeleteCancelation)
-                        .transition(.slide)
+                        .opacity(showDeleteCancelation ? 1.0 : 0)
+                        .transition(.opacity)
                 }
             }
             
