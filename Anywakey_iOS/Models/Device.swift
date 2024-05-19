@@ -19,7 +19,7 @@ public struct Device: Hashable, Identifiable, Codable {
         BroadcastAddr = try container.decode(String.self, forKey: .BroadcastAddr)
         Port = try container.decode(String.self, forKey: .Port)
         isPinned = try container.decodeIfPresent(Bool.self, forKey: .isPinned) ?? false
-        id = try container.decodeIfPresent(String.self, forKey: .id) ?? "default"
+        id = try container.decodeIfPresent(String.self, forKey: .id) ?? UUID().uuidString
     }
     
     // for widget
