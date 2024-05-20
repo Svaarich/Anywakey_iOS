@@ -23,6 +23,8 @@
 		7DB21B6F2BF8D81000A090E2 /* Color + Widget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DB21B6C2BF8D72B00A090E2 /* Color + Widget.swift */; };
 		7DB21B702BF92C7000A090E2 /* Color + Widget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DB21B6C2BF8D72B00A090E2 /* Color + Widget.swift */; };
 		7DB21B742BF96CAF00A090E2 /* AppIntent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DB21B732BF96CAF00A090E2 /* AppIntent.swift */; };
+		7DB21B762BFAB82D00A090E2 /* ShareManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DB21B752BFAB82D00A090E2 /* ShareManager.swift */; };
+		7DB21B782BFB72BF00A090E2 /* ShareButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DB21B772BFB72BF00A090E2 /* ShareButton.swift */; };
 		7DB7120A2AE8857E0087CA76 /* DeviceInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DB712092AE8857E0087CA76 /* DeviceInfoView.swift */; };
 		7DC26D812AE7EBE100B52D02 /* Anywakey_iOS_App.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DC26D802AE7EBE100B52D02 /* Anywakey_iOS_App.swift */; };
 		7DC26D832AE7EBE100B52D02 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DC26D822AE7EBE100B52D02 /* HomeView.swift */; };
@@ -115,6 +117,9 @@
 		7DA71F1D2B250A96004F9AF3 /* AppInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppInfoView.swift; sourceTree = "<group>"; };
 		7DB21B6C2BF8D72B00A090E2 /* Color + Widget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color + Widget.swift"; sourceTree = "<group>"; };
 		7DB21B732BF96CAF00A090E2 /* AppIntent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppIntent.swift; sourceTree = "<group>"; };
+		7DB21B752BFAB82D00A090E2 /* ShareManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareManager.swift; sourceTree = "<group>"; };
+		7DB21B772BFB72BF00A090E2 /* ShareButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareButton.swift; sourceTree = "<group>"; };
+		7DB21B792BFB882200A090E2 /* Anywakey-iOS-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "Anywakey-iOS-Info.plist"; sourceTree = "<group>"; };
 		7DB712092AE8857E0087CA76 /* DeviceInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceInfoView.swift; sourceTree = "<group>"; };
 		7DC26D7D2AE7EBE100B52D02 /* Anywakey-iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Anywakey-iOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		7DC26D802AE7EBE100B52D02 /* Anywakey_iOS_App.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Anywakey_iOS_App.swift; sourceTree = "<group>"; };
@@ -177,6 +182,7 @@
 				7DA71F1D2B250A96004F9AF3 /* AppInfoView.swift */,
 				7D12F34D2BE169BE00FE854E /* LinkButton.swift */,
 				7D7E0B4C2BF68ACA0043175D /* AppInfoButton.swift */,
+				7DB21B772BFB72BF00A090E2 /* ShareButton.swift */,
 			);
 			path = AppInfo;
 			sourceTree = "<group>";
@@ -228,6 +234,7 @@
 		7DC26D742AE7EBE100B52D02 = {
 			isa = PBXGroup;
 			children = (
+				7DB21B792BFB882200A090E2 /* Anywakey-iOS-Info.plist */,
 				7DC26D7F2AE7EBE100B52D02 /* Anywakey_iOS */,
 				7DE834AE2BF2182000B065BB /* AnyWidget */,
 				7DE834BE2BF2184A00B065BB /* AnyWidgetExtension.entitlements */,
@@ -304,6 +311,7 @@
 			children = (
 				7DFC05332B292BFB0082E502 /* DeviceDataService.swift */,
 				7D0518B62B71863F006850B8 /* HapticManager.swift */,
+				7DB21B752BFAB82D00A090E2 /* ShareManager.swift */,
 				7D180F462AEDBB27005063E3 /* NetworkServices */,
 			);
 			path = Services;
@@ -528,11 +536,13 @@
 				7DD1F7DD2BBBF70F0000E238 /* Device + Extension.swift in Sources */,
 				7DD331DC2B5C5D8D002BFA64 /* BootButton.swift in Sources */,
 				7DE7001B2AEABC930033E53A /* AddDeviceView.swift in Sources */,
+				7DB21B762BFAB82D00A090E2 /* ShareManager.swift in Sources */,
 				7DFB91BF2BE5849F001650B9 /* Bundle.swift in Sources */,
 				7D5FE1F42B5F5D3F00142502 /* DeleteDeviceSheet.swift in Sources */,
 				7DC26D832AE7EBE100B52D02 /* HomeView.swift in Sources */,
 				7D12F34E2BE169BE00FE854E /* LinkButton.swift in Sources */,
 				7D7E0B4D2BF68ACA0043175D /* AppInfoButton.swift in Sources */,
+				7DB21B782BFB72BF00A090E2 /* ShareButton.swift in Sources */,
 				7DC26D812AE7EBE100B52D02 /* Anywakey_iOS_App.swift in Sources */,
 				7DFB91BD2BE3F252001650B9 /* BigBootButton.swift in Sources */,
 				7D77185C2BE3B0B40046700A /* WrongInput.swift in Sources */,
@@ -708,6 +718,7 @@
 				DEVELOPMENT_TEAM = LMA5CPXKDX;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "Anywakey-iOS-Info.plist";
 				INFOPLIST_KEY_CFBundleDisplayName = Anywakey;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.utilities";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
@@ -748,6 +759,7 @@
 				DEVELOPMENT_TEAM = LMA5CPXKDX;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "Anywakey-iOS-Info.plist";
 				INFOPLIST_KEY_CFBundleDisplayName = Anywakey;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.utilities";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
