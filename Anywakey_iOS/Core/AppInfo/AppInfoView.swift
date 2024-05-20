@@ -146,6 +146,8 @@ extension AppInfoView {
         }
     }
     
+    // For testers
+    
     private var testerDeleteButton: some View {
         AppInfoButton(
             text: "Delete all devices",
@@ -185,6 +187,7 @@ extension AppInfoView {
         
     }
     
+    // For user
     private var linkTreeButton: some View {
         LinkButton(
             stringURL: linkTreeURL,
