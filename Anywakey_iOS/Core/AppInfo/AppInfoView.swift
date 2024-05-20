@@ -6,6 +6,8 @@ struct AppInfoView: View {
     @Environment(\.colorScheme) var colorScheme
     @AppStorage("tester") var isTester = false
     
+    @State private var showDeleteConfirmation: Bool = false
+    
     private let linkTreeURL = "https://linktr.ee/svarychevskyi"
     private let gitHubURL = "https://github.com/Svaarich"
     private let gitHubRepoURL = "https://github.com/Svaarich/LANWakeUp-IOS"
@@ -33,6 +35,7 @@ struct AppInfoView: View {
                     
                     linkTreeButton
                     
+                    
                 }
                 .clipShape(RoundedRectangle(cornerRadius: 10))
                 .padding(.bottom)
@@ -40,6 +43,7 @@ struct AppInfoView: View {
                 VStack(spacing: 0) {
                     
                     bugReportButton
+                    
                     
                 }
                 .clipShape(RoundedRectangle(cornerRadius: 10))
@@ -54,6 +58,10 @@ struct AppInfoView: View {
                         Divider()
                         
                         testerDeleteButton
+                        
+                        Divider()
+                        
+                        exportFileButton
                         
                     }
                     .clipShape(RoundedRectangle(cornerRadius: 10))
@@ -73,6 +81,19 @@ struct AppInfoView: View {
         
         .navigationTitle("App Information")
         .navigationBarTitleDisplayMode(.inline)
+        
+        .confirmationDialog("Delete all devices?", isPresented: $showDeleteConfirmation) {
+            Button(role: .destructive) {
+                dataService.allDevices = []
+            } label: {
+                Text("Delete")
+            }
+            Button(role: .cancel) {
+                
+            } label: {
+                Text("Cancel")
+            }
+        }
     }
 }
 
@@ -129,13 +150,16 @@ extension AppInfoView {
         }
     }
     
+    // For testers
+    
     private var testerDeleteButton: some View {
         AppInfoButton(
             text: "Delete all devices",
             image: Image(systemName: "trash.fill"),
             color: .red) {
-                dataService.allDevices = []
+                showDeleteConfirmation.toggle()
             }
+            .disabled(dataService.allDevices.isEmpty)
     }
     
     private var testerAddButton: some View {
@@ -167,6 +191,7 @@ extension AppInfoView {
         
     }
     
+    // For user
     private var linkTreeButton: some View {
         LinkButton(
             stringURL: linkTreeURL,
@@ -197,6 +222,14 @@ extension AppInfoView {
             text: "Issue / Bug report",
             image: Image(systemName: "ant.fill"),
             color: .red)
+    }
+    
+    private var exportFileButton: some View {
+        ShareButton(
+            text: "Share config",
+            image: Image(systemName: "square.and.arrow.up"),
+            color: .blue,
+            configURL: ShareManager.instance.share(config: dataService.getConfig()))
     }
 }
 

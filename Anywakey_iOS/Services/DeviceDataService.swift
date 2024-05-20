@@ -1,3 +1,4 @@
+
 import Foundation
 
 public class DeviceDataService: ObservableObject {
@@ -5,7 +6,6 @@ public class DeviceDataService: ObservableObject {
     @Published var allDevices: [Device] = [] {
         didSet {
             saveUserDefaults()
-            // update widget state
         }
     }
     @Published var lastDeletedDevice: Device = Device(name: "", MAC: "", BroadcastAddr: "", Port: "")
@@ -70,6 +70,7 @@ public class DeviceDataService: ObservableObject {
         }
     }
     
+    // import device
     func importDeviceFrom(JSON: String, onCompletion: @escaping (_ data: Device) -> () ) {
         if let jsonData = JSON.data(using: .utf8) {
             let decoder = JSONDecoder()
@@ -80,5 +81,18 @@ public class DeviceDataService: ObservableObject {
                 print("Unable to decode. Error: \(error.localizedDescription)")
             }
         }
+    }
+    
+    func getConfig() -> String {
+        let encoder = JSONEncoder()
+        // try encode data
+            do {
+                let data = try encoder.encode(allDevices)
+                let export = String(data: data, encoding: .utf8)
+                return export ?? ""
+            } catch let error {
+                print("Can not encode data. \(error.localizedDescription)")
+                return ""
+            }
     }
 }

@@ -18,7 +18,7 @@ struct WidgetTile: View {
         Button(intent: BootButtonIntent(id: device.id)) {
             VStack(alignment: .leading, spacing: 0) {
                 Text(device.name)
-                    .lineLimit(1)
+                    .lineLimit(deviceAmount == 1 ? 3 : 1)
                     .font(.callout)
                     .fontWeight(.semibold)
                     .padding(.leading, 4)
