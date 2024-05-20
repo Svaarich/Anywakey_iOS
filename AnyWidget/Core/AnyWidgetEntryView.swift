@@ -81,7 +81,7 @@ extension AnyWidgetEntryView {
                 .font(.caption)
             Spacer()
             Text("""
-                *only first 3 pinned
+                *only first 2 pinned
                  devices are available.
                 """)
             .foregroundStyle(.quaternary)
