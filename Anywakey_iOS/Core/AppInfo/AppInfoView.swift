@@ -59,6 +59,10 @@ struct AppInfoView: View {
                         
                         testerDeleteButton
                         
+                        Divider()
+                        
+                        exportFileButton
+                        
                     }
                     .clipShape(RoundedRectangle(cornerRadius: 10))
                     .padding(.bottom)
@@ -218,6 +222,14 @@ extension AppInfoView {
             text: "Issue / Bug report",
             image: Image(systemName: "ant.fill"),
             color: .red)
+    }
+    
+    private var exportFileButton: some View {
+        ShareButton(
+            text: "Share config",
+            image: Image(systemName: "square.and.arrow.up"),
+            color: .blue,
+            configURL: ShareManager.instance.share(config: dataService.getConfig()))
     }
 }
 
