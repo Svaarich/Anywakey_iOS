@@ -17,7 +17,7 @@ struct AnyWidgetEntryView: View {
             }
         } else if entry.list.isEmpty {
             noDeviceView
-                .padding(8)
+                .padding(12)
         }
     }
 }
