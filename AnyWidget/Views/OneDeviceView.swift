@@ -11,6 +11,6 @@ struct OneDeviceView: View {
     
     var body: some View {
         WidgetTile(device: device, colors: Color.widget.green, deviceAmount: 1)
-        .padding(4)
+            .padding(4)
     }
 }
