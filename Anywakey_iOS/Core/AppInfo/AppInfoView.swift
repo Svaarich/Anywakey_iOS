@@ -238,10 +238,21 @@ extension AppInfoView {
     
     private var exportFileButton: some View {
         ShareButton(
-            text: "Share config",
-            image: Image(systemName: "square.and.arrow.up"),
+            text: "Share configuration file",
+            image: Image(systemName: "square.and.arrow.up.fill"),
             color: .blue,
+            imageColor: .white,
             configURL: ShareManager.instance.share(config: dataService.getConfig()))
+    }
+    
+    private var importConfigButton: some View {
+        AppInfoButton(
+            text: "Import configuration file",
+            image: Image(systemName: "square.and.arrow.down.fill"),
+            color: .blue,
+            imageColor: .white) {
+                showFileImporter.toggle()
+            }
     }
 }
 
