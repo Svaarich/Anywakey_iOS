@@ -7,6 +7,7 @@ struct AppInfoView: View {
     @AppStorage("tester") var isTester = false
     
     @State private var showDeleteConfirmation: Bool = false
+    @State private var showFileImporter: Bool = false
     
     private let linkTreeURL = "https://linktr.ee/svarychevskyi"
     private let gitHubURL = "https://github.com/Svaarich"
@@ -92,6 +93,17 @@ struct AppInfoView: View {
                 
             } label: {
                 Text("Cancel")
+            }
+        }
+        .fileImporter(isPresented: $showFileImporter, allowedContentTypes: [.text]) { result in
+            do {
+                let fileUrl = try result.get()
+                if fileUrl.startAccessingSecurityScopedResource() {
+                    dataService.importConfig(from: fileUrl)
+                }
+                fileUrl.stopAccessingSecurityScopedResource()
+            } catch {
+                print("Error file reading. \(error)")
             }
         }
     }
