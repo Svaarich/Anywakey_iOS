@@ -95,4 +95,17 @@ public class DeviceDataService: ObservableObject {
                 return ""
             }
     }
+    
+    func importConfig(from url: URL) {
+        let decoder = JSONDecoder()
+        do {
+            let result = try String(contentsOf: url)
+            if let jsonData = result.data(using: .utf8) {
+                allDevices = try decoder.decode([Device].self, from: jsonData)
+            }
+            print(result)
+        } catch {
+            print("Error reading file. \(error)")
+        }
+    }
 }

@@ -25,6 +25,7 @@
 		7DB21B742BF96CAF00A090E2 /* AppIntent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DB21B732BF96CAF00A090E2 /* AppIntent.swift */; };
 		7DB21B762BFAB82D00A090E2 /* ShareManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DB21B752BFAB82D00A090E2 /* ShareManager.swift */; };
 		7DB21B782BFB72BF00A090E2 /* ShareButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DB21B772BFB72BF00A090E2 /* ShareButton.swift */; };
+		7DB21BB12BFD234800A090E2 /* WidgetSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DB21BB02BFD234800A090E2 /* WidgetSettingsView.swift */; };
 		7DB7120A2AE8857E0087CA76 /* DeviceInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DB712092AE8857E0087CA76 /* DeviceInfoView.swift */; };
 		7DC26D812AE7EBE100B52D02 /* Anywakey_iOS_App.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DC26D802AE7EBE100B52D02 /* Anywakey_iOS_App.swift */; };
 		7DC26D832AE7EBE100B52D02 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DC26D822AE7EBE100B52D02 /* HomeView.swift */; };
@@ -120,6 +121,7 @@
 		7DB21B752BFAB82D00A090E2 /* ShareManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareManager.swift; sourceTree = "<group>"; };
 		7DB21B772BFB72BF00A090E2 /* ShareButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareButton.swift; sourceTree = "<group>"; };
 		7DB21B792BFB882200A090E2 /* Anywakey-iOS-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "Anywakey-iOS-Info.plist"; sourceTree = "<group>"; };
+		7DB21BB02BFD234800A090E2 /* WidgetSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WidgetSettingsView.swift; sourceTree = "<group>"; };
 		7DB712092AE8857E0087CA76 /* DeviceInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceInfoView.swift; sourceTree = "<group>"; };
 		7DC26D7D2AE7EBE100B52D02 /* Anywakey-iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Anywakey-iOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		7DC26D802AE7EBE100B52D02 /* Anywakey_iOS_App.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Anywakey_iOS_App.swift; sourceTree = "<group>"; };
@@ -284,6 +286,7 @@
 				7DD331DA2B5AF334002BFA64 /* Components */,
 				7D34560A2B71D053003267AE /* AddDevice */,
 				7DD331D02B5AEAED002BFA64 /* Home */,
+				7DB21BB02BFD234800A090E2 /* WidgetSettingsView.swift */,
 			);
 			path = Core;
 			sourceTree = "<group>";
@@ -517,6 +520,7 @@
 			files = (
 				7DB21B702BF92C7000A090E2 /* Color + Widget.swift in Sources */,
 				7DC26DA92AE7EDA500B52D02 /* WakeOnLAN.swift in Sources */,
+				7DB21BB12BFD234800A090E2 /* WidgetSettingsView.swift in Sources */,
 				7DF096ED2BCFF3FF00981F98 /* CancelDeleteView.swift in Sources */,
 				7DC26DA82AE7EC8B00B52D02 /* Network.swift in Sources */,
 				7DE700132AEA82DC0033E53A /* String.swift in Sources */,
@@ -732,7 +736,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.1;
+				MARKETING_VERSION = 1.2;
 				PRODUCT_BUNDLE_IDENTIFIER = svarich.anywakey;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
@@ -773,7 +777,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.1;
+				MARKETING_VERSION = 1.2;
 				PRODUCT_BUNDLE_IDENTIFIER = svarich.anywakey;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;

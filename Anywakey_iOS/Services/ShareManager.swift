@@ -12,7 +12,7 @@ public class ShareManager {
         let fileManager = FileManager.default
         let documentsURL = fileManager.urls(for: .documentDirectory, in: .userDomainMask).first!
         // config url
-        let userConfigURL = documentsURL.appendingPathComponent("anywakey_config.awc", conformingTo: .text)
+        let userConfigURL = documentsURL.appendingPathComponent("anywakey_config.txt", conformingTo: .text)
         
         if let data = config.data(using: .utf8) {
             do {

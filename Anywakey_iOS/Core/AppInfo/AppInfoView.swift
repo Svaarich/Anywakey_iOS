@@ -7,6 +7,7 @@ struct AppInfoView: View {
     @AppStorage("tester") var isTester = false
     
     @State private var showDeleteConfirmation: Bool = false
+    @State private var showFileImporter: Bool = false
     
     private let linkTreeURL = "https://linktr.ee/svarychevskyi"
     private let gitHubURL = "https://github.com/Svaarich"
@@ -59,14 +60,21 @@ struct AppInfoView: View {
                         
                         testerDeleteButton
                         
-                        Divider()
-                        
-                        exportFileButton
-                        
                     }
                     .clipShape(RoundedRectangle(cornerRadius: 10))
                     .padding(.bottom)
                 }
+                
+                VStack(spacing: 0) {
+                    
+                    exportFileButton
+                    
+                    Divider()
+                    
+                    importConfigButton
+                }
+                .clipShape(RoundedRectangle(cornerRadius: 10))
+                .padding(.bottom)
                 
                 version
                     .padding(.top)
@@ -92,6 +100,17 @@ struct AppInfoView: View {
                 
             } label: {
                 Text("Cancel")
+            }
+        }
+        .fileImporter(isPresented: $showFileImporter, allowedContentTypes: [.text]) { result in
+            do {
+                let fileUrl = try result.get()
+                if fileUrl.startAccessingSecurityScopedResource() {
+                    dataService.importConfig(from: fileUrl)
+                }
+                fileUrl.stopAccessingSecurityScopedResource()
+            } catch {
+                print("Error file reading. \(error)")
             }
         }
     }
@@ -226,10 +245,21 @@ extension AppInfoView {
     
     private var exportFileButton: some View {
         ShareButton(
-            text: "Share config",
-            image: Image(systemName: "square.and.arrow.up"),
+            text: "Share configuration file",
+            image: Image(systemName: "square.and.arrow.up.fill"),
             color: .blue,
+            imageColor: .white,
             configURL: ShareManager.instance.share(config: dataService.getConfig()))
+    }
+    
+    private var importConfigButton: some View {
+        AppInfoButton(
+            text: "Import configuration file",
+            image: Image(systemName: "square.and.arrow.down.fill"),
+            color: .blue,
+            imageColor: .white) {
+                showFileImporter.toggle()
+            }
     }
 }
 
