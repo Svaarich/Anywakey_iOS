@@ -60,14 +60,21 @@ struct AppInfoView: View {
                         
                         testerDeleteButton
                         
-                        Divider()
-                        
-                        exportFileButton
-                        
                     }
                     .clipShape(RoundedRectangle(cornerRadius: 10))
                     .padding(.bottom)
                 }
+                
+                VStack(spacing: 0) {
+                    
+                    exportFileButton
+                    
+                    Divider()
+                    
+                    importConfigButton
+                }
+                .clipShape(RoundedRectangle(cornerRadius: 10))
+                .padding(.bottom)
                 
                 version
                     .padding(.top)
