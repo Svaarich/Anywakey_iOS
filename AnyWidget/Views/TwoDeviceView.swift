@@ -14,9 +14,9 @@ struct TwoDeviceView: View {
     var body: some View {
         VStack(spacing: 0) {
             // device 1
-            WidgetTile(device: device1, colors: Color.widget.blue, deviceAmount: 2)
+            WidgetTile(device: device1, colors: Color.widget.blue.color, deviceAmount: 2)
             //device 2
-            WidgetTile(device: device2, colors: Color.widget.yellow, deviceAmount: 2)
+            WidgetTile(device: device2, colors: Color.widget.yellow.color, deviceAmount: 2)
         }
         .padding(4)
     }
