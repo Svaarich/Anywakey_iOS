@@ -4,11 +4,11 @@ import WidgetKit
 
 struct WidgetSettingsView: View {
     
-    @AppStorage("widgetColor_1") var widgetColorIndex_1: Int = 0
-    @AppStorage("widgetColor_2") var widgetColorIndex_2: Int = 1
+    @State private var widgetColorIndex_1: Int = 3
+    @State private var widgetColorIndex_2: Int = 3
     @Environment(\.colorScheme) var colorScheme
     
-    @State var tileEditingNumber: Int = 3
+    @State var tileEditingNumber: Int
     
     let devicesAmount: Int
     
@@ -20,6 +20,15 @@ struct WidgetSettingsView: View {
         Color.widget.purpule,
         Color.widget.yellow
     ]
+    
+    init(devicesAmount: Int) {
+        if let userDefaults = UserDefaults(suiteName: "group.svarich.anywakey") {
+            widgetColorIndex_1 = userDefaults.integer(forKey: "widgetColor_1")
+            widgetColorIndex_2 = userDefaults.integer(forKey: "widgetColor_2")
+        }
+        self.devicesAmount = devicesAmount
+        _tileEditingNumber = State(initialValue: devicesAmount == 1 ? 1 : 3)
+    }
     
     var body: some View {
         ScrollView {
@@ -127,7 +136,7 @@ extension WidgetSettingsView {
     // MARK: FUNCTIONS
     func getIndex(color: GradientColor) -> Int {
         for index in 0..<colors.count {
-            if color.id == colors[index].id{
+            if color.id == colors[index].id {
                 return index
             }
         }
