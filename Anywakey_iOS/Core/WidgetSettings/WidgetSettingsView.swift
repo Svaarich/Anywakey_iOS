@@ -134,8 +134,22 @@ extension WidgetSettingsView {
         return 0
     }
     
+    func saveIndecies() {
+        if let userDefaults = UserDefaults(suiteName: "group.svarich.anywakey") {
+            userDefaults.setValue(widgetColorIndex_1, forKey: "widgetColor_1")
+            userDefaults.setValue(widgetColorIndex_2, forKey: "widgetColor_2")
+        }
+    }
+    
+    func fetchColors() {
+        if let userDefaults = UserDefaults(suiteName: "group.svarich.anywakey") {
+            widgetColorIndex_1 = userDefaults.integer(forKey: "widgetColor_1")
+            widgetColorIndex_2 = userDefaults.integer(forKey: "widgetColor_2")
+        }
+    }
+    
 }
 
-#Preview {
-    WidgetSettingsView(devicesAmount: 2)
-}
+//#Preview {
+//    WidgetSettingsView(devicesAmount: 2)
+//}
