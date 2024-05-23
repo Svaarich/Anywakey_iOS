@@ -14,6 +14,10 @@ struct AppInfoView: View {
     private let gitHubRepoURL = "https://github.com/Svaarich/LANWakeUp-IOS"
     private let bugReportURL = "https://github.com/Svaarich/LANWakeUp-IOS/issues/new"
     
+    private var devicesAmount: Int {
+        dataService.allDevices.filter({ $0.isPinned }).count
+    }
+    
     var body: some View {
         ScrollView {
             VStack {
@@ -38,11 +42,6 @@ struct AppInfoView: View {
                     
                     Divider()
                     
-                    if #available(iOS 17.0, *) {
-                        NavigationLink("Wisget setting") {
-                            WidgetSettingsView(devicesAmount: dataService.allDevices.filter({ $0.isPinned }).count)
-                        }
-                    }
                 }
                 .clipShape(RoundedRectangle(cornerRadius: 10))
                 .padding(.bottom)
@@ -50,7 +49,6 @@ struct AppInfoView: View {
                 VStack(spacing: 0) {
                     
                     bugReportButton
-                    
                     
                 }
                 .clipShape(RoundedRectangle(cornerRadius: 10))
@@ -72,6 +70,16 @@ struct AppInfoView: View {
                 }
                 
                 VStack(spacing: 0) {
+                    
+                    if #available(iOS 17.0, *) {
+                        NavLinkButton(
+                            text: "Widget setting",
+                            image: Image(systemName: devicesAmount >= 2 ? "square.split.1x2.fill" : "square.fill"),
+                            color: .indigo) {
+                                AnyView(WidgetSettingsView(devicesAmount: devicesAmount))
+                        }
+                        Divider()
+                    }
                     
                     exportFileButton
                     
