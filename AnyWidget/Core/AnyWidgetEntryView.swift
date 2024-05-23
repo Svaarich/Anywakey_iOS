@@ -11,7 +11,7 @@ struct AnyWidgetEntryView: View {
             VStack(spacing: 0) {
                 if entry.list.count == 1 {
                     OneDeviceView(devices: entry.list, color: entry.color1.color)
-                } else if entry.list.count == 2 {
+                } else if entry.list.count >= 2 {
                     TwoDeviceView(devices: entry.list, color1: entry.color1.color, color2: entry.color2.color)
                 }
             }
