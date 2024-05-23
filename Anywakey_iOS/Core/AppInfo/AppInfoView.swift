@@ -36,7 +36,13 @@ struct AppInfoView: View {
                     
                     linkTreeButton
                     
+                    Divider()
                     
+                    if #available(iOS 17.0, *) {
+                        NavigationLink("Wisget setting") {
+                            WidgetSettingsView(devicesAmount: dataService.allDevices.filter({ $0.isPinned }).count)
+                        }
+                    }
                 }
                 .clipShape(RoundedRectangle(cornerRadius: 10))
                 .padding(.bottom)

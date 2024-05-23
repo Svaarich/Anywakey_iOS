@@ -36,7 +36,7 @@ struct WidgetTile: View {
             .background {
                 ContainerRelativeShape()
                     .inset(by: 4)
-                    .fill(LinearGradient(colors: colors, startPoint: .top, endPoint: .bottom))
+                    .fill(LinearGradient(colors: colors, startPoint: .topLeading, endPoint: .bottomTrailing))
             }
         }
         .buttonStyle(.plain)

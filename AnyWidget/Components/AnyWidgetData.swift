@@ -3,9 +3,12 @@ import SwiftUI
 
 class AnyWidgetData: ObservableObject {
     @Published var deviceList: [Device] = []
+    @Published var indexColor1: Int = 1
+    @Published var indexColor2: Int = 1
     
     init() {
-       fetchPinnedDevices()
+        fetchPinnedDevices()
+        fetchColorIndecies()
     }
     
     func fetchPinnedDevices() {
@@ -29,6 +32,14 @@ class AnyWidgetData: ObservableObject {
                 }
             }
         }
+    }
+    
+    func fetchColorIndecies() {
+        if let userDefaults = UserDefaults(suiteName: "group.svarich.anywakey") {
+            indexColor1 = userDefaults.integer(forKey: "widgetColor_1")
+            indexColor2 = userDefaults.integer(forKey: "widgetColor_2")
+        }
+        
     }
 }
 

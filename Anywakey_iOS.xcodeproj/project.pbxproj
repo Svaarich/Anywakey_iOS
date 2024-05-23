@@ -9,6 +9,11 @@
 /* Begin PBXBuildFile section */
 		7D0518B72B71863F006850B8 /* HapticManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D0518B62B71863F006850B8 /* HapticManager.swift */; };
 		7D12F34E2BE169BE00FE854E /* LinkButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D12F34D2BE169BE00FE854E /* LinkButton.swift */; };
+		7D33C1C22BFE04B700ABF540 /* WidgetSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DB21BB02BFD234800A090E2 /* WidgetSettingsView.swift */; };
+		7D33C1C32BFE04BF00ABF540 /* WidgetSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DB21BB02BFD234800A090E2 /* WidgetSettingsView.swift */; };
+		7D33C1C52BFE07FC00ABF540 /* WidgetTile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DEFA8262BF805FE0092986C /* WidgetTile.swift */; };
+		7D4A6ABC2BFE7CE100BBFCE6 /* Tile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D4A6ABB2BFE7CE000BBFCE6 /* Tile.swift */; };
+		7D4A6ABD2BFE7CE100BBFCE6 /* Tile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D4A6ABB2BFE7CE000BBFCE6 /* Tile.swift */; };
 		7D596B4A2B48D00C00A5B7FA /* NoDevicesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D596B492B48D00C00A5B7FA /* NoDevicesView.swift */; };
 		7D5FE1C82B5CB60900142502 /* Double.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D5FE1C72B5CB60900142502 /* Double.swift */; };
 		7D5FE1F42B5F5D3F00142502 /* DeleteDeviceSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D5FE1F32B5F5D3F00142502 /* DeleteDeviceSheet.swift */; };
@@ -25,7 +30,6 @@
 		7DB21B742BF96CAF00A090E2 /* AppIntent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DB21B732BF96CAF00A090E2 /* AppIntent.swift */; };
 		7DB21B762BFAB82D00A090E2 /* ShareManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DB21B752BFAB82D00A090E2 /* ShareManager.swift */; };
 		7DB21B782BFB72BF00A090E2 /* ShareButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DB21B772BFB72BF00A090E2 /* ShareButton.swift */; };
-		7DB21BB12BFD234800A090E2 /* WidgetSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DB21BB02BFD234800A090E2 /* WidgetSettingsView.swift */; };
 		7DB7120A2AE8857E0087CA76 /* DeviceInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DB712092AE8857E0087CA76 /* DeviceInfoView.swift */; };
 		7DC26D812AE7EBE100B52D02 /* Anywakey_iOS_App.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DC26D802AE7EBE100B52D02 /* Anywakey_iOS_App.swift */; };
 		7DC26D832AE7EBE100B52D02 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DC26D822AE7EBE100B52D02 /* HomeView.swift */; };
@@ -56,7 +60,6 @@
 		7DE834CA2BF21EFD00B065BB /* WakeOnLAN.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DC26DA42AE7EC5300B52D02 /* WakeOnLAN.swift */; };
 		7DE834CB2BF2524C00B065BB /* String.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DE700122AEA82DC0033E53A /* String.swift */; };
 		7DEFA8242BF7E6610092986C /* TwoDeviceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D13BA662BF7E0AD00A8817B /* TwoDeviceView.swift */; };
-		7DEFA82B2BF8067C0092986C /* WidgetTile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DEFA8262BF805FE0092986C /* WidgetTile.swift */; };
 		7DF00C412B51D541008105C9 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7DF00C402B51D541008105C9 /* LaunchScreen.storyboard */; };
 		7DF096EB2BCFC4C200981F98 /* CopiedNotificationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DF096EA2BCFC4C200981F98 /* CopiedNotificationView.swift */; };
 		7DF096ED2BCFF3FF00981F98 /* CancelDeleteView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DF096EC2BCFF3FF00981F98 /* CancelDeleteView.swift */; };
@@ -105,6 +108,7 @@
 		7D12F34D2BE169BE00FE854E /* LinkButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LinkButton.swift; sourceTree = "<group>"; };
 		7D13BA662BF7E0AD00A8817B /* TwoDeviceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TwoDeviceView.swift; sourceTree = "<group>"; };
 		7D2D9F462BD7B16B001AB81A /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
+		7D4A6ABB2BFE7CE000BBFCE6 /* Tile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tile.swift; sourceTree = "<group>"; };
 		7D596B492B48D00C00A5B7FA /* NoDevicesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoDevicesView.swift; sourceTree = "<group>"; };
 		7D5FE1C72B5CB60900142502 /* Double.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Double.swift; sourceTree = "<group>"; };
 		7D5FE1F32B5F5D3F00142502 /* DeleteDeviceSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeleteDeviceSheet.swift; sourceTree = "<group>"; };
@@ -225,6 +229,15 @@
 			path = DeviceCell;
 			sourceTree = "<group>";
 		};
+		7D4A6ABA2BFE7CC500BBFCE6 /* WidgetSettings */ = {
+			isa = PBXGroup;
+			children = (
+				7DB21BB02BFD234800A090E2 /* WidgetSettingsView.swift */,
+				7D4A6ABB2BFE7CE000BBFCE6 /* Tile.swift */,
+			);
+			path = WidgetSettings;
+			sourceTree = "<group>";
+		};
 		7DB21B6B2BF8D71200A090E2 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
@@ -286,7 +299,7 @@
 				7DD331DA2B5AF334002BFA64 /* Components */,
 				7D34560A2B71D053003267AE /* AddDevice */,
 				7DD331D02B5AEAED002BFA64 /* Home */,
-				7DB21BB02BFD234800A090E2 /* WidgetSettingsView.swift */,
+				7D4A6ABA2BFE7CC500BBFCE6 /* WidgetSettings */,
 			);
 			path = Core;
 			sourceTree = "<group>";
@@ -520,10 +533,10 @@
 			files = (
 				7DB21B702BF92C7000A090E2 /* Color + Widget.swift in Sources */,
 				7DC26DA92AE7EDA500B52D02 /* WakeOnLAN.swift in Sources */,
-				7DB21BB12BFD234800A090E2 /* WidgetSettingsView.swift in Sources */,
 				7DF096ED2BCFF3FF00981F98 /* CancelDeleteView.swift in Sources */,
 				7DC26DA82AE7EC8B00B52D02 /* Network.swift in Sources */,
 				7DE700132AEA82DC0033E53A /* String.swift in Sources */,
+				7D33C1C22BFE04B700ABF540 /* WidgetSettingsView.swift in Sources */,
 				7DC26DB12AE821CC00B52D02 /* DeviceCellView.swift in Sources */,
 				7DD331DE2B5C5DD7002BFA64 /* Color.swift in Sources */,
 				7DD3318A2B54EC2E002BFA64 /* View.swift in Sources */,
@@ -535,6 +548,7 @@
 				7D5FE1C82B5CB60900142502 /* Double.swift in Sources */,
 				7DFC05342B292BFB0082E502 /* DeviceDataService.swift in Sources */,
 				7D596B4A2B48D00C00A5B7FA /* NoDevicesView.swift in Sources */,
+				7D4A6ABC2BFE7CE100BBFCE6 /* Tile.swift in Sources */,
 				7D7AB9512AEC40FA00594CDB /* SwiftyPing.swift in Sources */,
 				7DE834C02BF21C8200B065BB /* AnyWidgetData.swift in Sources */,
 				7DD1F7DD2BBBF70F0000E238 /* Device + Extension.swift in Sources */,
@@ -559,18 +573,20 @@
 			buildActionMask = 2147483647;
 			files = (
 				7D7E0B492BF63C630043175D /* SimpleEntry.swift in Sources */,
+				7D4A6ABD2BFE7CE100BBFCE6 /* Tile.swift in Sources */,
 				7DE834C42BF21E2900B065BB /* AnyWidgetData.swift in Sources */,
 				7DE834B22BF2182000B065BB /* AnyWidgetEntryView.swift in Sources */,
 				7DE834CB2BF2524C00B065BB /* String.swift in Sources */,
 				7DE834B02BF2182000B065BB /* AnyWidgetBundle.swift in Sources */,
+				7D33C1C32BFE04BF00ABF540 /* WidgetSettingsView.swift in Sources */,
 				7DEFA8242BF7E6610092986C /* TwoDeviceView.swift in Sources */,
+				7D33C1C52BFE07FC00ABF540 /* WidgetTile.swift in Sources */,
 				7D7E0B4B2BF63CAE0043175D /* AnyWidget.swift in Sources */,
 				7DE834C52BF21E4F00B065BB /* Device.swift in Sources */,
 				7D7E0B502BF7C04A0043175D /* OneDeviceView.swift in Sources */,
 				7DE834C82BF21EF900B065BB /* Network.swift in Sources */,
 				7D7E0B462BF63BEC0043175D /* Provider.swift in Sources */,
 				7DE834C62BF21E6300B065BB /* Color.swift in Sources */,
-				7DEFA82B2BF8067C0092986C /* WidgetTile.swift in Sources */,
 				7DB21B742BF96CAF00A090E2 /* AppIntent.swift in Sources */,
 				7DB21B6F2BF8D81000A090E2 /* Color + Widget.swift in Sources */,
 				7DE834CA2BF21EFD00B065BB /* WakeOnLAN.swift in Sources */,
@@ -811,7 +827,7 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				MARKETING_VERSION = 1.1;
+				MARKETING_VERSION = 1.2;
 				PRODUCT_BUNDLE_IDENTIFIER = svarich.anywakey.AnyWidget;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
@@ -845,7 +861,7 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				MARKETING_VERSION = 1.1;
+				MARKETING_VERSION = 1.2;
 				PRODUCT_BUNDLE_IDENTIFIER = svarich.anywakey.AnyWidget;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
