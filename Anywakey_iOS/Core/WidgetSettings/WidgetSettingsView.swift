@@ -33,74 +33,17 @@ struct WidgetSettingsView: View {
     var body: some View {
         ScrollView {
             VStack {
-                VStack(spacing: devicesAmount > 1 ? 9 : 0) {
-                    Tile(colors: colors[widgetColorIndex_1], height: .infinity)
-                        .opacity(
-                            tileEditingNumber == 1 ? 1.0 :
-                                tileEditingNumber == 3 ? 1 : 0.4)
-                        .onTapGesture {
-                            withAnimation(.smooth) {
-                                tileEditingNumber = 1
-                            }
-                        }
-                    Tile(colors: colors[widgetColorIndex_2], height: devicesAmount > 1 ? .infinity : 0)
-                        .opacity(
-                            tileEditingNumber == 2 ? 1.0 :
-                                tileEditingNumber == 3 ? 1 : 0.4)
-                        .onTapGesture {
-                            withAnimation(.smooth) {
-                                tileEditingNumber = 2
-                            }
-                        }
+                if devicesAmount > 0 {
+                    widget
+                } else {
+                    noDevices
                 }
-                .padding(9)
-                .frame(width: 200, height: 200)
-                .background {
-                    tileBackground
-                }
-                
-                HStack {
-                    Text("Colors")
-                        .font(.title)
-                        .fontWeight(.semibold)
-                    Spacer()
-                }
-                .padding(.horizontal)
-                VStack(spacing: 0) {
-                    ForEach(colors) { color in
-                        Button {
-                            withAnimation(.smooth) {
-                                if tileEditingNumber == 1 {
-                                    widgetColorIndex_1 = getIndex(color: color)
-                                } else if tileEditingNumber == 2 {
-                                    widgetColorIndex_2 = getIndex(color: color)
-                                }
-                            }
-                        } label: {
-                            HStack {
-                                Text(color.description)
-                                    .foregroundStyle(LinearGradient(colors: color.color, startPoint: .topLeading, endPoint: .bottomTrailing))
-                                Spacer()
-                                RoundedRectangle(cornerRadius: 10)
-                                    .fill(LinearGradient(colors: color.color, startPoint: .topLeading, endPoint: .bottomTrailing))
-                                    .frame(width: 35, height: 35)
-                                
-                            }
-                            
-                            .frame(maxWidth: .infinity, maxHeight: .infinity)
-                            .padding(.horizontal, 16)
-                            .background(colorScheme == .dark ? .gray.opacity(0.1) : .white)
-                        }
-                        .frame(height: 45)
-                        .buttonStyle(.plain)
-                        Divider().opacity(colors.last?.id == color.id ? 0 : 1.0)
-                    }
-                }
-                .background(colorScheme == .light ? .white : Color.gray.opacity(0.1))
-                .clipShape(RoundedRectangle(cornerRadius: 10))
-                .navigationTitle("Widget settings")
+                title
+                colorSettings
+                    .disabled(devicesAmount > 0 ? false : true)
             }
             .padding()
+            .navigationTitle("Widget settings")
         }
         .background {
             if colorScheme == .light {
@@ -113,9 +56,15 @@ struct WidgetSettingsView: View {
             }
         }
         .onChange(of: widgetColorIndex_1) { _ in
+            saveIndecies()
             WidgetCenter.shared.reloadAllTimelines()
         }
         .onChange(of: widgetColorIndex_2) { _ in
+            saveIndecies()
+            WidgetCenter.shared.reloadAllTimelines()
+        }
+        .onAppear {
+            fetchColors()
             WidgetCenter.shared.reloadAllTimelines()
         }
     }
@@ -124,6 +73,115 @@ struct WidgetSettingsView: View {
 extension WidgetSettingsView {
     
     // MARK: PROPERTIES
+    
+    private var title: some View {
+        HStack {
+            Text("Colors")
+                .font(.title)
+                .fontWeight(.semibold)
+            Spacer()
+        }
+        .padding(.horizontal)
+    }
+    
+    // no devices widget
+    private var noDevices: some View {
+        ZStack {
+            RoundedRectangle(cornerRadius: 22)
+                .foregroundStyle(.gray.opacity(0.0))
+        }
+        .overlay {
+            VStack(alignment: .leading, spacing: 4) {
+                Text("Pinned devices not found")
+                    .foregroundStyle(.primary)
+                Text("Please pin any device in the app.")
+                    .foregroundStyle(.secondary)
+                    .font(.caption)
+                Spacer()
+                Text("""
+                        *only first 2 pinned
+                         devices are available.
+                        """)
+                .foregroundStyle(.secondary)
+                .font(.caption2)
+                .frame(maxWidth: .infinity, alignment: .leading)
+            }
+            
+            .padding(9)
+        }
+        .padding(9)
+        .frame(width: 200, height: 200)
+        .background {
+            tileBackground
+        }
+    }
+    
+    // widget
+    private var widget: some View {
+        VStack(spacing: devicesAmount > 1 ? 9 : 0) {
+            Tile(colors: colors[widgetColorIndex_1], height: .infinity)
+                .opacity(
+                    tileEditingNumber == 1 ? 1.0 :
+                        tileEditingNumber == 3 ? 1 : 0.4)
+                .onTapGesture {
+                    withAnimation(.smooth) {
+                        tileEditingNumber = 1
+                    }
+                }
+            Tile(colors: colors[widgetColorIndex_2], height: devicesAmount > 1 ? .infinity : 0)
+                .opacity(
+                    tileEditingNumber == 2 ? 1.0 :
+                        tileEditingNumber == 3 ? 1 : 0.4)
+                .onTapGesture {
+                    withAnimation(.smooth) {
+                        tileEditingNumber = 2
+                    }
+                }
+        }
+        .padding(9)
+        .frame(width: 200, height: 200)
+        .background {
+            tileBackground
+        }
+    }
+    
+    // colors list
+    private var colorSettings: some View {
+        VStack(spacing: 0) {
+            ForEach(colors) { color in
+                Button {
+                    withAnimation(.smooth) {
+                        if tileEditingNumber == 1 {
+                            widgetColorIndex_1 = getIndex(color: color)
+                            saveIndecies()
+                        } else if tileEditingNumber == 2 {
+                            widgetColorIndex_2 = getIndex(color: color)
+                            saveIndecies()
+                        }
+                    }
+                } label: {
+                    HStack {
+                        Text(color.description)
+                            .foregroundStyle(LinearGradient(colors: color.color, startPoint: .topLeading, endPoint: .bottomTrailing))
+                        Spacer()
+                        RoundedRectangle(cornerRadius: 10)
+                            .fill(LinearGradient(colors: color.color, startPoint: .topLeading, endPoint: .bottomTrailing))
+                            .frame(width: 70, height: 35)
+                        
+                    }
+                    
+                    .frame(maxWidth: .infinity, maxHeight: .infinity)
+                    .padding(.horizontal, 16)
+                    .background(colorScheme == .dark ? .gray.opacity(0.1) : .white)
+                }
+                .frame(height: 45)
+                .buttonStyle(.plain)
+                Divider().opacity(colors.last?.id == color.id ? 0 : 1.0)
+            }
+        }
+        .background(colorScheme == .light ? .white : Color.gray.opacity(0.1))
+        .clipShape(RoundedRectangle(cornerRadius: 10))
+    }
     
     private var tileBackground: some View {
         RoundedRectangle(cornerRadius: 30)
@@ -159,6 +217,6 @@ extension WidgetSettingsView {
     
 }
 
-//#Preview {
-//    WidgetSettingsView(devicesAmount: 2)
-//}
+#Preview {
+    WidgetSettingsView(devicesAmount: 0)
+}
