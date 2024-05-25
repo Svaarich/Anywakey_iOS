@@ -184,6 +184,15 @@ extension WidgetSettingsView {
         .clipShape(RoundedRectangle(cornerRadius: 10))
     }
     
+    private var modeToggle: some View {
+            Toggle("Show 2 devices", isOn: $widgetMode)
+                .frame(maxWidth: .infinity, maxHeight: .infinity)
+                .padding(.horizontal, 16)
+                .background(colorScheme == .dark ? .gray.opacity(0.2) : .white)
+                .frame(height: 45)
+                .clipShape(RoundedRectangle(cornerRadius: 10))
+    }
+    
     private var tileBackground: some View {
         RoundedRectangle(cornerRadius: 30)
             .fill()
