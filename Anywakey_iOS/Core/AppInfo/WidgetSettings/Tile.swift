@@ -4,11 +4,20 @@ import SwiftUI
 
 struct Tile: View {
     
+    @EnvironmentObject var dataService: DeviceDataService
+    
+    @State var title: String = "Edit widget"
+    
     let colors: GradientColor
     let height: CGFloat
+    let tileNumber: Int
+    let devices: [Device]
+    
+    let widgetColorIndex: Int = 0
     
     var body: some View {
         tile
+            .onAppear(perform: fetchWidgetDevices)
     }
     
     private var tile: some View {
@@ -26,6 +35,9 @@ struct Tile: View {
                     ForEach(dataService.allDevices) { device in
                         Button {
                             title = device.name
+                            if let index = dataService.allDevices.firstIndex(of: device) {
+                                saveIndex(index: index)
+                            }
                         } label: {
                             HStack {
                                 Text(device.name)
