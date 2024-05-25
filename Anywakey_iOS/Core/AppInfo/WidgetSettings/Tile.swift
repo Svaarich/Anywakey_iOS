@@ -59,8 +59,23 @@ struct Tile: View {
             .padding(16)
         }
     }
-}
-
-#Preview {
-    Tile(colors: Color.widget.green, height: .infinity)
+    
+    private func fetchWidgetDevices() {
+        if let userDefaults = UserDefaults(suiteName: "group.svarich.anywakey") {
+            let name = "widgetDevice_"
+            let index = userDefaults.integer(forKey: name + "\(tileNumber)")
+            if index >= devices.count {
+                title = "Choose device"
+            } else {
+                title = devices[index].name
+            }
+        }
+    }
+    
+    private func saveIndex(index: Int) {
+        if let userDefaults = UserDefaults(suiteName: "group.svarich.anywakey") {
+            let name = "widgetDevice_" 
+            userDefaults.setValue(index, forKey: name + "\(tileNumber)")
+        }
+    }
 }
