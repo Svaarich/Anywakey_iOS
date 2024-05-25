@@ -3,6 +3,7 @@ import SwiftUI
 import WidgetKit
 
 struct WidgetSettingsView: View {
+    
     @AppStorage("2widgetMode") var widgetMode: Bool = false
     @Environment(\.colorScheme) var colorScheme
     @EnvironmentObject var dataService: DeviceDataService
@@ -42,6 +43,11 @@ struct WidgetSettingsView: View {
                 title
                 VStack(spacing: 0) {
                     colorSettings
+                    modeToggle
+                        .padding(.vertical, 8)
+                }
+                .disabled(dataService.allDevices.count > 0 ? false : true)
+                Spacer()
             }
             .padding()
             .navigationTitle("Widget settings")
