@@ -24,6 +24,7 @@
 		7D7E0B4B2BF63CAE0043175D /* AnyWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D7E0B4A2BF63C9D0043175D /* AnyWidget.swift */; };
 		7D7E0B4D2BF68ACA0043175D /* AppInfoButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D7E0B4C2BF68ACA0043175D /* AppInfoButton.swift */; };
 		7D7E0B502BF7C04A0043175D /* OneDeviceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D7E0B4F2BF7C04A0043175D /* OneDeviceView.swift */; };
+		7D7ED04B2C02493300F6C17B /* DeviceDataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DFC05332B292BFB0082E502 /* DeviceDataService.swift */; };
 		7DA71F1E2B250A96004F9AF3 /* AppInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DA71F1D2B250A96004F9AF3 /* AppInfoView.swift */; };
 		7DB21B6F2BF8D81000A090E2 /* Color + Widget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DB21B6C2BF8D72B00A090E2 /* Color + Widget.swift */; };
 		7DB21B702BF92C7000A090E2 /* Color + Widget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DB21B6C2BF8D72B00A090E2 /* Color + Widget.swift */; };
@@ -597,6 +598,7 @@
 				7DE834C52BF21E4F00B065BB /* Device.swift in Sources */,
 				7D7E0B502BF7C04A0043175D /* OneDeviceView.swift in Sources */,
 				7DE834C82BF21EF900B065BB /* Network.swift in Sources */,
+				7D7ED04B2C02493300F6C17B /* DeviceDataService.swift in Sources */,
 				7D7E0B462BF63BEC0043175D /* Provider.swift in Sources */,
 				7DE834C62BF21E6300B065BB /* Color.swift in Sources */,
 				7DB21B742BF96CAF00A090E2 /* AppIntent.swift in Sources */,

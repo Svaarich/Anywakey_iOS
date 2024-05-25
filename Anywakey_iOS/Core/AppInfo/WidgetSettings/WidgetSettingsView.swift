@@ -4,13 +4,16 @@ import WidgetKit
 
 struct WidgetSettingsView: View {
     
+    @AppStorage("2widgetMode") var widgetMode: Bool = false
+    @Environment(\.colorScheme) var colorScheme
+    @EnvironmentObject var dataService: DeviceDataService
+    
     @State private var widgetColorIndex_1: Int = 3
     @State private var widgetColorIndex_2: Int = 3
-    @Environment(\.colorScheme) var colorScheme
     
-    @State var tileEditingNumber: Int
+    @State var tileEditingNumber: Int = 1
     
-    let devicesAmount: Int
+//    let devices: [Device]
     
     let colors = [
         Color.widget.green,
@@ -21,26 +24,30 @@ struct WidgetSettingsView: View {
         Color.widget.yellow
     ]
     
-    init(devicesAmount: Int) {
+    init() {
         if let userDefaults = UserDefaults(suiteName: "group.svarich.anywakey") {
             widgetColorIndex_1 = userDefaults.integer(forKey: "widgetColor_1")
             widgetColorIndex_2 = userDefaults.integer(forKey: "widgetColor_2")
         }
-        self.devicesAmount = devicesAmount
-        _tileEditingNumber = State(initialValue: devicesAmount == 1 ? 1 : 3)
     }
     
     var body: some View {
         ScrollView {
             VStack {
-                if devicesAmount > 0 {
+                if dataService.allDevices.count > 0 {
                     widget
+                        .animation(.smooth, value: widgetMode)
                 } else {
                     noDevices
                 }
                 title
-                colorSettings
-                    .disabled(devicesAmount > 0 ? false : true)
+                VStack(spacing: 0) {
+                    colorSettings
+                    modeToggle
+                        .padding(.vertical, 8)
+                }
+                .disabled(dataService.allDevices.count > 0 ? false : true)
+                Spacer()
             }
             .padding()
             .navigationTitle("Widget settings")
@@ -64,6 +71,7 @@ struct WidgetSettingsView: View {
             WidgetCenter.shared.reloadAllTimelines()
         }
         .onAppear {
+            tileEditingNumber = widgetMode ? 3 : 1
             fetchColors()
             WidgetCenter.shared.reloadAllTimelines()
         }
@@ -118,8 +126,8 @@ extension WidgetSettingsView {
     
     // widget
     private var widget: some View {
-        VStack(spacing: devicesAmount > 1 ? 9 : 0) {
-            Tile(colors: colors[widgetColorIndex_1], height: .infinity)
+        VStack(spacing: widgetMode ? 9 : 0) {
+            Tile(colors: colors[widgetColorIndex_1], height: .infinity, tileNumber: 1, devices: dataService.allDevices)
                 .opacity(
                     tileEditingNumber == 1 ? 1.0 :
                         tileEditingNumber == 3 ? 1 : 0.4)
@@ -128,15 +136,18 @@ extension WidgetSettingsView {
                         tileEditingNumber = 1
                     }
                 }
-            Tile(colors: colors[widgetColorIndex_2], height: devicesAmount > 1 ? .infinity : 0)
-                .opacity(
-                    tileEditingNumber == 2 ? 1.0 :
-                        tileEditingNumber == 3 ? 1 : 0.4)
-                .onTapGesture {
-                    withAnimation(.smooth) {
-                        tileEditingNumber = 2
+            if widgetMode {
+                Tile(colors: colors[widgetColorIndex_2], height: widgetMode ? .infinity : 0, tileNumber: 2, devices: dataService.allDevices)
+                    .opacity(
+                        tileEditingNumber == 2 ? 1.0 :
+                            tileEditingNumber == 3 ? 1 : 0.4)
+                    .onTapGesture {
+                        withAnimation(.smooth) {
+                            tileEditingNumber = 2
+                        }
                     }
-                }
+                    .transition(.scale.combined(with: .opacity))
+            }
         }
         .padding(9)
         .frame(width: 200, height: 200)
@@ -183,6 +194,15 @@ extension WidgetSettingsView {
         .clipShape(RoundedRectangle(cornerRadius: 10))
     }
     
+    private var modeToggle: some View {
+            Toggle("Show 2 devices", isOn: $widgetMode)
+                .frame(maxWidth: .infinity, maxHeight: .infinity)
+                .padding(.horizontal, 16)
+                .background(colorScheme == .dark ? .gray.opacity(0.2) : .white)
+                .frame(height: 45)
+                .clipShape(RoundedRectangle(cornerRadius: 10))
+    }
+    
     private var tileBackground: some View {
         RoundedRectangle(cornerRadius: 30)
             .fill()
@@ -218,5 +238,5 @@ extension WidgetSettingsView {
 }
 
 #Preview {
-    WidgetSettingsView(devicesAmount: 0)
+    WidgetSettingsView()
 }
