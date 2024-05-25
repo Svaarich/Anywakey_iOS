@@ -4,14 +4,15 @@ import WidgetKit
 
 struct WidgetSettingsView: View {
     @AppStorage("2widgetMode") var widgetMode: Bool = false
+    @Environment(\.colorScheme) var colorScheme
+    @EnvironmentObject var dataService: DeviceDataService
     
     @State private var widgetColorIndex_1: Int = 3
     @State private var widgetColorIndex_2: Int = 3
-    @Environment(\.colorScheme) var colorScheme
     
-    @State var tileEditingNumber: Int
+    @State var tileEditingNumber: Int = 1
     
-    let devicesAmount: Int
+//    let devices: [Device]
     
     let colors = [
         Color.widget.green,
@@ -22,26 +23,25 @@ struct WidgetSettingsView: View {
         Color.widget.yellow
     ]
     
-    init(devicesAmount: Int) {
+    init() {
         if let userDefaults = UserDefaults(suiteName: "group.svarich.anywakey") {
             widgetColorIndex_1 = userDefaults.integer(forKey: "widgetColor_1")
             widgetColorIndex_2 = userDefaults.integer(forKey: "widgetColor_2")
         }
-        self.devicesAmount = devicesAmount
-        _tileEditingNumber = State(initialValue: devicesAmount == 1 ? 1 : 3)
     }
     
     var body: some View {
         ScrollView {
             VStack {
-                if devicesAmount > 0 {
+                if dataService.allDevices.count > 0 {
                     widget
+                        .animation(.smooth, value: widgetMode)
                 } else {
                     noDevices
                 }
                 title
-                colorSettings
-                    .disabled(devicesAmount > 0 ? false : true)
+                VStack(spacing: 0) {
+                    colorSettings
             }
             .padding()
             .navigationTitle("Widget settings")
@@ -65,6 +65,7 @@ struct WidgetSettingsView: View {
             WidgetCenter.shared.reloadAllTimelines()
         }
         .onAppear {
+            tileEditingNumber = widgetMode ? 3 : 1
             fetchColors()
             WidgetCenter.shared.reloadAllTimelines()
         }
@@ -119,8 +120,8 @@ extension WidgetSettingsView {
     
     // widget
     private var widget: some View {
-        VStack(spacing: devicesAmount > 1 ? 9 : 0) {
-            Tile(colors: colors[widgetColorIndex_1], height: .infinity)
+        VStack(spacing: widgetMode ? 9 : 0) {
+            Tile(colors: colors[widgetColorIndex_1], height: .infinity, tileNumber: 1, devices: dataService.allDevices)
                 .opacity(
                     tileEditingNumber == 1 ? 1.0 :
                         tileEditingNumber == 3 ? 1 : 0.4)
@@ -228,5 +229,5 @@ extension WidgetSettingsView {
 }
 
 #Preview {
-    WidgetSettingsView(devicesAmount: 0)
+    WidgetSettingsView()
 }
