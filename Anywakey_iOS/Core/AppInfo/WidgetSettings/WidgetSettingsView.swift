@@ -136,15 +136,18 @@ extension WidgetSettingsView {
                         tileEditingNumber = 1
                     }
                 }
-            Tile(colors: colors[widgetColorIndex_2], height: devicesAmount > 1 ? .infinity : 0)
-                .opacity(
-                    tileEditingNumber == 2 ? 1.0 :
-                        tileEditingNumber == 3 ? 1 : 0.4)
-                .onTapGesture {
-                    withAnimation(.smooth) {
-                        tileEditingNumber = 2
+            if widgetMode {
+                Tile(colors: colors[widgetColorIndex_2], height: widgetMode ? .infinity : 0, tileNumber: 2, devices: dataService.allDevices)
+                    .opacity(
+                        tileEditingNumber == 2 ? 1.0 :
+                            tileEditingNumber == 3 ? 1 : 0.4)
+                    .onTapGesture {
+                        withAnimation(.smooth) {
+                            tileEditingNumber = 2
+                        }
                     }
-                }
+                    .transition(.scale.combined(with: .opacity))
+            }
         }
         .padding(9)
         .frame(width: 200, height: 200)
