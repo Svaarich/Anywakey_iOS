@@ -3,6 +3,7 @@ import SwiftUI
 import WidgetKit
 
 struct WidgetSettingsView: View {
+    @AppStorage("2widgetMode") var widgetMode: Bool = false
     
     @State private var widgetColorIndex_1: Int = 3
     @State private var widgetColorIndex_2: Int = 3
