@@ -14,10 +14,6 @@ struct AppInfoView: View {
     private let gitHubRepoURL = "https://github.com/Svaarich/LANWakeUp-IOS"
     private let bugReportURL = "https://github.com/Svaarich/LANWakeUp-IOS/issues/new"
     
-    private var devicesAmount: Int {
-        dataService.allDevices.filter({ $0.isPinned }).count
-    }
-    
     var body: some View {
         ScrollView {
             VStack {
@@ -74,9 +70,9 @@ struct AppInfoView: View {
                     if #available(iOS 17.0, *) {
                         NavLinkButton(
                             text: "Widget setting",
-                            image: Image(systemName: devicesAmount >= 2 ? "square.split.1x2.fill" : "square.fill"),
+                            image: Image(systemName: "square.tophalf.filled"),
                             color: .indigo) {
-                                AnyView(WidgetSettingsView(devicesAmount: devicesAmount))
+                                AnyView(WidgetSettingsView())
                         }
                         Divider()
                     }
