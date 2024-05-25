@@ -36,16 +36,13 @@ struct Tile: View {
                         }
                     }
                 } label: {
-                    HStack(spacing: 2) {
-                        Text(title)
-                        Image(systemName: "rectangle.and.hand.point.up.left.filled")
-                            .offset(y: 3)
-                    }
-                    .multilineTextAlignment(.leading)
-                    .foregroundStyle(.white)
-                    .font(Font.system(size: 18))
-                    .fontWeight(.semibold)
-                    .frame(maxWidth: .infinity, alignment: .leading)
+                    Text(title)
+                        .lineLimit(1)
+                        .multilineTextAlignment(.leading)
+                        .foregroundStyle(.white)
+                        .font(Font.system(size: 18))
+                        .fontWeight(.semibold)
+                        .frame(maxWidth: .infinity, alignment: .leading)
                 }
                 
                 Spacer()
