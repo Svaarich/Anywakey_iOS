@@ -22,11 +22,32 @@ struct Tile: View {
         }
         .overlay {
             VStack {
-                Text("Tap to edit")
+                Menu {
+                    ForEach(dataService.allDevices) { device in
+                        Button {
+                            title = device.name
+                        } label: {
+                            HStack {
+                                Text(device.name)
+                                if device.isPinned {
+                                    Image(systemName: "star.fill")
+                                }
+                            }
+                        }
+                    }
+                } label: {
+                    HStack(spacing: 2) {
+                        Text(title)
+                        Image(systemName: "rectangle.and.hand.point.up.left.filled")
+                            .offset(y: 3)
+                    }
+                    .multilineTextAlignment(.leading)
                     .foregroundStyle(.white)
                     .font(Font.system(size: 18))
-                    .fontWeight(.bold)
+                    .fontWeight(.semibold)
                     .frame(maxWidth: .infinity, alignment: .leading)
+                }
+                
                 Spacer()
                 Image(systemName: "power")
                     .foregroundStyle(.white)
