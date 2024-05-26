@@ -1,5 +1,6 @@
 
 import SwiftUI
+import WidgetKit
 
 
 struct Tile: View {
@@ -38,6 +39,7 @@ struct Tile: View {
                             if let index = dataService.allDevices.firstIndex(of: device) {
                                 saveIndex(index: index)
                             }
+                            WidgetCenter.shared.reloadAllTimelines()
                         } label: {
                             HStack {
                                 Text(device.name)
@@ -48,13 +50,19 @@ struct Tile: View {
                         }
                     }
                 } label: {
-                    Text(title)
-                        .lineLimit(1)
-                        .multilineTextAlignment(.leading)
-                        .foregroundStyle(.white)
-                        .font(Font.system(size: 18))
-                        .fontWeight(.semibold)
-                        .frame(maxWidth: .infinity, alignment: .leading)
+                    VStack(alignment: .leading, spacing: 0) {
+                        Text(title)
+                        Text("*tap to edit")
+                            .font(.caption)
+                            .fontWeight(.regular)
+                            .opacity(0.6)
+                    }
+                    .lineLimit(1)
+                    .multilineTextAlignment(.leading)
+                    .foregroundStyle(.white)
+                    .font(Font.system(size: 18))
+                    .fontWeight(.semibold)
+                    .frame(maxWidth: .infinity, alignment: .leading)
                 }
                 
                 Spacer()

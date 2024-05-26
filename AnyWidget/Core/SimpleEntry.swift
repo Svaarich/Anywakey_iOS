@@ -5,4 +5,5 @@ struct SimpleEntry: TimelineEntry {
     let color2: GradientColor
     let date: Date = .now
     let list: [Device]
+    let widgetMode: Bool
 }
