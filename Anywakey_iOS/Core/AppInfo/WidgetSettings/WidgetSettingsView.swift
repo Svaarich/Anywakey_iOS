@@ -44,7 +44,7 @@ struct WidgetSettingsView: View {
                 VStack(spacing: 0) {
                     colorSettings
                     modeToggle
-                        .padding(.vertical, 8)
+                        .padding(.vertical, 16)
                 }
                 .disabled(dataService.allDevices.count > 0 ? false : true)
                 Spacer()
