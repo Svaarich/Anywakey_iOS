@@ -70,6 +70,10 @@ struct WidgetSettingsView: View {
             saveIndecies()
             WidgetCenter.shared.reloadAllTimelines()
         }
+        .onChange(of: widgetMode) { _ in
+            saveWidgetMode()
+            WidgetCenter.shared.reloadAllTimelines()
+        }
         .onAppear {
             tileEditingNumber = widgetMode ? 3 : 1
             fetchColors()
