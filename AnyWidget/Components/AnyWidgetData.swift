@@ -41,5 +41,11 @@ class AnyWidgetData: ObservableObject {
         }
         
     }
+    
+    func getWidgetMode() {
+        if let userDefaults = UserDefaults(suiteName: "group.svarich.anywakey") {
+            widgetMode = userDefaults.bool(forKey: "2widgetMode")
+        }
+    }
 }
 
