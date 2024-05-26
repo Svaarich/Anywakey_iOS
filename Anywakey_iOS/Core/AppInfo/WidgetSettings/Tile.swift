@@ -1,5 +1,6 @@
 
 import SwiftUI
+import WidgetKit
 
 
 struct Tile: View {
@@ -38,6 +39,7 @@ struct Tile: View {
                             if let index = dataService.allDevices.firstIndex(of: device) {
                                 saveIndex(index: index)
                             }
+                            WidgetCenter.shared.reloadAllTimelines()
                         } label: {
                             HStack {
                                 Text(device.name)
