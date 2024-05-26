@@ -34,6 +34,15 @@ class AnyWidgetData: ObservableObject {
         }
     }
     
+    private func getDeviceIndex(tileNumber: Int) -> Int {
+        if let userDefaults = UserDefaults(suiteName: "group.svarich.anywakey") {
+            let key = "widgetDevice_" + "\(tileNumber)"
+            let index = userDefaults.integer(forKey: key)
+            return index
+        }
+        return 0
+    }
+    
     func fetchColorIndecies() {
         if let userDefaults = UserDefaults(suiteName: "group.svarich.anywakey") {
             indexColor1 = userDefaults.integer(forKey: "widgetColor_1")
