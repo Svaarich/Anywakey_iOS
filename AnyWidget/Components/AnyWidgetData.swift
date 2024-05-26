@@ -2,13 +2,16 @@
 import SwiftUI
 
 class AnyWidgetData: ObservableObject {
+    
     @Published var deviceList: [Device] = []
     @Published var indexColor1: Int = 1
     @Published var indexColor2: Int = 1
+    @Published var widgetMode: Bool = false
     
     init() {
         fetchPinnedDevices()
         fetchColorIndecies()
+        getWidgetMode()
     }
     
     func fetchPinnedDevices() {
@@ -18,14 +21,9 @@ class AnyWidgetData: ObservableObject {
                 do {
                     let decoder = JSONDecoder()
                     let savedDevices = try decoder.decode([Device].self, from: data)
-                    let pinnedDevices = savedDevices.filter( { $0.isPinned } )
-                    guard !pinnedDevices.isEmpty else { return }
-                    if pinnedDevices.count <= 3 {
-                        deviceList = pinnedDevices
-                    } else {
-                        for index in 0..<3 {
-                            deviceList.append(pinnedDevices[index])
-                        }
+                    if !savedDevices.isEmpty {
+                        deviceList.append(savedDevices[getDeviceIndex(tileNumber: 1)])
+                        deviceList.append(savedDevices[getDeviceIndex(tileNumber: 2)])
                     }
                 } catch {
                     print("Unable to Decode devices (\(error))")
