@@ -4,18 +4,18 @@ import WidgetKit
 
 struct WidgetSettingsView: View {
     
-    @AppStorage("2widgetMode") var widgetMode: Bool = false
     @Environment(\.colorScheme) var colorScheme
     @EnvironmentObject var dataService: DeviceDataService
     
     @State private var widgetColorIndex_1: Int = 3
     @State private var widgetColorIndex_2: Int = 3
+    @State private var widgetMode: Bool = false
     
-    @State var tileEditingNumber: Int = 1
+    @State private var tileEditingNumber: Int = 1
     
 //    let devices: [Device]
     
-    let colors = [
+    private let colors = [
         Color.widget.green,
         Color.widget.blue,
         Color.widget.orange,
@@ -212,7 +212,7 @@ extension WidgetSettingsView {
     
     
     // MARK: FUNCTIONS
-    func getIndex(color: GradientColor) -> Int {
+    private func getIndex(color: GradientColor) -> Int {
         for index in 0..<colors.count {
             if color.id == colors[index].id {
                 return index
@@ -221,14 +221,14 @@ extension WidgetSettingsView {
         return 0
     }
     
-    func saveIndecies() {
+    private func saveIndecies() {
         if let userDefaults = UserDefaults(suiteName: "group.svarich.anywakey") {
             userDefaults.setValue(widgetColorIndex_1, forKey: "widgetColor_1")
             userDefaults.setValue(widgetColorIndex_2, forKey: "widgetColor_2")
         }
     }
     
-    func fetchColors() {
+    private func fetchColors() {
         if let userDefaults = UserDefaults(suiteName: "group.svarich.anywakey") {
             widgetColorIndex_1 = userDefaults.integer(forKey: "widgetColor_1")
             widgetColorIndex_2 = userDefaults.integer(forKey: "widgetColor_2")
