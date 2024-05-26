@@ -235,6 +235,12 @@ extension WidgetSettingsView {
         }
     }
     
+    private func saveWidgetMode() {
+        if let userDefaults = UserDefaults(suiteName: "group.svarich.anywakey") {
+            userDefaults.setValue(widgetMode, forKey: "2widgetMode")
+        }
+    }
+    
 }
 
 #Preview {
