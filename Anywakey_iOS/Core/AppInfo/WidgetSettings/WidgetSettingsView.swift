@@ -104,15 +104,15 @@ extension WidgetSettingsView {
         }
         .overlay {
             VStack(alignment: .leading, spacing: 4) {
-                Text("Pinned devices not found")
+                Text("Devices not found.")
                     .foregroundStyle(.primary)
-                Text("Please pin any device in the app.")
+                Text("Please add any device in the app.")
                     .foregroundStyle(.secondary)
                     .font(.caption)
                 Spacer()
                 Text("""
-                        *only first 2 pinned
-                         devices are available.
+                        *widget supports
+                         only 2 devices.
                         """)
                 .foregroundStyle(.secondary)
                 .font(.caption2)
