@@ -127,6 +127,7 @@ extension DeviceInfoView {
             
             // MAC
             macField
+                .textInputAutocapitalization(.characters)
                 .keyboardType(.alphabet)
                 .autocorrectionDisabled()
             
