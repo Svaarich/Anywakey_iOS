@@ -73,6 +73,9 @@ struct WidgetSettingsView: View {
             WidgetCenter.shared.reloadAllTimelines()
         }
         .onChange(of: widgetMode) { _ in
+            if !widgetMode {
+                tileEditingNumber = 1
+            }
             saveWidgetMode()
             WidgetCenter.shared.reloadAllTimelines()
         }
