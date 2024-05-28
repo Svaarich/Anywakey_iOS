@@ -7,9 +7,9 @@ struct WidgetSettingsView: View {
     @Environment(\.colorScheme) var colorScheme
     @EnvironmentObject var dataService: DeviceDataService
     
-    @State private var widgetColorIndex_1: Int = 3
-    @State private var widgetColorIndex_2: Int = 3
-    @State private var widgetMode: Bool = false
+    @State private var widgetColorIndex_1: Int = 2
+    @State private var widgetColorIndex_2: Int = 2
+    @AppStorage("2widgetMode") var widgetMode: Bool = false
     
     @State private var tileEditingNumber: Int = 1
     
@@ -28,6 +28,7 @@ struct WidgetSettingsView: View {
         if let userDefaults = UserDefaults(suiteName: "group.svarich.anywakey") {
             widgetColorIndex_1 = userDefaults.integer(forKey: "widgetColor_1")
             widgetColorIndex_2 = userDefaults.integer(forKey: "widgetColor_2")
+            widgetMode = userDefaults.bool(forKey: "2widgetMode")
         }
     }
     
@@ -52,6 +53,7 @@ struct WidgetSettingsView: View {
             .padding()
             .navigationTitle("Widget settings")
         }
+        .defaultAppStorage(UserDefaults(suiteName: "group.svarich.anywakey")!)
         .background {
             if colorScheme == .light {
                 Color.gray.opacity(0.1).ignoresSafeArea()
@@ -104,15 +106,15 @@ extension WidgetSettingsView {
         }
         .overlay {
             VStack(alignment: .leading, spacing: 4) {
-                Text("Pinned devices not found")
+                Text("Devices not found.")
                     .foregroundStyle(.primary)
-                Text("Please pin any device in the app.")
+                Text("Please add any device in the app.")
                     .foregroundStyle(.secondary)
                     .font(.caption)
                 Spacer()
                 Text("""
-                        *only first 2 pinned
-                         devices are available.
+                        *widget supports
+                         only 2 devices.
                         """)
                 .foregroundStyle(.secondary)
                 .font(.caption2)
@@ -242,6 +244,12 @@ extension WidgetSettingsView {
     private func saveWidgetMode() {
         if let userDefaults = UserDefaults(suiteName: "group.svarich.anywakey") {
             userDefaults.setValue(widgetMode, forKey: "2widgetMode")
+        }
+    }
+    
+    private func fetchWidgetMode() {
+        if let userDefaults = UserDefaults(suiteName: "group.svarich.anywakey") {
+            widgetMode = userDefaults.bool(forKey: "2widgetMode")
         }
     }
     

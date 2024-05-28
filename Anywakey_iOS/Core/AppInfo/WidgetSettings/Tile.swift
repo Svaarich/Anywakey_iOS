@@ -31,7 +31,7 @@ struct Tile: View {
                 .frame(maxHeight: height)
         }
         .overlay {
-            VStack {
+            VStack(spacing: 0) {
                 Menu {
                     ForEach(dataService.allDevices) { device in
                         Button {
@@ -50,21 +50,19 @@ struct Tile: View {
                         }
                     }
                 } label: {
-                    VStack(alignment: .leading, spacing: 0) {
-                        Text(title)
-                        Text("*tap to edit")
-                            .font(.caption)
-                            .fontWeight(.regular)
-                            .opacity(0.6)
-                    }
-                    .lineLimit(1)
-                    .multilineTextAlignment(.leading)
-                    .foregroundStyle(.white)
-                    .font(Font.system(size: 18))
-                    .fontWeight(.semibold)
-                    .frame(maxWidth: .infinity, alignment: .leading)
+                    Text(title)
+                        .lineLimit(1)
+                        .multilineTextAlignment(.leading)
+                        .foregroundStyle(.white)
+                        .font(Font.system(size: 18))
+                        .fontWeight(.semibold)
+                        .frame(maxWidth: .infinity, alignment: .leading)
                 }
-                
+                Text("*tap to edit")
+                    .font(.caption)
+                    .fontWeight(.regular)
+                    .opacity(0.6)
+                    .frame(maxWidth: .infinity, alignment: .leading)
                 Spacer()
                 Image(systemName: "power")
                     .foregroundStyle(.white)
