@@ -61,7 +61,11 @@ struct WidgetSettingsView: View {
         }
         .onTapGesture {
             withAnimation(.smooth) {
-                tileEditingNumber = 3
+                if widgetMode {
+                    tileEditingNumber = 0
+                } else {
+                    tileEditingNumber = 1
+                }
             }
         }
         .onChange(of: widgetColorIndex_1) { _ in
@@ -73,11 +77,16 @@ struct WidgetSettingsView: View {
             WidgetCenter.shared.reloadAllTimelines()
         }
         .onChange(of: widgetMode) { _ in
+            if !widgetMode {
+                tileEditingNumber = 1
+            } else {
+                tileEditingNumber = 0
+            }
             saveWidgetMode()
             WidgetCenter.shared.reloadAllTimelines()
         }
         .onAppear {
-            tileEditingNumber = widgetMode ? 3 : 1
+            tileEditingNumber = widgetMode ? 0 : 1
             fetchColors()
             WidgetCenter.shared.reloadAllTimelines()
         }
@@ -136,23 +145,24 @@ extension WidgetSettingsView {
             Tile(colors: colors[widgetColorIndex_1], height: .infinity, tileNumber: 1, devices: dataService.allDevices)
                 .opacity(
                     tileEditingNumber == 1 ? 1.0 :
-                        tileEditingNumber == 3 ? 1 : 0.4)
+                        tileEditingNumber == 0 ? 1 : 0.4)
                 .onTapGesture {
                     withAnimation(.smooth) {
                         tileEditingNumber = 1
                     }
                 }
+                .zIndex(2)
             if widgetMode {
                 Tile(colors: colors[widgetColorIndex_2], height: widgetMode ? .infinity : 0, tileNumber: 2, devices: dataService.allDevices)
                     .opacity(
                         tileEditingNumber == 2 ? 1.0 :
-                            tileEditingNumber == 3 ? 1 : 0.4)
+                            tileEditingNumber == 0 ? 1 : 0.4)
                     .onTapGesture {
                         withAnimation(.smooth) {
                             tileEditingNumber = 2
                         }
                     }
-                    .transition(.scale.combined(with: .opacity))
+                    .transition(.scale.combined(with: .opacity).animation(.smooth))
             }
         }
         .padding(9)
@@ -168,13 +178,7 @@ extension WidgetSettingsView {
             ForEach(colors) { color in
                 Button {
                     withAnimation(.smooth) {
-                        if tileEditingNumber == 1 {
-                            widgetColorIndex_1 = getIndex(color: color)
-                            saveIndecies()
-                        } else if tileEditingNumber == 2 {
-                            widgetColorIndex_2 = getIndex(color: color)
-                            saveIndecies()
-                        }
+                        performButtonAction(color: color)
                     }
                 } label: {
                     HStack {
@@ -186,7 +190,6 @@ extension WidgetSettingsView {
                             .frame(width: 70, height: 35)
                         
                     }
-                    
                     .frame(maxWidth: .infinity, maxHeight: .infinity)
                     .padding(.horizontal, 16)
                     .background(colorScheme == .dark ? .gray.opacity(0.1) : .white)
@@ -225,6 +228,21 @@ extension WidgetSettingsView {
             }
         }
         return 0
+    }
+    
+    private func performButtonAction(color: GradientColor) {
+        switch tileEditingNumber {
+        case 1:
+            widgetColorIndex_1 = getIndex(color: color)
+        case 2:
+            widgetColorIndex_2 = getIndex(color: color)
+        case 0:
+            widgetColorIndex_1 = getIndex(color: color)
+            widgetColorIndex_2 = widgetColorIndex_1
+        default:
+            break
+        }
+        saveIndecies()
     }
     
     private func saveIndecies() {

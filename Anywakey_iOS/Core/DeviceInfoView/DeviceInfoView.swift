@@ -23,6 +23,7 @@ struct DeviceInfoView: View {
     @State private var Port: String
     
     @State private var device: Device
+    @State private var lastDevice: Device
     
     @State private var animateButton: Bool = false
     @State private var animateWrongInput: Bool = false
@@ -34,6 +35,7 @@ struct DeviceInfoView: View {
         _MAC = State(initialValue: device.MAC)
         _Port = State(initialValue: device.Port)
         _device = State(initialValue: device)
+        _lastDevice = State(initialValue: device)
         self._showDeleteCancelation = showDeleteCancelation
     }
     
@@ -51,8 +53,8 @@ struct DeviceInfoView: View {
                         .animation(.spring, value: isFocused)
                         .animation(.bouncy, value: [name, MAC, BroadcastAddr, Port])
                     HStack {
-                        // Delete button
-                        deleteButton
+                        // Delete and cancel editiong button
+                        deleteAndCancelButton
                         
                         // Copy button
                         copyButton
@@ -125,6 +127,7 @@ extension DeviceInfoView {
             
             // MAC
             macField
+                .textInputAutocapitalization(.characters)
                 .keyboardType(.alphabet)
                 .autocorrectionDisabled()
             
@@ -301,16 +304,24 @@ extension DeviceInfoView {
     }
     
     // Delete button
-    private var deleteButton: some View {
+    private var deleteAndCancelButton: some View {
         Button {
             withAnimation {
-                showDeleteAlert.toggle()
+                if !isEditing {
+                    showDeleteAlert.toggle()
+                } else {
+                    name = lastDevice.name
+                    BroadcastAddr = lastDevice.BroadcastAddr
+                    MAC = lastDevice.MAC
+                    Port = lastDevice.Port
+                    isEditing = false
+                }
             }
         } label: {
             VStack(spacing: 4) {
-                Image(systemName: "trash.fill")
+                Image(systemName: isEditing ? "return" : "trash.fill")
                     .foregroundStyle(.red)
-                Text("Delete")
+                Text(isEditing ? "Undo Edit" : "Delete")
                     .foregroundStyle(Color.red.opacity(0.7))
             }
             .frame(height: 60)
