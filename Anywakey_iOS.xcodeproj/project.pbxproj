@@ -14,6 +14,9 @@
 		7D33C1C52BFE07FC00ABF540 /* WidgetTile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DEFA8262BF805FE0092986C /* WidgetTile.swift */; };
 		7D4A6ABC2BFE7CE100BBFCE6 /* Tile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D4A6ABB2BFE7CE000BBFCE6 /* Tile.swift */; };
 		7D4A6ABD2BFE7CE100BBFCE6 /* Tile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D4A6ABB2BFE7CE000BBFCE6 /* Tile.swift */; };
+		7D54BDD32C07BB510042FC0B /* ShareViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D54BDD22C07BB510042FC0B /* ShareViewController.swift */; };
+		7D54BDD62C07BB510042FC0B /* Base in Resources */ = {isa = PBXBuildFile; fileRef = 7D54BDD52C07BB510042FC0B /* Base */; };
+		7D54BDDA2C07BB510042FC0B /* Share.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 7D54BDD02C07BB510042FC0B /* Share.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		7D596B4A2B48D00C00A5B7FA /* NoDevicesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D596B492B48D00C00A5B7FA /* NoDevicesView.swift */; };
 		7D5FE1C82B5CB60900142502 /* Double.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D5FE1C72B5CB60900142502 /* Double.swift */; };
 		7D5FE1F42B5F5D3F00142502 /* DeleteDeviceSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D5FE1F32B5F5D3F00142502 /* DeleteDeviceSheet.swift */; };
@@ -72,6 +75,13 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		7D54BDD82C07BB510042FC0B /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 7DC26D752AE7EBE100B52D02 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 7D54BDCF2C07BB510042FC0B;
+			remoteInfo = Share;
+		};
 		7DE834B62BF2182300B065BB /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 7DC26D752AE7EBE100B52D02 /* Project object */;
@@ -98,6 +108,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 13;
 			files = (
+				7D54BDDA2C07BB510042FC0B /* Share.appex in Embed Foundation Extensions */,
 				7DE834B82BF2182300B065BB /* AnyWidgetExtension.appex in Embed Foundation Extensions */,
 			);
 			name = "Embed Foundation Extensions";
@@ -111,6 +122,10 @@
 		7D13BA662BF7E0AD00A8817B /* TwoDeviceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TwoDeviceView.swift; sourceTree = "<group>"; };
 		7D2D9F462BD7B16B001AB81A /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
 		7D4A6ABB2BFE7CE000BBFCE6 /* Tile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tile.swift; sourceTree = "<group>"; };
+		7D54BDD02C07BB510042FC0B /* Share.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = Share.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		7D54BDD22C07BB510042FC0B /* ShareViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareViewController.swift; sourceTree = "<group>"; };
+		7D54BDD52C07BB510042FC0B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/MainInterface.storyboard; sourceTree = "<group>"; };
+		7D54BDD72C07BB510042FC0B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		7D596B492B48D00C00A5B7FA /* NoDevicesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoDevicesView.swift; sourceTree = "<group>"; };
 		7D5FE1C72B5CB60900142502 /* Double.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Double.swift; sourceTree = "<group>"; };
 		7D5FE1F32B5F5D3F00142502 /* DeleteDeviceSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeleteDeviceSheet.swift; sourceTree = "<group>"; };
@@ -166,6 +181,13 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		7D54BDCD2C07BB510042FC0B /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		7DC26D7A2AE7EBE100B52D02 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -240,6 +262,16 @@
 			path = WidgetSettings;
 			sourceTree = "<group>";
 		};
+		7D54BDD12C07BB510042FC0B /* Share */ = {
+			isa = PBXGroup;
+			children = (
+				7D54BDD22C07BB510042FC0B /* ShareViewController.swift */,
+				7D54BDD42C07BB510042FC0B /* MainInterface.storyboard */,
+				7D54BDD72C07BB510042FC0B /* Info.plist */,
+			);
+			path = Share;
+			sourceTree = "<group>";
+		};
 		7DB21B6B2BF8D71200A090E2 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
@@ -256,6 +288,7 @@
 				7DE834AE2BF2182000B065BB /* AnyWidget */,
 				7DE834BE2BF2184A00B065BB /* AnyWidgetExtension.entitlements */,
 				7DE834BD2BF2184400B065BB /* Anywakey-iOS.entitlements */,
+				7D54BDD12C07BB510042FC0B /* Share */,
 				7DE834A92BF2182000B065BB /* Frameworks */,
 				7DC26D7E2AE7EBE100B52D02 /* Products */,
 			);
@@ -266,6 +299,7 @@
 			children = (
 				7DC26D7D2AE7EBE100B52D02 /* Anywakey-iOS.app */,
 				7DE834A82BF2182000B065BB /* AnyWidgetExtension.appex */,
+				7D54BDD02C07BB510042FC0B /* Share.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -443,6 +477,23 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		7D54BDCF2C07BB510042FC0B /* Share */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 7D54BDDD2C07BB510042FC0B /* Build configuration list for PBXNativeTarget "Share" */;
+			buildPhases = (
+				7D54BDCC2C07BB510042FC0B /* Sources */,
+				7D54BDCD2C07BB510042FC0B /* Frameworks */,
+				7D54BDCE2C07BB510042FC0B /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Share;
+			productName = Share;
+			productReference = 7D54BDD02C07BB510042FC0B /* Share.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
 		7DC26D7C2AE7EBE100B52D02 /* Anywakey-iOS */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 7DC26DA12AE7EBE300B52D02 /* Build configuration list for PBXNativeTarget "Anywakey-iOS" */;
@@ -457,6 +508,7 @@
 			);
 			dependencies = (
 				7DE834B72BF2182300B065BB /* PBXTargetDependency */,
+				7D54BDD92C07BB510042FC0B /* PBXTargetDependency */,
 			);
 			name = "Anywakey-iOS";
 			productName = "LANWakeUp-IOS";
@@ -487,9 +539,12 @@
 			isa = PBXProject;
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
-				LastSwiftUpdateCheck = 1530;
+				LastSwiftUpdateCheck = 1540;
 				LastUpgradeCheck = 1530;
 				TargetAttributes = {
+					7D54BDCF2C07BB510042FC0B = {
+						CreatedOnToolsVersion = 15.4;
+					};
 					7DC26D7C2AE7EBE100B52D02 = {
 						CreatedOnToolsVersion = 15.0;
 					};
@@ -513,11 +568,20 @@
 			targets = (
 				7DC26D7C2AE7EBE100B52D02 /* Anywakey-iOS */,
 				7DE834A72BF2182000B065BB /* AnyWidgetExtension */,
+				7D54BDCF2C07BB510042FC0B /* Share */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		7D54BDCE2C07BB510042FC0B /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				7D54BDD62C07BB510042FC0B /* Base in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		7DC26D7B2AE7EBE100B52D02 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -539,6 +603,14 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		7D54BDCC2C07BB510042FC0B /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				7D54BDD32C07BB510042FC0B /* ShareViewController.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		7DC26D792AE7EBE100B52D02 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -611,6 +683,11 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		7D54BDD92C07BB510042FC0B /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 7D54BDCF2C07BB510042FC0B /* Share */;
+			targetProxy = 7D54BDD82C07BB510042FC0B /* PBXContainerItemProxy */;
+		};
 		7DE834B72BF2182300B065BB /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 7DE834A72BF2182000B065BB /* AnyWidgetExtension */;
@@ -618,7 +695,73 @@
 		};
 /* End PBXTargetDependency section */
 
+/* Begin PBXVariantGroup section */
+		7D54BDD42C07BB510042FC0B /* MainInterface.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				7D54BDD52C07BB510042FC0B /* Base */,
+			);
+			name = MainInterface.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
 /* Begin XCBuildConfiguration section */
+		7D54BDDB2C07BB510042FC0B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1.3;
+				DEVELOPMENT_TEAM = LMA5CPXKDX;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = Share/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = Share;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = svarich.anywakey.Share;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		7D54BDDC2C07BB510042FC0B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1.3;
+				DEVELOPMENT_TEAM = LMA5CPXKDX;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = Share/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = Share;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = svarich.anywakey.Share;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
 		7DC26D9B2AE7EBE300B52D02 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -894,6 +1037,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		7D54BDDD2C07BB510042FC0B /* Build configuration list for PBXNativeTarget "Share" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				7D54BDDB2C07BB510042FC0B /* Debug */,
+				7D54BDDC2C07BB510042FC0B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		7DC26D782AE7EBE100B52D02 /* Build configuration list for PBXProject "Anywakey_iOS" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
