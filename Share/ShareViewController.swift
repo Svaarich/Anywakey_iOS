@@ -6,6 +6,14 @@ class ShareViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .red
+        
+        if let itemProviders = (extensionContext!.inputItems.first as? NSExtensionItem)?.attachments {
+            let hostingView = UIHostingController(rootView: ShareView(extensionContext: extensionContext, itemProviders: itemProviders))
+            hostingView.view.frame = view.frame
+            view.addSubview(hostingView.view)
+        }
+    }
+}
     private func extractDevices() {
         guard devices.isEmpty else { return }
         DispatchQueue.global(qos: .userInteractive).async {
