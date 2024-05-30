@@ -1,6 +1,6 @@
 
 import UIKit
-import Social
+import SwiftUI
 
 class ShareViewController: UIViewController {
     override func viewDidLoad() {
