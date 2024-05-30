@@ -21,4 +21,8 @@ class ShareViewController: UIViewController {
             }
         }
     }
+    
+    private func dismiss() {
+        extensionContext?.completeRequest(returningItems: [])
+    }
 }
