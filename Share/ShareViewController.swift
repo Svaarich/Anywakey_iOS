@@ -14,6 +14,41 @@ class ShareViewController: UIViewController {
         }
     }
 }
+    private var correctEntryView: some View {
+        VStack(spacing: 16) {
+            Text("Choose devices")
+                .font(.title3)
+                .fontWeight(.bold)
+                .frame(maxWidth: .infinity)
+                .overlay(alignment: .leading) {
+                    Button("Cancel") {
+                        dismiss()
+                    }
+                    .tint(.red)
+                }
+            if !devices.isEmpty {
+                ForEach(devices) { device in
+                    HStack {
+                        Text(device.name)
+                        Spacer()
+                        Image(systemName: "power")
+                    }
+                }
+                Button {
+                    // do action
+                } label: {
+                    Text("Import")
+                        .foregroundStyle(.white)
+                        .fontWeight(.semibold)
+                        .frame(maxWidth: .infinity)
+                        .padding(12)
+                        .background(.blue)
+                        .clipShape(RoundedRectangle(cornerRadius: 13))
+                }
+            }
+        }
+    }
+    
     private func extractDevices() {
         guard devices.isEmpty else { return }
         DispatchQueue.global(qos: .userInteractive).async {
