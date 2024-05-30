@@ -14,6 +14,35 @@ class ShareViewController: UIViewController {
         }
     }
 }
+
+fileprivate struct ShareView: View {
+    
+    @State private var devices: [Device] = []
+    
+    var extensionContext: NSExtensionContext?
+    var itemProviders: [NSItemProvider]
+    
+    var body: some View {
+        VStack(spacing: 0) {
+            if devices.isEmpty {
+                Text("Wrong input")
+                    .font(.title3)
+                    .fontWeight(.bold)
+                    .frame(maxWidth: .infinity)
+                    .overlay(alignment: .leading) {
+                        Button("close") {
+                            dismiss()
+                        }
+                        .tint(.red)
+                    }
+            } else {
+                correctEntryView
+            }
+        }
+        .padding()
+        .onAppear(perform: extractDevices)
+    }
+    
     private var correctEntryView: some View {
         VStack(spacing: 16) {
             Text("Choose devices")
