@@ -42,6 +42,7 @@
 		7DC26DA82AE7EC8B00B52D02 /* Network.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DC26DA72AE7EC8B00B52D02 /* Network.swift */; };
 		7DC26DA92AE7EDA500B52D02 /* WakeOnLAN.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DC26DA42AE7EC5300B52D02 /* WakeOnLAN.swift */; };
 		7DC26DB12AE821CC00B52D02 /* DeviceCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DC26DB02AE821CC00B52D02 /* DeviceCellView.swift */; };
+		7DC61BD22C0A2CBE009177D1 /* Device.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DFC05352B292C5E0082E502 /* Device.swift */; };
 		7DD1F7DD2BBBF70F0000E238 /* Device + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DD1F7DC2BBBF70F0000E238 /* Device + Extension.swift */; };
 		7DD3318A2B54EC2E002BFA64 /* View.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DD331892B54EC2E002BFA64 /* View.swift */; };
 		7DD331DC2B5C5D8D002BFA64 /* BootButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DD331DB2B5C5D8D002BFA64 /* BootButton.swift */; };
@@ -608,6 +609,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				7D54BDD32C07BB510042FC0B /* ShareViewController.swift in Sources */,
+				7DC61BD22C0A2CBE009177D1 /* Device.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
