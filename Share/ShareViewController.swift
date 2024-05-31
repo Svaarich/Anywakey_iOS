@@ -91,21 +91,6 @@ fileprivate struct ShareView: View {
                         .clipShape(RoundedRectangle(cornerRadius: 13))
                 }
             }
-        }
-    }
-    
-    private func extractDevices() {
-        guard devices.isEmpty else { return }
-        DispatchQueue.global(qos: .userInteractive).async {
-            for provider in itemProviders {
-                let _ = provider.loadDataRepresentation(for: .text) { data, error in
-                    let decoder = JSONDecoder()
-                    do {
-                        devices = try decoder.decode([Device].self, from: data!)
-                    } catch {
-                        print("Unable to read data. \(error)")
-                    }
-                }
             }
         }
     }
