@@ -39,39 +39,39 @@ fileprivate struct ShareView: View {
     
     private var header: some View {
         VStack(spacing: 0) {
-            if devices.isEmpty {
-                Text("Wrong input")
+            if svDataService.devices.isEmpty {
+                VStack(spacing: 16) {
+                    Text("Error")
+                        .font(.title3)
+                        .fontWeight(.bold)
+                        .frame(maxWidth: .infinity)
+                        .overlay(alignment: .leading) {
+                            Button("Close", action: dismiss)
+                                .tint(.primary)
+                        }
+                    Group {
+                        Text("Wrong input.")
+                        Text("Please use correct configuraion file.")
+                    }
+                    .foregroundStyle(.secondary)
+                }
+            } else {
+                Text("Choose devices")
                     .font(.title3)
                     .fontWeight(.bold)
                     .frame(maxWidth: .infinity)
                     .overlay(alignment: .leading) {
-                        Button("close") {
-                            dismiss()
-                        }
-                        .tint(.red)
+                        Button("Cancel", action: dismiss)
+                            .tint(.primary)
                     }
-            } else {
-                correctEntryView
             }
         }
-        .padding()
-        .onAppear(perform: extractDevices)
     }
     
     private var correctEntryView: some View {
         LazyVStack(spacing: 16) {
             if !svDataService.devices.isEmpty {
                 ForEach(svDataService.devices) { item in
-                .fontWeight(.bold)
-                .frame(maxWidth: .infinity)
-                .overlay(alignment: .leading) {
-                    Button("Cancel") {
-                        dismiss()
-                    }
-                    .tint(.red)
-                }
-            if !devices.isEmpty {
-                ForEach(devices) { device in
                     HStack {
                         Image(systemName: item.isPinned ? "checkmark.circle.fill" : "circle")
                             .foregroundStyle(item.isPinned ? .blue : .primary)
