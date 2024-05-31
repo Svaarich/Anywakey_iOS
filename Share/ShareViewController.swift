@@ -90,7 +90,7 @@ fileprivate struct ShareView: View {
                         .background(.blue)
                         .clipShape(RoundedRectangle(cornerRadius: 13))
                 }
-            }
+                .padding(.bottom, 64)
             }
         }
     }
