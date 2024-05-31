@@ -101,6 +101,7 @@ struct HomeView: View {
             }
         }
         .onChange(of: scenePhase) { _ in
+            dataService.fetchUserDefaults()
             WidgetCenter.shared.reloadAllTimelines()
         }
     }
