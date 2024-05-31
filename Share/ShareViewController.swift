@@ -30,7 +30,6 @@ fileprivate struct ShareView: View {
                 correctEntryView
                     .padding(.horizontal)
             }
-            //            .padding(.bottom, 64)
         }
         .padding(.vertical)
         .onAppear {
