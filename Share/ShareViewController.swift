@@ -23,6 +23,22 @@ fileprivate struct ShareView: View {
     var itemProviders: [NSItemProvider]
     
     var body: some View {
+        VStack(spacing: 16) {
+            header
+                .padding(.horizontal)
+            ScrollView {
+                correctEntryView
+                    .padding(.horizontal)
+            }
+            //            .padding(.bottom, 64)
+        }
+        .padding(.vertical)
+        .onAppear {
+            svDataService.extractDevices(extensionContext, itemProviders)
+        }
+    }
+    
+    private var header: some View {
         VStack(spacing: 0) {
             if devices.isEmpty {
                 Text("Wrong input")
