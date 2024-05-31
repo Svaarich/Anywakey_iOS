@@ -17,7 +17,7 @@ class ShareViewController: UIViewController {
 
 fileprivate struct ShareView: View {
     
-    @State private var devices: [Device] = []
+    @ObservedObject var svDataService: SVDataService = SVDataService()
     
     var extensionContext: NSExtensionContext?
     var itemProviders: [NSItemProvider]
