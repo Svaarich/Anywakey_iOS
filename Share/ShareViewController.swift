@@ -79,7 +79,10 @@ fileprivate struct ShareView: View {
                     }
                 }
                 Button {
-                    // do action
+                    svDataService.saveUserDefaults()
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
+                        dismiss()
+                    }
                 } label: {
                     Text("Import")
                         .foregroundStyle(.white)
