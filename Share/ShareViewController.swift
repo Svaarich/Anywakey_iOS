@@ -59,9 +59,9 @@ fileprivate struct ShareView: View {
     }
     
     private var correctEntryView: some View {
-        VStack(spacing: 16) {
-            Text("Choose devices")
-                .font(.title3)
+        LazyVStack(spacing: 16) {
+            if !svDataService.devices.isEmpty {
+                ForEach(svDataService.devices) { item in
                 .fontWeight(.bold)
                 .frame(maxWidth: .infinity)
                 .overlay(alignment: .leading) {
@@ -73,9 +73,19 @@ fileprivate struct ShareView: View {
             if !devices.isEmpty {
                 ForEach(devices) { device in
                     HStack {
-                        Text(device.name)
+                        Image(systemName: item.isPinned ? "checkmark.circle.fill" : "circle")
+                            .foregroundStyle(item.isPinned ? .blue : .primary)
+                        Text(item.name)
+                            .lineLimit(1)
                         Spacer()
-                        Image(systemName: "power")
+                    }
+                    .font(.title3)
+                    .onTapGesture {
+                        for device in svDataService.devices {
+                            if device.id == item.id {
+                                svDataService.devices[svDataService.devices.firstIndex(of: device)!] = device.pinToggle()
+                            }
+                        }
                     }
                 }
                 Button {
