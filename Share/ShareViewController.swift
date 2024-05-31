@@ -17,54 +17,82 @@ class ShareViewController: UIViewController {
 
 fileprivate struct ShareView: View {
     
-    @State private var devices: [Device] = []
+    @ObservedObject var svDataService: SVDataService = SVDataService()
     
     var extensionContext: NSExtensionContext?
     var itemProviders: [NSItemProvider]
     
     var body: some View {
+        VStack(spacing: 16) {
+            header
+                .padding(.horizontal)
+            ScrollView {
+                correctEntryView
+                    .padding(.horizontal)
+            }
+        }
+        .padding(.vertical)
+        .onAppear {
+            svDataService.extractDevices(extensionContext, itemProviders)
+        }
+    }
+    
+    private var header: some View {
         VStack(spacing: 0) {
-            if devices.isEmpty {
-                Text("Wrong input")
+            if svDataService.devices.isEmpty {
+                VStack(spacing: 16) {
+                    Text("Error")
+                        .font(.title3)
+                        .fontWeight(.bold)
+                        .frame(maxWidth: .infinity)
+                        .overlay(alignment: .leading) {
+                            Button("Close", action: dismiss)
+                                .tint(.primary)
+                        }
+                    Group {
+                        Text("Wrong input.")
+                        Text("Please use correct configuraion file.")
+                    }
+                    .foregroundStyle(.secondary)
+                }
+            } else {
+                Text("Choose devices")
                     .font(.title3)
                     .fontWeight(.bold)
                     .frame(maxWidth: .infinity)
                     .overlay(alignment: .leading) {
-                        Button("close") {
-                            dismiss()
-                        }
-                        .tint(.red)
+                        Button("Cancel", action: dismiss)
+                            .tint(.primary)
                     }
-            } else {
-                correctEntryView
             }
         }
-        .padding()
-        .onAppear(perform: extractDevices)
     }
     
     private var correctEntryView: some View {
-        VStack(spacing: 16) {
-            Text("Choose devices")
-                .font(.title3)
-                .fontWeight(.bold)
-                .frame(maxWidth: .infinity)
-                .overlay(alignment: .leading) {
-                    Button("Cancel") {
-                        dismiss()
-                    }
-                    .tint(.red)
-                }
-            if !devices.isEmpty {
-                ForEach(devices) { device in
+        LazyVStack(spacing: 16) {
+            if !svDataService.devices.isEmpty {
+                ForEach(svDataService.devices) { item in
                     HStack {
-                        Text(device.name)
+                        Image(systemName: item.isPinned ? "checkmark.circle.fill" : "circle")
+                            .foregroundStyle(item.isPinned ? .blue : .primary)
+                        Text(item.name)
+                            .lineLimit(1)
                         Spacer()
-                        Image(systemName: "power")
+                    }
+                    .font(.title3)
+                    .onTapGesture {
+                        for device in svDataService.devices {
+                            if device.id == item.id {
+                                svDataService.devices[svDataService.devices.firstIndex(of: device)!] = device.pinToggle()
+                            }
+                        }
                     }
                 }
                 Button {
-                    // do action
+                    svDataService.saveUserDefaults()
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
+                        dismiss()
+                    }
                 } label: {
                     Text("Import")
                         .foregroundStyle(.white)
@@ -74,22 +102,7 @@ fileprivate struct ShareView: View {
                         .background(.blue)
                         .clipShape(RoundedRectangle(cornerRadius: 13))
                 }
-            }
-        }
-    }
-    
-    private func extractDevices() {
-        guard devices.isEmpty else { return }
-        DispatchQueue.global(qos: .userInteractive).async {
-            for provider in itemProviders {
-                let _ = provider.loadDataRepresentation(for: .text) { data, error in
-                    let decoder = JSONDecoder()
-                    do {
-                        devices = try decoder.decode([Device].self, from: data!)
-                    } catch {
-                        print("Unable to read data. \(error)")
-                    }
-                }
+                .padding(.bottom, 64)
             }
         }
     }
