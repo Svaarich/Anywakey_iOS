@@ -66,7 +66,7 @@ struct DeviceCellView: View {
         .onAppear {
             addAnimation()
             getStatus()
-            Timer.scheduledTimer(withTimeInterval: 5, repeats: true) { _ in
+            Timer.scheduledTimer(withTimeInterval: 15, repeats: true) { _ in
                 getStatus()
             }
             
