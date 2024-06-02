@@ -142,12 +142,6 @@ extension DeviceInfoView {
         
         .background(Color.gray.opacity(colorScheme == .dark ? 0.2 : 0.1))
         .clipShape(RoundedRectangle(cornerRadius: 25))
-        
-        .overlay {
-            RoundedRectangle(cornerRadius: 25)
-                .strokeBorder(lineWidth: 1)
-                .foregroundStyle(.blue.opacity(isEditing ? 1 : 0))
-        }
     }
     
     private var title: some View {
