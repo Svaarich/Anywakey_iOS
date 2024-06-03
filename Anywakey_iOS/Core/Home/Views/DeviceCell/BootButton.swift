@@ -37,7 +37,6 @@ struct BootButton: View {
             .padding(.trailing)
         
             .onTapGesture {
-                
                 if device.BroadcastAddr.isValidAdress() && device.MAC.isValidMAC() {
                     withAnimation(.easeInOut) {
                         isPressed = true
@@ -58,9 +57,9 @@ struct BootButton: View {
                 }
             }
             .onAppear {
-                statusColor = colorScheme == .dark ? DrawingConstants.defaultDarkColor :  DrawingConstants.defaultLightColor
+//                statusColor = colorScheme == .dark ? DrawingConstants.defaultDarkColor :  DrawingConstants.defaultLightColor
                 getStatusColor()
-                Timer.scheduledTimer(withTimeInterval: 1.0, repeats: true) { _ in
+                Timer.scheduledTimer(withTimeInterval: 15, repeats: true) { _ in
                     getStatusColor()
                 }
             }
