@@ -28,6 +28,8 @@
 		7D7E0B4D2BF68ACA0043175D /* AppInfoButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D7E0B4C2BF68ACA0043175D /* AppInfoButton.swift */; };
 		7D7E0B502BF7C04A0043175D /* OneDeviceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D7E0B4F2BF7C04A0043175D /* OneDeviceView.swift */; };
 		7D7ED04B2C02493300F6C17B /* DeviceDataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DFC05332B292BFB0082E502 /* DeviceDataService.swift */; };
+		7D96D5E02C148BBF00D67D52 /* DeviceDataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DFC05332B292BFB0082E502 /* DeviceDataService.swift */; };
+		7DA4F52F2C147521008E406C /* WatchConnectivity.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7DA4F52D2C14734F008E406C /* WatchConnectivity.framework */; };
 		7DA71F1E2B250A96004F9AF3 /* AppInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DA71F1D2B250A96004F9AF3 /* AppInfoView.swift */; };
 		7DB21B6F2BF8D81000A090E2 /* Color + Widget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DB21B6C2BF8D72B00A090E2 /* Color + Widget.swift */; };
 		7DB21B702BF92C7000A090E2 /* Color + Widget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DB21B6C2BF8D72B00A090E2 /* Color + Widget.swift */; };
@@ -44,6 +46,18 @@
 		7DC26DB12AE821CC00B52D02 /* DeviceCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DC26DB02AE821CC00B52D02 /* DeviceCellView.swift */; };
 		7DC61BD22C0A2CBE009177D1 /* Device.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DFC05352B292C5E0082E502 /* Device.swift */; };
 		7DC61BD52C0A3B38009177D1 /* SVDataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DC61BD42C0A3B38009177D1 /* SVDataService.swift */; };
+		7DC61C4F2C144DDD009177D1 /* AnywakeyApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DC61C4E2C144DDD009177D1 /* AnywakeyApp.swift */; };
+		7DC61C512C144DDD009177D1 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DC61C502C144DDD009177D1 /* HomeView.swift */; };
+		7DC61C532C144DE0009177D1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7DC61C522C144DE0009177D1 /* Assets.xcassets */; };
+		7DC61C562C144DE0009177D1 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7DC61C552C144DE0009177D1 /* Preview Assets.xcassets */; };
+		7DC61C592C144DE0009177D1 /* Anywakey Watch App.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = 7DC61C4C2C144DDD009177D1 /* Anywakey Watch App.app */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		7DC61C612C145792009177D1 /* Device.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DFC05352B292C5E0082E502 /* Device.swift */; };
+		7DC61C642C1457B1009177D1 /* WakeOnLAN.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DC26DA42AE7EC5300B52D02 /* WakeOnLAN.swift */; };
+		7DC61C652C1457B5009177D1 /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DD331DD2B5C5DD7002BFA64 /* Color.swift */; };
+		7DC61C662C1457BC009177D1 /* Double.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D5FE1C72B5CB60900142502 /* Double.swift */; };
+		7DC61C682C1460F4009177D1 /* String.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DE700122AEA82DC0033E53A /* String.swift */; };
+		7DC61C6A2C14618E009177D1 /* WatchNetwork.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DC61C692C14618E009177D1 /* WatchNetwork.swift */; };
+		7DC61C6B2C146192009177D1 /* WatchNetwork.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DC61C692C14618E009177D1 /* WatchNetwork.swift */; };
 		7DD1F7DD2BBBF70F0000E238 /* Device + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DD1F7DC2BBBF70F0000E238 /* Device + Extension.swift */; };
 		7DD3318A2B54EC2E002BFA64 /* View.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DD331892B54EC2E002BFA64 /* View.swift */; };
 		7DD331DC2B5C5D8D002BFA64 /* BootButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DD331DB2B5C5D8D002BFA64 /* BootButton.swift */; };
@@ -84,6 +98,13 @@
 			remoteGlobalIDString = 7D54BDCF2C07BB510042FC0B;
 			remoteInfo = Share;
 		};
+		7DC61C572C144DE0009177D1 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 7DC26D752AE7EBE100B52D02 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 7DC61C4B2C144DDD009177D1;
+			remoteInfo = "Anywakey Watch App";
+		};
 		7DE834B62BF2182300B065BB /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 7DC26D752AE7EBE100B52D02 /* Project object */;
@@ -100,6 +121,7 @@
 			dstPath = "$(CONTENTS_FOLDER_PATH)/Watch";
 			dstSubfolderSpec = 16;
 			files = (
+				7DC61C592C144DE0009177D1 /* Anywakey Watch App.app in Embed Watch Content */,
 			);
 			name = "Embed Watch Content";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -138,6 +160,7 @@
 		7D7E0B4A2BF63C9D0043175D /* AnyWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnyWidget.swift; sourceTree = "<group>"; };
 		7D7E0B4C2BF68ACA0043175D /* AppInfoButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppInfoButton.swift; sourceTree = "<group>"; };
 		7D7E0B4F2BF7C04A0043175D /* OneDeviceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OneDeviceView.swift; sourceTree = "<group>"; };
+		7DA4F52D2C14734F008E406C /* WatchConnectivity.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WatchConnectivity.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS17.5.sdk/System/Library/Frameworks/WatchConnectivity.framework; sourceTree = DEVELOPER_DIR; };
 		7DA71F1D2B250A96004F9AF3 /* AppInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppInfoView.swift; sourceTree = "<group>"; };
 		7DB21B6C2BF8D72B00A090E2 /* Color + Widget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color + Widget.swift"; sourceTree = "<group>"; };
 		7DB21B732BF96CAF00A090E2 /* AppIntent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppIntent.swift; sourceTree = "<group>"; };
@@ -156,6 +179,13 @@
 		7DC26DB02AE821CC00B52D02 /* DeviceCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceCellView.swift; sourceTree = "<group>"; };
 		7DC61BD32C0A39EC009177D1 /* Share.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Share.entitlements; sourceTree = "<group>"; };
 		7DC61BD42C0A3B38009177D1 /* SVDataService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SVDataService.swift; sourceTree = "<group>"; };
+		7DC61C4C2C144DDD009177D1 /* Anywakey Watch App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Anywakey Watch App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		7DC61C4E2C144DDD009177D1 /* AnywakeyApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnywakeyApp.swift; sourceTree = "<group>"; };
+		7DC61C502C144DDD009177D1 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
+		7DC61C522C144DE0009177D1 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		7DC61C552C144DE0009177D1 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		7DC61C672C1457F8009177D1 /* Anywakey Watch App.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Anywakey Watch App.entitlements"; sourceTree = "<group>"; };
+		7DC61C692C14618E009177D1 /* WatchNetwork.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchNetwork.swift; sourceTree = "<group>"; };
 		7DD1F7DC2BBBF70F0000E238 /* Device + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Device + Extension.swift"; sourceTree = "<group>"; };
 		7DD331892B54EC2E002BFA64 /* View.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = View.swift; sourceTree = "<group>"; };
 		7DD331DB2B5C5D8D002BFA64 /* BootButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BootButton.swift; sourceTree = "<group>"; };
@@ -193,6 +223,14 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		7DC26D7A2AE7EBE100B52D02 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				7DA4F52F2C147521008E406C /* WatchConnectivity.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		7DC61C492C144DDD009177D1 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -291,9 +329,10 @@
 			children = (
 				7DB21B792BFB882200A090E2 /* Anywakey-iOS-Info.plist */,
 				7DC26D7F2AE7EBE100B52D02 /* Anywakey_iOS */,
-				7DE834AE2BF2182000B065BB /* AnyWidget */,
+				7DC61C4D2C144DDD009177D1 /* Anywakey Watch App */,
 				7DE834BE2BF2184A00B065BB /* AnyWidgetExtension.entitlements */,
 				7DE834BD2BF2184400B065BB /* Anywakey-iOS.entitlements */,
+				7DE834AE2BF2182000B065BB /* AnyWidget */,
 				7D54BDD12C07BB510042FC0B /* Share */,
 				7DE834A92BF2182000B065BB /* Frameworks */,
 				7DC26D7E2AE7EBE100B52D02 /* Products */,
@@ -306,6 +345,7 @@
 				7DC26D7D2AE7EBE100B52D02 /* Anywakey-iOS.app */,
 				7DE834A82BF2182000B065BB /* AnyWidgetExtension.appex */,
 				7D54BDD02C07BB510042FC0B /* Share.appex */,
+				7DC61C4C2C144DDD009177D1 /* Anywakey Watch App.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -331,6 +371,43 @@
 				7DC26D872AE7EBE300B52D02 /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		7DC61C4D2C144DDD009177D1 /* Anywakey Watch App */ = {
+			isa = PBXGroup;
+			children = (
+				7DC61C4E2C144DDD009177D1 /* AnywakeyApp.swift */,
+				7DC61C5D2C14564B009177D1 /* Home */,
+				7DC61C5E2C145657009177D1 /* Services */,
+				7DC61C522C144DE0009177D1 /* Assets.xcassets */,
+				7DC61C672C1457F8009177D1 /* Anywakey Watch App.entitlements */,
+				7DC61C542C144DE0009177D1 /* Preview Content */,
+			);
+			path = "Anywakey Watch App";
+			sourceTree = "<group>";
+		};
+		7DC61C542C144DE0009177D1 /* Preview Content */ = {
+			isa = PBXGroup;
+			children = (
+				7DC61C552C144DE0009177D1 /* Preview Assets.xcassets */,
+			);
+			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		7DC61C5D2C14564B009177D1 /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				7DC61C502C144DDD009177D1 /* HomeView.swift */,
+			);
+			path = Home;
+			sourceTree = "<group>";
+		};
+		7DC61C5E2C145657009177D1 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				7DC61C692C14618E009177D1 /* WatchNetwork.swift */,
+			);
+			path = Services;
 			sourceTree = "<group>";
 		};
 		7DD331CF2B5AEAE7002BFA64 /* Core */ = {
@@ -402,6 +479,7 @@
 		7DE834A92BF2182000B065BB /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				7DA4F52D2C14734F008E406C /* WatchConnectivity.framework */,
 				7DE834AA2BF2182000B065BB /* WidgetKit.framework */,
 				7DE834AC2BF2182000B065BB /* SwiftUI.framework */,
 			);
@@ -515,10 +593,28 @@
 			dependencies = (
 				7DE834B72BF2182300B065BB /* PBXTargetDependency */,
 				7D54BDD92C07BB510042FC0B /* PBXTargetDependency */,
+				7DC61C582C144DE0009177D1 /* PBXTargetDependency */,
 			);
 			name = "Anywakey-iOS";
 			productName = "LANWakeUp-IOS";
 			productReference = 7DC26D7D2AE7EBE100B52D02 /* Anywakey-iOS.app */;
+			productType = "com.apple.product-type.application";
+		};
+		7DC61C4B2C144DDD009177D1 /* Anywakey Watch App */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 7DC61C5C2C144DE0009177D1 /* Build configuration list for PBXNativeTarget "Anywakey Watch App" */;
+			buildPhases = (
+				7DC61C482C144DDD009177D1 /* Sources */,
+				7DC61C492C144DDD009177D1 /* Frameworks */,
+				7DC61C4A2C144DDD009177D1 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "Anywakey Watch App";
+			productName = "Anywakey Watch App";
+			productReference = 7DC61C4C2C144DDD009177D1 /* Anywakey Watch App.app */;
 			productType = "com.apple.product-type.application";
 		};
 		7DE834A72BF2182000B065BB /* AnyWidgetExtension */ = {
@@ -554,6 +650,9 @@
 					7DC26D7C2AE7EBE100B52D02 = {
 						CreatedOnToolsVersion = 15.0;
 					};
+					7DC61C4B2C144DDD009177D1 = {
+						CreatedOnToolsVersion = 15.4;
+					};
 					7DE834A72BF2182000B065BB = {
 						CreatedOnToolsVersion = 15.3;
 					};
@@ -575,6 +674,7 @@
 				7DC26D7C2AE7EBE100B52D02 /* Anywakey-iOS */,
 				7DE834A72BF2182000B065BB /* AnyWidgetExtension */,
 				7D54BDCF2C07BB510042FC0B /* Share */,
+				7DC61C4B2C144DDD009177D1 /* Anywakey Watch App */,
 			);
 		};
 /* End PBXProject section */
@@ -595,6 +695,15 @@
 				7DF00C412B51D541008105C9 /* LaunchScreen.storyboard in Resources */,
 				7DC26D882AE7EBE300B52D02 /* Preview Assets.xcassets in Resources */,
 				7DC26D852AE7EBE300B52D02 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		7DC61C4A2C144DDD009177D1 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				7DC61C562C144DE0009177D1 /* Preview Assets.xcassets in Resources */,
+				7DC61C532C144DE0009177D1 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -657,7 +766,24 @@
 				7DC26D812AE7EBE100B52D02 /* Anywakey_iOS_App.swift in Sources */,
 				7DFB91BD2BE3F252001650B9 /* BigBootButton.swift in Sources */,
 				7D77185C2BE3B0B40046700A /* WrongInput.swift in Sources */,
+				7DC61C6B2C146192009177D1 /* WatchNetwork.swift in Sources */,
 				7DE700172AEA845D0033E53A /* FlexibleTextField.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		7DC61C482C144DDD009177D1 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				7DC61C512C144DDD009177D1 /* HomeView.swift in Sources */,
+				7DC61C682C1460F4009177D1 /* String.swift in Sources */,
+				7D96D5E02C148BBF00D67D52 /* DeviceDataService.swift in Sources */,
+				7DC61C642C1457B1009177D1 /* WakeOnLAN.swift in Sources */,
+				7DC61C652C1457B5009177D1 /* Color.swift in Sources */,
+				7DC61C4F2C144DDD009177D1 /* AnywakeyApp.swift in Sources */,
+				7DC61C662C1457BC009177D1 /* Double.swift in Sources */,
+				7DC61C6A2C14618E009177D1 /* WatchNetwork.swift in Sources */,
+				7DC61C612C145792009177D1 /* Device.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -695,6 +821,11 @@
 			isa = PBXTargetDependency;
 			target = 7D54BDCF2C07BB510042FC0B /* Share */;
 			targetProxy = 7D54BDD82C07BB510042FC0B /* PBXContainerItemProxy */;
+		};
+		7DC61C582C144DE0009177D1 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 7DC61C4B2C144DDD009177D1 /* Anywakey Watch App */;
+			targetProxy = 7DC61C572C144DE0009177D1 /* PBXContainerItemProxy */;
 		};
 		7DE834B72BF2182300B065BB /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
@@ -975,6 +1106,69 @@
 			};
 			name = Release;
 		};
+		7DC61C5A2C144DE0009177D1 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = "Anywakey Watch App/Anywakey Watch App.entitlements";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"Anywakey Watch App/Preview Content\"";
+				DEVELOPMENT_TEAM = LMA5CPXKDX;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = Anywakey;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				INFOPLIST_KEY_WKCompanionAppBundleIdentifier = svarich.anywakey;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.4;
+				PRODUCT_BUNDLE_IDENTIFIER = svarich.anywakey.watchkitapp;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 9.0;
+			};
+			name = Debug;
+		};
+		7DC61C5B2C144DE0009177D1 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = "Anywakey Watch App/Anywakey Watch App.entitlements";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"Anywakey Watch App/Preview Content\"";
+				DEVELOPMENT_TEAM = LMA5CPXKDX;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = Anywakey;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				INFOPLIST_KEY_WKCompanionAppBundleIdentifier = svarich.anywakey;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.4;
+				PRODUCT_BUNDLE_IDENTIFIER = svarich.anywakey.watchkitapp;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				VALIDATE_PRODUCT = YES;
+				WATCHOS_DEPLOYMENT_TARGET = 9.0;
+			};
+			name = Release;
+		};
 		7DE834BA2BF2182300B065BB /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -1070,6 +1264,15 @@
 			buildConfigurations = (
 				7DC26DA22AE7EBE300B52D02 /* Debug */,
 				7DC26DA32AE7EBE300B52D02 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		7DC61C5C2C144DE0009177D1 /* Build configuration list for PBXNativeTarget "Anywakey Watch App" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				7DC61C5A2C144DE0009177D1 /* Debug */,
+				7DC61C5B2C144DE0009177D1 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

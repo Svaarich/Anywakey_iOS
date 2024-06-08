@@ -9,6 +9,11 @@
 			<key>orderHint</key>
 			<integer>1</integer>
 		</dict>
+		<key>Anywakey Watch App.xcscheme_^#shared#^_</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>3</integer>
+		</dict>
 		<key>Anywakey_iOS.xcscheme_^#shared#^_</key>
 		<dict>
 			<key>orderHint</key>
@@ -23,6 +28,29 @@
 		<dict>
 			<key>orderHint</key>
 			<integer>2</integer>
+		</dict>
+	</dict>
+	<key>SuppressBuildableAutocreation</key>
+	<dict>
+		<key>7D54BDCF2C07BB510042FC0B</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>7DC26D7C2AE7EBE100B52D02</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>7DC61C4B2C144DDD009177D1</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>7DE834A72BF2182000B065BB</key>
+		<dict>
+			<key>primary</key>
+			<true/>
 		</dict>
 	</dict>
 </dict>

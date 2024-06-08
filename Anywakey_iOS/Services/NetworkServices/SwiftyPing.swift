@@ -8,10 +8,7 @@
 
 import Foundation
 import Darwin
-
-#if os(iOS)
 import SwiftUI
-#endif
 
 public typealias Observer = ((_ response: PingResponse) -> Void)
 public typealias FinishedCallback = ((_ result: PingResult) -> Void)

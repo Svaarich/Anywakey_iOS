@@ -1,5 +1,7 @@
+
 import SwiftUI
 import WidgetKit
+import WatchConnectivity
 
 struct HomeView: View {
     
