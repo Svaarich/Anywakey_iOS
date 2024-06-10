@@ -18,6 +18,9 @@
 		7D54BDD62C07BB510042FC0B /* Base in Resources */ = {isa = PBXBuildFile; fileRef = 7D54BDD52C07BB510042FC0B /* Base */; };
 		7D54BDDA2C07BB510042FC0B /* Share.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 7D54BDD02C07BB510042FC0B /* Share.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		7D596B4A2B48D00C00A5B7FA /* NoDevicesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D596B492B48D00C00A5B7FA /* NoDevicesView.swift */; };
+		7D5AF0D32C14D2E400AB6750 /* WatchConnector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D5AF0D12C14D25500AB6750 /* WatchConnector.swift */; };
+		7D5AF0D72C14D52000AB6750 /* WatchDS.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D5AF0D62C14D52000AB6750 /* WatchDS.swift */; };
+		7D5AF0DA2C16FC9400AB6750 /* Anywakey-iOS-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7DB21B792BFB882200A090E2 /* Anywakey-iOS-Info.plist */; };
 		7D5FE1C82B5CB60900142502 /* Double.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D5FE1C72B5CB60900142502 /* Double.swift */; };
 		7D5FE1F42B5F5D3F00142502 /* DeleteDeviceSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D5FE1F32B5F5D3F00142502 /* DeleteDeviceSheet.swift */; };
 		7D77185C2BE3B0B40046700A /* WrongInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D77185B2BE3B0B40046700A /* WrongInput.swift */; };
@@ -151,6 +154,8 @@
 		7D54BDD52C07BB510042FC0B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/MainInterface.storyboard; sourceTree = "<group>"; };
 		7D54BDD72C07BB510042FC0B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		7D596B492B48D00C00A5B7FA /* NoDevicesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoDevicesView.swift; sourceTree = "<group>"; };
+		7D5AF0D12C14D25500AB6750 /* WatchConnector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchConnector.swift; sourceTree = "<group>"; };
+		7D5AF0D62C14D52000AB6750 /* WatchDS.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchDS.swift; sourceTree = "<group>"; };
 		7D5FE1C72B5CB60900142502 /* Double.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Double.swift; sourceTree = "<group>"; };
 		7D5FE1F32B5F5D3F00142502 /* DeleteDeviceSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeleteDeviceSheet.swift; sourceTree = "<group>"; };
 		7D77185B2BE3B0B40046700A /* WrongInput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WrongInput.swift; sourceTree = "<group>"; };
@@ -406,6 +411,7 @@
 			isa = PBXGroup;
 			children = (
 				7DC61C692C14618E009177D1 /* WatchNetwork.swift */,
+				7D5AF0D62C14D52000AB6750 /* WatchDS.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -445,6 +451,7 @@
 			children = (
 				7DFC05332B292BFB0082E502 /* DeviceDataService.swift */,
 				7D0518B62B71863F006850B8 /* HapticManager.swift */,
+				7D5AF0D12C14D25500AB6750 /* WatchConnector.swift */,
 				7DB21B752BFAB82D00A090E2 /* ShareManager.swift */,
 				7D180F462AEDBB27005063E3 /* NetworkServices */,
 			);
@@ -695,6 +702,7 @@
 				7DF00C412B51D541008105C9 /* LaunchScreen.storyboard in Resources */,
 				7DC26D882AE7EBE300B52D02 /* Preview Assets.xcassets in Resources */,
 				7DC26D852AE7EBE300B52D02 /* Assets.xcassets in Resources */,
+				7D5AF0DA2C16FC9400AB6750 /* Anywakey-iOS-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -754,6 +762,7 @@
 				7DE834C02BF21C8200B065BB /* AnyWidgetData.swift in Sources */,
 				7DD1F7DD2BBBF70F0000E238 /* Device + Extension.swift in Sources */,
 				7DD331DC2B5C5D8D002BFA64 /* BootButton.swift in Sources */,
+				7D5AF0D32C14D2E400AB6750 /* WatchConnector.swift in Sources */,
 				7DE7001B2AEABC930033E53A /* AddDeviceView.swift in Sources */,
 				7DB21B762BFAB82D00A090E2 /* ShareManager.swift in Sources */,
 				7DFB91BF2BE5849F001650B9 /* Bundle.swift in Sources */,
@@ -781,6 +790,7 @@
 				7DC61C642C1457B1009177D1 /* WakeOnLAN.swift in Sources */,
 				7DC61C652C1457B5009177D1 /* Color.swift in Sources */,
 				7DC61C4F2C144DDD009177D1 /* AnywakeyApp.swift in Sources */,
+				7D5AF0D72C14D52000AB6750 /* WatchDS.swift in Sources */,
 				7DC61C662C1457BC009177D1 /* Double.swift in Sources */,
 				7DC61C6A2C14618E009177D1 /* WatchNetwork.swift in Sources */,
 				7DC61C612C145792009177D1 /* Device.swift in Sources */,
