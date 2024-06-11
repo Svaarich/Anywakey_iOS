@@ -1,12 +1,26 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Scheme
-   LastUpgradeVersion = "1530"
+   LastUpgradeVersion = "1540"
    version = "1.7">
    <BuildAction
       parallelizeBuildables = "YES"
       buildImplicitDependencies = "YES"
       buildArchitectures = "Automatic">
       <BuildActionEntries>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "YES"
+            buildForProfiling = "YES"
+            buildForArchiving = "YES"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "7DC61C4B2C144DDD009177D1"
+               BuildableName = "Anywakey Watch App.app"
+               BlueprintName = "Anywakey Watch App"
+               ReferencedContainer = "container:Anywakey_iOS.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
          <BuildActionEntry
             buildForTesting = "YES"
             buildForRunning = "YES"
@@ -32,8 +46,8 @@
    </TestAction>
    <LaunchAction
       buildConfiguration = "Debug"
-      selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
-      selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
+      selectedDebuggerIdentifier = ""
+      selectedLauncherIdentifier = "Xcode.IDEFoundation.Launcher.PosixSpawn"
       launchStyle = "0"
       useCustomWorkingDirectory = "NO"
       ignoresPersistentStateOnLaunch = "NO"
@@ -50,6 +64,15 @@
             ReferencedContainer = "container:Anywakey_iOS.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
+      <MacroExpansion>
+         <BuildableReference
+            BuildableIdentifier = "primary"
+            BlueprintIdentifier = "7DC61C4B2C144DDD009177D1"
+            BuildableName = "Anywakey Watch App.app"
+            BlueprintName = "Anywakey Watch App"
+            ReferencedContainer = "container:Anywakey_iOS.xcodeproj">
+         </BuildableReference>
+      </MacroExpansion>
    </LaunchAction>
    <ProfileAction
       buildConfiguration = "Release"
@@ -61,9 +84,9 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "7DC26D7C2AE7EBE100B52D02"
-            BuildableName = "Anywakey-iOS.app"
-            BlueprintName = "Anywakey-iOS"
+            BlueprintIdentifier = "7DC61C4B2C144DDD009177D1"
+            BuildableName = "Anywakey Watch App.app"
+            BlueprintName = "Anywakey Watch App"
             ReferencedContainer = "container:Anywakey_iOS.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>

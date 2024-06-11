@@ -1,5 +1,7 @@
+
 import SwiftUI
 import WidgetKit
+import WatchConnectivity
 
 struct HomeView: View {
     
@@ -13,6 +15,8 @@ struct HomeView: View {
     @State private var isCopied: Bool = false
     @State private var showDeleteCancelation: Bool = false
     
+    let connector = WatchConnector(dataService: DeviceDataService())
+    
     var body: some View {
         ZStack {
             if dataService.allDevices.isEmpty {
@@ -20,6 +24,10 @@ struct HomeView: View {
                     .transition(AnyTransition.opacity.animation(.spring))
             } else {
                 VStack {
+//                    Text("\(connector.session.isActive)")
+//                        .background {
+//                            connector.session.isReachable ? Color.green : Color.red
+//                        }
                     List {
                         //MARK: Sections
                         getSections()
@@ -102,6 +110,7 @@ struct HomeView: View {
         }
         .onChange(of: scenePhase) { _ in
             dataService.fetchUserDefaults()
+            connector.sendMessageData(list: dataService.allDevices)
             WidgetCenter.shared.reloadAllTimelines()
         }
     }
@@ -110,6 +119,7 @@ struct HomeView: View {
 extension HomeView {
     
     // MARK: FUNCTIONS
+    
     
     // Gives sections depends on pinned and not pinner devices
     private func getSections() -> AnyView {
