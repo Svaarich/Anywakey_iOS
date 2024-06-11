@@ -17,13 +17,7 @@ struct HomeView: View {
                     ForEach(dataService.allDevices) { device in
                         Button {
                             //send device to ios app
-                            if WCSession.default.isReachable {
-                                let message = ["boot" : device] as! [String : Device]
-                                WCSession.default.sendMessage(message, replyHandler: nil) { error in
-                                    print("Watch error sending message: \(error)")
-                                    print(device)
-                                }
-                            }
+                            dataService.sendMessage(device: device)
                         } label: {
                             HStack {
                                 Text(device.name)
@@ -40,9 +34,7 @@ struct HomeView: View {
             }
         }
         .navigationTitle(dataService.allDevices.isEmpty ? "No devices 🥲" : "Devices")
-        .onAppear {
-//            dataService.fecthSavedDevices()
-        }
+        .onAppear(perform: dataService.askForDevices)
     }
 }
 
