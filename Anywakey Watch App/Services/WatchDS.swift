@@ -13,7 +13,7 @@ class WatchDS: NSObject, WCSessionDelegate, ObservableObject {
         super.init()
         self.session.delegate = self
         session.activate()
-        self.fecthSavedDevices()
+        self.askForDevices()
     }
 
     func session(_ session: WCSession, activationDidCompleteWith activationState: WCSessionActivationState, error: Error?) {
@@ -36,6 +36,26 @@ class WatchDS: NSObject, WCSessionDelegate, ObservableObject {
         }
     }
     
+    func sendMessage(device: Device) {
+        guard let data = try? JSONEncoder().encode(device) else {
+            return
+        }
+        if session.isReachable {
+            session.sendMessageData(data, replyHandler: nil) { error in
+                print("Error sending device: \(error)")
+            }
+        }
+    }
+    
+    func askForDevices() {
+        let message = ["action" : "sendDevices"]
+        if session.isReachable {
+            session.sendMessage(message, replyHandler: nil) { error in
+                print("Error requestion devices: \(error)")
+            }
+        }
+    }
+    
     private func saveSevices() {
         let data = allDevices
         let userDefaults = UserDefaults.standard
@@ -55,7 +75,6 @@ class WatchDS: NSObject, WCSessionDelegate, ObservableObject {
                 let decoder = JSONDecoder()
                 let savedDevices = try decoder.decode([Device].self, from: data)
                 allDevices = savedDevices
-                allDevices = [.init(name: "test", MAC: "", BroadcastAddr: "", Port: "")]
             } catch {
                 print("Unable to Decode devices (\(error))")
             }
