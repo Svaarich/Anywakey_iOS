@@ -4,9 +4,11 @@ import WatchConnectivity
 final class WatchConnector: NSObject {
     
     var session: WCSession
+    let dataService: DeviceDataService
     
-    init(session: WCSession  = .default) {
+    init(session: WCSession  = .default, dataService: DeviceDataService) {
         self.session = session
+        self.dataService = dataService
         super.init()
         self.session.delegate = self
         session.activate()
@@ -23,24 +25,44 @@ extension WatchConnector: WCSessionDelegate {
         
     }
     
+    
+    func session(_ session: WCSession, didReceiveMessageData messageData: Data) {
+        let decoder = JSONDecoder()
+        let data = messageData
+        do {
+            let device = try decoder.decode(Device.self, from: data)
+            _ = Network.instance.boot(device: device)
+        } catch {
+            print("Error parsing watch message: \(error)")
+        }
+    }
+    
     func session(_ session: WCSession, didReceiveMessage message: [String : Any]) {
-        DispatchQueue.main.async {
-            if let device = message["boot"] as? Device {
-                print("Message received on phone")
-                guard device.BroadcastAddr.isValidAdress(),
-                      device.MAC.isValidMAC(),
-                      device.Port.isValidPort()
-                else { return }
-                _ = Network.instance.boot(device: device)
+        if let action = message["action"] as? String {
+            if action == "sendDevices" {
+                let devices = dataService.allDevices
+                sendMessageData(list: devices)
             }
         }
     }
     
     func session(_ session: WCSession, activationDidCompleteWith activationState: WCSessionActivationState, error: Error?) {
         if let error = error {
-            print(error.localizedDescription)
+            print("Error WCSession activation: \(error)")
         } else {
             print("The session has completed activation.")
+        }
+    }
+    
+    // send devices data to apple watch
+    func sendMessageData(list: [Device]) {
+        guard let data = try? JSONEncoder().encode(list) else {
+            return
+        }
+        if WCSession.isSupported() {
+            self.session.sendMessageData(data, replyHandler: nil) { (error) in
+                print(error.localizedDescription)
+            }
         }
     }
 }
