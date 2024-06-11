@@ -15,7 +15,7 @@ struct HomeView: View {
     @State private var isCopied: Bool = false
     @State private var showDeleteCancelation: Bool = false
     
-    let connector = WatchConnector()
+    let connector = WatchConnector(dataService: DeviceDataService())
     
     var body: some View {
         ZStack {
@@ -24,6 +24,10 @@ struct HomeView: View {
                     .transition(AnyTransition.opacity.animation(.spring))
             } else {
                 VStack {
+//                    Text("\(connector.session.isActive)")
+//                        .background {
+//                            connector.session.isReachable ? Color.green : Color.red
+//                        }
                     List {
                         //MARK: Sections
                         getSections()
@@ -106,14 +110,8 @@ struct HomeView: View {
         }
         .onChange(of: scenePhase) { _ in
             dataService.fetchUserDefaults()
-            sendMessageData(list: dataService.allDevices)
+            connector.sendMessageData(list: dataService.allDevices)
             WidgetCenter.shared.reloadAllTimelines()
-        }
-        .onChange(of: dataService.allDevices) { _ in
-            sendMessageData(list: dataService.allDevices)
-        }
-        .onAppear {
-            sendMessageData(list: dataService.allDevices)
         }
     }
 }
@@ -122,17 +120,6 @@ extension HomeView {
     
     // MARK: FUNCTIONS
     
-    // send data to apple watch
-    private func sendMessageData(list: [Device]) {
-        guard let data = try? JSONEncoder().encode(list) else {
-            return
-        }
-        if WCSession.isSupported() {
-            self.connector.session.sendMessageData(data, replyHandler: nil) { (error) in
-                print(error.localizedDescription)
-            }
-        }
-    }
     
     // Gives sections depends on pinned and not pinner devices
     private func getSections() -> AnyView {
