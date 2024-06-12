@@ -46,6 +46,7 @@ struct HomeView: View {
                 }
         }
         .navigationTitle("Devices")
+        .toolbar(dataService.allDevices.isEmpty ? .hidden : .visible)
                 }
         }
         }
