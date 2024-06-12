@@ -20,18 +20,20 @@ struct HomeView: View {
                         .font(.subheadline)
                         .foregroundStyle(.secondary)
                 } else {
-                    ForEach(dataService.allDevices) { device in
-                        Button {
-                            //send device to ios app
-                            dataService.sendMessage(device: device)
-                        } label: {
-                            HStack {
-                                Text(device.name)
-                                    .lineLimit(1)
-                                Spacer()
-                                if device.isPinned {
-                                    Image(systemName: "star.fill")
-                                        .foregroundStyle(.yellow)
+                    List {
+                        ForEach(dataService.allDevices) { device in
+                            Button {
+                                //send device to ios app
+                                dataService.sendMessage(device: device)
+                            } label: {
+                                HStack {
+                                    Text(device.name)
+                                        .lineLimit(1)
+                                    Spacer()
+                                    if device.isPinned {
+                                        Image(systemName: "star.fill")
+                                            .foregroundStyle(.yellow)
+                                    }
                                 }
                             }
                         }
@@ -39,8 +41,6 @@ struct HomeView: View {
                 }
             }
         }
-        .navigationTitle(dataService.allDevices.isEmpty ? "No devices 🥲" : "Devices")
-        .onAppear(perform: dataService.askForDevices)
         .toolbar {
                 ToolbarItem(placement: .topBarLeading) {
                     NavigationLink {
