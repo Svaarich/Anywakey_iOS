@@ -3,7 +3,7 @@ import SwiftUI
 import WatchConnectivity
 
 class WatchDS: NSObject, WCSessionDelegate, ObservableObject {
-
+    
     @Published var allDevices: [Device] = []
     
     var session: WCSession
@@ -13,9 +13,9 @@ class WatchDS: NSObject, WCSessionDelegate, ObservableObject {
         super.init()
         self.session.delegate = self
         session.activate()
-        self.askForDevices()
+        self.fecthSavedDevices()
     }
-
+    
     func session(_ session: WCSession, activationDidCompleteWith activationState: WCSessionActivationState, error: Error?) {
         if let error = error {
             print(error.localizedDescription)
@@ -23,7 +23,7 @@ class WatchDS: NSObject, WCSessionDelegate, ObservableObject {
             print("The session has completed activation.")
         }
     }
-
+    
     
     // receive Data
     func session(_ session: WCSession, didReceiveMessageData messageData: Data) {
@@ -31,11 +31,12 @@ class WatchDS: NSObject, WCSessionDelegate, ObservableObject {
             guard let message = try? JSONDecoder().decode([Device].self, from: messageData) else {
                 return
             }
-            self.allDevices = message
-            self.saveSevices()
+            self.allDevices = message.sorted(by: { $0.isPinned && !$1.isPinned })
+            self.saveDevices()
         }
     }
     
+    // send device to boot
     func sendMessage(device: Device) {
         guard let data = try? JSONEncoder().encode(device) else {
             return
@@ -47,6 +48,7 @@ class WatchDS: NSObject, WCSessionDelegate, ObservableObject {
         }
     }
     
+    // get list of devices
     func askForDevices() {
         let message = ["action" : "sendDevices"]
         if session.isReachable {
@@ -56,27 +58,45 @@ class WatchDS: NSObject, WCSessionDelegate, ObservableObject {
         }
     }
     
-    private func saveSevices() {
-        let data = allDevices
-        let userDefaults = UserDefaults.standard
+    // MARK: Save data
+    
+    func getDocumentDirectory() -> URL {
+        let path = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
+        return path[0]
+    }
+    
+    private func saveDevices() {
         do {
+            // encode
             let encoder = JSONEncoder()
-            let savedDevices = try encoder.encode(data)
-            userDefaults.set(savedDevices, forKey: "watchDevices")
+            let data = try encoder.encode(allDevices)
+            
+            // create new URL
+            let url = getDocumentDirectory().appending(path: "devices")
+            
+            // write data
+            try data.write(to: url)
+            
         } catch {
-            print("Unable to Encode Array of devices (\(error))")
+            print("Saving data error: \(error)")
         }
-        
     }
     
     func fecthSavedDevices() {
-        if let data = UserDefaults.standard.data(forKey: "watchDevices") {
+        DispatchQueue.main.async {
             do {
+                // get url
+                let url = self.getDocumentDirectory().appending(path: "devices")
+                
+                // get data
+                let data = try Data(contentsOf: url)
+                
+                // decode
                 let decoder = JSONDecoder()
-                let savedDevices = try decoder.decode([Device].self, from: data)
-                allDevices = savedDevices
+                self.allDevices = try decoder.decode([Device].self, from: data)
+                
             } catch {
-                print("Unable to Decode devices (\(error))")
+                print("Error load devices: \(error)")
             }
         }
     }

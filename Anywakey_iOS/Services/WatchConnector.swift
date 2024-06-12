@@ -4,7 +4,12 @@ import WatchConnectivity
 final class WatchConnector: NSObject {
     
     var session: WCSession
-    let dataService: DeviceDataService
+    
+    @Published var dataService: DeviceDataService {
+        didSet {
+            self.sendMessageData()
+        }
+    }
     
     init(session: WCSession  = .default, dataService: DeviceDataService) {
         self.session = session
@@ -31,6 +36,7 @@ extension WatchConnector: WCSessionDelegate {
         let data = messageData
         do {
             let device = try decoder.decode(Device.self, from: data)
+            print("Device to boot received: \(device.name)")
             _ = Network.instance.boot(device: device)
         } catch {
             print("Error parsing watch message: \(error)")
@@ -38,10 +44,10 @@ extension WatchConnector: WCSessionDelegate {
     }
     
     func session(_ session: WCSession, didReceiveMessage message: [String : Any]) {
+        print("Received message on iPhone: \(message)")
         if let action = message["action"] as? String {
             if action == "sendDevices" {
-                let devices = dataService.allDevices
-                sendMessageData(list: devices)
+                sendMessageData()
             }
         }
     }
@@ -55,8 +61,8 @@ extension WatchConnector: WCSessionDelegate {
     }
     
     // send devices data to apple watch
-    func sendMessageData(list: [Device]) {
-        guard let data = try? JSONEncoder().encode(list) else {
+    func sendMessageData() {
+        guard let data = try? JSONEncoder().encode(getDevices()) else {
             return
         }
         if WCSession.isSupported() {
@@ -64,5 +70,21 @@ extension WatchConnector: WCSessionDelegate {
                 print(error.localizedDescription)
             }
         }
+    }
+    
+    func getDevices() -> [Device] {
+        var list: [Device] = []
+        if let userDefaults = UserDefaults(suiteName: "group.svarich.anywakey") {
+            if let data = userDefaults.data(forKey: "devices") {
+                do {
+                    let decoder = JSONDecoder()
+                    let savedDevices = try decoder.decode([Device].self, from: data)
+                    list = savedDevices
+                } catch {
+                    print("Unable to Decode devices (\(error))")
+                }
+            }
+        }
+        return list
     }
 }

@@ -8,7 +8,7 @@ struct Anywakey_iOS_App: App {
     var body: some Scene {
         WindowGroup {
             NavigationStack {
-                HomeView(dataService: dataService)
+                HomeView(dataService: dataService, connector: WatchConnector(dataService: dataService))
             }
             .environmentObject(dataService)
             .ignoresSafeArea(.keyboard)
