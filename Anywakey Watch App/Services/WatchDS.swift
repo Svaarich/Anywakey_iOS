@@ -83,13 +83,20 @@ class WatchDS: NSObject, WCSessionDelegate, ObservableObject {
     }
     
     func fecthSavedDevices() {
-        if let data = UserDefaults.standard.data(forKey: "watchDevices") {
+        DispatchQueue.main.async {
             do {
+                // get url
+                let url = self.getDocumentDirectory().appending(path: "devices")
+                
+                // get data
+                let data = try Data(contentsOf: url)
+                
+                // decode
                 let decoder = JSONDecoder()
-                let savedDevices = try decoder.decode([Device].self, from: data)
-                allDevices = savedDevices
+                self.allDevices = try decoder.decode([Device].self, from: data)
+                
             } catch {
-                print("Unable to Decode devices (\(error))")
+                print("Error load devices: \(error)")
             }
         }
     }
