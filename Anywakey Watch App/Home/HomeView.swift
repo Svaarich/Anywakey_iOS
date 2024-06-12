@@ -47,8 +47,14 @@ struct HomeView: View {
         }
         .navigationTitle("Devices")
         .toolbar(dataService.allDevices.isEmpty ? .hidden : .visible)
+        .onReceive(timer) { _ in
+            if dataService.session.isReachable {
+                dataService.askForDevices()
+                timer.upstream.connect().cancel()
+                withAnimation(.spring) {
+                    loading = false
                 }
-        }
+            }
         }
     }
 }
