@@ -8,7 +8,13 @@ struct HomeView: View {
     
     var body: some View {
         ScrollView {
-            VStack {
+            if loading && dataService.allDevices.isEmpty {
+                VStack(alignment: .leading) {
+                    Text("Awaiting connection with iPhone")
+                    ProgressView()
+                    Spacer()
+                }
+                .frame(maxWidth: .infinity)
                 if dataService.allDevices.isEmpty {
                     Text("Please add device in the iOS app.")
                         .font(.subheadline)
