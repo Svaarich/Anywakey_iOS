@@ -108,6 +108,9 @@ struct HomeView: View {
             dataService.fetchUserDefaults()
             WidgetCenter.shared.reloadAllTimelines()
         }
+        .onChange(of: dataService.allDevices) { _ in
+            connector.sendMessageData()
+        }
     }
 }
 
