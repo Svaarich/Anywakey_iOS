@@ -4,7 +4,12 @@ import WatchConnectivity
 final class WatchConnector: NSObject {
     
     var session: WCSession
-    let dataService: DeviceDataService
+    
+    @Published var dataService: DeviceDataService {
+        didSet {
+            self.sendMessageData()
+        }
+    }
     
     init(session: WCSession  = .default, dataService: DeviceDataService) {
         self.session = session
