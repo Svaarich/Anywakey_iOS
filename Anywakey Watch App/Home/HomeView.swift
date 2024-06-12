@@ -6,6 +6,9 @@ struct HomeView: View {
     
     @ObservedObject var dataService = WatchDS()
     
+    @State private var loading: Bool = true
+    
+    
     var body: some View {
         ScrollView {
             if loading && dataService.allDevices.isEmpty {
