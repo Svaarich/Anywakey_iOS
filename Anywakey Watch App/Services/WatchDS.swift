@@ -3,7 +3,7 @@ import SwiftUI
 import WatchConnectivity
 
 class WatchDS: NSObject, WCSessionDelegate, ObservableObject {
-
+    
     @Published var allDevices: [Device] = []
     
     var session: WCSession
@@ -13,9 +13,9 @@ class WatchDS: NSObject, WCSessionDelegate, ObservableObject {
         super.init()
         self.session.delegate = self
         session.activate()
-        self.askForDevices()
+        self.fecthSavedDevices()
     }
-
+    
     func session(_ session: WCSession, activationDidCompleteWith activationState: WCSessionActivationState, error: Error?) {
         if let error = error {
             print(error.localizedDescription)
@@ -23,7 +23,7 @@ class WatchDS: NSObject, WCSessionDelegate, ObservableObject {
             print("The session has completed activation.")
         }
     }
-
+    
     
     // receive Data
     func session(_ session: WCSession, didReceiveMessageData messageData: Data) {
@@ -56,15 +56,27 @@ class WatchDS: NSObject, WCSessionDelegate, ObservableObject {
         }
     }
     
-    private func saveSevices() {
-        let data = allDevices
-        let userDefaults = UserDefaults.standard
+    // MARK: Save data
+    
+    func getDocumentDirectory() -> URL {
+        let path = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
+        return path[0]
+    }
+    
+    private func saveDevices() {
         do {
+            // encode
             let encoder = JSONEncoder()
-            let savedDevices = try encoder.encode(data)
-            userDefaults.set(savedDevices, forKey: "watchDevices")
+            let data = try encoder.encode(allDevices)
+            
+            // create new URL
+            let url = getDocumentDirectory().appending(path: "devices")
+            
+            // write data
+            try data.write(to: url)
+            
         } catch {
-            print("Unable to Encode Array of devices (\(error))")
+            print("Saving data error: \(error)")
         }
         
     }
