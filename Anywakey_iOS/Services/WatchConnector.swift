@@ -47,8 +47,7 @@ extension WatchConnector: WCSessionDelegate {
         print("Received message on iPhone: \(message)")
         if let action = message["action"] as? String {
             if action == "sendDevices" {
-                let devices = dataService.allDevices
-                sendMessageData(list: devices)
+                sendMessageData()
             }
         }
     }
@@ -62,8 +61,8 @@ extension WatchConnector: WCSessionDelegate {
     }
     
     // send devices data to apple watch
-    func sendMessageData(list: [Device]) {
-        guard let data = try? JSONEncoder().encode(list) else {
+    func sendMessageData() {
+        guard let data = try? JSONEncoder().encode(getDevices()) else {
             return
         }
         if WCSession.isSupported() {
