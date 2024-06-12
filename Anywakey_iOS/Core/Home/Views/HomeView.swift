@@ -15,7 +15,7 @@ struct HomeView: View {
     @State private var isCopied: Bool = false
     @State private var showDeleteCancelation: Bool = false
     
-    let connector = WatchConnector(dataService: DeviceDataService())
+    let connector: WatchConnector
     
     var body: some View {
         ZStack {
