@@ -36,6 +36,7 @@ extension WatchConnector: WCSessionDelegate {
         let data = messageData
         do {
             let device = try decoder.decode(Device.self, from: data)
+            print("Device to boot received: \(device.name)")
             _ = Network.instance.boot(device: device)
         } catch {
             print("Error parsing watch message: \(error)")
@@ -43,6 +44,7 @@ extension WatchConnector: WCSessionDelegate {
     }
     
     func session(_ session: WCSession, didReceiveMessage message: [String : Any]) {
+        print("Received message on iPhone: \(message)")
         if let action = message["action"] as? String {
             if action == "sendDevices" {
                 let devices = dataService.allDevices
