@@ -31,8 +31,8 @@ class WatchDS: NSObject, WCSessionDelegate, ObservableObject {
             guard let message = try? JSONDecoder().decode([Device].self, from: messageData) else {
                 return
             }
-            self.allDevices = message
-            self.saveSevices()
+            self.allDevices = message.sorted(by: { $0.isPinned && !$1.isPinned })
+            self.saveDevices()
         }
     }
     
