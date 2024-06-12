@@ -8,6 +8,7 @@ struct HomeView: View {
     
     @State private var loading: Bool = true
     
+    let timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
     
     var body: some View {
         ScrollView {
