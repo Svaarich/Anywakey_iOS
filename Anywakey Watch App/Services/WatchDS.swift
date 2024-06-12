@@ -36,6 +36,7 @@ class WatchDS: NSObject, WCSessionDelegate, ObservableObject {
         }
     }
     
+    // send device to boot
     func sendMessage(device: Device) {
         guard let data = try? JSONEncoder().encode(device) else {
             return
@@ -47,6 +48,7 @@ class WatchDS: NSObject, WCSessionDelegate, ObservableObject {
         }
     }
     
+    // get list of devices
     func askForDevices() {
         let message = ["action" : "sendDevices"]
         if session.isReachable {
@@ -78,7 +80,6 @@ class WatchDS: NSObject, WCSessionDelegate, ObservableObject {
         } catch {
             print("Saving data error: \(error)")
         }
-        
     }
     
     func fecthSavedDevices() {
