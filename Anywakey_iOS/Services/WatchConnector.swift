@@ -71,4 +71,20 @@ extension WatchConnector: WCSessionDelegate {
             }
         }
     }
+    
+    func getDevices() -> [Device] {
+        var list: [Device] = []
+        if let userDefaults = UserDefaults(suiteName: "group.svarich.anywakey") {
+            if let data = userDefaults.data(forKey: "devices") {
+                do {
+                    let decoder = JSONDecoder()
+                    let savedDevices = try decoder.decode([Device].self, from: data)
+                    list = savedDevices
+                } catch {
+                    print("Unable to Decode devices (\(error))")
+                }
+            }
+        }
+        return list
+    }
 }
