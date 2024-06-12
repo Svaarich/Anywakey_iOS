@@ -45,6 +45,7 @@ struct HomeView: View {
 
                 }
         }
+        .navigationTitle("Devices")
                 }
         }
         }
