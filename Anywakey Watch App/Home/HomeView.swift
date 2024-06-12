@@ -11,7 +11,7 @@ struct HomeView: View {
     let timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
     
     var body: some View {
-        ScrollView {
+        VStack {
             if loading && dataService.allDevices.isEmpty {
                 VStack(alignment: .leading) {
                     Text("Awaiting connection with iPhone")
@@ -19,10 +19,16 @@ struct HomeView: View {
                     Spacer()
                 }
                 .frame(maxWidth: .infinity)
+            } else {
                 if dataService.allDevices.isEmpty {
-                    Text("Please add device in the iOS app.")
-                        .font(.subheadline)
-                        .foregroundStyle(.secondary)
+                    VStack(alignment: .leading) {
+                        Text("Device list is empty.")
+                        Text("Please add device in the iOS app.")
+                            .font(.subheadline)
+                            .foregroundStyle(.secondary)
+                        Spacer()
+                    }
+                    .frame(maxWidth: .infinity)
                 } else {
                     List {
                         ForEach(dataService.allDevices) { device in
