@@ -35,6 +35,19 @@ struct HomeView: View {
         }
         .navigationTitle(dataService.allDevices.isEmpty ? "No devices 🥲" : "Devices")
         .onAppear(perform: dataService.askForDevices)
+        .toolbar {
+                ToolbarItem(placement: .topBarLeading) {
+                    NavigationLink {
+                        MenuView()
+                    } label: {
+                        Image(systemName: "list.bullet")
+                    }
+
+                }
+        }
+                }
+        }
+        }
     }
 }
 
