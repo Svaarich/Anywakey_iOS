@@ -40,19 +40,27 @@ struct HomeView: View {
         }
         .toolbar(dataService.allDevices.isEmpty ? .hidden : .visible)
         .onReceive(timer) { _ in
-            if dataService.session.isReachable {
-                dataService.askForDevices()
-                timer.upstream.connect().cancel()
-                withAnimation(.spring) {
-                    loading = false
-                }
-            }
+            askForDevices()
         }
     }
 }
 
 extension HomeView {
     
+    // MARK: FUNCTIONS
+    private func askForDevices() {
+        if dataService.session.isReachable {
+            dataService.askForDevices()
+            timer.upstream.connect().cancel()
+            withAnimation(.spring) {
+                loading = false
+            }
+        }
+    }
+    
+    // MARK: PROPERTIES
+    
+    // loading progress view
     private var loadingView: some View {
         VStack(alignment: .leading) {
             Text("Awaiting connection with iPhone")
@@ -62,6 +70,7 @@ extension HomeView {
         .frame(maxWidth: .infinity)
     }
     
+    // empty list view
     private var noDevicesView: some View {
         VStack(alignment: .leading) {
             Text("Device list is empty.")
@@ -73,6 +82,7 @@ extension HomeView {
         .frame(maxWidth: .infinity)
     }
     
+    // devices list
     private var list: some View {
         List {
             Section {
