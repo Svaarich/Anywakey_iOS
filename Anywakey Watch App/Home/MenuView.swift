@@ -25,10 +25,10 @@ struct MenuView: View {
             }
             .buttonBorderShape(.roundedRectangle)
         }
+        .navigationTitle {
+            Text("Menu")
+                .foregroundStyle(.green)
+        }
         .padding(.horizontal, 4)
     }
-}
-
-#Preview {
-    MenuView(dataService: WatchDS())
 }
