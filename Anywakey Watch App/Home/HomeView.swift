@@ -85,31 +85,37 @@ extension HomeView {
     // devices list
     private var list: some View {
         List {
-            Section {
-                ForEach(dataService.allDevices.filter( { $0.isPinned } )) { device in
-                    ButtonRow(device: device) {
-                        dataService.sendMessage(device: device)
+            // pinned devices
+            if !dataService.allDevices.filter({ $0.isPinned }).isEmpty {
+                Section {
+                    ForEach(dataService.allDevices.filter( { $0.isPinned } )) { device in
+                        ButtonRow(device: device) {
+                            dataService.sendMessage(device: device)
+                        }
                     }
-                }
-            } header: {
-                HStack {
-                    Text("Pinned")
-                    Image(systemName: "star.fill")
-                        .foregroundStyle(Color.custom.starColor)
+                } header: {
+                    HStack {
+                        Text("Pinned")
+                        Image(systemName: "star.fill")
+                            .foregroundStyle(Color.custom.starColor)
+                    }
                 }
             }
-
-            Section {
-                ForEach(dataService.allDevices.filter( { $0.isPinned } )) { device in
-                    ButtonRow(device: device) {
-                        dataService.sendMessage(device: device)
+            
+            // not pinned devices
+            if !dataService.allDevices.filter({ !$0.isPinned }).isEmpty {
+                Section {
+                    ForEach(dataService.allDevices.filter( { !$0.isPinned } )) { device in
+                        ButtonRow(device: device) {
+                            dataService.sendMessage(device: device)
+                        }
                     }
-                }
-            } header: {
-                HStack {
-                    Text("Devices")
-                    Image(systemName: "display.2")
-                        .foregroundStyle(.secondary)
+                } header: {
+                    HStack {
+                        Text("Devices")
+                        Image(systemName: "display.2")
+                            .foregroundStyle(.secondary)
+                    }
                 }
             }
         }
