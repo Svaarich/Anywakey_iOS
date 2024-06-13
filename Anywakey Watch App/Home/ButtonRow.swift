@@ -3,8 +3,6 @@ import SwiftUI
 
 struct ButtonRow: View {
     
-    @EnvironmentObject var dataService: WatchDS
-    
     let device: Device
     
     var body: some View {
