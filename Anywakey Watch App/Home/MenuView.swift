@@ -3,15 +3,15 @@ import SwiftUI
 
 struct MenuView: View {
     
-    @ObservedObject var dataService = WatchDS()
-    
     @State private var rotationAngle = 0.0
+    let action: () -> Void
     
     var body: some View {
         VStack(alignment: .leading) {
             Text("To start PC just press button.")
             Spacer()
             Button {
+                action()
                 withAnimation(.smooth) {
                     rotationAngle -= 360
                 }
