@@ -4,7 +4,7 @@ import WatchConnectivity
 
 struct HomeView: View {
     
-    @ObservedObject var dataService = WatchDS()
+    @EnvironmentObject var dataService: WatchDS
     
     @State var loading: Bool = true
     
