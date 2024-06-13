@@ -13,55 +13,31 @@ struct HomeView: View {
     var body: some View {
         VStack {
             if loading && dataService.allDevices.isEmpty {
-                VStack(alignment: .leading) {
-                    Text("Awaiting connection with iPhone")
-                    ProgressView()
-                    Spacer()
-                }
-                .frame(maxWidth: .infinity)
+                loadingView
             } else {
                 if dataService.allDevices.isEmpty {
-                    VStack(alignment: .leading) {
-                        Text("Device list is empty.")
-                        Text("Please add device in the iOS app.")
-                            .font(.subheadline)
-                            .foregroundStyle(.secondary)
-                        Spacer()
-                    }
-                    .frame(maxWidth: .infinity)
+                    noDevicesView
                 } else {
-                    List {
-                        ForEach(dataService.allDevices) { device in
-                            Button {
-                                //send device to ios app
-                                dataService.sendMessage(device: device)
-                            } label: {
-                                HStack {
-                                    Text(device.name)
-                                        .lineLimit(1)
-                                    Spacer()
-                                    if device.isPinned {
-                                        Image(systemName: "star.fill")
-                                            .foregroundStyle(.yellow)
-                                    }
-                                }
-                            }
-                        }
-                    }
+                    list
                 }
             }
         }
         .toolbar {
-                ToolbarItem(placement: .topBarLeading) {
-                    NavigationLink {
-                        MenuView()
-                    } label: {
-                        Image(systemName: "list.bullet")
+            ToolbarItem(placement: .topBarLeading) {
+                NavigationLink {
+                    MenuView {
+                        dataService.askForDevices()
                     }
-
+                } label: {
+                    Image(systemName: "list.bullet")
                 }
+
+            }
         }
-        .navigationTitle("Devices")
+        .navigationTitle {
+            Text("Devices")
+                .foregroundStyle(.green)
+        }
         .toolbar(dataService.allDevices.isEmpty ? .hidden : .visible)
         .onReceive(timer) { _ in
             if dataService.session.isReachable {
@@ -72,6 +48,62 @@ struct HomeView: View {
                 }
             }
         }
+    }
+}
+
+extension HomeView {
+    
+    private var loadingView: some View {
+        VStack(alignment: .leading) {
+            Text("Awaiting connection with iPhone")
+            ProgressView()
+            Spacer()
+        }
+        .frame(maxWidth: .infinity)
+    }
+    
+    private var noDevicesView: some View {
+        VStack(alignment: .leading) {
+            Text("Device list is empty.")
+            Text("Please add device in the iOS app.")
+                .font(.subheadline)
+                .foregroundStyle(.secondary)
+            Spacer()
+        }
+        .frame(maxWidth: .infinity)
+    }
+    
+    private var list: some View {
+        List {
+            Section {
+                ForEach(dataService.allDevices.filter( { $0.isPinned } )) { device in
+                    ButtonRow(device: device) {
+                        dataService.sendMessage(device: device)
+                    }
+                }
+            } header: {
+                HStack {
+                    Text("Pinned")
+                    Image(systemName: "star.fill")
+                        .foregroundStyle(Color.custom.starColor)
+                }
+            }
+
+            Section {
+                ForEach(dataService.allDevices.filter( { $0.isPinned } )) { device in
+                    ButtonRow(device: device) {
+                        dataService.sendMessage(device: device)
+                    }
+                }
+            } header: {
+                HStack {
+                    Text("Devices")
+                    Image(systemName: "display.2")
+                        .foregroundStyle(.secondary)
+                }
+            }
+        }
+        .listStyle(.carousel)
     }
 }
 
