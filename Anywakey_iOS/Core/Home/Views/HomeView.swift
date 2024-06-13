@@ -160,7 +160,7 @@ extension HomeView {
             ForEach(dataService.allDevices) { device in
                 if device.isPinned {
                     NavigationLink {
-                        DeviceInfoView(device: device, showDeleteCancelation: $showDeleteCancelation)
+                        DeviceInfoView(device: device, showDeleteCancelation: $showDeleteCancelation, connector: connector)
                     } label: {
                         DeviceCellView(refreshStatus: $refreshStatus,
                                        isCopied: $isCopied,
@@ -189,7 +189,7 @@ extension HomeView {
             ForEach(dataService.allDevices) { device in
                 if !device.isPinned {
                     NavigationLink {
-                        DeviceInfoView(device: device, showDeleteCancelation: $showDeleteCancelation)
+                        DeviceInfoView(device: device, showDeleteCancelation: $showDeleteCancelation, connector: connector)
                     } label: {
                         DeviceCellView(refreshStatus: $refreshStatus, 
                                        isCopied: $isCopied,
