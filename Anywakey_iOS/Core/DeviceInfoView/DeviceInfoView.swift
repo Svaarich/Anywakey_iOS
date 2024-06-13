@@ -29,13 +29,17 @@ struct DeviceInfoView: View {
     @State private var animateWrongInput: Bool = false
     @Binding var showDeleteCancelation: Bool
     
-    init(device: Device, showDeleteCancelation: Binding<Bool>) {
+    let connector: WatchConnector
+    
+    
+    init(device: Device, showDeleteCancelation: Binding<Bool>, connector: WatchConnector) {
         _name = State(initialValue: device.name)
         _BroadcastAddr = State(initialValue: device.BroadcastAddr)
         _MAC = State(initialValue: device.MAC)
         _Port = State(initialValue: device.Port)
         _device = State(initialValue: device)
         _lastDevice = State(initialValue: device)
+        self.connector = connector
         self._showDeleteCancelation = showDeleteCancelation
     }
     
@@ -96,6 +100,9 @@ struct DeviceInfoView: View {
             if value {
                 dismiss()
             }
+        }
+        .onChange(of: dataService.allDevices) { _ in
+            connector.sendMessageData()
         }
     }
 }
@@ -425,12 +432,5 @@ extension DeviceInfoView {
     private func startAnimate() {
         animateButton = true
         animateWrongInput = true
-    }
-}
-
-#Preview {
-    @EnvironmentObject var dataService: DeviceDataService
-    return NavigationStack {
-        DeviceInfoView(device: Device(name: "test name", MAC: "11:11", BroadcastAddr: "1.1.1.1", Port: "009"), showDeleteCancelation: .constant(false))
     }
 }
