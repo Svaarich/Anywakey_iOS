@@ -4,11 +4,12 @@ import SwiftUI
 struct ButtonRow: View {
     
     let device: Device
+    let action: () -> Void
     
     var body: some View {
         Button {
             //send device to ios app
-            dataService.sendMessage(device: device)
+            action()
             WKHapticManager.instance.play(.stop)
         } label: {
             VStack(alignment: .leading, spacing: 6) {
