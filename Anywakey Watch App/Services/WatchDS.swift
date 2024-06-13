@@ -8,8 +8,9 @@ class WatchDS: NSObject, WCSessionDelegate, ObservableObject {
     
     var session: WCSession
     
-    init(session: WCSession = .default) {
+    init(session: WCSession = .default, devices: [Device] = []) {
         self.session = session
+        allDevices = devices
         super.init()
         self.session.delegate = self
         session.activate()
