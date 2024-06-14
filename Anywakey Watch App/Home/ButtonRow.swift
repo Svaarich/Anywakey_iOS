@@ -6,6 +6,8 @@ struct ButtonRow: View {
     let device: Device
     let dataService: WatchDS
     
+    let startDevice: () -> Void
+    
     var body: some View {
         Button {
             //send device to ios app
@@ -14,14 +16,29 @@ struct ButtonRow: View {
         } label: {
             VStack(alignment: .leading, spacing: 6) {
                 HStack {
-                    Text(device.name)
-                        .lineLimit(1)
+                    Image(systemName: device.isPinned ? "wifi" : "wifi.slash")
+                        .foregroundColor(device.isPinned ? .green : .red)
+                        .padding(8)
+                        .background(.gray.opacity(0.1))
+                        .clipShape(Circle())
+                    VStack(alignment: .leading, spacing: 0) {
+                        Text("updated")
+                        Text("\(formatter.string(from: date))")
+                    }
+                    .font(.footnote)
+                    .foregroundStyle(.secondary)
+                    
+                    Spacer()
                     if device.isPinned {
                         Image(systemName: "star.fill")
                         .offset(y: -1)
                         .foregroundStyle(Color.custom.starColor)
                     }
                 }
+                Text(device.name)
+                    .fontWeight(.semibold)
+                    .lineLimit(2)
+                Divider()
                 HStack {
                     Image(systemName: "globe")
                         .foregroundStyle(.secondary)
