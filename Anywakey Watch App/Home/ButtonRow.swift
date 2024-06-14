@@ -25,9 +25,9 @@ struct ButtonRow: View {
             WKHapticManager.instance.play(.stop)
         } label: {
             VStack(alignment: .leading, spacing: 6) {
-                HStack {
-                    Image(systemName: device.isPinned ? "wifi" : "wifi.slash")
-                        .foregroundColor(device.isPinned ? .green : .red)
+                HStack(alignment: .top) {
+                    Image(systemName: dataService.statusList[device.BroadcastAddr] ?? false ? "wifi" : "wifi.slash")
+                        .foregroundColor(dataService.statusList[device.BroadcastAddr] ?? false ? .green : .red)
                         .padding(8)
                         .background(.gray.opacity(0.1))
                         .clipShape(Circle())
