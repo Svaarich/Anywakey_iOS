@@ -13,7 +13,7 @@ struct ButtonRow: View {
     
     var formatter: DateFormatter {
         let format = DateFormatter()
-        format.timeStyle = .short
+        format.timeStyle = .medium
         return format
         
     }
