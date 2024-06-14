@@ -62,13 +62,10 @@ struct ButtonRow: View {
             .frame(maxWidth: .infinity, alignment: .leading)
             .padding(.vertical, 8)
         }
-        .onAppear(perform: updateStatus)
-    }
-    
-    func updateStatus() {
-        if dataService.session.isReachable {
-            dataService.updateStatus()
-            date = .now
+        .onChange(of: dataService.statusList) {
+            withAnimation(.smooth) {
+                date = .now
+            }
         }
     }
 }
