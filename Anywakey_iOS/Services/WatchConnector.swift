@@ -46,8 +46,13 @@ extension WatchConnector: WCSessionDelegate {
     func session(_ session: WCSession, didReceiveMessage message: [String : Any]) {
         print("Received message on iPhone: \(message)")
         if let action = message["action"] as? String {
-            if action == "sendDevices" {
+            switch action {
+            case "sendDevices":
                 sendMessageData()
+            case "updateStatus":
+                sendStatusList()
+            default:
+                ()
             }
         }
     }
