@@ -38,6 +38,12 @@ class WatchDS: NSObject, WCSessionDelegate, ObservableObject {
         }
     }
     
+    func session(_ session: WCSession, didReceiveMessage message: [String : Any]) {
+        DispatchQueue.main.async {
+            self.statusList = message["status"] as! [String : Bool]
+        }
+    }
+    
     // send device to boot
     func sendMessage(device: Device) {
         guard let data = try? JSONEncoder().encode(device) else {
