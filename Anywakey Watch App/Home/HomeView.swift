@@ -84,36 +84,9 @@ extension HomeView {
     private var list: some View {
         List {
             // pinned devices
-            if !dataService.allDevices.filter({ $0.isPinned }).isEmpty {
-                Section {
-                    ForEach(dataService.allDevices.filter( { $0.isPinned } )) { device in
-                        ButtonRow(device: device) {
-                            dataService.sendMessage(device: device)
-                        }
-                    }
-                } header: {
-                    HStack {
-                        Text("Pinned")
-                        Image(systemName: "star.fill")
-                            .foregroundStyle(Color.custom.starColor)
-                    }
-                }
-            }
-            
-            // not pinned devices
-            if !dataService.allDevices.filter({ !$0.isPinned }).isEmpty {
-                Section {
-                    ForEach(dataService.allDevices.filter( { !$0.isPinned } )) { device in
-                        ButtonRow(device: device) {
-                            dataService.sendMessage(device: device)
-                        }
-                    }
-                } header: {
-                    HStack {
-                        Text("Devices")
-                        Image(systemName: "display.2")
-                            .foregroundStyle(.secondary)
-                    }
+            ForEach(dataService.allDevices.sorted(by: { $0.isPinned && !$1.isPinned } )) { device in
+                ButtonRow(device: device) {
+                    dataService.sendMessage(device: device)
                 }
             }
         }
