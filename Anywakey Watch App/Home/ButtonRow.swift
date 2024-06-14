@@ -34,6 +34,8 @@ struct ButtonRow: View {
                     VStack(alignment: .leading, spacing: 0) {
                         Text("updated")
                         Text("\(formatter.string(from: date))")
+                            .contentTransition(.numericText())
+                            
                     }
                     .font(.footnote)
                     .foregroundStyle(.secondary)
