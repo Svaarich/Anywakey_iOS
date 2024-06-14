@@ -5,9 +5,10 @@ struct ButtonRow: View {
     
     @EnvironmentObject var dataService: WatchDS
     
+    @State private var date: Date = .now
+    @State private var status: Bool = false
     
     let device: Device
-    let dataService: WatchDS
     
     let startDevice: () -> Void
     
