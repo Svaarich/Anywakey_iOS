@@ -60,6 +60,26 @@ extension WatchConnector: WCSessionDelegate {
         }
     }
     
+    func sendStatusList() {
+        let message = ["status" : getStatusList()]
+        if session.isReachable {
+            self.session.sendMessage(message, replyHandler: nil) { error in
+                print("Error sending status list: \(error)")
+            }
+        }
+    }
+    
+    // ping all devices in the list
+    private func getStatusList() -> [Device : Bool] {
+        var statusList: [Device : Bool] = [ : ]
+        for device in dataService.allDevices {
+            Network.instance.ping(address: device.BroadcastAddr) { ping, isAccessible in
+                statusList.updateValue(isAccessible, forKey: device)
+            }
+        }
+        return statusList
+    }
+    
     // send devices data to apple watch
     func sendMessageData() {
         guard let data = try? JSONEncoder().encode(getDevices()) else {
