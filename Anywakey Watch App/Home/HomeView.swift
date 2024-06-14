@@ -34,8 +34,11 @@ struct HomeView: View {
         }
         .navigationTitle("Devices")
         .toolbar(dataService.allDevices.isEmpty ? .hidden : .visible)
-        .onReceive(timer) { _ in
-            askForDevices()
+        .onAppear(perform: askForData)
+        .onAppear {
+            Timer.scheduledTimer(withTimeInterval: 20, repeats: true) { _ in
+                dataService.updateStatus()
+            }
         }
     }
 }
