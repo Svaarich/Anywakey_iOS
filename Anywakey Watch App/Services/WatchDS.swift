@@ -5,6 +5,7 @@ import WatchConnectivity
 class WatchDS: NSObject, WCSessionDelegate, ObservableObject {
     
     @Published var allDevices: [Device] = []
+    @Published var statusList: [String : Bool] = [ : ]
     
     var session: WCSession
     
