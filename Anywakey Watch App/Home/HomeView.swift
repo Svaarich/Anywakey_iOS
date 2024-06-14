@@ -34,10 +34,7 @@ struct HomeView: View {
 
             }
         }
-        .navigationTitle {
-            Text("Devices")
-                .foregroundStyle(.green)
-        }
+        .navigationTitle("Devices")
         .toolbar(dataService.allDevices.isEmpty ? .hidden : .visible)
         .onReceive(timer) { _ in
             askForDevices()
