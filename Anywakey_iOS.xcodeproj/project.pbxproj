@@ -50,6 +50,11 @@
 		7DC435D12C19E0100080B634 /* MenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DC435D02C19E0080080B634 /* MenuView.swift */; };
 		7DC435DA2C1B498A0080B634 /* WKHapticManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DC435D82C1B497E0080B634 /* WKHapticManager.swift */; };
 		7DC435DC2C1B66770080B634 /* ButtonRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DC435DB2C1B66710080B634 /* ButtonRow.swift */; };
+		7DC4361C2C1C48200080B634 /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7DE834AA2BF2182000B065BB /* WidgetKit.framework */; };
+		7DC4361D2C1C48200080B634 /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7DE834AC2BF2182000B065BB /* SwiftUI.framework */; };
+		7DC436202C1C48200080B634 /* WatchWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DC4361F2C1C48200080B634 /* WatchWidget.swift */; };
+		7DC436222C1C48220080B634 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7DC436212C1C48220080B634 /* Assets.xcassets */; };
+		7DC436262C1C48220080B634 /* WatchWidgetExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 7DC4361B2C1C48200080B634 /* WatchWidgetExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		7DC61BD22C0A2CBE009177D1 /* Device.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DFC05352B292C5E0082E502 /* Device.swift */; };
 		7DC61BD52C0A3B38009177D1 /* SVDataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DC61BD42C0A3B38009177D1 /* SVDataService.swift */; };
 		7DC61C4F2C144DDD009177D1 /* AnywakeyApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DC61C4E2C144DDD009177D1 /* AnywakeyApp.swift */; };
@@ -104,6 +109,13 @@
 			remoteGlobalIDString = 7D54BDCF2C07BB510042FC0B;
 			remoteInfo = Share;
 		};
+		7DC436242C1C48220080B634 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 7DC26D752AE7EBE100B52D02 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 7DC4361A2C1C48200080B634;
+			remoteInfo = WatchWidgetExtension;
+		};
 		7DC61C572C144DE0009177D1 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 7DC26D752AE7EBE100B52D02 /* Project object */;
@@ -130,6 +142,17 @@
 				7DC61C592C144DE0009177D1 /* Anywakey Watch App.app in Embed Watch Content */,
 			);
 			name = "Embed Watch Content";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		7DC436272C1C48220080B634 /* Embed Foundation Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				7DC436262C1C48220080B634 /* WatchWidgetExtension.appex in Embed Foundation Extensions */,
+			);
+			name = "Embed Foundation Extensions";
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		7DE834B92BF2182300B065BB /* Embed Foundation Extensions */ = {
@@ -188,6 +211,10 @@
 		7DC435D02C19E0080080B634 /* MenuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuView.swift; sourceTree = "<group>"; };
 		7DC435D82C1B497E0080B634 /* WKHapticManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WKHapticManager.swift; sourceTree = "<group>"; };
 		7DC435DB2C1B66710080B634 /* ButtonRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonRow.swift; sourceTree = "<group>"; };
+		7DC4361B2C1C48200080B634 /* WatchWidgetExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = WatchWidgetExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		7DC4361F2C1C48200080B634 /* WatchWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchWidget.swift; sourceTree = "<group>"; };
+		7DC436212C1C48220080B634 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		7DC436232C1C48220080B634 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		7DC61BD32C0A39EC009177D1 /* Share.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Share.entitlements; sourceTree = "<group>"; };
 		7DC61BD42C0A3B38009177D1 /* SVDataService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SVDataService.swift; sourceTree = "<group>"; };
 		7DC61C4C2C144DDD009177D1 /* Anywakey Watch App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Anywakey Watch App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -238,6 +265,15 @@
 			buildActionMask = 2147483647;
 			files = (
 				7DA4F52F2C147521008E406C /* WatchConnectivity.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		7DC436182C1C48200080B634 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				7DC4361D2C1C48200080B634 /* SwiftUI.framework in Frameworks */,
+				7DC4361C2C1C48200080B634 /* WidgetKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -345,6 +381,7 @@
 				7DE834BD2BF2184400B065BB /* Anywakey-iOS.entitlements */,
 				7DE834AE2BF2182000B065BB /* AnyWidget */,
 				7D54BDD12C07BB510042FC0B /* Share */,
+				7DC4361E2C1C48200080B634 /* WatchWidget */,
 				7DE834A92BF2182000B065BB /* Frameworks */,
 				7DC26D7E2AE7EBE100B52D02 /* Products */,
 			);
@@ -357,6 +394,7 @@
 				7DE834A82BF2182000B065BB /* AnyWidgetExtension.appex */,
 				7D54BDD02C07BB510042FC0B /* Share.appex */,
 				7DC61C4C2C144DDD009177D1 /* Anywakey Watch App.app */,
+				7DC4361B2C1C48200080B634 /* WatchWidgetExtension.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -382,6 +420,16 @@
 				7DC26D872AE7EBE300B52D02 /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		7DC4361E2C1C48200080B634 /* WatchWidget */ = {
+			isa = PBXGroup;
+			children = (
+				7DC4361F2C1C48200080B634 /* WatchWidget.swift */,
+				7DC436212C1C48220080B634 /* Assets.xcassets */,
+				7DC436232C1C48220080B634 /* Info.plist */,
+			);
+			path = WatchWidget;
 			sourceTree = "<group>";
 		};
 		7DC61C4D2C144DDD009177D1 /* Anywakey Watch App */ = {
@@ -616,6 +664,23 @@
 			productReference = 7DC26D7D2AE7EBE100B52D02 /* Anywakey-iOS.app */;
 			productType = "com.apple.product-type.application";
 		};
+		7DC4361A2C1C48200080B634 /* WatchWidgetExtension */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 7DC4362A2C1C48220080B634 /* Build configuration list for PBXNativeTarget "WatchWidgetExtension" */;
+			buildPhases = (
+				7DC436172C1C48200080B634 /* Sources */,
+				7DC436182C1C48200080B634 /* Frameworks */,
+				7DC436192C1C48200080B634 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = WatchWidgetExtension;
+			productName = WatchWidgetExtension;
+			productReference = 7DC4361B2C1C48200080B634 /* WatchWidgetExtension.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
 		7DC61C4B2C144DDD009177D1 /* Anywakey Watch App */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 7DC61C5C2C144DE0009177D1 /* Build configuration list for PBXNativeTarget "Anywakey Watch App" */;
@@ -623,10 +688,12 @@
 				7DC61C482C144DDD009177D1 /* Sources */,
 				7DC61C492C144DDD009177D1 /* Frameworks */,
 				7DC61C4A2C144DDD009177D1 /* Resources */,
+				7DC436272C1C48220080B634 /* Embed Foundation Extensions */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				7DC436252C1C48220080B634 /* PBXTargetDependency */,
 			);
 			name = "Anywakey Watch App";
 			productName = "Anywakey Watch App";
@@ -657,7 +724,7 @@
 			isa = PBXProject;
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
-				LastSwiftUpdateCheck = 1540;
+				LastSwiftUpdateCheck = 1600;
 				LastUpgradeCheck = 1530;
 				TargetAttributes = {
 					7D54BDCF2C07BB510042FC0B = {
@@ -665,6 +732,9 @@
 					};
 					7DC26D7C2AE7EBE100B52D02 = {
 						CreatedOnToolsVersion = 15.0;
+					};
+					7DC4361A2C1C48200080B634 = {
+						CreatedOnToolsVersion = 16.0;
 					};
 					7DC61C4B2C144DDD009177D1 = {
 						CreatedOnToolsVersion = 15.4;
@@ -691,6 +761,7 @@
 				7DE834A72BF2182000B065BB /* AnyWidgetExtension */,
 				7D54BDCF2C07BB510042FC0B /* Share */,
 				7DC61C4B2C144DDD009177D1 /* Anywakey Watch App */,
+				7DC4361A2C1C48200080B634 /* WatchWidgetExtension */,
 			);
 		};
 /* End PBXProject section */
@@ -712,6 +783,14 @@
 				7DC26D882AE7EBE300B52D02 /* Preview Assets.xcassets in Resources */,
 				7DC26D852AE7EBE300B52D02 /* Assets.xcassets in Resources */,
 				7D5AF0DA2C16FC9400AB6750 /* Anywakey-iOS-Info.plist in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		7DC436192C1C48200080B634 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				7DC436222C1C48220080B634 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -789,6 +868,14 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		7DC436172C1C48200080B634 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				7DC436202C1C48200080B634 /* WatchWidget.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		7DC61C482C144DDD009177D1 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -843,6 +930,11 @@
 			isa = PBXTargetDependency;
 			target = 7D54BDCF2C07BB510042FC0B /* Share */;
 			targetProxy = 7D54BDD82C07BB510042FC0B /* PBXContainerItemProxy */;
+		};
+		7DC436252C1C48220080B634 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 7DC4361A2C1C48200080B634 /* WatchWidgetExtension */;
+			targetProxy = 7DC436242C1C48220080B634 /* PBXContainerItemProxy */;
 		};
 		7DC61C582C144DE0009177D1 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
@@ -1128,6 +1220,67 @@
 			};
 			name = Release;
 		};
+		7DC436282C1C48220080B634 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1.4;
+				DEVELOPMENT_TEAM = LMA5CPXKDX;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = WatchWidget/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = WatchWidget;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+					"@executable_path/../../../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = svarich.anywakey.watchkitapp.WatchWidget;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 10.0;
+			};
+			name = Debug;
+		};
+		7DC436292C1C48220080B634 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1.4;
+				DEVELOPMENT_TEAM = LMA5CPXKDX;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = WatchWidget/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = WatchWidget;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+					"@executable_path/../../../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = svarich.anywakey.watchkitapp.WatchWidget;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				VALIDATE_PRODUCT = YES;
+				WATCHOS_DEPLOYMENT_TARGET = 10.0;
+			};
+			name = Release;
+		};
 		7DC61C5A2C144DE0009177D1 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -1286,6 +1439,15 @@
 			buildConfigurations = (
 				7DC26DA22AE7EBE300B52D02 /* Debug */,
 				7DC26DA32AE7EBE300B52D02 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		7DC4362A2C1C48220080B634 /* Build configuration list for PBXNativeTarget "WatchWidgetExtension" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				7DC436282C1C48220080B634 /* Debug */,
+				7DC436292C1C48220080B634 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

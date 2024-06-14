@@ -5,6 +5,7 @@ import WatchConnectivity
 class WatchDS: NSObject, WCSessionDelegate, ObservableObject {
     
     @Published var allDevices: [Device] = []
+    @Published var statusList: [String : Bool] = [ : ]
     
     var session: WCSession
     
@@ -37,6 +38,12 @@ class WatchDS: NSObject, WCSessionDelegate, ObservableObject {
         }
     }
     
+    func session(_ session: WCSession, didReceiveMessage message: [String : Any]) {
+        DispatchQueue.main.async {
+            self.statusList = message["status"] as! [String : Bool]
+        }
+    }
+    
     // send device to boot
     func sendMessage(device: Device) {
         guard let data = try? JSONEncoder().encode(device) else {
@@ -48,13 +55,22 @@ class WatchDS: NSObject, WCSessionDelegate, ObservableObject {
             }
         }
     }
+    // ask for status
+    func updateStatus() {
+        let message = ["action" : "updateStatus"]
+        if session.isReachable {
+            session.sendMessage(message, replyHandler: nil) {error in
+                print("Error request status: \(error)")
+            }
+        }
+    }
     
-    // get list of devices
+    // ask for list of devices
     func askForDevices() {
         let message = ["action" : "sendDevices"]
         if session.isReachable {
             session.sendMessage(message, replyHandler: nil) { error in
-                print("Error requestion devices: \(error)")
+                print("Error request devices: \(error)")
             }
         }
     }

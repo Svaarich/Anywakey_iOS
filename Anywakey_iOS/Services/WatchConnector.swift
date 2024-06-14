@@ -46,8 +46,13 @@ extension WatchConnector: WCSessionDelegate {
     func session(_ session: WCSession, didReceiveMessage message: [String : Any]) {
         print("Received message on iPhone: \(message)")
         if let action = message["action"] as? String {
-            if action == "sendDevices" {
+            switch action {
+            case "sendDevices":
                 sendMessageData()
+            case "updateStatus":
+                sendStatusList()
+            default:
+                ()
             }
         }
     }
@@ -57,6 +62,27 @@ extension WatchConnector: WCSessionDelegate {
             print("Error WCSession activation: \(error)")
         } else {
             print("The session has completed activation.")
+        }
+    }
+    
+    func prepareStatusMessage(list: [String : Bool]) {
+        let message = ["status" : list]
+        if session.isReachable {
+            self.session.sendMessage(message, replyHandler: nil) { error in
+                print("Error sending status list: \(error)")
+            }
+        }
+    }
+    
+    // ping all devices in the list
+    private func sendStatusList() {
+        var statusList: [String : Bool] = [ : ]
+        for device in dataService.allDevices {
+            Network.instance.ping(address: device.BroadcastAddr) { ping, isAccessible in
+                statusList[device.BroadcastAddr] = isAccessible
+                self.prepareStatusMessage(list: statusList)
+                print(statusList.debugDescription)
+            }
         }
     }
     

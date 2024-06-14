@@ -8,8 +8,6 @@ struct HomeView: View {
     
     @State var loading: Bool = true
     
-    let timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
-    
     var body: some View {
         VStack {
             if loading && dataService.allDevices.isEmpty {
@@ -34,13 +32,13 @@ struct HomeView: View {
 
             }
         }
-        .navigationTitle {
-            Text("Devices")
-                .foregroundStyle(.green)
-        }
+        .navigationTitle("Devices")
         .toolbar(dataService.allDevices.isEmpty ? .hidden : .visible)
-        .onReceive(timer) { _ in
-            askForDevices()
+        .onAppear(perform: askForData)
+        .onAppear {
+            Timer.scheduledTimer(withTimeInterval: 20, repeats: true) { _ in
+                dataService.updateStatus()
+            }
         }
     }
 }
@@ -48,12 +46,15 @@ struct HomeView: View {
 extension HomeView {
     
     // MARK: FUNCTIONS
-    private func askForDevices() {
-        if dataService.session.isReachable {
-            dataService.askForDevices()
-            timer.upstream.connect().cancel()
-            withAnimation(.spring) {
-                loading = false
+    private func askForData() {
+        Timer.scheduledTimer(withTimeInterval: 1.0, repeats: true) { timer in
+            if dataService.session.isReachable {
+                dataService.askForDevices()
+                dataService.updateStatus()
+                withAnimation(.spring) {
+                    loading = false
+                }
+                timer.invalidate()
             }
         }
     }
@@ -86,36 +87,9 @@ extension HomeView {
     private var list: some View {
         List {
             // pinned devices
-            if !dataService.allDevices.filter({ $0.isPinned }).isEmpty {
-                Section {
-                    ForEach(dataService.allDevices.filter( { $0.isPinned } )) { device in
-                        ButtonRow(device: device) {
-                            dataService.sendMessage(device: device)
-                        }
-                    }
-                } header: {
-                    HStack {
-                        Text("Pinned")
-                        Image(systemName: "star.fill")
-                            .foregroundStyle(Color.custom.starColor)
-                    }
-                }
-            }
-            
-            // not pinned devices
-            if !dataService.allDevices.filter({ !$0.isPinned }).isEmpty {
-                Section {
-                    ForEach(dataService.allDevices.filter( { !$0.isPinned } )) { device in
-                        ButtonRow(device: device) {
-                            dataService.sendMessage(device: device)
-                        }
-                    }
-                } header: {
-                    HStack {
-                        Text("Devices")
-                        Image(systemName: "display.2")
-                            .foregroundStyle(.secondary)
-                    }
+            ForEach(dataService.allDevices.sorted(by: { $0.isPinned && !$1.isPinned } )) { device in
+                ButtonRow(device: device) {
+                    dataService.sendMessage(device: device)
                 }
             }
         }

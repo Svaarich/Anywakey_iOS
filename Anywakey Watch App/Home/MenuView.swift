@@ -25,10 +25,7 @@ struct MenuView: View {
             }
             .buttonBorderShape(.roundedRectangle)
         }
-        .navigationTitle {
-            Text("Menu")
-                .foregroundStyle(.green)
-        }
+        .navigationTitle("Menu")
         .padding(.horizontal, 4)
     }
 }
