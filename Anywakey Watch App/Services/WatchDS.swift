@@ -55,13 +55,22 @@ class WatchDS: NSObject, WCSessionDelegate, ObservableObject {
             }
         }
     }
+    // ask for status
+    func updateStatus() {
+        let message = ["action" : "updateStatus"]
+        if session.isReachable {
+            session.sendMessage(message, replyHandler: nil) {error in
+                print("Error request status: \(error)")
+            }
+        }
+    }
     
-    // get list of devices
+    // ask for list of devices
     func askForDevices() {
         let message = ["action" : "sendDevices"]
         if session.isReachable {
             session.sendMessage(message, replyHandler: nil) { error in
-                print("Error requestion devices: \(error)")
+                print("Error request devices: \(error)")
             }
         }
     }
