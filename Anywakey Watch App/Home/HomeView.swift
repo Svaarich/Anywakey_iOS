@@ -46,12 +46,15 @@ struct HomeView: View {
 extension HomeView {
     
     // MARK: FUNCTIONS
-    private func askForDevices() {
-        if dataService.session.isReachable {
-            dataService.askForDevices()
-            timer.upstream.connect().cancel()
-            withAnimation(.spring) {
-                loading = false
+    private func askForData() {
+        Timer.scheduledTimer(withTimeInterval: 1.0, repeats: true) { timer in
+            if dataService.session.isReachable {
+                dataService.askForDevices()
+                dataService.updateStatus()
+                withAnimation(.spring) {
+                    loading = false
+                }
+                timer.invalidate()
             }
         }
     }
