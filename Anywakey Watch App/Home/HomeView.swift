@@ -8,8 +8,6 @@ struct HomeView: View {
     
     @State var loading: Bool = true
     
-    let timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
-    
     var body: some View {
         VStack {
             if loading && dataService.allDevices.isEmpty {
