@@ -3,10 +3,19 @@ import SwiftUI
 
 struct ButtonRow: View {
     
+    @State var date: Date = .now
+    
     let device: Device
     let dataService: WatchDS
     
     let startDevice: () -> Void
+    
+    var formatter: DateFormatter {
+        let format = DateFormatter()
+        format.timeStyle = .short
+        return format
+        
+    }
     
     var body: some View {
         Button {
