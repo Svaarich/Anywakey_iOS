@@ -3,7 +3,8 @@ import SwiftUI
 
 struct ButtonRow: View {
     
-    @State var date: Date = .now
+    @EnvironmentObject var dataService: WatchDS
+    
     
     let device: Device
     let dataService: WatchDS
