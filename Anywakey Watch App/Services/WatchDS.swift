@@ -6,6 +6,7 @@ class WatchDS: NSObject, WCSessionDelegate, ObservableObject {
     
     @Published var allDevices: [Device] = []
     @Published var statusList: [String : Bool] = [ : ]
+    @Published var statusListUpdated: Bool = false
     
     var session: WCSession
     
@@ -42,6 +43,7 @@ class WatchDS: NSObject, WCSessionDelegate, ObservableObject {
         DispatchQueue.main.async {
             self.statusList = message["status"] as! [String : Bool]
         }
+        statusListUpdated.toggle()
     }
     
     // send device to boot

@@ -8,6 +8,7 @@ final class WatchConnector: NSObject {
     @Published var dataService: DeviceDataService {
         didSet {
             self.sendMessageData()
+            self.sendStatusList()
         }
     }
     
