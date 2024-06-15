@@ -8,6 +8,9 @@ struct ButtonRow: View {
     @State private var date: Date = .now
     @State private var status: Bool = false
     
+    @State private var showProgress: Bool = false
+    @State private var rotationAngle: Double = 0
+    
     let device: Device
     
     let startDevice: () -> Void
@@ -22,9 +25,15 @@ struct ButtonRow: View {
     var body: some View {
         Button {
             //send device to ios app
-            startDevice()
+            if !showProgress {
                 startDevice()
                 WKHapticManager.instance.play(.click)
+                showProgress = true
+                rotationAngle += 360
+                DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+                    rotationAngle -= 360
+                    showProgress = false
+                }
             }
         } label: {
             deviceCard
@@ -87,6 +96,15 @@ extension ButtonRow {
     // status view
     private var statusSection: some View {
         HStack {
+            Image(
+                systemName:
+                    showProgress ? "checkmark" :
+                    dataService.statusList[device.BroadcastAddr] ?? false ? "wifi" : "wifi.slash"
+            )
+            .foregroundColor(
+                showProgress ? .blue :
+                    dataService.statusList[device.BroadcastAddr] ?? false ? .green :.red
+            )
             .frame(width: 20, height: 20)
             .padding(8)
             .background(.gray.opacity(0.1))
@@ -94,6 +112,9 @@ extension ButtonRow {
             .rotationEffect(.degrees(rotationAngle))
             
             VStack(alignment: .leading, spacing: 0) {
+                Text(showProgress ? "Sent!" : "updated")
+                    .foregroundStyle(showProgress ? .blue : .secondary)
+                        .animation(.smooth, value: showProgress)
                     Text("\(formatter.string(from: date))")
                         .contentTransition(.numericText())
             }
