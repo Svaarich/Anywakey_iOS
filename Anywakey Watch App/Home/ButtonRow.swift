@@ -23,52 +23,82 @@ struct ButtonRow: View {
         Button {
             //send device to ios app
             startDevice()
-            WKHapticManager.instance.play(.stop)
-        } label: {
-            VStack(alignment: .leading, spacing: 6) {
-                HStack(alignment: .top) {
-                    Image(systemName: dataService.statusList[device.BroadcastAddr] ?? false ? "wifi" : "wifi.slash")
-                        .foregroundColor(dataService.statusList[device.BroadcastAddr] ?? false ? .green : .red)
-                        .padding(8)
-                        .background(.gray.opacity(0.1))
-                        .clipShape(Circle())
-                    VStack(alignment: .leading, spacing: 0) {
-                        Text("updated")
-                        Text("\(formatter.string(from: date))")
-                            .contentTransition(.numericText())
-                            
-                    }
-                    .font(.footnote)
-                    .foregroundStyle(.secondary)
-                    
-                    Spacer()
-                    if device.isPinned {
-                        Image(systemName: "star.fill")
-                        .offset(y: -1)
-                        .foregroundStyle(Color.custom.starColor)
-                    }
-                }
-                Text(device.name)
-                    .fontWeight(.semibold)
-                    .lineLimit(2)
-                Divider()
-                HStack {
-                    Image(systemName: "globe")
-                        .foregroundStyle(.secondary)
-                        .opacity(0.8)
-                    Text(device.BroadcastAddr)
-                        .lineLimit(1)
-                }
-                .font(.caption2)
-                .foregroundStyle(.secondary)
+                startDevice()
+                WKHapticManager.instance.play(.click)
             }
-            .frame(maxWidth: .infinity, alignment: .leading)
-            .padding(.vertical, 8)
+        } label: {
+            deviceCard
         }
         .onChange(of: dataService.statusListUpdated) {
             withAnimation(.smooth) {
                 date = .now
             }
+        }
+    }
+}
+
+extension ButtonRow {
+    // device card
+    private var deviceCard: some View {
+        VStack(alignment: .leading, spacing: 6) {
+            HStack(alignment: .top) {
+                statusSection
+                    .animation(.smooth, value: showProgress)
+                Spacer()
+                if device.isPinned {
+                    starSection
+                }
+            }
+            deviceName
+            Divider()
+            deviceAddress
+        }
+        .frame(maxWidth: .infinity, alignment: .leading)
+        .padding(.vertical, 8)
+    }
+    
+    // device address section
+    private var deviceAddress: some View {
+        HStack {
+            Image(systemName: "globe")
+                .foregroundStyle(.secondary)
+                .opacity(0.8)
+            Text(device.BroadcastAddr)
+                .lineLimit(1)
+        }
+        .font(.caption2)
+        .foregroundStyle(.secondary)
+    }
+    
+    // device name section
+    private var deviceName: some View {
+        Text(device.name)
+            .fontWeight(.semibold)
+            .lineLimit(2)
+    }
+    
+    // star view
+    private var starSection: some View {
+        Image(systemName: "star.fill")
+            .offset(y: -1)
+            .foregroundStyle(Color.custom.starColor)
+    }
+    
+    // status view
+    private var statusSection: some View {
+        HStack {
+            .frame(width: 20, height: 20)
+            .padding(8)
+            .background(.gray.opacity(0.1))
+            .clipShape(Circle())
+            .rotationEffect(.degrees(rotationAngle))
+            
+            VStack(alignment: .leading, spacing: 0) {
+                    Text("\(formatter.string(from: date))")
+                        .contentTransition(.numericText())
+            }
+            .font(.footnote)
+            .foregroundStyle(.secondary)
         }
     }
 }
