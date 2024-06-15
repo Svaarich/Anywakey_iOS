@@ -14,7 +14,7 @@ struct ButtonRow: View {
     
     var formatter: DateFormatter {
         let format = DateFormatter()
-        format.timeStyle = .medium
+        format.timeStyle = .short
         return format
         
     }
@@ -65,7 +65,7 @@ struct ButtonRow: View {
             .frame(maxWidth: .infinity, alignment: .leading)
             .padding(.vertical, 8)
         }
-        .onChange(of: dataService.statusList) {
+        .onChange(of: dataService.statusListUpdated) {
             withAnimation(.smooth) {
                 date = .now
             }
