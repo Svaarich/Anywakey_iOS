@@ -102,6 +102,7 @@ struct DeviceInfoView: View {
             }
         }
         .onChange(of: dataService.allDevices) { _ in
+            connector.dataService.allDevices = dataService.allDevices
             connector.sendMessageData()
         }
     }

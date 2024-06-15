@@ -5,6 +5,7 @@ import WatchConnectivity
 struct HomeView: View {
     
     @EnvironmentObject var dataService: WatchDS
+    @Environment(\.scenePhase) var scenePhase
     
     @State var loading: Bool = true
     
@@ -34,11 +35,15 @@ struct HomeView: View {
         }
         .navigationTitle("Devices")
         .toolbar(dataService.allDevices.isEmpty ? .hidden : .visible)
+        
         .onAppear(perform: askForData)
         .onAppear {
             Timer.scheduledTimer(withTimeInterval: 20, repeats: true) { _ in
                 dataService.updateStatus()
             }
+        }
+        .onChange(of: scenePhase) {
+            dataService.updateStatus()
         }
     }
 }
