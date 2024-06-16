@@ -114,6 +114,7 @@ extension ButtonRow {
             .padding(8)
             .background(.gray.opacity(0.1))
             .clipShape(Circle())
+            .symbolEffect(.bounce, value: showProgress)
             .rotationEffect(.degrees(rotationAngle))
             
             VStack(alignment: .leading, spacing: 0) {
