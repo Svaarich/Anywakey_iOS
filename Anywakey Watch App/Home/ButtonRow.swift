@@ -119,6 +119,7 @@ extension ButtonRow {
             
             VStack(alignment: .leading, spacing: 0) {
                 Text(showProgress ? "Sent!" : "updated")
+                    .contentTransition(.numericText())
                     .foregroundStyle(showProgress ? .blue : .secondary)
                         .animation(.smooth, value: showProgress)
                     Text("\(formatter.string(from: date))")
