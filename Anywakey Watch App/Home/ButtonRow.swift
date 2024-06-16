@@ -28,12 +28,7 @@ struct ButtonRow: View {
             if !showProgress {
                 startDevice()
                 WKHapticManager.instance.play(.click)
-                showProgress = true
-                rotationAngle += 360
-                DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
-                    rotationAngle -= 360
-                    showProgress = false
-                }
+                animate()
             }
         } label: {
             deviceCard
@@ -47,6 +42,16 @@ struct ButtonRow: View {
 }
 
 extension ButtonRow {
+    
+    private func animate() {
+        showProgress = true
+        rotationAngle += 360
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+            rotationAngle -= 360
+            showProgress = false
+        }
+    }
+    
     // device card
     private var deviceCard: some View {
         VStack(alignment: .leading, spacing: 6) {
