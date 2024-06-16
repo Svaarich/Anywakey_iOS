@@ -28,12 +28,7 @@ struct ButtonRow: View {
             if !showProgress {
                 startDevice()
                 WKHapticManager.instance.play(.click)
-                showProgress = true
-                rotationAngle += 360
-                DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
-                    rotationAngle -= 360
-                    showProgress = false
-                }
+                animate()
             }
         } label: {
             deviceCard
@@ -47,6 +42,16 @@ struct ButtonRow: View {
 }
 
 extension ButtonRow {
+    
+    private func animate() {
+        showProgress = true
+        rotationAngle += 360
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+            rotationAngle -= 360
+            showProgress = false
+        }
+    }
+    
     // device card
     private var deviceCard: some View {
         VStack(alignment: .leading, spacing: 6) {
@@ -109,10 +114,12 @@ extension ButtonRow {
             .padding(8)
             .background(.gray.opacity(0.1))
             .clipShape(Circle())
+            .symbolEffect(.bounce, value: showProgress)
             .rotationEffect(.degrees(rotationAngle))
             
             VStack(alignment: .leading, spacing: 0) {
                 Text(showProgress ? "Sent!" : "updated")
+                    .contentTransition(.numericText())
                     .foregroundStyle(showProgress ? .blue : .secondary)
                         .animation(.smooth, value: showProgress)
                     Text("\(formatter.string(from: date))")
