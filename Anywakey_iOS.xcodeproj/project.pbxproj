@@ -20,7 +20,6 @@
 		7D596B4A2B48D00C00A5B7FA /* NoDevicesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D596B492B48D00C00A5B7FA /* NoDevicesView.swift */; };
 		7D5AF0D32C14D2E400AB6750 /* WatchConnector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D5AF0D12C14D25500AB6750 /* WatchConnector.swift */; };
 		7D5AF0D72C14D52000AB6750 /* WatchDS.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D5AF0D62C14D52000AB6750 /* WatchDS.swift */; };
-		7D5AF0DA2C16FC9400AB6750 /* Anywakey-iOS-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7DB21B792BFB882200A090E2 /* Anywakey-iOS-Info.plist */; };
 		7D5FE1C82B5CB60900142502 /* Double.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D5FE1C72B5CB60900142502 /* Double.swift */; };
 		7D5FE1F42B5F5D3F00142502 /* DeleteDeviceSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D5FE1F32B5F5D3F00142502 /* DeleteDeviceSheet.swift */; };
 		7D77185C2BE3B0B40046700A /* WrongInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D77185B2BE3B0B40046700A /* WrongInput.swift */; };
@@ -725,7 +724,7 @@
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
 				LastSwiftUpdateCheck = 1600;
-				LastUpgradeCheck = 1530;
+				LastUpgradeCheck = 1600;
 				TargetAttributes = {
 					7D54BDCF2C07BB510042FC0B = {
 						CreatedOnToolsVersion = 15.4;
@@ -782,7 +781,6 @@
 				7DF00C412B51D541008105C9 /* LaunchScreen.storyboard in Resources */,
 				7DC26D882AE7EBE300B52D02 /* Preview Assets.xcassets in Resources */,
 				7DC26D852AE7EBE300B52D02 /* Assets.xcassets in Resources */,
-				7D5AF0DA2C16FC9400AB6750 /* Anywakey-iOS-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1140,7 +1138,6 @@
 		7DC26DA22AE7EBE300B52D02 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = "Anywakey-iOS.entitlements";
@@ -1181,7 +1178,6 @@
 		7DC26DA32AE7EBE300B52D02 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = "Anywakey-iOS.entitlements";
