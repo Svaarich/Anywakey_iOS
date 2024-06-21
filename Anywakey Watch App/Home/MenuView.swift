@@ -12,6 +12,7 @@ struct MenuView: View {
             Spacer()
             Button {
                 action()
+                WKHapticManager.instance.play(.success)
                 withAnimation(.smooth) {
                     rotationAngle -= 360
                 }
