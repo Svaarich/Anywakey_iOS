@@ -97,6 +97,7 @@ struct WatchWidget: Widget {
                     .background()
             }
         }
+        .supportedFamilies([.accessoryCorner, .accessoryInline, .accessoryCircular])
         .configurationDisplayName("Anywakey")
         .description("App shortcut")
     }
