@@ -11,6 +11,8 @@ struct BootButton: View {
     @Binding var refreshStatus: Bool
     @Binding var showWrongInput: Bool
     
+    @State var timer: Timer?
+    
     let device: Device
     
     var body: some View {
