@@ -13,6 +13,8 @@ struct DeviceCellView: View {
     @State private var starOpacity: CGFloat = 0.0
     @State private var ping: Double = 0.0
     
+    @State var timer: Timer?
+    
     @Binding var refreshStatus: Bool
     @Binding var isCopied: Bool
     @Binding var showDeleteCancelation: Bool
