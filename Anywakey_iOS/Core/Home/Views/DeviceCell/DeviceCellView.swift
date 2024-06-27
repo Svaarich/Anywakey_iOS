@@ -13,6 +13,8 @@ struct DeviceCellView: View {
     @State private var starOpacity: CGFloat = 0.0
     @State private var ping: Double = 0.0
     
+    @State var timer: Timer?
+    
     @Binding var refreshStatus: Bool
     @Binding var isCopied: Bool
     @Binding var showDeleteCancelation: Bool
@@ -66,11 +68,15 @@ struct DeviceCellView: View {
         .onAppear {
             addAnimation()
             getStatus()
-            Timer.scheduledTimer(withTimeInterval: 15, repeats: true) { _ in
+            timer = Timer.scheduledTimer(withTimeInterval: 15, repeats: true) { _ in
                 getStatus()
             }
             
         }
+        .onDisappear {
+            timer?.invalidate()
+        }
+        
         .onChange(of: refreshStatus) { status in
             if status {
                 getStatus()
