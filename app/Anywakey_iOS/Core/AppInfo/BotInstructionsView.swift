@@ -140,7 +140,8 @@ struct BotInstructionsView: View {
             Spacer()
         }
         .padding()
-        .navigationTitle("Bot Instructions")
+        .navigationTitle("Notifier")
+    }
     
     private var instructions: some View {
         LinkButton(
