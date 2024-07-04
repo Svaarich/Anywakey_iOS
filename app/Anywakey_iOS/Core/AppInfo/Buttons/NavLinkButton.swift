@@ -9,9 +9,9 @@ struct NavLinkButton: View {
     private let image: Image
     private let color: Color
     private let imageColor: Color
-    private let destination: () -> AnyView
+    private let destination: () -> any View
     
-    init(text: String, image: Image, color: Color, imageColor: Color = .white, destination: @escaping () -> AnyView ) {
+    init(text: String, image: Image, color: Color, imageColor: Color = .white, destination: @escaping () -> any View ) {
         self.text = text
         self.image = image
         self.color = color

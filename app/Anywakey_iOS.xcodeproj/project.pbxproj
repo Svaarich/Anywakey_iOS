@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		370DEFC82C35BFB100B82131 /* BotInstructionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 370DEFC72C35BFB100B82131 /* BotInstructionsView.swift */; };
 		7D0518B72B71863F006850B8 /* HapticManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D0518B62B71863F006850B8 /* HapticManager.swift */; };
 		7D12F34E2BE169BE00FE854E /* LinkButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D12F34D2BE169BE00FE854E /* LinkButton.swift */; };
 		7D33C1C22BFE04B700ABF540 /* WidgetSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DB21BB02BFD234800A090E2 /* WidgetSettingsView.swift */; };
@@ -167,6 +168,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		370DEFC72C35BFB100B82131 /* BotInstructionsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BotInstructionsView.swift; sourceTree = "<group>"; };
 		7D0518B62B71863F006850B8 /* HapticManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HapticManager.swift; sourceTree = "<group>"; };
 		7D12F34D2BE169BE00FE854E /* LinkButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LinkButton.swift; sourceTree = "<group>"; };
 		7D13BA662BF7E0AD00A8817B /* TwoDeviceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TwoDeviceView.swift; sourceTree = "<group>"; };
@@ -296,6 +298,7 @@
 			isa = PBXGroup;
 			children = (
 				7DA71F1D2B250A96004F9AF3 /* AppInfoView.swift */,
+				370DEFC72C35BFB100B82131 /* BotInstructionsView.swift */,
 				7D4A6ABA2BFE7CC500BBFCE6 /* WidgetSettings */,
 				7DF573272BFF82950009CB80 /* Buttons */,
 			);
@@ -845,6 +848,7 @@
 				7DD1F7DD2BBBF70F0000E238 /* Device + Extension.swift in Sources */,
 				7DD331DC2B5C5D8D002BFA64 /* BootButton.swift in Sources */,
 				7D5AF0D32C14D2E400AB6750 /* WatchConnector.swift in Sources */,
+				370DEFC82C35BFB100B82131 /* BotInstructionsView.swift in Sources */,
 				7DE7001B2AEABC930033E53A /* AddDeviceView.swift in Sources */,
 				7DB21B762BFAB82D00A090E2 /* ShareManager.swift in Sources */,
 				7DFB91BF2BE5849F001650B9 /* Bundle.swift in Sources */,
