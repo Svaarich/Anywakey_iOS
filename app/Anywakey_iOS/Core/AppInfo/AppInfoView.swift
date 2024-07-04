@@ -26,6 +26,13 @@ struct AppInfoView: View {
                 // links
                 VStack(spacing: 0) {
                     
+                    NavLinkButton(
+                        text: "bot",
+                        image: Image(systemName: ""),
+                        color: .red) {
+                            BotInstructionsView()
+                        }
+                    
                     gitHubRepoButton
                     
                     Divider()
@@ -72,7 +79,7 @@ struct AppInfoView: View {
                             text: "Widget setting",
                             image: Image(systemName: "square.tophalf.filled"),
                             color: .indigo) {
-                                AnyView(WidgetSettingsView())
+                                WidgetSettingsView()
                         }
                         Divider()
                     }
