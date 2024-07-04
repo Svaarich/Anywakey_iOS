@@ -17,9 +17,17 @@ struct BotInstructionsView: View {
     
     private var docsLink: String = "https://github.com/Svaarich/Anywakey_iOS/tree/main/docs"
     
+    private var config: String {
+        return
+                """
+                chcp 65001
+                curl -s -X POST https://api.telegram.org/bot\(token)/sendMessage -d chat_id=338226829 -d text="\(message)"
+                """
+    }
+    
     var body: some View {
         VStack(alignment: .leading, spacing: 8) {
-            Text("Using Telegram bot API computer is able to send message directly to your chat with the bot.")
+            Text("Use Telegram bot API to know when computer is started.")
             Text("Configuration")
                 .font(.title)
                 .padding(.top, 6)
