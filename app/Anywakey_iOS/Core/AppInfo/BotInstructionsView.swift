@@ -15,9 +15,19 @@ struct BotInstructionsView: View {
     private var messageColorText = Color(#colorLiteral(red: 0.2588235438, green: 0.7568627596, blue: 0.9686274529, alpha: 1))
     private var messageColor = Color(#colorLiteral(red: 0, green: 0.5898008943, blue: 1, alpha: 1))
     
+    private var docsLink: String = "https://github.com/Svaarich/Anywakey_iOS/tree/main/docs"
+    
+    private var config: String {
+        return
+                """
+                chcp 65001
+                curl -s -X POST https://api.telegram.org/bot\(token)/sendMessage -d chat_id=338226829 -d text="\(message)"
+                """
+    }
+    
     var body: some View {
         VStack(alignment: .leading, spacing: 8) {
-            Text("Using Telegram bot API computer is able to send message directly to your chat with the bot.")
+            Text("Use Telegram bot API to know when computer is started.")
             Text("Configuration")
                 .font(.title)
                 .padding(.top, 6)
@@ -82,7 +92,6 @@ struct BotInstructionsView: View {
                         .frame(width: 8)
                         .foregroundStyle(tokenColor)
                     }
-                
                 Text("sendMessage -d chat_id=338226829")
                 Text("text=\"\(message)\"")
                     .foregroundStyle(messageColorText)
@@ -111,7 +120,7 @@ struct BotInstructionsView: View {
                     RoundedRectangle(cornerRadius: 20)
                         .foregroundStyle(Color.gray.opacity(0.2))
                     Button {
-                        UIPasteboard.general.string = ""
+                        UIPasteboard.general.string = config
                         withAnimation(.easeInOut(duration: 0.3)) {
                             isCopied = true
                         }
@@ -128,10 +137,39 @@ struct BotInstructionsView: View {
                     }
                 }
             }
+            VStack(spacing: 0) {
+                
+                shareButton
+            }
+            .clipShape(RoundedRectangle(cornerRadius: 10))
+            .padding(.top)
+            
+            VStack(spacing: 0) {
+                
+                instructions
+            }
+            .clipShape(RoundedRectangle(cornerRadius: 10))
+            .padding(.top)
             Spacer()
         }
         .padding()
-        .navigationTitle("Bot Instructions")
+        .navigationTitle("Notifier")
+    }
+    
+    private var instructions: some View {
+        LinkButton(
+            stringURL: docsLink,
+            text: "Instructions",
+            image: Image(systemName: "doc.plaintext"),
+            color: .indigo)
+    }
+    
+    private var shareButton: some View {
+        ShareButton(
+            text: "Export configuration file",
+            image: Image(systemName: "arrow.up.doc.fill"),
+            color: .blue,
+            configURL: ShareManager.instance.share(botConfig: config))
     }
 }
 
