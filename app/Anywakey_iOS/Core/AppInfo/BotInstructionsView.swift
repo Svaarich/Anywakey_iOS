@@ -15,6 +15,8 @@ struct BotInstructionsView: View {
     private var messageColorText = Color(#colorLiteral(red: 0.2588235438, green: 0.7568627596, blue: 0.9686274529, alpha: 1))
     private var messageColor = Color(#colorLiteral(red: 0, green: 0.5898008943, blue: 1, alpha: 1))
     
+    private var docsLink: String = "https://github.com/Svaarich/Anywakey_iOS/tree/main/docs"
+    
     var body: some View {
         VStack(alignment: .leading, spacing: 8) {
             Text("Using Telegram bot API computer is able to send message directly to your chat with the bot.")
