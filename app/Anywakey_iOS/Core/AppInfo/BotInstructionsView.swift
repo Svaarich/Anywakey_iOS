@@ -137,6 +137,19 @@ struct BotInstructionsView: View {
                     }
                 }
             }
+            VStack(spacing: 0) {
+                
+                shareButton
+            }
+            .clipShape(RoundedRectangle(cornerRadius: 10))
+            .padding(.top)
+            
+            VStack(spacing: 0) {
+                
+                instructions
+            }
+            .clipShape(RoundedRectangle(cornerRadius: 10))
+            .padding(.top)
             Spacer()
         }
         .padding()
