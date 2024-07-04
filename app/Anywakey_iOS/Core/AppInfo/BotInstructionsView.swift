@@ -141,7 +141,15 @@ struct BotInstructionsView: View {
         }
         .padding()
         .navigationTitle("Bot Instructions")
+    
+    private var instructions: some View {
+        LinkButton(
+            stringURL: docsLink,
+            text: "Instructions",
+            image: Image(systemName: "doc.plaintext"),
+            color: .indigo)
     }
+    
 }
 
 #Preview {
