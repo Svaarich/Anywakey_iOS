@@ -150,6 +150,13 @@ struct BotInstructionsView: View {
             color: .indigo)
     }
     
+    private var shareButton: some View {
+        ShareButton(
+            text: "Export configuration file",
+            image: Image(systemName: "arrow.up.doc.fill"),
+            color: .blue,
+            configURL: ShareManager.instance.share(botConfig: config))
+    }
 }
 
 #Preview {
