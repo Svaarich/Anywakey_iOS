@@ -92,7 +92,6 @@ struct BotInstructionsView: View {
                         .frame(width: 8)
                         .foregroundStyle(tokenColor)
                     }
-                
                 Text("sendMessage -d chat_id=338226829")
                 Text("text=\"\(message)\"")
                     .foregroundStyle(messageColorText)
@@ -121,7 +120,7 @@ struct BotInstructionsView: View {
                     RoundedRectangle(cornerRadius: 20)
                         .foregroundStyle(Color.gray.opacity(0.2))
                     Button {
-                        UIPasteboard.general.string = ""
+                        UIPasteboard.general.string = config
                         withAnimation(.easeInOut(duration: 0.3)) {
                             isCopied = true
                         }
