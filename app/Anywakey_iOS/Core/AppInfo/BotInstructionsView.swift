@@ -127,7 +127,7 @@ extension BotInstructionsView {
                         .padding(.trailing, 8)
                 }
             }
-            .background(Color.gray.opacity(0.2))
+            .background(colorScheme == .dark ? .gray.opacity(0.2) : .white)
             .clipShape(RoundedRectangle(cornerRadius: 10))
             VStack(alignment: .leading) {
                 Text("Telegram bot token")
@@ -146,11 +146,11 @@ extension BotInstructionsView {
                     message = ""
                 } label: {
                     Image(systemName: "xmark.circle.fill")
-                        .foregroundStyle(Color.gray.opacity(0.5))
+                        .foregroundStyle(.gray.opacity(0.5))
                         .padding(.trailing, 8)
                 }
             }
-            .background(Color.gray.opacity(0.2))
+            .background(colorScheme == .dark ? .gray.opacity(0.2) : .white)
             .clipShape(RoundedRectangle(cornerRadius: 10))
             Text("Message (e.g \"Home computer is awake!\")")
                 .font(.caption)
@@ -169,12 +169,11 @@ extension BotInstructionsView {
             
             // Code section
             VStack(alignment: .leading, spacing: 6) {
-                
                 // Default code
                 Text("chcp 65001")
                 Text("curl -s -X POST")
                 Text("https://api.telegram.org/")
-                    .tint(.secondary)
+                    .tint(colorScheme == .dark ? .gray : .black.opacity(0.75))
                 
                 // Telegram token
                 Text(token.isEmpty ? "Space for Telegram bot token" : token)
@@ -215,7 +214,7 @@ extension BotInstructionsView {
                         .foregroundStyle(messageColor)
                     }
             }
-            .foregroundStyle(.secondary)
+            .foregroundStyle(colorScheme == .dark ? .gray : .black.opacity(0.75))
             .multilineTextAlignment(.leading)
             .padding()
             // leave space for bar
@@ -234,14 +233,8 @@ extension BotInstructionsView {
     private var codeBlockBackground: some View {
         ZStack {
             RoundedRectangle(cornerRadius: 20)
-                .foregroundStyle(Color.gray.opacity(0.2))
+                .foregroundStyle(colorScheme == .dark ? .gray.opacity(0.2) : .white)
                 .overlay(alignment: .top) {
-                    // Header
-                    Text("notifier.bat")
-                        .font(Font.system(size: 16, design: .monospaced))
-                        .foregroundStyle(.primary.opacity(0.75))
-                        .frame(maxWidth: .infinity, alignment: .leading)
-                        .padding(.leading)
                     // Bar
                     UnevenRoundedRectangle(
                         topLeadingRadius: 20,
@@ -249,7 +242,13 @@ extension BotInstructionsView {
                         bottomTrailingRadius: 0,
                         topTrailingRadius: 20)
                     .frame(height: 28)
-                    .foregroundStyle(.gray.opacity(0.1))
+                    .foregroundStyle(colorScheme == .dark ? .gray.opacity(0.1) : .gray.opacity(0.2))
+                    // Header
+                    Text("notifier.bat")
+                        .font(Font.system(size: 16, design: .monospaced))
+                        .foregroundStyle(.primary.opacity(0.75))
+                        .frame(maxWidth: .infinity, alignment: .leading)
+                        .padding(.leading)
                 }
             copyButton
                 .padding(.top, 22)
@@ -282,6 +281,4 @@ extension BotInstructionsView {
     NavigationStack {
         BotInstructionsView()
     }
-    .preferredColorScheme(.dark)
-    
 }
