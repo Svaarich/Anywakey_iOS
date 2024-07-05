@@ -27,7 +27,7 @@ struct BotInstructionsView: View {
     
     var body: some View {
         VStack(alignment: .leading, spacing: 8) {
-            Text("Use Telegram bot API to know when computer is started.")
+            
             Text("Configuration")
                 .font(.title)
                 .padding(.top, 6)
