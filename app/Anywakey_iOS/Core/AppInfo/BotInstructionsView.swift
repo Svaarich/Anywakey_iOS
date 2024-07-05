@@ -103,7 +103,22 @@ extension BotInstructionsView {
     // MARK: PROPERTIES
     
     private var description: some View {
-        Text("Use Telegram bot API to know when the computer is started.")
+        VStack(alignment: .leading, spacing: 8) {
+            Text("Use Telegram bot API to know when the computer is started.")
+            HStack {
+                Text("To get instructions press")
+                Image(systemName: "info.circle.fill")
+                    .resizable()
+                    .scaledToFit()
+                    .foregroundStyle(.white)
+                    .padding(5)
+                    .frame(width: 25, height: 25)
+                    .background {
+                        RoundedRectangle(cornerRadius: 7)
+                            .foregroundStyle(.indigo)
+                    }
+            }
+        }
     }
     
     private var configuration: some View {
