@@ -3,6 +3,8 @@ import SwiftUI
 
 struct BotInstructionsView: View {
     
+    @Environment(\.colorScheme) private var colorScheme
+    
     @State private var message: String = "My computer is awake!"
     @State private var token: String = ""
     @State private var isCopied: Bool = false
