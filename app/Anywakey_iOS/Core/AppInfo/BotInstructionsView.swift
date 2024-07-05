@@ -3,20 +3,39 @@ import SwiftUI
 
 struct BotInstructionsView: View {
     
-    @State private var message: String = "My PC is ON!"
-    @State private var token: String = "123456:ABC-DEF1234ghIkl-zyx57W2v1u123ew11"
-    @State private var isCopied: Bool = false
+    @Environment(\.colorScheme) private var colorScheme
     
+    // TextFields
+    @State private var message: String = "My computer is awake!"
+    @State private var token: String = ""
+    
+    @State private var isCopied: Bool = false
     
     // Colors
     private var tokenColor = Color(#colorLiteral(red: 0.9607843161, green: 0.7058823705, blue: 0.200000003, alpha: 1))
-    private var tokenColorText = Color(#colorLiteral(red: 0.9764705896, green: 0.850980401, blue: 0.5490196347, alpha: 1))
+    private var tokenColorText: Color {
+        if colorScheme == .dark {
+            let darkColor = Color(#colorLiteral(red: 0.9764705896, green: 0.850980401, blue: 0.5490196347, alpha: 1))
+            return darkColor
+        } else {
+            let ligthColor = Color(#colorLiteral(red: 0.9529411793, green: 0.6862745285, blue: 0.1333333403, alpha: 1))
+            return ligthColor
+        }
+    }
     
-    private var messageColorText = Color(#colorLiteral(red: 0.2588235438, green: 0.7568627596, blue: 0.9686274529, alpha: 1))
     private var messageColor = Color(#colorLiteral(red: 0, green: 0.5898008943, blue: 1, alpha: 1))
+    private var messageColorText: Color {
+        if colorScheme == .dark {
+            let darkColor = Color(#colorLiteral(red: 0.2588235438, green: 0.7568627596, blue: 0.9686274529, alpha: 1))
+            return darkColor
+        } else {
+            let ligthColor = Color(#colorLiteral(red: 0, green: 0.5898008943, blue: 1, alpha: 1))
+            return ligthColor
+        }
+    }
     
+    // Text
     private var docsLink: String = "https://github.com/Svaarich/Anywakey_iOS/tree/main/docs"
-    
     private var config: String {
         return
                 """
@@ -26,57 +45,153 @@ struct BotInstructionsView: View {
     }
     
     var body: some View {
+        ZStack {
+            ScrollView {
+                VStack(alignment: .leading, spacing: 8) {
+                    description
+                    configuration
+                        .padding(.bottom, 8)
+                    result
+                    VStack(spacing: 0) {
+                        
+                        shareButton
+                    }
+                    .clipShape(RoundedRectangle(cornerRadius: 10))
+                    .padding(.top)
+                    
+                    VStack(spacing: 0) {
+                        
+                        instructions
+                    }
+                    .clipShape(RoundedRectangle(cornerRadius: 10))
+                    .padding(.top)
+                    Spacer()
+                }
+                .padding()
+                .navigationTitle("Notifier")
+            }
+            .background {
+                if colorScheme == .light {
+                    Color.gray.opacity(0.1).ignoresSafeArea()
+                }
+            }
+            CopiedNotificationView()
+                .opacity(isCopied ? 1.0 : 0)
+                .animation(.spring, value: isCopied)
+        }
+    }
+    
+    private var instructions: some View {
+        LinkButton(
+            stringURL: docsLink,
+            text: "Instructions",
+            image: Image(systemName: "info.circle.fill"),
+            color: .indigo)
+    }
+    
+    private var shareButton: some View {
+        ShareButton(
+            text: "Export configuration file",
+            image: Image(systemName: "doc.text.fill"),
+            color: .blue,
+            configURL: ShareManager.instance.share(botConfig: config))
+    }
+}
+
+extension BotInstructionsView {
+    
+    // MARK: PROPERTIES
+    
+    private var description: some View {
         VStack(alignment: .leading, spacing: 8) {
-            Text("Use Telegram bot API to know when computer is started.")
+            Text("Use Telegram bot API to know when the computer is started.")
+            HStack {
+                Text("To get instructions press")
+                Image(systemName: "info.circle.fill")
+                    .resizable()
+                    .scaledToFit()
+                    .foregroundStyle(.white)
+                    .padding(5)
+                    .frame(width: 25, height: 25)
+                    .background {
+                        RoundedRectangle(cornerRadius: 7)
+                            .foregroundStyle(.indigo)
+                    }
+            }
+        }
+    }
+    
+    private var configuration: some View {
+        VStack(alignment: .leading, spacing: 8) {
+            
+            // Header
             Text("Configuration")
-                .font(.title)
-                .padding(.top, 6)
-            VStack(alignment: .leading) {
-                HStack {
-                    TextField("Message", text: $message)
-                        .padding(8)
-                        .padding(.horizontal, 8)
-                    Button {
-                        message = ""
-                    } label: {
-                        Image(systemName: "xmark.circle.fill")
-                            .foregroundStyle(Color.gray.opacity(0.5))
-                            .padding(.trailing, 8)
-                    }
+                .font(.headline)
+                .padding(.top, 8)
+            
+            // Telegram bot token input
+            HStack {
+                TextField("Token", text: $token)
+                    .padding(8)
+                    .padding(.horizontal, 8)
+                Button {
+                    token = ""
+                } label: {
+                    Image(systemName: "xmark.circle.fill")
+                        .foregroundStyle(Color.gray.opacity(0.5))
+                        .padding(.trailing, 8)
                 }
-                .background(Color.gray.opacity(0.2))
-                .clipShape(Capsule())
-                Text("Message(e.g \"Home computer is awake!\")")
-                    .font(.caption)
-                    .foregroundStyle(.secondary)
-                    .padding(.leading, 8)
             }
+            .background(colorScheme == .dark ? .gray.opacity(0.2) : .white)
+            .clipShape(RoundedRectangle(cornerRadius: 10))
             VStack(alignment: .leading) {
-                HStack {
-                    TextField("Token", text: $token)
-                        .padding(8)
-                        .padding(.horizontal, 8)
-                    Button {
-                        token = ""
-                    } label: {
-                        Image(systemName: "xmark.circle.fill")
-                            .foregroundStyle(Color.gray.opacity(0.5))
-                            .padding(.trailing, 8)
-                    }
-                }
-                .background(Color.gray.opacity(0.2))
-                .clipShape(Capsule())
-                Text("Telegram bot token(e.g 123456:ABC-DEF1234ghIkl-zyx57W2v1u123ew11")
-                    .font(.caption)
-                    .foregroundStyle(.secondary)
-                    .padding(.leading, 8)
+                Text("Telegram bot token")
+                Text("(e.g 123456:ABC-DEF1234ghIkl-zyx57W2v1u123ew11")
             }
+            .font(.caption)
+            .foregroundStyle(.secondary)
+            .padding(.leading, 8)
+            
+            // Message input
+            HStack {
+                TextField("Message", text: $message)
+                    .padding(8)
+                    .padding(.horizontal, 8)
+                Button {
+                    message = ""
+                } label: {
+                    Image(systemName: "xmark.circle.fill")
+                        .foregroundStyle(.gray.opacity(0.5))
+                        .padding(.trailing, 8)
+                }
+            }
+            .background(colorScheme == .dark ? .gray.opacity(0.2) : .white)
+            .clipShape(RoundedRectangle(cornerRadius: 10))
+            Text("Message (e.g \"Home computer is awake!\")")
+                .font(.caption)
+                .foregroundStyle(.secondary)
+                .padding(.leading, 8)
+        }
+    }
+    
+    private var result: some View {
+        
+        VStack(alignment: .leading, spacing: 8) {
+            
+            // Header
+            Text("Result")
+                .font(.headline)
+            
+            // Code section
             VStack(alignment: .leading, spacing: 6) {
+                // Default code
                 Text("chcp 65001")
                 Text("curl -s -X POST")
                 Text("https://api.telegram.org/")
-                    .tint(.secondary)
-                Text(token)
+                    .tint(colorScheme == .dark ? .gray : .black.opacity(0.75))
+                
+                // Telegram token
+                Text(token.isEmpty ? "Space for Telegram bot token" : token)
                     .foregroundStyle(tokenColorText)
                     .fixedSize(horizontal: false, vertical: true)
                     .padding(5)
@@ -92,8 +207,12 @@ struct BotInstructionsView: View {
                         .frame(width: 8)
                         .foregroundStyle(tokenColor)
                     }
+                
+                // Default code
                 Text("sendMessage -d chat_id=338226829")
-                Text("text=\"\(message)\"")
+                
+                // Message
+                Text(message.isEmpty ? "Space for notification text" : "text=\"\(message)\"")
                     .foregroundStyle(messageColorText)
                     .fixedSize(horizontal: false, vertical: true)
                     .padding(5)
@@ -110,73 +229,71 @@ struct BotInstructionsView: View {
                         .foregroundStyle(messageColor)
                     }
             }
-            .foregroundStyle(.secondary)
+            .foregroundStyle(colorScheme == .dark ? .gray : .black.opacity(0.75))
             .multilineTextAlignment(.leading)
             .padding()
+            // leave space for bar
+            .padding(.top, 22)
             .font(Font.system(size: 13, design: .monospaced))
             .frame(maxWidth: .infinity, alignment: .leading)
+            
+            // background
             .background {
-                ZStack {
-                    RoundedRectangle(cornerRadius: 20)
-                        .foregroundStyle(Color.gray.opacity(0.2))
-                    Button {
-                        UIPasteboard.general.string = config
-                        withAnimation(.easeInOut(duration: 0.3)) {
-                            isCopied = true
-                        }
-                        DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
-                            withAnimation(.easeInOut(duration: 0.3)) {
-                                isCopied = false
-                            }
-                        }
-                    } label: {
-                        Image(systemName: "square.on.square")
-                            .foregroundColor(Color.gray.opacity(0.8))
-                            .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topTrailing)
-                            .padding()
-                    }
+                codeBlockBackground
+            }
+        }
+    }
+    
+    // Code block backgroun
+    private var codeBlockBackground: some View {
+        ZStack {
+            RoundedRectangle(cornerRadius: 20)
+                .foregroundStyle(colorScheme == .dark ? .gray.opacity(0.2) : .white)
+                .overlay(alignment: .top) {
+                    // Bar
+                    UnevenRoundedRectangle(
+                        topLeadingRadius: 20,
+                        bottomLeadingRadius: 0,
+                        bottomTrailingRadius: 0,
+                        topTrailingRadius: 20)
+                    .frame(height: 28)
+                    .foregroundStyle(colorScheme == .dark ? .gray.opacity(0.1) : .gray.opacity(0.2))
+                    // Header
+                    Text("notifier.bat")
+                        .font(Font.system(size: 16, design: .monospaced))
+                        .foregroundStyle(.primary.opacity(0.75))
+                        .frame(maxWidth: .infinity, alignment: .leading)
+                        .padding(.leading)
+                }
+            copyButton
+                .padding(.top, 22)
+        }
+    }
+    
+    // Copy button
+    private var copyButton: some View {
+        Button {
+            UIPasteboard.general.string = config
+            withAnimation(.easeInOut(duration: 0.3)) {
+                isCopied = true
+            }
+            DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+                withAnimation(.easeInOut(duration: 0.3)) {
+                    isCopied = false
                 }
             }
-            VStack(spacing: 0) {
-                
-                shareButton
-            }
-            .clipShape(RoundedRectangle(cornerRadius: 10))
-            .padding(.top)
-            
-            VStack(spacing: 0) {
-                
-                instructions
-            }
-            .clipShape(RoundedRectangle(cornerRadius: 10))
-            .padding(.top)
-            Spacer()
+        } label: {
+            Image(systemName: "square.on.square")
+                .foregroundColor(colorScheme == .dark ? .gray : .black.opacity(0.75))
+                .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topTrailing)
+                .padding()
         }
-        .padding()
-        .navigationTitle("Notifier")
-    }
-    
-    private var instructions: some View {
-        LinkButton(
-            stringURL: docsLink,
-            text: "Instructions",
-            image: Image(systemName: "doc.plaintext"),
-            color: .indigo)
-    }
-    
-    private var shareButton: some View {
-        ShareButton(
-            text: "Export configuration file",
-            image: Image(systemName: "arrow.up.doc.fill"),
-            color: .blue,
-            configURL: ShareManager.instance.share(botConfig: config))
     }
 }
+
 
 #Preview {
     NavigationStack {
         BotInstructionsView()
     }
-    .preferredColorScheme(.dark)
-    
 }

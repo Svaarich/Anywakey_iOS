@@ -9,7 +9,7 @@ struct CopiedNotificationView: View {
     
     var body: some View {
         VStack {
-            Image(systemName: "doc.on.doc")
+            Image(systemName: "square.on.square")
                 .font(.largeTitle).padding(.bottom, 4)
                 .foregroundStyle(.blue)
             Text("COPIED!")

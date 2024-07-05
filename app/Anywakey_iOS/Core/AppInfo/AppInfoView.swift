@@ -26,13 +26,6 @@ struct AppInfoView: View {
                 // links
                 VStack(spacing: 0) {
                     
-                    NavLinkButton(
-                        text: "bot",
-                        image: Image(systemName: ""),
-                        color: .red) {
-                            BotInstructionsView()
-                        }
-                    
                     gitHubRepoButton
                     
                     Divider()
@@ -75,14 +68,17 @@ struct AppInfoView: View {
                 VStack(spacing: 0) {
                     
                     if #available(iOS 17.0, *) {
-                        NavLinkButton(
-                            text: "Widget setting",
-                            image: Image(systemName: "square.tophalf.filled"),
-                            color: .indigo) {
-                                WidgetSettingsView()
-                        }
+                        widgetSettingsButton
                         Divider()
                     }
+                    
+                    telegramNotifierButton
+                    
+                }
+                .clipShape(RoundedRectangle(cornerRadius: 10))
+                .padding(.bottom)
+                
+                VStack(spacing: 0) {
                     
                     exportFileButton
                     
@@ -258,6 +254,25 @@ extension AppInfoView {
             text: "Issue / Bug report",
             image: Image(systemName: "ant.fill"),
             color: .red)
+    }
+    
+    private var widgetSettingsButton: some View {
+        NavLinkButton(
+            text: "Widget setting",
+            image: Image(systemName: "square.tophalf.filled"),
+            color: .indigo) {
+                WidgetSettingsView()
+        }
+    }
+    
+    private var telegramNotifierButton: some View {
+        let color = Color(#colorLiteral(red: 0.2392156869, green: 0.6745098233, blue: 0.9686274529, alpha: 1))
+        return NavLinkButton(
+            text: "Telegram notifications",
+            image: Image(systemName: "paperplane.circle.fill"),
+            color: color) {
+                BotInstructionsView()
+            }
     }
     
     private var exportFileButton: some View {
