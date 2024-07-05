@@ -26,13 +26,6 @@ struct AppInfoView: View {
                 // links
                 VStack(spacing: 0) {
                     
-                    NavLinkButton(
-                        text: "bot",
-                        image: Image(systemName: ""),
-                        color: .red) {
-                            BotInstructionsView()
-                        }
-                    
                     gitHubRepoButton
                     
                     Divider()
@@ -270,6 +263,16 @@ extension AppInfoView {
             color: .indigo) {
                 WidgetSettingsView()
         }
+    }
+    
+    private var telegramNotifierButton: some View {
+        let color = Color(#colorLiteral(red: 0.2392156869, green: 0.6745098233, blue: 0.9686274529, alpha: 1))
+        return NavLinkButton(
+            text: "Telegram notifications",
+            image: Image(systemName: "paperplane.circle.fill"),
+            color: color) {
+                BotInstructionsView()
+            }
     }
     
     private var exportFileButton: some View {
