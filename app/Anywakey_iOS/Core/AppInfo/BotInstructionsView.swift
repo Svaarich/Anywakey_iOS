@@ -80,8 +80,9 @@ struct BotInstructionsView: View {
                 Text("curl -s -X POST")
                 Text("https://api.telegram.org/")
                     .tint(.secondary)
-                Text(token)
+                
                 // Telegram token
+                Text(token.isEmpty ? "Space for Telegram bot token" : token)
                     .foregroundStyle(tokenColorText)
                     .fixedSize(horizontal: false, vertical: true)
                     .padding(5)
