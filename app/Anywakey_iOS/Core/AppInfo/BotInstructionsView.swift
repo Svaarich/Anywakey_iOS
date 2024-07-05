@@ -45,29 +45,39 @@ struct BotInstructionsView: View {
     }
     
     var body: some View {
-        ScrollView {
-            VStack(alignment: .leading, spacing: 8) {
-                description
-                configuration
-                    .padding(.bottom, 8)
-               result
-                VStack(spacing: 0) {
+        ZStack {
+            ScrollView {
+                VStack(alignment: .leading, spacing: 8) {
+                    description
+                    configuration
+                        .padding(.bottom, 8)
+                    result
+                    VStack(spacing: 0) {
+                        
+                        shareButton
+                    }
+                    .clipShape(RoundedRectangle(cornerRadius: 10))
+                    .padding(.top)
                     
-                    shareButton
+                    VStack(spacing: 0) {
+                        
+                        instructions
+                    }
+                    .clipShape(RoundedRectangle(cornerRadius: 10))
+                    .padding(.top)
+                    Spacer()
                 }
-                .clipShape(RoundedRectangle(cornerRadius: 10))
-                .padding(.top)
-                
-                VStack(spacing: 0) {
-                    
-                    instructions
-                }
-                .clipShape(RoundedRectangle(cornerRadius: 10))
-                .padding(.top)
-                Spacer()
+                .padding()
+                .navigationTitle("Notifier")
             }
-            .padding()
-            .navigationTitle("Notifier")
+            .background {
+                if colorScheme == .light {
+                    Color.gray.opacity(0.1).ignoresSafeArea()
+                }
+            }
+            CopiedNotificationView()
+                .opacity(isCopied ? 1.0 : 0)
+                .animation(.spring, value: isCopied)
         }
     }
     
