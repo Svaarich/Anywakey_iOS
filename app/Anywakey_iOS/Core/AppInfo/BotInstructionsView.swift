@@ -5,20 +5,37 @@ struct BotInstructionsView: View {
     
     @Environment(\.colorScheme) private var colorScheme
     
+    // TextFields
     @State private var message: String = "My computer is awake!"
     @State private var token: String = ""
-    @State private var isCopied: Bool = false
     
+    @State private var isCopied: Bool = false
     
     // Colors
     private var tokenColor = Color(#colorLiteral(red: 0.9607843161, green: 0.7058823705, blue: 0.200000003, alpha: 1))
-    private var tokenColorText = Color(#colorLiteral(red: 0.9764705896, green: 0.850980401, blue: 0.5490196347, alpha: 1))
+    private var tokenColorText: Color {
+        if colorScheme == .dark {
+            let darkColor = Color(#colorLiteral(red: 0.9764705896, green: 0.850980401, blue: 0.5490196347, alpha: 1))
+            return darkColor
+        } else {
+            let ligthColor = Color(#colorLiteral(red: 0.9529411793, green: 0.6862745285, blue: 0.1333333403, alpha: 1))
+            return ligthColor
+        }
+    }
     
-    private var messageColorText = Color(#colorLiteral(red: 0.2588235438, green: 0.7568627596, blue: 0.9686274529, alpha: 1))
     private var messageColor = Color(#colorLiteral(red: 0, green: 0.5898008943, blue: 1, alpha: 1))
+    private var messageColorText: Color {
+        if colorScheme == .dark {
+            let darkColor = Color(#colorLiteral(red: 0.2588235438, green: 0.7568627596, blue: 0.9686274529, alpha: 1))
+            return darkColor
+        } else {
+            let ligthColor = Color(#colorLiteral(red: 0, green: 0.5898008943, blue: 1, alpha: 1))
+            return ligthColor
+        }
+    }
     
+    // Text
     private var docsLink: String = "https://github.com/Svaarich/Anywakey_iOS/tree/main/docs"
-    
     private var config: String {
         return
                 """
