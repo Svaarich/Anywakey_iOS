@@ -75,14 +75,17 @@ struct AppInfoView: View {
                 VStack(spacing: 0) {
                     
                     if #available(iOS 17.0, *) {
-                        NavLinkButton(
-                            text: "Widget setting",
-                            image: Image(systemName: "square.tophalf.filled"),
-                            color: .indigo) {
-                                WidgetSettingsView()
-                        }
+                        widgetSettingsButton
                         Divider()
                     }
+                    
+                    telegramNotifierButton
+                    
+                }
+                .clipShape(RoundedRectangle(cornerRadius: 10))
+                .padding(.bottom)
+                
+                VStack(spacing: 0) {
                     
                     exportFileButton
                     
@@ -258,6 +261,15 @@ extension AppInfoView {
             text: "Issue / Bug report",
             image: Image(systemName: "ant.fill"),
             color: .red)
+    }
+    
+    private var widgetSettingsButton: some View {
+        NavLinkButton(
+            text: "Widget setting",
+            image: Image(systemName: "square.tophalf.filled"),
+            color: .indigo) {
+                WidgetSettingsView()
+        }
     }
     
     private var exportFileButton: some View {
