@@ -26,6 +26,8 @@ struct BotInstructionsView: View {
     }
     
     var body: some View {
+        ScrollView {
+    }
     // MARK: PROPERTIES
         VStack(alignment: .leading, spacing: 8) {
             
