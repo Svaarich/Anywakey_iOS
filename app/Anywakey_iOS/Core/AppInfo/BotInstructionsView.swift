@@ -243,7 +243,7 @@ extension BotInstructionsView {
             }
         } label: {
             Image(systemName: "square.on.square")
-                .foregroundColor(Color.gray.opacity(0.8))
+                .foregroundColor(colorScheme == .dark ? .gray : .black.opacity(0.75))
                 .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topTrailing)
                 .padding()
         }
