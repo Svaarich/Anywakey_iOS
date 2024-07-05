@@ -58,14 +58,14 @@ struct BotInstructionsView: View {
         LinkButton(
             stringURL: docsLink,
             text: "Instructions",
-            image: Image(systemName: "doc.plaintext"),
+            image: Image(systemName: "info.circle.fill"),
             color: .indigo)
     }
     
     private var shareButton: some View {
         ShareButton(
             text: "Export configuration file",
-            image: Image(systemName: "arrow.up.doc.fill"),
+            image: Image(systemName: "doc.text.fill"),
             color: .blue,
             configURL: ShareManager.instance.share(botConfig: config))
     }
