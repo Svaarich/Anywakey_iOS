@@ -101,6 +101,7 @@ struct BotInstructionsView: View {
                 Text("sendMessage -d chat_id=338226829")
                 Text("text=\"\(message)\"")
                 // Message
+                Text(message.isEmpty ? "Space for notification text" : "text=\"\(message)\"")
                     .foregroundStyle(messageColorText)
                     .fixedSize(horizontal: false, vertical: true)
                     .padding(5)
