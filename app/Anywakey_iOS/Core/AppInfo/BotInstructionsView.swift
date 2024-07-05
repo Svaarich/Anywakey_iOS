@@ -26,20 +26,21 @@ struct BotInstructionsView: View {
     }
     
     var body: some View {
+    // MARK: PROPERTIES
         VStack(alignment: .leading, spacing: 8) {
             
             Text("Configuration")
                 .font(.title)
                 .padding(.top, 6)
             VStack(alignment: .leading) {
-                HStack {
+            // Telegram bot token input
                     TextField("Message", text: $message)
                         .padding(8)
                         .padding(.horizontal, 8)
                     Button {
                         message = ""
                     } label: {
-                        Image(systemName: "xmark.circle.fill")
+            // Message input
                             .foregroundStyle(Color.gray.opacity(0.5))
                             .padding(.trailing, 8)
                     }
@@ -55,7 +56,7 @@ struct BotInstructionsView: View {
                 HStack {
                     TextField("Token", text: $token)
                         .padding(8)
-                        .padding(.horizontal, 8)
+            // Message input
                     Button {
                         token = ""
                     } label: {
@@ -71,12 +72,16 @@ struct BotInstructionsView: View {
                     .foregroundStyle(.secondary)
                     .padding(.leading, 8)
             }
+            // Header
+            // Code section
             VStack(alignment: .leading, spacing: 6) {
+                // Default code
                 Text("chcp 65001")
                 Text("curl -s -X POST")
                 Text("https://api.telegram.org/")
                     .tint(.secondary)
                 Text(token)
+                // Telegram token
                     .foregroundStyle(tokenColorText)
                     .fixedSize(horizontal: false, vertical: true)
                     .padding(5)
@@ -92,8 +97,10 @@ struct BotInstructionsView: View {
                         .frame(width: 8)
                         .foregroundStyle(tokenColor)
                     }
+                // Default code
                 Text("sendMessage -d chat_id=338226829")
                 Text("text=\"\(message)\"")
+                // Message
                     .foregroundStyle(messageColorText)
                     .fixedSize(horizontal: false, vertical: true)
                     .padding(5)
@@ -113,8 +120,10 @@ struct BotInstructionsView: View {
             .foregroundStyle(.secondary)
             .multilineTextAlignment(.leading)
             .padding()
+            // leave space for bar
             .font(Font.system(size: 13, design: .monospaced))
             .frame(maxWidth: .infinity, alignment: .leading)
+            // background
             .background {
                 ZStack {
                     RoundedRectangle(cornerRadius: 20)
