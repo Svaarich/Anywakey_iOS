@@ -3,8 +3,8 @@ import SwiftUI
 
 struct BotInstructionsView: View {
     
-    @State private var message: String = "My PC is ON!"
-    @State private var token: String = "123456:ABC-DEF1234ghIkl-zyx57W2v1u123ew11"
+    @State private var message: String = "My computer is awake!"
+    @State private var token: String = ""
     @State private var isCopied: Bool = false
     
     
