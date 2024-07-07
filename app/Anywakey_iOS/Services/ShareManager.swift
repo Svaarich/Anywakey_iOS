@@ -8,11 +8,11 @@ public class ShareManager {
     
     static let instance = ShareManager()
     
-    public func share(botConfig: String) -> URL {
+    public func share(botConfig: String, fileType: String) -> URL {
         let fileManager = FileManager.default
         let documentsURL = fileManager.urls(for: .documentDirectory, in: .userDomainMask).first!
         // bot config url
-        let userConfigURL = documentsURL.appendingPathComponent("notifier.bat", conformingTo: .text)
+        let userConfigURL = documentsURL.appendingPathComponent("notifier" + fileType, conformingTo: .text)
         
         if let data = botConfig.data(using: .utf8) {
             do {

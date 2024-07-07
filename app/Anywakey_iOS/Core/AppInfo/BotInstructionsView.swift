@@ -8,8 +8,9 @@ struct BotInstructionsView: View {
     // TextFields
     @State private var message: String = "My computer is awake!"
     @State private var token: String = ""
-    
     @State private var isCopied: Bool = false
+    @State private var system: String = "Windows"
+    @State private var fileType: String = ".bat"
     
     // Colors
     private var tokenColor = Color(#colorLiteral(red: 0.9607843161, green: 0.7058823705, blue: 0.200000003, alpha: 1))
@@ -51,6 +52,32 @@ struct BotInstructionsView: View {
                     description
                     configuration
                         .padding(.bottom, 8)
+                    HStack {
+                        Text("System type: ")
+                            .padding(.leading, 9)
+                        Menu {
+                            Button("Windows") {
+                                system = "Windows"
+                            }
+                            Button("MacOS") {
+                                system = "MacOS"
+                            }
+                            Button("Linux") {
+                                system = "Linux"
+                            }
+                        } label: {
+                            Text(system)
+                                .fontWeight(.semibold)
+                                .foregroundStyle(.white)
+                                .padding(6)
+                                .padding(.horizontal, 6)
+                                .background((system == "Windows" ? .blue : system == "MacOS" ? .green : .red))
+                                .clipShape(RoundedRectangle(cornerRadius: 10))
+                        }
+                    }
+                    .padding(6)
+                    .background(colorScheme == .dark ? .gray.opacity(0.2) : .white)
+                    .clipShape(RoundedRectangle(cornerRadius: 13))
                     result
                     VStack(spacing: 0) {
                         
@@ -79,6 +106,14 @@ struct BotInstructionsView: View {
                 .opacity(isCopied ? 1.0 : 0)
                 .animation(.spring, value: isCopied)
         }
+        .onChange(of: system) { _ in
+            switch system {
+            case "Windows":
+                fileType = ".bat"
+            default:
+                fileType = ".sh"
+            }
+        }
     }
     
     private var instructions: some View {
@@ -94,7 +129,7 @@ struct BotInstructionsView: View {
             text: "Export configuration file",
             image: Image(systemName: "doc.text.fill"),
             color: .blue,
-            configURL: ShareManager.instance.share(botConfig: config))
+            configURL: ShareManager.instance.share(botConfig: config, fileType: fileType))
     }
 }
 
@@ -185,7 +220,10 @@ extension BotInstructionsView {
             // Code section
             VStack(alignment: .leading, spacing: 6) {
                 // Default code
-                Text("chcp 65001")
+                if system == "Windows" {
+                    Text("chcp 65001")
+                        .transition(.move(edge: .top).combined(with: .opacity))
+                }
                 Text("curl -s -X POST")
                 Text("https://api.telegram.org/")
                     .tint(colorScheme == .dark ? .gray : .black.opacity(0.75))
@@ -241,6 +279,7 @@ extension BotInstructionsView {
             .background {
                 codeBlockBackground
             }
+            .animation(.smooth, value: system)
         }
     }
     
@@ -259,11 +298,13 @@ extension BotInstructionsView {
                     .frame(height: 28)
                     .foregroundStyle(colorScheme == .dark ? .gray.opacity(0.1) : .gray.opacity(0.2))
                     // Header
-                    Text("notifier.bat")
+                    Text("notifier" + fileType)
+                        .contentTransition(.numericText())
                         .font(Font.system(size: 16, design: .monospaced))
                         .foregroundStyle(.primary.opacity(0.75))
                         .frame(maxWidth: .infinity, alignment: .leading)
                         .padding(.leading)
+                        .animation(.smooth, value: fileType)
                 }
             copyButton
                 .padding(.top, 22)
