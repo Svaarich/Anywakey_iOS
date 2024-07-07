@@ -8,9 +8,9 @@ struct BotInstructionsView: View {
     // TextFields
     @State private var message: String = "My computer is awake!"
     @State private var token: String = ""
-    
     @State private var isCopied: Bool = false
     @State private var system: String = "Windows"
+    @State private var fileType: String = ".bat"
     
     // Colors
     private var tokenColor = Color(#colorLiteral(red: 0.9607843161, green: 0.7058823705, blue: 0.200000003, alpha: 1))
@@ -106,6 +106,14 @@ struct BotInstructionsView: View {
                 .opacity(isCopied ? 1.0 : 0)
                 .animation(.spring, value: isCopied)
         }
+        .onChange(of: system) { _ in
+            switch system {
+            case "Windows":
+                fileType = ".bat"
+            default:
+                fileType = ".sh"
+            }
+        }
     }
     
     private var instructions: some View {
@@ -121,7 +129,7 @@ struct BotInstructionsView: View {
             text: "Export configuration file",
             image: Image(systemName: "doc.text.fill"),
             color: .blue,
-            configURL: ShareManager.instance.share(botConfig: config))
+            configURL: ShareManager.instance.share(botConfig: config, fileType: fileType))
     }
 }
 
@@ -290,11 +298,13 @@ extension BotInstructionsView {
                     .frame(height: 28)
                     .foregroundStyle(colorScheme == .dark ? .gray.opacity(0.1) : .gray.opacity(0.2))
                     // Header
-                    Text("notifier.bat")
+                    Text("notifier" + fileType)
+                        .contentTransition(.numericText())
                         .font(Font.system(size: 16, design: .monospaced))
                         .foregroundStyle(.primary.opacity(0.75))
                         .frame(maxWidth: .infinity, alignment: .leading)
                         .padding(.leading)
+                        .animation(.smooth, value: fileType)
                 }
             copyButton
                 .padding(.top, 22)
