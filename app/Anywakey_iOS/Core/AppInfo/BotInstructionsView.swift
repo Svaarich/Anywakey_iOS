@@ -38,11 +38,19 @@ struct BotInstructionsView: View {
     // Text
     private var docsLink: String = "https://github.com/Svaarich/Anywakey_iOS/tree/main/docs"
     private var config: String {
-        return
-                """
-                chcp 65001
-                curl -s -X POST https://api.telegram.org/bot\(token)/sendMessage -d chat_id=338226829 -d text="\(message)"
-                """
+        switch system {
+        case "Windows":
+            return
+                    """
+                    chcp 65001
+                    curl -s -X POST https://api.telegram.org/bot\(token)/sendMessage -d chat_id=338226829 -d text="\(message)"
+                    """
+        default:
+            return
+                    """
+                    curl -s -X POST https://api.telegram.org/bot\(token)/sendMessage -d chat_id=338226829 -d text="\(message)"
+                    """
+        }
     }
     
     var body: some View {
