@@ -60,32 +60,7 @@ struct BotInstructionsView: View {
                     description
                     configuration
                         .padding(.bottom, 8)
-                    HStack {
-                        Text("System type: ")
-                            .padding(.leading, 9)
-                        Menu {
-                            Button("Windows") {
-                                system = "Windows"
-                            }
-                            Button("MacOS") {
-                                system = "MacOS"
-                            }
-                            Button("Linux") {
-                                system = "Linux"
-                            }
-                        } label: {
-                            Text(system)
-                                .fontWeight(.semibold)
-                                .foregroundStyle(.white)
-                                .padding(6)
-                                .padding(.horizontal, 6)
-                                .background((system == "Windows" ? .blue : system == "MacOS" ? .green : .red))
-                                .clipShape(RoundedRectangle(cornerRadius: 10))
-                        }
-                    }
-                    .padding(6)
-                    .background(colorScheme == .dark ? .gray.opacity(0.2) : .white)
-                    .clipShape(RoundedRectangle(cornerRadius: 13))
+                    systemTypePicker
                     result
                     VStack(spacing: 0) {
                         
@@ -215,6 +190,35 @@ extension BotInstructionsView {
                 .foregroundStyle(.secondary)
                 .padding(.leading, 8)
         }
+    }
+    
+    private var systemTypePicker: some View {
+        HStack {
+            Text("System type: ")
+                .padding(.leading, 9)
+            Menu {
+                Button("Windows") {
+                    system = "Windows"
+                }
+                Button("MacOS") {
+                    system = "MacOS"
+                }
+                Button("Linux") {
+                    system = "Linux"
+                }
+            } label: {
+                Text(system)
+                    .fontWeight(.semibold)
+                    .foregroundStyle(.white)
+                    .padding(6)
+                    .padding(.horizontal, 6)
+                    .background((system == "Windows" ? .blue : system == "MacOS" ? .indigo : .orange))
+                    .clipShape(RoundedRectangle(cornerRadius: 10))
+            }
+        }
+        .padding(6)
+        .background(colorScheme == .dark ? .gray.opacity(0.2) : .white)
+        .clipShape(RoundedRectangle(cornerRadius: 13))
     }
     
     private var result: some View {
