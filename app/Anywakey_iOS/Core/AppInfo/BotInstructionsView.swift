@@ -10,6 +10,7 @@ struct BotInstructionsView: View {
     @State private var token: String = ""
     
     @State private var isCopied: Bool = false
+    @State private var system: String = "Windows"
     
     // Colors
     private var tokenColor = Color(#colorLiteral(red: 0.9607843161, green: 0.7058823705, blue: 0.200000003, alpha: 1))
@@ -51,6 +52,32 @@ struct BotInstructionsView: View {
                     description
                     configuration
                         .padding(.bottom, 8)
+                    HStack {
+                        Text("System type: ")
+                            .padding(.leading, 9)
+                        Menu {
+                            Button("Windows") {
+                                system = "Windows"
+                            }
+                            Button("MacOS") {
+                                system = "MacOS"
+                            }
+                            Button("Linux") {
+                                system = "Linux"
+                            }
+                        } label: {
+                            Text(system)
+                                .fontWeight(.semibold)
+                                .foregroundStyle(.white)
+                                .padding(6)
+                                .padding(.horizontal, 6)
+                                .background((system == "Windows" ? .blue : system == "MacOS" ? .green : .red))
+                                .clipShape(RoundedRectangle(cornerRadius: 10))
+                        }
+                    }
+                    .padding(6)
+                    .background(colorScheme == .dark ? .gray.opacity(0.2) : .white)
+                    .clipShape(RoundedRectangle(cornerRadius: 13))
                     result
                     VStack(spacing: 0) {
                         
@@ -185,7 +212,10 @@ extension BotInstructionsView {
             // Code section
             VStack(alignment: .leading, spacing: 6) {
                 // Default code
-                Text("chcp 65001")
+                if system == "Windows" {
+                    Text("chcp 65001")
+                        .transition(.move(edge: .top).combined(with: .opacity))
+                }
                 Text("curl -s -X POST")
                 Text("https://api.telegram.org/")
                     .tint(colorScheme == .dark ? .gray : .black.opacity(0.75))
@@ -241,6 +271,7 @@ extension BotInstructionsView {
             .background {
                 codeBlockBackground
             }
+            .animation(.smooth, value: system)
         }
     }
     
