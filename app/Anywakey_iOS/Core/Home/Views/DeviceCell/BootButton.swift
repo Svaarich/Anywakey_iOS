@@ -24,7 +24,7 @@ struct BootButton: View {
                     if statusColor == DrawingConstants.defaultDarkColor || statusColor == DrawingConstants.defaultLightColor {
                         ProgressView()
                     } else {
-                        Image(systemName: "power")
+                        Image(systemName: isPressed ? "checkmark.circle" : "power")
                             .font(.largeTitle)
                             .scaleEffect(0.9)
                             .rotationEffect(.degrees(rotationAngle))
