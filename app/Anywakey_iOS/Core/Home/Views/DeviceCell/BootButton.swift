@@ -27,8 +27,10 @@ struct BootButton: View {
                         Image(systemName: "power")
                             .font(.largeTitle)
                             .scaleEffect(0.9)
+                            .rotationEffect(.degrees(rotationAngle))
                             .foregroundStyle(.white)
                             .transition(.scale)
+                            .animation(.smooth, value: isPressed)
                     }
                     Circle()
                         .strokeBorder(lineWidth: 2)
