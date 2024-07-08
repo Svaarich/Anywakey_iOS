@@ -44,14 +44,11 @@ struct BootButton: View {
             .onTapGesture {
                 if device.BroadcastAddr.isValidAdress() && device.MAC.isValidMAC() {
                     withAnimation(.easeInOut) {
-                        isPressed = true
                         HapticManager.instance.impact(style: .soft)
                         _ = Network.instance.boot(device: device)
-                        DispatchQueue.main.asyncAfter(deadline: .now() + 0.75) {
-                            withAnimation {
-                                isPressed = false
-                            }
-                        }
+                    }
+                    withAnimation(.smooth) {
+                        animate()
                     }
                 } else {
                     HapticManager.instance.notification(type: .warning)
@@ -91,6 +88,15 @@ extension BootButton {
     
     // MARK: FUNCTIONS
     
+    private func animate() {
+        isPressed = true
+        rotationAngle += 360
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+            rotationAngle -= 360
+            isPressed = false
+        }
+    }
+    
     // Get status color of device
     private func getStatusColor() {
         Network.instance.ping(address: device.BroadcastAddr) { duration, status in
@@ -112,5 +118,4 @@ extension BootButton {
     }
     
     // MARK: PROPERTIES
-    
 }
