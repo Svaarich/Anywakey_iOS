@@ -8,9 +8,9 @@ struct BotInstructionsView: View {
     // TextFields
     @State private var message: String = "My computer is awake!"
     @State private var token: String = ""
+    @State private var id: String = ""
     @State private var isCopied: Bool = false
     @State private var system: String = "Windows"
-    @State private var fileType: String = ".bat"
     
     // Colors
     private var tokenColor = Color(#colorLiteral(red: 0.9607843161, green: 0.7058823705, blue: 0.200000003, alpha: 1))
@@ -37,21 +37,6 @@ struct BotInstructionsView: View {
     
     // Text
     private var docsLink: String = "https://github.com/Svaarich/Anywakey_iOS/tree/main/docs"
-    private var config: String {
-        switch system {
-        case "Windows":
-            return
-                    """
-                    chcp 65001
-                    curl -s -X POST https://api.telegram.org/bot\(token)/sendMessage -d chat_id=338226829 -d text="\(message)"
-                    """
-        default:
-            return
-                    """
-                    curl -s -X POST https://api.telegram.org/bot\(token)/sendMessage -d chat_id=338226829 -d text="\(message)"
-                    """
-        }
-    }
     
     var body: some View {
         ZStack {
@@ -89,14 +74,6 @@ struct BotInstructionsView: View {
                 .opacity(isCopied ? 1.0 : 0)
                 .animation(.spring, value: isCopied)
         }
-        .onChange(of: system) { _ in
-            switch system {
-            case "Windows":
-                fileType = ".bat"
-            default:
-                fileType = ".sh"
-            }
-        }
     }
     
     private var instructions: some View {
@@ -112,12 +89,44 @@ struct BotInstructionsView: View {
             text: "Export configuration file",
             image: Image(systemName: "doc.text.fill"),
             color: .blue,
-            configURL: ShareManager.instance.share(botConfig: config, fileType: fileType))
+            configURL: ShareManager.instance.share(botConfig: getConfig(), fileType: getFiletype()))
     }
 }
 
 extension BotInstructionsView {
     
+    // MARK: FUNCTIONS
+    
+    private func getFiletype() -> String {
+        switch system {
+        case "Windows":
+            return ".bat"
+        default:
+            return ".sh"
+        }
+    }
+    
+    private func getConfig() -> String {
+        let noValue = "--NO VALUE--"
+        let exportID = id.isEmpty ? noValue : id
+        let exportMessage = message.isEmpty ? noValue : message
+        let exportToken = token.isEmpty ? noValue : token
+         switch system {
+        case "Windows":
+            return
+                    """
+                    chcp 65001
+                    curl -s -X POST https://api.telegram.org/bot\(exportToken)/sendMessage -d chat_id=\(exportID) -d text="\(exportMessage)"
+                    """
+        default:
+            return
+                    """
+                    curl -s -X POST https://api.telegram.org/bot\(exportToken)/sendMessage -d chat_id=\(exportID) -d text="\(exportMessage)"
+                    """
+        }
+    }
+    
+
     // MARK: PROPERTIES
     
     private var description: some View {
@@ -169,6 +178,26 @@ extension BotInstructionsView {
             .font(.caption)
             .foregroundStyle(.secondary)
             .padding(.leading, 8)
+            
+            // Chat id input
+            HStack {
+                TextField("Telegram ID", text: $id)
+                    .padding(8)
+                    .padding(.horizontal, 8)
+                Button {
+                    id = ""
+                } label: {
+                    Image(systemName: "xmark.circle.fill")
+                        .foregroundStyle(.gray.opacity(0.5))
+                        .padding(.trailing, 8)
+                }
+            }
+            .background(colorScheme == .dark ? .gray.opacity(0.2) : .white)
+            .clipShape(RoundedRectangle(cornerRadius: 10))
+            Text("Telegram ID (e.g 123456789")
+                .font(.caption)
+                .foregroundStyle(.secondary)
+                .padding(.leading, 8)
             
             // Message input
             HStack {
@@ -259,7 +288,23 @@ extension BotInstructionsView {
                     }
                 
                 // Default code
-                Text("sendMessage -d chat_id=338226829")
+                Text("sendMessage -d")
+                Text(id.isEmpty ? "Space for Telegram ID" : "chat_id=\(id)")
+                    .foregroundStyle(.green)
+                    .fixedSize(horizontal: false, vertical: true)
+                    .padding(5)
+                    .padding(.leading, 8)
+                    .background(.green.opacity(0.1))
+                    .clipShape(RoundedRectangle(cornerRadius: 8))
+                    .overlay(alignment: .leading) {
+                        UnevenRoundedRectangle(
+                            topLeadingRadius: 8,
+                            bottomLeadingRadius: 8,
+                            bottomTrailingRadius: 0,
+                            topTrailingRadius: 0)
+                        .frame(width: 8)
+                        .foregroundStyle(.green)
+                    }
                 
                 // Message
                 Text(message.isEmpty ? "Space for notification text" : "text=\"\(message)\"")
@@ -310,13 +355,13 @@ extension BotInstructionsView {
                     .frame(height: 28)
                     .foregroundStyle(colorScheme == .dark ? .gray.opacity(0.1) : .gray.opacity(0.2))
                     // Header
-                    Text("notifier" + fileType)
+                    Text("notifier\(system == "Windows" ? ".bat" : ".sh")")
                         .contentTransition(.numericText())
                         .font(Font.system(size: 16, design: .monospaced))
                         .foregroundStyle(.primary.opacity(0.75))
                         .frame(maxWidth: .infinity, alignment: .leading)
                         .padding(.leading)
-                        .animation(.smooth, value: fileType)
+                        .animation(.smooth, value: system)
                 }
             copyButton
                 .padding(.top, 22)
@@ -326,7 +371,7 @@ extension BotInstructionsView {
     // Copy button
     private var copyButton: some View {
         Button {
-            UIPasteboard.general.string = config
+            UIPasteboard.general.string = getConfig()
             withAnimation(.easeInOut(duration: 0.3)) {
                 isCopied = true
             }
