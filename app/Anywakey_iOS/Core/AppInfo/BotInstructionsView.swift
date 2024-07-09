@@ -8,6 +8,7 @@ struct BotInstructionsView: View {
     // TextFields
     @State private var message: String = "My computer is awake!"
     @State private var token: String = ""
+    @State private var id: String = ""
     @State private var isCopied: Bool = false
     @State private var system: String = "Windows"
     
@@ -36,21 +37,6 @@ struct BotInstructionsView: View {
     
     // Text
     private var docsLink: String = "https://github.com/Svaarich/Anywakey_iOS/tree/main/docs"
-    private var config: String {
-        switch system {
-        case "Windows":
-            return
-                    """
-                    chcp 65001
-                    curl -s -X POST https://api.telegram.org/bot\(token)/sendMessage -d chat_id=338226829 -d text="\(message)"
-                    """
-        default:
-            return
-                    """
-                    curl -s -X POST https://api.telegram.org/bot\(token)/sendMessage -d chat_id=338226829 -d text="\(message)"
-                    """
-        }
-    }
     
     var body: some View {
         ZStack {
@@ -120,6 +106,27 @@ extension BotInstructionsView {
         }
     }
     
+    private func getConfig() -> String {
+        let noValue = "--NO VALUE--"
+        let exportID = id.isEmpty ? noValue : id
+        let exportMessage = message.isEmpty ? noValue : message
+        let exportToken = token.isEmpty ? noValue : token
+         switch system {
+        case "Windows":
+            return
+                    """
+                    chcp 65001
+                    curl -s -X POST https://api.telegram.org/bot\(exportToken)/sendMessage -d chat_id=\(exportID) -d text="\(exportMessage)"
+                    """
+        default:
+            return
+                    """
+                    curl -s -X POST https://api.telegram.org/bot\(exportToken)/sendMessage -d chat_id=\(exportID) -d text="\(exportMessage)"
+                    """
+        }
+    }
+    
+
     // MARK: PROPERTIES
     
     private var description: some View {
@@ -328,7 +335,7 @@ extension BotInstructionsView {
     // Copy button
     private var copyButton: some View {
         Button {
-            UIPasteboard.general.string = config
+            UIPasteboard.general.string = getConfig()
             withAnimation(.easeInOut(duration: 0.3)) {
                 isCopied = true
             }
