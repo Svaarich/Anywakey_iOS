@@ -179,6 +179,26 @@ extension BotInstructionsView {
             .foregroundStyle(.secondary)
             .padding(.leading, 8)
             
+            // Chat id input
+            HStack {
+                TextField("Telegram ID", text: $id)
+                    .padding(8)
+                    .padding(.horizontal, 8)
+                Button {
+                    id = ""
+                } label: {
+                    Image(systemName: "xmark.circle.fill")
+                        .foregroundStyle(.gray.opacity(0.5))
+                        .padding(.trailing, 8)
+                }
+            }
+            .background(colorScheme == .dark ? .gray.opacity(0.2) : .white)
+            .clipShape(RoundedRectangle(cornerRadius: 10))
+            Text("Telegram ID (e.g 123456789")
+                .font(.caption)
+                .foregroundStyle(.secondary)
+                .padding(.leading, 8)
+            
             // Message input
             HStack {
                 TextField("Message", text: $message)
@@ -268,7 +288,23 @@ extension BotInstructionsView {
                     }
                 
                 // Default code
-                Text("sendMessage -d chat_id=338226829")
+                Text("sendMessage -d")
+                Text(id.isEmpty ? "Space for Telegram ID" : "chat_id=\(id)")
+                    .foregroundStyle(.green)
+                    .fixedSize(horizontal: false, vertical: true)
+                    .padding(5)
+                    .padding(.leading, 8)
+                    .background(.green.opacity(0.1))
+                    .clipShape(RoundedRectangle(cornerRadius: 8))
+                    .overlay(alignment: .leading) {
+                        UnevenRoundedRectangle(
+                            topLeadingRadius: 8,
+                            bottomLeadingRadius: 8,
+                            bottomTrailingRadius: 0,
+                            topTrailingRadius: 0)
+                        .frame(width: 8)
+                        .foregroundStyle(.green)
+                    }
                 
                 // Message
                 Text(message.isEmpty ? "Space for notification text" : "text=\"\(message)\"")
