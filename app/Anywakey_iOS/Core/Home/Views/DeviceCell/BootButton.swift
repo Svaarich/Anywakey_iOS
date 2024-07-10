@@ -85,11 +85,15 @@ extension BootButton {
     // MARK: FUNCTIONS
     
     private func animate() {
-        isPressed = true
-        rotationAngle += 360
+        withAnimation(.smooth) {
+            isPressed = true
+            rotationAngle += 360
+        }
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
-            rotationAngle -= 360
-            isPressed = false
+            withAnimation(.smooth) {
+                rotationAngle -= 360
+                isPressed = false
+            }
         }
     }
     
