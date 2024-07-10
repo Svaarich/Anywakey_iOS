@@ -43,13 +43,9 @@ struct BootButton: View {
         
             .onTapGesture {
                 if device.BroadcastAddr.isValidAdress() && device.MAC.isValidMAC() {
-                    withAnimation(.easeInOut) {
-                        HapticManager.instance.impact(style: .soft)
-                        _ = Network.instance.boot(device: device)
-                    }
-                    withAnimation(.smooth) {
-                        animate()
-                    }
+                    HapticManager.instance.impact(style: .soft)
+                    _ = Network.instance.boot(device: device)
+                    animate()
                 } else {
                     HapticManager.instance.notification(type: .warning)
                     showWrongInput = true
