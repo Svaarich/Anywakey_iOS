@@ -7,7 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		370DEFC82C35BFB100B82131 /* BotInstructionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 370DEFC72C35BFB100B82131 /* BotInstructionsView.swift */; };
+		370DEFC82C35BFB100B82131 /* BotConfigurationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 370DEFC72C35BFB100B82131 /* BotConfigurationView.swift */; };
+		377312602C3EC541003FD8F5 /* HighlightedText.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3773125F2C3EC541003FD8F5 /* HighlightedText.swift */; };
 		7D0518B72B71863F006850B8 /* HapticManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D0518B62B71863F006850B8 /* HapticManager.swift */; };
 		7D12F34E2BE169BE00FE854E /* LinkButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D12F34D2BE169BE00FE854E /* LinkButton.swift */; };
 		7D33C1C22BFE04B700ABF540 /* WidgetSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DB21BB02BFD234800A090E2 /* WidgetSettingsView.swift */; };
@@ -168,7 +169,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		370DEFC72C35BFB100B82131 /* BotInstructionsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BotInstructionsView.swift; sourceTree = "<group>"; };
+		370DEFC72C35BFB100B82131 /* BotConfigurationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BotConfigurationView.swift; sourceTree = "<group>"; };
+		3773125F2C3EC541003FD8F5 /* HighlightedText.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HighlightedText.swift; sourceTree = "<group>"; };
 		7D0518B62B71863F006850B8 /* HapticManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HapticManager.swift; sourceTree = "<group>"; };
 		7D12F34D2BE169BE00FE854E /* LinkButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LinkButton.swift; sourceTree = "<group>"; };
 		7D13BA662BF7E0AD00A8817B /* TwoDeviceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TwoDeviceView.swift; sourceTree = "<group>"; };
@@ -294,11 +296,27 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		371F06202C3E8E18003ACA0B /* BotInstructions */ = {
+			isa = PBXGroup;
+			children = (
+				370DEFC72C35BFB100B82131 /* BotConfigurationView.swift */,
+			);
+			path = BotInstructions;
+			sourceTree = "<group>";
+		};
+		377671252C3EC6BF00288CE4 /* ViewModifiers */ = {
+			isa = PBXGroup;
+			children = (
+				3773125F2C3EC541003FD8F5 /* HighlightedText.swift */,
+			);
+			path = ViewModifiers;
+			sourceTree = "<group>";
+		};
 		7D12F34C2BE1699200FE854E /* AppInfo */ = {
 			isa = PBXGroup;
 			children = (
 				7DA71F1D2B250A96004F9AF3 /* AppInfoView.swift */,
-				370DEFC72C35BFB100B82131 /* BotInstructionsView.swift */,
+				371F06202C3E8E18003ACA0B /* BotInstructions */,
 				7D4A6ABA2BFE7CC500BBFCE6 /* WidgetSettings */,
 				7DF573272BFF82950009CB80 /* Buttons */,
 			);
@@ -406,6 +424,7 @@
 				7DFC05382B292CE60082E502 /* Models */,
 				7DD331D42B5AED29002BFA64 /* Services */,
 				7DE700142AEA82E50033E53A /* Extensions */,
+				377671252C3EC6BF00288CE4 /* ViewModifiers */,
 				7D2D9F452BD7B150001AB81A /* Privacy */,
 				7DC26D862AE7EBE300B52D02 /* Preview Content */,
 				7DC26D842AE7EBE300B52D02 /* Assets.xcassets */,
@@ -848,12 +867,13 @@
 				7DD1F7DD2BBBF70F0000E238 /* Device + Extension.swift in Sources */,
 				7DD331DC2B5C5D8D002BFA64 /* BootButton.swift in Sources */,
 				7D5AF0D32C14D2E400AB6750 /* WatchConnector.swift in Sources */,
-				370DEFC82C35BFB100B82131 /* BotInstructionsView.swift in Sources */,
+				370DEFC82C35BFB100B82131 /* BotConfigurationView.swift in Sources */,
 				7DE7001B2AEABC930033E53A /* AddDeviceView.swift in Sources */,
 				7DB21B762BFAB82D00A090E2 /* ShareManager.swift in Sources */,
 				7DFB91BF2BE5849F001650B9 /* Bundle.swift in Sources */,
 				7D5FE1F42B5F5D3F00142502 /* DeleteDeviceSheet.swift in Sources */,
 				7DC26D832AE7EBE100B52D02 /* HomeView.swift in Sources */,
+				377312602C3EC541003FD8F5 /* HighlightedText.swift in Sources */,
 				7DF573292BFF82C50009CB80 /* NavLinkButton.swift in Sources */,
 				7D12F34E2BE169BE00FE854E /* LinkButton.swift in Sources */,
 				7D7E0B4D2BF68ACA0043175D /* AppInfoButton.swift in Sources */,
