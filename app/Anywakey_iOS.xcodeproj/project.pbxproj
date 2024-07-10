@@ -294,11 +294,19 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		371F06202C3E8E18003ACA0B /* BotInstructions */ = {
+			isa = PBXGroup;
+			children = (
+				370DEFC72C35BFB100B82131 /* BotInstructionsView.swift */,
+			);
+			path = BotInstructions;
+			sourceTree = "<group>";
+		};
 		7D12F34C2BE1699200FE854E /* AppInfo */ = {
 			isa = PBXGroup;
 			children = (
 				7DA71F1D2B250A96004F9AF3 /* AppInfoView.swift */,
-				370DEFC72C35BFB100B82131 /* BotInstructionsView.swift */,
+				371F06202C3E8E18003ACA0B /* BotInstructions */,
 				7D4A6ABA2BFE7CC500BBFCE6 /* WidgetSettings */,
 				7DF573272BFF82950009CB80 /* Buttons */,
 			);
