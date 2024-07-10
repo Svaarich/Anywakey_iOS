@@ -271,7 +271,7 @@ extension AppInfoView {
             text: "Telegram notifications",
             image: Image(systemName: "paperplane.circle.fill"),
             color: color) {
-                BotInstructionsView()
+                BotConfigurationView()
             }
     }
     
