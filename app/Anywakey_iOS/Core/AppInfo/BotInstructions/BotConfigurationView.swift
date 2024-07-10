@@ -1,7 +1,7 @@
 
 import SwiftUI
 
-struct BotInstructionsView: View {
+struct BotConfigurationView: View {
     
     @Environment(\.colorScheme) private var colorScheme
     
@@ -93,7 +93,7 @@ struct BotInstructionsView: View {
     }
 }
 
-extension BotInstructionsView {
+extension BotConfigurationView {
     
     // MARK: FUNCTIONS
     
@@ -132,19 +132,6 @@ extension BotInstructionsView {
     private var description: some View {
         VStack(alignment: .leading, spacing: 8) {
             Text("Use Telegram bot API to know when the computer is started.")
-            HStack {
-                Text("To get instructions press")
-                Image(systemName: "info.circle.fill")
-                    .resizable()
-                    .scaledToFit()
-                    .foregroundStyle(.white)
-                    .padding(5)
-                    .frame(width: 25, height: 25)
-                    .background {
-                        RoundedRectangle(cornerRadius: 7)
-                            .foregroundStyle(.indigo)
-                    }
-            }
         }
     }
     
@@ -271,58 +258,16 @@ extension BotInstructionsView {
                 
                 // Telegram token
                 Text(token.isEmpty ? "Space for Telegram bot token" : token)
-                    .foregroundStyle(tokenColorText)
-                    .fixedSize(horizontal: false, vertical: true)
-                    .padding(5)
-                    .padding(.leading, 8)
-                    .background(tokenColor.opacity(0.1))
-                    .clipShape(RoundedRectangle(cornerRadius: 8))
-                    .overlay(alignment: .leading) {
-                        UnevenRoundedRectangle(
-                            topLeadingRadius: 8,
-                            bottomLeadingRadius: 8,
-                            bottomTrailingRadius: 0,
-                            topTrailingRadius: 0)
-                        .frame(width: 8)
-                        .foregroundStyle(tokenColor)
-                    }
+                    .highlighted(tokenColorText, tokenColor)
                 
                 // Default code
                 Text("sendMessage -d")
                 Text(id.isEmpty ? "Space for Telegram ID" : "chat_id=\(id)")
-                    .foregroundStyle(.green)
-                    .fixedSize(horizontal: false, vertical: true)
-                    .padding(5)
-                    .padding(.leading, 8)
-                    .background(.green.opacity(0.1))
-                    .clipShape(RoundedRectangle(cornerRadius: 8))
-                    .overlay(alignment: .leading) {
-                        UnevenRoundedRectangle(
-                            topLeadingRadius: 8,
-                            bottomLeadingRadius: 8,
-                            bottomTrailingRadius: 0,
-                            topTrailingRadius: 0)
-                        .frame(width: 8)
-                        .foregroundStyle(.green)
-                    }
+                    .highlighted(.green, .green)
                 
                 // Message
                 Text(message.isEmpty ? "Space for notification text" : "text=\"\(message)\"")
-                    .foregroundStyle(messageColorText)
-                    .fixedSize(horizontal: false, vertical: true)
-                    .padding(5)
-                    .padding(.leading, 8)
-                    .background(messageColor.opacity(0.1))
-                    .clipShape(RoundedRectangle(cornerRadius: 8))
-                    .overlay(alignment: .leading) {
-                        UnevenRoundedRectangle(
-                            topLeadingRadius: 8,
-                            bottomLeadingRadius: 8,
-                            bottomTrailingRadius: 0,
-                            topTrailingRadius: 0)
-                        .frame(width: 8)
-                        .foregroundStyle(messageColor)
-                    }
+                    .highlighted(messageColorText, messageColor)
             }
             .foregroundStyle(colorScheme == .dark ? .gray : .black.opacity(0.75))
             .multilineTextAlignment(.leading)
@@ -364,6 +309,7 @@ extension BotInstructionsView {
                         .animation(.smooth, value: system)
                 }
             copyButton
+                .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topTrailing)
                 .padding(.top, 22)
         }
     }
@@ -383,7 +329,6 @@ extension BotInstructionsView {
         } label: {
             Image(systemName: "square.on.square")
                 .foregroundColor(colorScheme == .dark ? .gray : .black.opacity(0.75))
-                .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topTrailing)
                 .padding()
         }
     }
@@ -392,6 +337,6 @@ extension BotInstructionsView {
 
 #Preview {
     NavigationStack {
-        BotInstructionsView()
+        BotConfigurationView()
     }
 }
