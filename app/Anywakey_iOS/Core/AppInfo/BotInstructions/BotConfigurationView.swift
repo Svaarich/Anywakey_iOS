@@ -19,8 +19,7 @@ struct BotConfigurationView: View {
             let darkColor = Color(#colorLiteral(red: 0.9764705896, green: 0.850980401, blue: 0.5490196347, alpha: 1))
             return darkColor
         } else {
-            let ligthColor = Color(#colorLiteral(red: 0.9529411793, green: 0.6862745285, blue: 0.1333333403, alpha: 1))
-            return ligthColor
+            return tokenColor
         }
     }
     
@@ -30,8 +29,8 @@ struct BotConfigurationView: View {
             let darkColor = Color(#colorLiteral(red: 0.2588235438, green: 0.7568627596, blue: 0.9686274529, alpha: 1))
             return darkColor
         } else {
-            let ligthColor = Color(#colorLiteral(red: 0, green: 0.5898008943, blue: 1, alpha: 1))
-            return ligthColor
+            return messageColor
+        }
         }
     }
     
