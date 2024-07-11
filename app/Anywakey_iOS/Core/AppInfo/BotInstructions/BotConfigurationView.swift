@@ -123,6 +123,8 @@ extension BotConfigurationView {
     }
     
     private func getConfig() -> String {
+        if system != "Windows" { removeChars() }
+        
         let noValue = "--NO VALUE--"
         let exportID = id.isEmpty ? noValue : id
         let exportMessage = message.isEmpty ? noValue : message
