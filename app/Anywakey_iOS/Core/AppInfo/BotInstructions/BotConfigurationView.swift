@@ -79,6 +79,7 @@ struct BotConfigurationView: View {
                 }
                 .padding()
                 .navigationTitle("Notifier")
+                .navigationBarTitleDisplayMode(.inline)
             }
             .background {
                 if colorScheme == .light {
