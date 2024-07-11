@@ -16,7 +16,7 @@ struct BotConfigurationView: View {
     @State private var token: String = ""
     @State private var id: String = ""
     @State private var isCopied: Bool = false
-    @State private var system: String = "Windows"
+    @State private var system: System = .win
     
     // Colors
     private var tokenColor = Color(#colorLiteral(red: 0.9607843161, green: 0.7058823705, blue: 0.200000003, alpha: 1))
@@ -122,7 +122,7 @@ extension BotConfigurationView {
     // get filetype
     private func getFiletype() -> String {
         switch system {
-        case "Windows":
+        case .win:
             return ".bat"
         default:
             return ".sh"
@@ -131,13 +131,13 @@ extension BotConfigurationView {
     
     // get config
     private func getConfig() -> String {
-        if system != "Windows" { removeChars() }
+        if system != .win { removeChars() }
         
         let noValue = "--NO VALUE--"
         let exportID = id.isEmpty ? noValue : id
         let exportMessage = message.isEmpty ? noValue : message
         let exportToken = token.isEmpty ? noValue : token
-        let systemDependedText = system == "Windows" ? "chcp 65001" : "sleep 20"
+        let systemDependedText = system == .win ? "chcp 65001" : "sleep 20"
         return  """
                 \(systemDependedText)
                 curl -s -X POST https://api.telegram.org/bot\(exportToken)/sendMessage -d chat_id=\(exportID) -d text="\(exportMessage)"
@@ -250,22 +250,24 @@ extension BotConfigurationView {
             Text("System type: ")
                 .padding(.leading, 9)
             Menu {
-                Button("Windows") {
-                    system = "Windows"
+                Button(System.win.rawValue) {
+                    system = .win
                 }
-                Button("MacOS") {
-                    system = "MacOS"
+                Button(System.mac.rawValue) {
+                    system = .mac
+                    removeChars()
                 }
-                Button("Linux") {
-                    system = "Linux"
+                Button(System.lin.rawValue) {
+                    system = .lin
+                    removeChars()
                 }
             } label: {
-                Text(system)
+                Text(system.rawValue)
                     .fontWeight(.semibold)
                     .foregroundStyle(.white)
                     .padding(6)
                     .padding(.horizontal, 6)
-                    .background((system == "Windows" ? .blue : system == "MacOS" ? .indigo : .orange))
+                    .background((system == .win ? .blue : system == .mac ? .indigo : .orange))
                     .clipShape(RoundedRectangle(cornerRadius: 10))
             }
         }
@@ -286,7 +288,7 @@ extension BotConfigurationView {
             VStack(alignment: .leading, spacing: 6) {
                 
                 // System depended code
-                Text(system == "Windows" ? "chcp 65001" : "sleep 20")
+                Text(system == .win ? "chcp 65001" : "sleep 20")
                     .contentTransition(.numericText())
                     .animation(.smooth, value: system)
                 // Default code
@@ -295,7 +297,7 @@ extension BotConfigurationView {
                     .tint(colorScheme == .dark ? .gray : .black.opacity(0.75))
                 
                 // Telegram token
-                Text(token.isEmpty ? "Space for Telegram bot token" : token)
+                Text(token.isEmpty ? "Space for Telegram bot token" : "\(token)")
                     .highlighted(tokenColorText, tokenColor)
                 
                 // Default code
@@ -337,7 +339,7 @@ extension BotConfigurationView {
                     .frame(height: 28)
                     .foregroundStyle(colorScheme == .dark ? .gray.opacity(0.1) : .gray.opacity(0.2))
                     // Header
-                    Text("notifier\(system == "Windows" ? ".bat" : ".sh")")
+                    Text("notifier\(system == .win ? ".bat" : ".sh")")
                         .font(Font.system(size: 16, design: .monospaced))
                         .foregroundStyle(.primary.opacity(0.75))
                         .frame(maxWidth: .infinity, alignment: .leading)
