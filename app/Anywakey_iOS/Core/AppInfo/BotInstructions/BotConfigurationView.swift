@@ -31,11 +31,27 @@ struct BotConfigurationView: View {
         } else {
             return messageColor
         }
+    }
+    
+    private var idColor = Color(#colorLiteral(red: 0.3411764801, green: 0.6235294342, blue: 0.1686274558, alpha: 1))
+    private var idColorText: Color {
+        if colorScheme == .dark {
+            let darkColor = Color(#colorLiteral(red: 0.5843137503, green: 0.8235294223, blue: 0.4196078479, alpha: 1))
+            return darkColor
+        } else {
+            return idColor
         }
     }
     
     // Text
     private var docsLink: String = "https://github.com/Svaarich/Anywakey_iOS/tree/main/docs"
+    private let prohibitedChars: Array<Character> = [
+        "$", "`", "\"", "\\", 
+        "!", "~", "#", ":",
+        "&", "|", "*", "?"
+    ]
+    
+    // # ; & | * ? $ ' \" \\ ! ~"
     
     var body: some View {
         ZStack {
