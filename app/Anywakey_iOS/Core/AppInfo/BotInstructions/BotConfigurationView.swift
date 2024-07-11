@@ -330,12 +330,10 @@ extension BotConfigurationView {
                     .foregroundStyle(colorScheme == .dark ? .gray.opacity(0.1) : .gray.opacity(0.2))
                     // Header
                     Text("notifier\(system == "Windows" ? ".bat" : ".sh")")
-                        .contentTransition(.numericText())
                         .font(Font.system(size: 16, design: .monospaced))
                         .foregroundStyle(.primary.opacity(0.75))
                         .frame(maxWidth: .infinity, alignment: .leading)
                         .padding(.leading)
-                        .animation(.smooth, value: system)
                 }
             copyButton
                 .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topTrailing)
