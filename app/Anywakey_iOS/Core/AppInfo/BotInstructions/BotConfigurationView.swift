@@ -1,6 +1,12 @@
 
 import SwiftUI
 
+enum System: String {
+    case win = "Windows"
+    case lin = "Linux"
+    case mac = "MacOS"
+}
+
 struct BotConfigurationView: View {
     
     @Environment(\.colorScheme) private var colorScheme
