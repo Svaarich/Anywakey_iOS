@@ -311,7 +311,6 @@ extension BotConfigurationView {
             .background {
                 codeBlockBackground
             }
-            .animation(.smooth, value: system)
         }
     }
     
