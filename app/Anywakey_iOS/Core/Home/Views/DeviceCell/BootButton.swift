@@ -55,7 +55,6 @@ struct BootButton: View {
                 }
             }
             .onAppear {
-//                statusColor = colorScheme == .dark ? DrawingConstants.defaultDarkColor :  DrawingConstants.defaultLightColor
                 getStatusColor()
                 timer = Timer.scheduledTimer(withTimeInterval: 15, repeats: true) { _ in
                     getStatusColor()
