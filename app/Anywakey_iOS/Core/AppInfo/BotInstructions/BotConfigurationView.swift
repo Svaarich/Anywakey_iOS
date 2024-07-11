@@ -96,6 +96,11 @@ struct BotConfigurationView: View {
                 .opacity(isCopied ? 1.0 : 0)
                 .animation(.spring, value: isCopied)
         }
+        .onChange(of: message) { _ in
+            if system != .win {
+                removeChars()
+            }
+        }
     }
     
     private var instructions: some View {
