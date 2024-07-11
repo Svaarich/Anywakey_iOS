@@ -293,7 +293,7 @@ extension BotConfigurationView {
                 // Default code
                 Text("sendMessage -d")
                 Text(id.isEmpty ? "Space for Telegram ID" : "chat_id=\(id)")
-                    .highlighted(.green, .green)
+                    .highlighted(idColorText, idColor)
                 
                 // Message
                 Text(message.isEmpty ? "Space for notification text" : "text=\"\(message)\"")
