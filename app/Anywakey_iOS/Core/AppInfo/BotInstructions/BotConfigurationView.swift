@@ -134,11 +134,10 @@ extension BotConfigurationView {
                     chcp 65001
                     curl -s -X POST https://api.telegram.org/bot\(exportToken)/sendMessage -d chat_id=\(exportID) -d text="\(exportMessage)"
                     """
-        default:
-            return
-                    """
-                    curl -s -X POST https://api.telegram.org/bot\(exportToken)/sendMessage -d chat_id=\(exportID) -d text="\(exportMessage)"
-                    """
+    // remove prohibited chars from message input
+    private func removeChars() {
+        for char in prohibitedChars {
+            message.removeAll(where: { $0 == char } )
         }
     }
     
