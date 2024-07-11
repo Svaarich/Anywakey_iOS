@@ -6,7 +6,7 @@ struct BotConfigurationView: View {
     @Environment(\.colorScheme) private var colorScheme
     
     // TextFields
-    @State private var message: String = "My computer is awake!"
+    @State private var message: String = "My computer is awake"
     @State private var token: String = ""
     @State private var id: String = ""
     @State private var isCopied: Bool = false
