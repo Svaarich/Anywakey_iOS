@@ -127,13 +127,13 @@ extension BotConfigurationView {
         let exportID = id.isEmpty ? noValue : id
         let exportMessage = message.isEmpty ? noValue : message
         let exportToken = token.isEmpty ? noValue : token
-         switch system {
-        case "Windows":
-            return
-                    """
-                    chcp 65001
-                    curl -s -X POST https://api.telegram.org/bot\(exportToken)/sendMessage -d chat_id=\(exportID) -d text="\(exportMessage)"
-                    """
+        let systemDependedText = system == "Windows" ? "chcp 65001" : "sleep 20"
+        return  """
+                \(systemDependedText)
+                curl -s -X POST https://api.telegram.org/bot\(exportToken)/sendMessage -d chat_id=\(exportID) -d text="\(exportMessage)"
+                """
+    }
+    
     // remove prohibited chars from message input
     private func removeChars() {
         for char in prohibitedChars {
