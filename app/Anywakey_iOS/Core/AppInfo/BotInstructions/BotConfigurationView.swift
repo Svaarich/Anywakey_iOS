@@ -218,10 +218,22 @@ extension BotConfigurationView {
             }
             .background(colorScheme == .dark ? .gray.opacity(0.2) : .white)
             .clipShape(RoundedRectangle(cornerRadius: 10))
-            Text("Message (e.g \"Home computer is awake!\")")
-                .font(.caption)
-                .foregroundStyle(.secondary)
-                .padding(.leading, 8)
+            VStack(alignment: .leading, spacing: 4) {
+                Text("Message (e.g \"Home computer is awake\")")
+                HStack(spacing: 4) {
+                    Text("Prohibited characters:")
+                    Text("# ; & | * ? $ ' \" \\ ! ~")
+                        .foregroundStyle(.secondary)
+                        .padding(4)
+                        .padding(.horizontal, 4)
+                        .background(colorScheme == .dark ? .gray.opacity(0.2) : .white)
+                            .clipShape(RoundedRectangle(cornerRadius: 10))
+                }
+                    
+            }
+            .font(.caption)
+            .foregroundStyle(.secondary)
+            .padding(.leading, 8)
         }
     }
     
