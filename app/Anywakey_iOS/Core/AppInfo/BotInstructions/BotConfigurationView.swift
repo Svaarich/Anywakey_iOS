@@ -113,6 +113,7 @@ extension BotConfigurationView {
     
     // MARK: FUNCTIONS
     
+    // get filetype
     private func getFiletype() -> String {
         switch system {
         case "Windows":
@@ -122,6 +123,7 @@ extension BotConfigurationView {
         }
     }
     
+    // get config
     private func getConfig() -> String {
         if system != "Windows" { removeChars() }
         
