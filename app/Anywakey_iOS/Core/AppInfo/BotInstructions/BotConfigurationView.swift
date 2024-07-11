@@ -232,7 +232,7 @@ extension BotConfigurationView {
             VStack(alignment: .leading, spacing: 4) {
                 Text("Message (e.g \"Home computer is awake\")")
                 HStack(spacing: 4) {
-                    Text("Prohibited characters:")
+                    Text("Prohibited symbols:")
                     Text("# ; & | * ? $ ' \" \\ ! ~")
                         .foregroundStyle(.secondary)
                         .padding(4)
