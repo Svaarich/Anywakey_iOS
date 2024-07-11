@@ -190,7 +190,7 @@ extension BotConfigurationView {
             .clipShape(RoundedRectangle(cornerRadius: 10))
             VStack(alignment: .leading) {
                 Text("Telegram bot token")
-                Text("(e.g 123456:ABC-DEF1234ghIkl-zyx57W2v1u123ew11")
+                Text("(e.g 123456:ABC-DEF1234ghIkl-zyx57W2v1u123ew11)")
             }
             .font(.caption)
             .foregroundStyle(.secondary)
@@ -211,7 +211,7 @@ extension BotConfigurationView {
             }
             .background(colorScheme == .dark ? .gray.opacity(0.2) : .white)
             .clipShape(RoundedRectangle(cornerRadius: 10))
-            Text("Telegram ID (e.g 123456789")
+            Text("Telegram ID (e.g 123456789)")
                 .font(.caption)
                 .foregroundStyle(.secondary)
                 .padding(.leading, 8)
@@ -298,7 +298,8 @@ extension BotConfigurationView {
                     .animation(.smooth, value: system)
                 // Default code
                 Text("curl -s -X POST")
-                Text("https://api.telegram.org/")
+                Text("https://api.telegram.org/bot")
+                    .allowsHitTesting(false)
                     .tint(colorScheme == .dark ? .gray : .black.opacity(0.75))
                 
                 // Telegram token
@@ -306,7 +307,7 @@ extension BotConfigurationView {
                     .highlighted(tokenColorText, tokenColor)
                 
                 // Default code
-                Text("sendMessage -d")
+                Text("/sendMessage -d")
                 Text(id.isEmpty ? "Space for Telegram ID" : "chat_id=\(id)")
                     .highlighted(idColorText, idColor)
                 
