@@ -1,16 +1,22 @@
 
 import SwiftUI
 
+enum System: String {
+    case win = "Windows"
+    case lin = "Linux"
+    case mac = "MacOS"
+}
+
 struct BotConfigurationView: View {
     
     @Environment(\.colorScheme) private var colorScheme
     
     // TextFields
-    @State private var message: String = "My computer is awake!"
+    @State private var message: String = "My computer is awake"
     @State private var token: String = ""
     @State private var id: String = ""
     @State private var isCopied: Bool = false
-    @State private var system: String = "Windows"
+    @State private var system: System = .win
     
     // Colors
     private var tokenColor = Color(#colorLiteral(red: 0.9607843161, green: 0.7058823705, blue: 0.200000003, alpha: 1))
@@ -19,8 +25,7 @@ struct BotConfigurationView: View {
             let darkColor = Color(#colorLiteral(red: 0.9764705896, green: 0.850980401, blue: 0.5490196347, alpha: 1))
             return darkColor
         } else {
-            let ligthColor = Color(#colorLiteral(red: 0.9529411793, green: 0.6862745285, blue: 0.1333333403, alpha: 1))
-            return ligthColor
+            return tokenColor
         }
     }
     
@@ -30,14 +35,28 @@ struct BotConfigurationView: View {
             let darkColor = Color(#colorLiteral(red: 0.2588235438, green: 0.7568627596, blue: 0.9686274529, alpha: 1))
             return darkColor
         } else {
-            let ligthColor = Color(#colorLiteral(red: 0, green: 0.5898008943, blue: 1, alpha: 1))
-            return ligthColor
+            return messageColor
+        }
+    }
+    
+    private var idColor = Color(#colorLiteral(red: 0.3411764801, green: 0.6235294342, blue: 0.1686274558, alpha: 1))
+    private var idColorText: Color {
+        if colorScheme == .dark {
+            let darkColor = Color(#colorLiteral(red: 0.5843137503, green: 0.8235294223, blue: 0.4196078479, alpha: 1))
+            return darkColor
+        } else {
+            return idColor
         }
     }
     
     // Text
     private var docsLink: String = "https://github.com/Svaarich/Anywakey_iOS/tree/main/docs"
-    
+    private let prohibitedChars: Array<Character> = [
+        "$", "`", "\"", "\\", 
+        "!", "~", "#", ":",
+        "&", "|", "*", "?"
+    ]
+       
     var body: some View {
         ZStack {
             ScrollView {
@@ -64,6 +83,7 @@ struct BotConfigurationView: View {
                 }
                 .padding()
                 .navigationTitle("Notifier")
+                .navigationBarTitleDisplayMode(.inline)
             }
             .background {
                 if colorScheme == .light {
@@ -73,6 +93,11 @@ struct BotConfigurationView: View {
             CopiedNotificationView()
                 .opacity(isCopied ? 1.0 : 0)
                 .animation(.spring, value: isCopied)
+        }
+        .onChange(of: message) { _ in
+            if system != .win {
+                removeChars()
+            }
         }
     }
     
@@ -97,32 +122,35 @@ extension BotConfigurationView {
     
     // MARK: FUNCTIONS
     
+    // get filetype
     private func getFiletype() -> String {
         switch system {
-        case "Windows":
+        case .win:
             return ".bat"
         default:
             return ".sh"
         }
     }
     
+    // get config
     private func getConfig() -> String {
+        if system != .win { removeChars() }
+        
         let noValue = "--NO VALUE--"
         let exportID = id.isEmpty ? noValue : id
         let exportMessage = message.isEmpty ? noValue : message
         let exportToken = token.isEmpty ? noValue : token
-         switch system {
-        case "Windows":
-            return
-                    """
-                    chcp 65001
-                    curl -s -X POST https://api.telegram.org/bot\(exportToken)/sendMessage -d chat_id=\(exportID) -d text="\(exportMessage)"
-                    """
-        default:
-            return
-                    """
-                    curl -s -X POST https://api.telegram.org/bot\(exportToken)/sendMessage -d chat_id=\(exportID) -d text="\(exportMessage)"
-                    """
+        let systemDependedText = system == .win ? "chcp 65001" : "sleep 20"
+        return  """
+                \(systemDependedText)
+                curl -s -X POST https://api.telegram.org/bot\(exportToken)/sendMessage -d chat_id=\(exportID) -d text="\(exportMessage)"
+                """
+    }
+    
+    // remove prohibited chars from message input
+    private func removeChars() {
+        for char in prohibitedChars {
+            message.removeAll(where: { $0 == char } )
         }
     }
     
@@ -160,7 +188,7 @@ extension BotConfigurationView {
             .clipShape(RoundedRectangle(cornerRadius: 10))
             VStack(alignment: .leading) {
                 Text("Telegram bot token")
-                Text("(e.g 123456:ABC-DEF1234ghIkl-zyx57W2v1u123ew11")
+                Text("(e.g 123456:ABC-DEF1234ghIkl-zyx57W2v1u123ew11)")
             }
             .font(.caption)
             .foregroundStyle(.secondary)
@@ -181,7 +209,7 @@ extension BotConfigurationView {
             }
             .background(colorScheme == .dark ? .gray.opacity(0.2) : .white)
             .clipShape(RoundedRectangle(cornerRadius: 10))
-            Text("Telegram ID (e.g 123456789")
+            Text("Telegram ID (e.g 123456789)")
                 .font(.caption)
                 .foregroundStyle(.secondary)
                 .padding(.leading, 8)
@@ -201,10 +229,22 @@ extension BotConfigurationView {
             }
             .background(colorScheme == .dark ? .gray.opacity(0.2) : .white)
             .clipShape(RoundedRectangle(cornerRadius: 10))
-            Text("Message (e.g \"Home computer is awake!\")")
-                .font(.caption)
-                .foregroundStyle(.secondary)
-                .padding(.leading, 8)
+            VStack(alignment: .leading, spacing: 4) {
+                Text("Message (e.g \"Home computer is awake\")")
+                HStack(spacing: 4) {
+                    Text("Prohibited symbols:")
+                    Text("# ; & | * ? $ ' \" \\ ! ~")
+                        .foregroundStyle(.secondary)
+                        .padding(4)
+                        .padding(.horizontal, 4)
+                        .background(colorScheme == .dark ? .gray.opacity(0.2) : .white)
+                            .clipShape(RoundedRectangle(cornerRadius: 10))
+                }
+                    
+            }
+            .font(.caption)
+            .foregroundStyle(.secondary)
+            .padding(.leading, 8)
         }
     }
     
@@ -213,22 +253,24 @@ extension BotConfigurationView {
             Text("System type: ")
                 .padding(.leading, 9)
             Menu {
-                Button("Windows") {
-                    system = "Windows"
+                Button(System.win.rawValue) {
+                    system = .win
                 }
-                Button("MacOS") {
-                    system = "MacOS"
+                Button(System.mac.rawValue) {
+                    system = .mac
+                    removeChars()
                 }
-                Button("Linux") {
-                    system = "Linux"
+                Button(System.lin.rawValue) {
+                    system = .lin
+                    removeChars()
                 }
             } label: {
-                Text(system)
+                Text(system.rawValue)
                     .fontWeight(.semibold)
                     .foregroundStyle(.white)
                     .padding(6)
                     .padding(.horizontal, 6)
-                    .background((system == "Windows" ? .blue : system == "MacOS" ? .indigo : .orange))
+                    .background((system == .win ? .blue : system == .mac ? .indigo : .orange))
                     .clipShape(RoundedRectangle(cornerRadius: 10))
             }
         }
@@ -247,23 +289,25 @@ extension BotConfigurationView {
             
             // Code section
             VStack(alignment: .leading, spacing: 6) {
+                
+                // System depended code
+                Text(system == .win ? "chcp 65001" : "sleep 20")
+                    .contentTransition(.numericText())
+                    .animation(.smooth, value: system)
                 // Default code
-                if system == "Windows" {
-                    Text("chcp 65001")
-                        .transition(.move(edge: .top).combined(with: .opacity))
-                }
                 Text("curl -s -X POST")
-                Text("https://api.telegram.org/")
+                Text("https://api.telegram.org/bot")
+                    .allowsHitTesting(false)
                     .tint(colorScheme == .dark ? .gray : .black.opacity(0.75))
                 
                 // Telegram token
-                Text(token.isEmpty ? "Space for Telegram bot token" : token)
+                Text(token.isEmpty ? "Space for Telegram bot token" : "\(token)")
                     .highlighted(tokenColorText, tokenColor)
                 
                 // Default code
-                Text("sendMessage -d")
+                Text("/sendMessage -d")
                 Text(id.isEmpty ? "Space for Telegram ID" : "chat_id=\(id)")
-                    .highlighted(.green, .green)
+                    .highlighted(idColorText, idColor)
                 
                 // Message
                 Text(message.isEmpty ? "Space for notification text" : "text=\"\(message)\"")
@@ -281,7 +325,6 @@ extension BotConfigurationView {
             .background {
                 codeBlockBackground
             }
-            .animation(.smooth, value: system)
         }
     }
     
@@ -300,13 +343,11 @@ extension BotConfigurationView {
                     .frame(height: 28)
                     .foregroundStyle(colorScheme == .dark ? .gray.opacity(0.1) : .gray.opacity(0.2))
                     // Header
-                    Text("notifier\(system == "Windows" ? ".bat" : ".sh")")
-                        .contentTransition(.numericText())
+                    Text("notifier\(system == .win ? ".bat" : ".sh")")
                         .font(Font.system(size: 16, design: .monospaced))
                         .foregroundStyle(.primary.opacity(0.75))
                         .frame(maxWidth: .infinity, alignment: .leading)
                         .padding(.leading)
-                        .animation(.smooth, value: system)
                 }
             copyButton
                 .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topTrailing)
