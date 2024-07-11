@@ -56,9 +56,7 @@ struct BotConfigurationView: View {
         "!", "~", "#", ":",
         "&", "|", "*", "?"
     ]
-    
-    // # ; & | * ? $ ' \" \\ ! ~"
-    
+       
     var body: some View {
         ZStack {
             ScrollView {
