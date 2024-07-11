@@ -276,11 +276,12 @@ extension BotConfigurationView {
             
             // Code section
             VStack(alignment: .leading, spacing: 6) {
+                
+                // System depended code
+                Text(system == "Windows" ? "chcp 65001" : "sleep 20")
+                    .contentTransition(.numericText())
+                    .animation(.smooth, value: system)
                 // Default code
-                if system == "Windows" {
-                    Text("chcp 65001")
-                        .transition(.move(edge: .top).combined(with: .opacity))
-                }
                 Text("curl -s -X POST")
                 Text("https://api.telegram.org/")
                     .tint(colorScheme == .dark ? .gray : .black.opacity(0.75))
