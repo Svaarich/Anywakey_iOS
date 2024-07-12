@@ -21,6 +21,11 @@
   9) Press `Export configuration file` button -> ![doc text fill](https://github.com/user-attachments/assets/ba2377f0-0758-4050-a9e4-7fe9473932c8)
   10) Put `notifier` file into target computer
 
+### Example screenshot
+<img src="https://github.com/user-attachments/assets/327f87fa-3695-447a-9535-0d7b6f7f1c74" alt="screen" width="400"/>
+
+
+
 
 
 
