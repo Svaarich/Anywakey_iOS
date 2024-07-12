@@ -42,11 +42,16 @@
   ```
   xattr -d com.apple.quarantine ./notifier.sh
   ```
-5. Then set a crontab for it
-  ```
-  
-  ```
- Reboot your computer, login and check your Telegram Bot
+5. Set a crontab
+```
+ crontab -e
+```
+Paste `@reboot` + file path to `crontab`
+```
+@reboot /Users/.../notifier.sh)
+```
+
+6. Reboot your computer, login and check your Telegram Bot
 
 
 
