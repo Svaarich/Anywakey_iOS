@@ -50,7 +50,7 @@ struct BotConfigurationView: View {
     }
     
     // Text
-    private var docsLink: String = "https://github.com/Svaarich/Anywakey_iOS/tree/main/docs"
+    private var docsLink: String = "https://github.com/Svaarich/Anywakey_iOS/blob/main/docs/TelegramNotifications.md"
     private let prohibitedChars: Array<Character> = [
         "$", "`", "\"", "\\", 
         "!", "~", "#", ":",

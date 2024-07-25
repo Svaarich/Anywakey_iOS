@@ -111,7 +111,6 @@ struct DeviceInfoView: View {
 extension DeviceInfoView {
     
     // MARK: Emum for focused states
-    
     private enum FocusedStates: Hashable {
         case name
         case adress
