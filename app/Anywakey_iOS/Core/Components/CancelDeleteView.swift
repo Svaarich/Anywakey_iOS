@@ -35,7 +35,7 @@ struct CancelDeleteView: View {
             Spacer()
             Button {
                 // cancel delete action
-                withAnimation {
+                withAnimation(.smooth(duration: 0.3)) {
                     dataService.allDevices.insert(dataService.lastDeletedDevice, at: 0)
                     showView = false
                 }
@@ -53,7 +53,7 @@ struct CancelDeleteView: View {
         }
         .onAppear {
             Timer.scheduledTimer(withTimeInterval: 1, repeats: true) { _ in
-                withAnimation {
+                withAnimation(.smooth(duration: 0.3)) {
                     animate -= 0.20
                     counter -= 1
                 }
@@ -61,7 +61,7 @@ struct CancelDeleteView: View {
         }
         .onChange(of: counter) { _ in
             if counter < 0 {
-                withAnimation {
+                withAnimation(.smooth(duration: 0.3)) {
                     showView = false
                 }
             }

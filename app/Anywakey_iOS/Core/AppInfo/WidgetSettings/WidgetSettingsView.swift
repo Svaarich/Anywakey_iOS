@@ -60,7 +60,7 @@ struct WidgetSettingsView: View {
             }
         }
         .onTapGesture {
-            withAnimation(.smooth) {
+            withAnimation(.smooth(duration: 0.3)) {
                 if widgetMode {
                     tileEditingNumber = 0
                 } else {
@@ -158,7 +158,7 @@ extension WidgetSettingsView {
                         tileEditingNumber == 2 ? 1.0 :
                             tileEditingNumber == 0 ? 1 : 0.4)
                     .onTapGesture {
-                        withAnimation(.smooth) {
+                        withAnimation(.smooth(duration: 0.3)) {
                             tileEditingNumber = 2
                         }
                     }
@@ -177,7 +177,7 @@ extension WidgetSettingsView {
         VStack(spacing: 0) {
             ForEach(colors) { color in
                 Button {
-                    withAnimation(.smooth) {
+                    withAnimation(.smooth(duration: 0.3)) {
                         performButtonAction(color: color)
                     }
                 } label: {

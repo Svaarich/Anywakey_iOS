@@ -53,7 +53,7 @@ struct DeleteDeviceSheet: View {
                     dataService.delete(device: dataService.lastDeletedDevice)
                     dismiss()
                     dismissParentView = true
-                    withAnimation {
+                    withAnimation(.smooth(duration: 0.3)) {
                         showDeleteCancelation = true
                     }
                 } label: {
@@ -91,7 +91,7 @@ struct DeleteDeviceSheet: View {
         guard !animate else { return }
         withAnimation(
             Animation
-                .easeInOut(duration: 1.0)
+                .easeInOut(duration: 0.3)
                 .repeatForever()
         ) {
             animate.toggle()

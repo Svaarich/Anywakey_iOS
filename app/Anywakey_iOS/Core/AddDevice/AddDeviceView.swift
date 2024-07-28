@@ -46,7 +46,7 @@ struct AddDeviceView: View {
         
         .onAppear {
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
-                withAnimation {
+                withAnimation(.smooth(duration: 0.3)) {
                     isFocused.toggle()
                 }
             }
@@ -55,7 +55,7 @@ struct AddDeviceView: View {
         .gesture(
             DragGesture()
                 .onEnded { value in
-                    withAnimation(.easeInOut) {
+                    withAnimation(.easeInOut(duration: 0.3)) {
                         if value.translation.height > 100 {
                             dismiss()
                         }

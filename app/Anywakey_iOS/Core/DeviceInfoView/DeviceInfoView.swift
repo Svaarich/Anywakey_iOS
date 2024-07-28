@@ -75,10 +75,10 @@ struct DeviceInfoView: View {
                 .padding()
                 CopiedNotificationView()
                     .opacity(showCopiedView ? 1.0 : 0)
-                    .animation(.spring, value: showCopiedView)
+                    .animation(.spring(duration: 0.3), value: showCopiedView)
                 WrongInput()
                     .opacity(showWrongInput ? 1.0 : 0)
-                    .animation(.spring, value: showWrongInput)
+                    .animation(.spring(duration: 0.3), value: showWrongInput)
             }
         }
         

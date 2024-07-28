@@ -167,7 +167,7 @@ extension AppInfoView {
         .padding(.vertical, 20)
         .frame(maxWidth: .infinity)
         .onTapGesture(count: 10) {
-            withAnimation(.smooth) {
+            withAnimation(.smooth(duration: 0.3)) {
                 isTester.toggle()
             }
         }
