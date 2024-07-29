@@ -38,6 +38,10 @@ struct AppInfoView: View {
                     
                     Divider()
                     
+                    NavLinkButton(text: "Alarm", image: Image(systemName: "power"), color: .red) {
+                        AlarmView()
+                    }
+                    
                 }
                 .clipShape(RoundedRectangle(cornerRadius: 10))
                 .padding(.bottom)
@@ -293,8 +297,4 @@ extension AppInfoView {
                 showFileImporter.toggle()
             }
     }
-}
-
-#Preview {
-    AppInfoView()
 }
