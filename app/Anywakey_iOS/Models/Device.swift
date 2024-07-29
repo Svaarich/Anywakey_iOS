@@ -28,7 +28,7 @@ public struct Device: Hashable, Identifiable, Codable {
     let BroadcastAddr: String
     let Port: String
     let isPinned: Bool
-    public var id = UUID().uuidString
+    public let id: String
     
     // return current device marked as favourite
     func pinToggle() -> Device {
