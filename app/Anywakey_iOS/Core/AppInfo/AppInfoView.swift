@@ -36,12 +36,6 @@ struct AppInfoView: View {
                     
                     linkTreeButton
                     
-                    Divider()
-                    
-                    NavLinkButton(text: "Alarm", image: Image(systemName: "power"), color: .red) {
-                        AlarmView()
-                    }
-                    
                 }
                 .clipShape(RoundedRectangle(cornerRadius: 10))
                 .padding(.bottom)
@@ -77,6 +71,10 @@ struct AppInfoView: View {
                     }
                     
                     telegramNotifierButton
+                    
+                    Divider()
+                    
+                    alarmButton
                     
                 }
                 .clipShape(RoundedRectangle(cornerRadius: 10))
@@ -183,6 +181,17 @@ extension AppInfoView {
                 .font(.largeTitle)
                 .fontWeight(.semibold)
                 .foregroundStyle(colorScheme == .dark ? .white : .black)
+        }
+    }
+    
+    // Alarm button
+    
+    private var alarmButton: some View {
+        NavLinkButton(
+            text: "Schedule boot",
+            image: Image(systemName: "clock.fill"),
+            color: .orange) {
+                AlarmView()
         }
     }
     
