@@ -1,24 +1,33 @@
 
 import SwiftUI
+import BackgroundTasks
+
 
 struct AlarmView: View {
     
-    var body: some View {
-        Button("notify") {
-            notify()
-        }
-        Button("request") {
-            request()
-        }
-    }
+    let device: Device = Device(name: "", MAC: "", BroadcastAddr: "", Port: "")
     
-    private func request() {
-        UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .badge, .sound]) { success, error in
-            if success {
-                print("All set!")
-            } else if let error {
-                print(error.localizedDescription)
-            }
+    var body: some View {
+        VStack {
+            Button("Local Message Autorization") {
+                Network.instance.sendTG()
+                UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .badge, .sound]) { success, error in
+                    if success {
+                        print("All set!")
+                        
+                    } else if let error = error {
+                        print(error.localizedDescription)
+                    }
+                }
+            }.buttonStyle(.borderedProminent)
+                .padding()
+            
+            Button("Schedule Background Task") {
+                notify()
+            }.buttonStyle(.bordered)
+                .tint(.red)
+                .padding()
+            
         }
     }
     
@@ -32,13 +41,14 @@ struct AlarmView: View {
         let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 5, repeats: false)
 
         // choose a random identifier
-        let request = UNNotificationRequest(identifier: UUID().uuidString, content: content, trigger: trigger)
+        let request = UNNotificationRequest(identifier: device.id, content: content, trigger: trigger)
 
         // add our notification request
         UNUserNotificationCenter.current().add(request)
     }
+
 }
 
-#Preview {
-    AlarmView()
-}
+//#Preview {
+//    AlarmView()
+//}
