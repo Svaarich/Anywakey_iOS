@@ -10,7 +10,6 @@ struct AlarmView: View {
     var body: some View {
         VStack {
             Button("Local Message Autorization") {
-                Network.instance.sendTG()
                 UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .badge, .sound]) { success, error in
                     if success {
                         print("All set!")
