@@ -36,8 +36,6 @@ struct AppInfoView: View {
                     
                     linkTreeButton
                     
-                    Divider()
-                    
                 }
                 .clipShape(RoundedRectangle(cornerRadius: 10))
                 .padding(.bottom)
@@ -73,6 +71,10 @@ struct AppInfoView: View {
                     }
                     
                     telegramNotifierButton
+                    
+                    Divider()
+                    
+                    alarmButton
                     
                 }
                 .clipShape(RoundedRectangle(cornerRadius: 10))
@@ -167,7 +169,7 @@ extension AppInfoView {
         .padding(.vertical, 20)
         .frame(maxWidth: .infinity)
         .onTapGesture(count: 10) {
-            withAnimation(.smooth) {
+            withAnimation(.smooth(duration: 0.3)) {
                 isTester.toggle()
             }
         }
@@ -179,6 +181,17 @@ extension AppInfoView {
                 .font(.largeTitle)
                 .fontWeight(.semibold)
                 .foregroundStyle(colorScheme == .dark ? .white : .black)
+        }
+    }
+    
+    // Alarm button
+    
+    private var alarmButton: some View {
+        NavLinkButton(
+            text: "Schedule boot",
+            image: Image(systemName: "clock.fill"),
+            color: .orange) {
+                AlarmView()
         }
     }
     
@@ -293,8 +306,4 @@ extension AppInfoView {
                 showFileImporter.toggle()
             }
     }
-}
-
-#Preview {
-    AppInfoView()
 }

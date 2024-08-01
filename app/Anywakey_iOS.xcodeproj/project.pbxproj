@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		370DEFC82C35BFB100B82131 /* BotConfigurationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 370DEFC72C35BFB100B82131 /* BotConfigurationView.swift */; };
 		377312602C3EC541003FD8F5 /* HighlightedText.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3773125F2C3EC541003FD8F5 /* HighlightedText.swift */; };
+		37A40BF82C58321D003E76E3 /* Alarm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37A40BF72C58321D003E76E3 /* Alarm.swift */; };
+		37A40BFC2C583D52003E76E3 /* AlarmView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37A40BFB2C583D52003E76E3 /* AlarmView.swift */; };
 		7D0518B72B71863F006850B8 /* HapticManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D0518B62B71863F006850B8 /* HapticManager.swift */; };
 		7D12F34E2BE169BE00FE854E /* LinkButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D12F34D2BE169BE00FE854E /* LinkButton.swift */; };
 		7D33C1C22BFE04B700ABF540 /* WidgetSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DB21BB02BFD234800A090E2 /* WidgetSettingsView.swift */; };
@@ -171,6 +173,8 @@
 /* Begin PBXFileReference section */
 		370DEFC72C35BFB100B82131 /* BotConfigurationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BotConfigurationView.swift; sourceTree = "<group>"; };
 		3773125F2C3EC541003FD8F5 /* HighlightedText.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HighlightedText.swift; sourceTree = "<group>"; };
+		37A40BF72C58321D003E76E3 /* Alarm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Alarm.swift; sourceTree = "<group>"; };
+		37A40BFB2C583D52003E76E3 /* AlarmView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlarmView.swift; sourceTree = "<group>"; };
 		7D0518B62B71863F006850B8 /* HapticManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HapticManager.swift; sourceTree = "<group>"; };
 		7D12F34D2BE169BE00FE854E /* LinkButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LinkButton.swift; sourceTree = "<group>"; };
 		7D13BA662BF7E0AD00A8817B /* TwoDeviceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TwoDeviceView.swift; sourceTree = "<group>"; };
@@ -312,6 +316,14 @@
 			path = ViewModifiers;
 			sourceTree = "<group>";
 		};
+		37A40BFA2C583D3C003E76E3 /* Alarm */ = {
+			isa = PBXGroup;
+			children = (
+				37A40BFB2C583D52003E76E3 /* AlarmView.swift */,
+			);
+			path = Alarm;
+			sourceTree = "<group>";
+		};
 		7D12F34C2BE1699200FE854E /* AppInfo */ = {
 			isa = PBXGroup;
 			children = (
@@ -421,6 +433,7 @@
 			children = (
 				7DC26D802AE7EBE100B52D02 /* Anywakey_iOS_App.swift */,
 				7DD331CF2B5AEAE7002BFA64 /* Core */,
+				7DD331DA2B5AF334002BFA64 /* Components */,
 				7DFC05382B292CE60082E502 /* Models */,
 				7DD331D42B5AED29002BFA64 /* Services */,
 				7DE700142AEA82E50033E53A /* Extensions */,
@@ -493,11 +506,11 @@
 		7DD331CF2B5AEAE7002BFA64 /* Core */ = {
 			isa = PBXGroup;
 			children = (
+				7DD331D02B5AEAED002BFA64 /* Home */,
 				7D12F34C2BE1699200FE854E /* AppInfo */,
 				7DFB91C02BE584C7001650B9 /* DeviceInfoView */,
-				7DD331DA2B5AF334002BFA64 /* Components */,
 				7D34560A2B71D053003267AE /* AddDevice */,
-				7DD331D02B5AEAED002BFA64 /* Home */,
+				37A40BFA2C583D3C003E76E3 /* Alarm */,
 			);
 			path = Core;
 			sourceTree = "<group>";
@@ -635,6 +648,7 @@
 			isa = PBXGroup;
 			children = (
 				7DFC05352B292C5E0082E502 /* Device.swift */,
+				37A40BF72C58321D003E76E3 /* Alarm.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -846,6 +860,7 @@
 			files = (
 				7DB21B702BF92C7000A090E2 /* Color + Widget.swift in Sources */,
 				7DC26DA92AE7EDA500B52D02 /* WakeOnLAN.swift in Sources */,
+				37A40BFC2C583D52003E76E3 /* AlarmView.swift in Sources */,
 				7DF096ED2BCFF3FF00981F98 /* CancelDeleteView.swift in Sources */,
 				7DC26DA82AE7EC8B00B52D02 /* Network.swift in Sources */,
 				7DE700132AEA82DC0033E53A /* String.swift in Sources */,
@@ -867,6 +882,7 @@
 				7DD1F7DD2BBBF70F0000E238 /* Device + Extension.swift in Sources */,
 				7DD331DC2B5C5D8D002BFA64 /* BootButton.swift in Sources */,
 				7D5AF0D32C14D2E400AB6750 /* WatchConnector.swift in Sources */,
+				37A40BF82C58321D003E76E3 /* Alarm.swift in Sources */,
 				370DEFC82C35BFB100B82131 /* BotConfigurationView.swift in Sources */,
 				7DE7001B2AEABC930033E53A /* AddDeviceView.swift in Sources */,
 				7DB21B762BFAB82D00A090E2 /* ShareManager.swift in Sources */,

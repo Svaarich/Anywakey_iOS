@@ -119,7 +119,7 @@ extension DeviceCellView {
     // Get status color of device
     private func getStatus() {
         Network.instance.ping(address: device.BroadcastAddr) { duration, status in
-            withAnimation(.easeInOut) {
+            withAnimation(.easeInOut(duration: 0.3)) {
                 ping = duration
                 isAccesible = status
             }

@@ -5,14 +5,14 @@ struct BootButton: View {
     
     @Environment(\.colorScheme) var colorScheme
     
-    @State var statusColor: Color = .gray
-    @State var isPressed: Bool = false
+    @State private var statusColor: Color = .gray
+    @State private var isPressed: Bool = false
     @State private var rotationAngle: Double = 0
     
     @Binding var refreshStatus: Bool
     @Binding var showWrongInput: Bool
     
-    @State var timer: Timer?
+    @State private var timer: Timer?
 
     let device: Device
     
